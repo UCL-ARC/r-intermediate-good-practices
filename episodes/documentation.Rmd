@@ -1,0 +1,27 @@
+---
+title: "Documentation"
+teaching: 
+exercises: 
+---
+
+:::::::::::::::::::::::::::::::::::::: questions
+- How do different audiences influence what you document?
+- How does your intention (citation, collaboration, onboarding) shape the documentation you write?
+- What types of documentation should research software include?
+- When should you use in‑code comments, and why can over‑commenting be harmful?
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+- Identify and distinguish between procedural, conceptual, and reference documentation.
+- Plan documentation using the questions: Who is it for? What do they want? How else could I communicate with them?
+- Produce concise, audience‑appropriate documentation.
+- Explain why it is good practice to avoid line‑by‑line commentary.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: keypoints
+- Research software has multiple audiences — users, developers, maintainers, and “future you” — each requiring different documentation.
+- Documentation comes in three types: procedural (step‑by‑step guides), conceptual (background, explanations, diagrams), and reference (APIs, parameters, system details)
+- In‑code comments should be minimal and purposeful.Over‑commenting distracts from the code, increases cognitive load, and often indicates unclear naming or structure.
+- Docstrings describe the purpose and behaviour of functions, classes, and modules. They improve readability and can be used to auto‑generate reference documentation.
+::::::::::::::::::::::::::::::::::::::::::::::::
