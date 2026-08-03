@@ -10,16 +10,21 @@ exercises:
 - What are the benefits of working reproducibly?
 - Does reproducibility guarantee good research?
 
-:::::::::::::::::::::::::::::::::::::::::::::::: objectives
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::: objectives
 
 - Explain what reproducibility is and how it fits alongside replicability, robustness, and generalisability.
 - Describe the advantages of making your work reproducible and who benefits from those advantages.
 - Be familiar with a set of best practices (including version control, compute environment control, FAIR data), documentation, that enable reproducible workflows.
 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: keypoints
+::::::::::::::::::::::::::::::::::::: keypoints 
 
 -  Reproducibility ensures the same data and same analysis give the same result regardless of who runs the analysis on what machine.
 - Using good practices that ensure reproducability will help maintain your work over time, enables others to use or contribute to your code, and strengthens the credibility of published outputs.
 - Reproducibility requires more than code: environment, commands, data, documentation, and packaging must all be captured clearly.
 - Reproducibility is the first and most basic step of good research — without it, replicability, robustness, or generalisability cannot be assessed.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
