@@ -20,6 +20,71 @@ exercises:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Why is the code not running?
+You try to run an R script you received from a colleague, but it fails with errors or does not run at all.
+
+Give three possible reasons.
+
+:::::::::::::::::::::::: solution
+
+## Possible causes
+
+- **Missing packages**  
+  The script may rely on packages that are not installed. 
+
+- **Incorrect file paths**  
+  The script may use file paths that only exist on your colleague’s computer.
+
+- **Documentation missing or unclear**  
+  If the script does not explain required inputs, expected file locations, or setup steps, you may not know how to run it correctly. 
+
+- **Missing input**  
+  The script may expect other data files or inputs that were not shared with you.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Why did the results change?
+Your colleague tells you which versions of packages to install and provides missing data files.
+
+You run the script again and now it runs!
+
+However... the results are different from your colleague’s.
+
+Give three possible reasons for this reproducibility failure.
+
+:::::::::::::::::::::::: solution 
+
+## Possible causes 
+
+- **Software version**  
+  R itself, or one or more packages (e.g. `dplyr` or `ggplot2`), may be a different version on your machine than on your colleague’s. Even minor version updates can change default behaviour. 
+
+- **Data**  
+  The script may rely on a specific version of a dataset, but you might be using a different copy. Files may have been edited, rows removed, variables renamed, or missing values handled differently. .
+
+- **Unclear documentation**
+  If the workflow is poorly documented, you may unknowingly run steps differently — for example, using the wrong file, wrong parameters, or missing preprocessing steps.
+
+- **Manual steps that are not reproducible**  
+  If your colleague performed manual data cleaning, interactive filtering, or hand‑edited files, those steps may not be captured in the script. As a result, your run will not match theirs.
+
+- **Uncontrolled randomness**  
+  Many R functions use randomness internally (e.g., `sample()`, bootstrapping, cross‑validation). If the script does not set a random seed using `set.seed()`, each run can produce different results. Different machines may also use different random number generators or parallel backends, increasing variability.
+
+- **Different compute environments**  
+  In some cases, operating systems can influence numerical results. 
+
+- **Hidden state in the workspace**  
+  If the script is run in an R session that contains objects from previous work, those objects can interfere. 
+
+
+:::::::::::::::::::::::::::::::::
+
+
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 -  Reproducibility ensures the same data and same analysis give the same result regardless of who runs the analysis on what machine.
