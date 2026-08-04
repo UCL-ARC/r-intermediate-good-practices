@@ -16,7 +16,7 @@ exercises:
 
 - Explain what reproducibility is and how it fits alongside replicability, robustness, and generalisability.
 - Describe the advantages of making your work reproducible and who benefits from those advantages.
-- Be familiar with a set of best practices (including version control, compute environment control, FAIR data), documentation, that enable reproducible workflows.
+- Be familiar with a set of best practices and tools (including version control, compute environment control, FAIR data, and clear documentation), that enable reproducible workflows.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
