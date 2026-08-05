@@ -94,9 +94,9 @@ Name three tools or practices you can use to help others — and your future sel
 
 ## Tools and Practices for Reproducibility
 - Version control with Git captures the exact state of your project at any point in time. This ensures the code used for an analysis workflow is preserved and recoverable, even after changes have been made later.
-- Environment management with tools like conda, renv, pip freeze, or Docker capture software dependencies so others can recreate your computational environment exactly.
-- Clear documentation including READMEs, comments, and usage instruction,s make your code understandable and repeatable.
-- Good data management practices using consistent naming, metadata so others know what each file represents, and storing raw data separately from processed data.
+- Environment management with tools like `renv` capture software dependencies so others can recreate your computational environment.
+- Clear documentation including READMEs, comments, and usage instructions.
+- Good data management practices like using consistent naming, metadata, and storing raw data separately from processed data.
 - Publishing code, data, and notebooks in publicly accessible repositories increases transparency and allows others to easily access your work.
 
 :::::::::::::::::::::::::::::::::
@@ -110,7 +110,7 @@ Give three reasons to improve the reproducibility of the project.
 :::::::::::::::::::::::: solution
 
 ## Reasons
-Reproducibility is a key part of scientific inquiry. In computational research, science relies on verification just as much as in experimental work. Only when independent parties can rerun your code, apply your workflow to the same data, and obtain similar results your results are scientifically valid. 
+Reproducibility is the essential first benchmark of trustworthy scientific research: without it, no further validation is possible.
 
 Beyond the clear benefits for science, other reasons are:
 - Helping your future self. A reproducible workflow saves time when revisiting or updating your project later. You avoid having to reconstruct your steps from memory.
@@ -123,25 +123,24 @@ Beyond the clear benefits for science, other reasons are:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Dimensions of high-quality research
-Reproducibility is essential, but it is only one dimension of high‑quality research. 
+## Replicability, Robustness, and Generalisability
 
-How is reproducibility distinct from replicable, robust, and generalisable research?
+What do replicability, robustness, and generalisability have in common with reproducibility, and how do they differ?
 
 :::::::::::::::::::::::: solution
 
-## Replicability, Robustness, and Generalisability
-
-Each term describes a different way of assessing the reliability and strength of scientific results.
+## High-quality research
+These terms describe qualities of trustworthy scientific results. 
 
 ### Replicability
-While reproducibility checks whether the same analysis on the same dataset gives the same result, replicability asks whether the same analysis applied to different datasets produces qualitatively similar outcomes. This shows whether your findings hold beyond the specific dataset you originally used.
+Replicability checks whether the same analysis applied to different data produces qualitatively similar outcomes. This shows whether your findings hold beyond the specific dataset you originally used.
 
 ### Robustness
-A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar answer is produced. Robust results show that the work is not dependent on the specificities of the programming language chosen to perform the analysis
+Robustness assesses whether conclusions persist when a different analysis is applied to the same data. A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar answer is produced. Robust results do not depend on implementation‑specific details such as programming language or things like slightly different preprocessing choices within a given workflow.
 
 ### Generalisability
 Generalisability can be assessed by combining replicable and robust findings. However, running an analysis on a different software implementation and with a different dataset does not automatically not guarantee that the findings apply broadly across contexts. Generalisability requires a deep assessment of whether results hold across multiple datasets, multiple analytical approaches, and multiple conditions relevant to the research question. This is an important step toward understanding whether a result reflects a real underlying pattern rather than something tied to narrow conditions.
+
 
 
 [How the Turing Way defines reproducible research](https://book.the-turing-way.org/build/reproducible-matrix-451331f1ef032faa7af5488ef54e649f.jpg)
