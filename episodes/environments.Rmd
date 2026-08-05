@@ -11,7 +11,6 @@ exercises: 15
 - How can we create project‑specific environment?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Explain the purpose of an R environment.
@@ -21,6 +20,34 @@ exercises: 15
 - Restore an environment on a different machine.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+::::::::::::::::::::::::::::::::::::: challenge
+## help
+
+Use the R console to learn more about `renv`.
+``` R
+help(renv)
+```
+
+Explore the help page and useful links.
+
+Summarise what `renv` is and and how it helps with project handovers.
+
+:::::::::::::::::::::::: solution
+## renv
+
+`renv` is an R package that helps create reproducible environments.
+
+One of the reasons to use `renv` is to make it easier to share your code in such a way that everyone gets exactly the same package versions as you. 
+
+:::::::::::::::::::::::::::::::::::::
+
+Install the latest version of `renv` from CRAN with:
+```
+install.packages("renv")
+```
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
