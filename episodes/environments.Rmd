@@ -95,7 +95,7 @@ One of the reasons to use `renv` is to make it easier to share your code in such
 
 :::::::::::::::::::::::::::::::::::::
 
-Before initialissing an `renv` environment save the `sleep_analysis.R` in a new folder called `r-workshop` in your home directory.
+Before initialising an `renv` environment save the `sleep_analysis.R` in a new folder called `r-workshop` in your home directory.
 
 Then set the working directory to that folder:
 ``` R
