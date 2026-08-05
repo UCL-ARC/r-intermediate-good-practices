@@ -1,7 +1,7 @@
 ---
 title: "Environments"
-teaching: 30
-exercises: 15
+teaching: 
+exercises: 
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -14,10 +14,10 @@ exercises: 15
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Explain the purpose of an R environment.
-- Create a `renv` environment within an `R project`.
-- Add packages to the `renv` environment directly and from a `DESCRIPTION` file.
-- Take implicit and explicit snapshots of the environment.
-- Restore an environment on a different machine.
+- Create a `renv` environment
+- Add R packages to the `renv` environment directly and from a `DESCRIPTION` file.
+- Use use `renv::snapshot()` to take implicit and explicit snapshots of the environment.
+- Restore an environment on a different machine using `renv::restore()` which recreates the environment on another machine.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -50,11 +50,8 @@ install.packages("renv")
 ```
 
 ::::::::::::::::::::::::::::::::::::: keypoints
-
 - An **R environment** defines the exact versions of R and packages used in a project.
 - `renv` creates isolated, project‑specific libraries for reproducible workflows.
-- `renv::snapshot()` records the current state of the environment.
-- `renv::restore()` recreates the environment on another machine.
 - Reproducibility depends on stable, well‑defined environments.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
