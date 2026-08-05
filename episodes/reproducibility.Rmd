@@ -23,7 +23,7 @@ exercises:
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 -  Reproducibility ensures the same data and same analysis give the same result regardless of who runs the analysis on what machine.
-- Using good practices that ensure reproducability will help maintain your work over time, enables others to use or contribute to your code, and strengthens the credibility of published outputs.
+- Using good practices that ensure reproducibility will help maintain your work over time, enables others to use or contribute to your code, and strengthens the credibility of published outputs.
 - Reproducibility requires more than code: environment, commands, data, documentation, and packaging must all be captured clearly.
 - Reproducibility is the first and most basic step of good research — without it, replicability, robustness, or generalisability cannot be assessed.
 
