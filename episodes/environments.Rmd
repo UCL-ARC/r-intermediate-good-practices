@@ -274,6 +274,56 @@ No issues found -- the project is in a consistent state.
 All of the inconsistencies should have disappeared because `renv::snapshot()` rewrites the lockfile to reflect the current state of your project library and R version.
 :::::::::::::::::::::::::::::::::::::
 
+## 
+
+Use `renv::snapshot()` to update a lockfile with the current state of dependencies in the project library. 
+
+``` R
+renv::snapshot()
+```
+
+Later, you or a collaborator can use it to recreate the same environment with:
+
+``` R
+renv::restore()
+
+```
+
+Use `renv::restore()` when:
+- you open a project on a new computer
+- you clone someone else's project from GitHub
+- you want to return to a known working state
+
+
+## Using a DESCRIPTION file
+
+As your project grows, the `renv.lock` file becomes long and detailed. Many R projects use a `DESCRIPTION` file to provide a simple, readable list of the packages your project depends on.
+
+A `DESCRIPTION` file:
+- lists the packages your project uses
+- can include version requirements
+- is easy for humans to read
+- helps `renv` know which packages to install
+
+But it often does not guarantee the exact versions installed.
+
+Most DESCRIPTION files use lower limits like `>= 3.4.0`, not exact versions.
+
+Save a file named `DESCRIPTION` in your project folder:
+``` R
+Imports:
+    ggplot2 (>= 3.4.0),
+    obscurepackage (== 0.1.0)
+```
+
+Everything under Imports is treated as a dependency.
+Version numbers here tell renv the minimum versions your project expects.
+
+When you run:
+``` R
+renv::restore()
+```
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - An **R environment** defines the exact versions of R and packages used in a project.
 - `renv` creates isolated, project‑specific libraries for reproducible workflows.
