@@ -20,12 +20,30 @@ exercises:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-# Inheriting an R script
+## Inheriting an R script
 
-A colleague hands you an R script called `sleep_analysis.R` and asks you continue their analysis while their away.
+A colleague hands you an R script called `sleep_analysis.R` and asks you to reproduce their results while their away.
+
+You open the file, run it, and immediately hit an error.
+
+The script tries to load:
+``` R
+library(obscurepackage)
+```
+But on your machine, that package is not installed, resulting in an error message that looks like the one below.
+
+``` R
+Error in library(obscurepackage) : 
+  there is no package called ‘obscurepackage’
+```
+
+## Missing package
+
+On your machine, R looks for packages in your global environment. You might already have `ggplot2` installed, but you probably don not have `obscurepackage` installed, so the script fails.
+
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Sleep analysis
+## Try to make the script run
 
 Create a new R script called `sleep_analysis.R` and paste in the following code:
 
@@ -47,33 +65,34 @@ p <- ggplot(data, aes(x = group, y = none_transformed_data)) +
 print(p)
 ```
 
-What happens when you try to run this? Why?
+Your task:
+- Install the missing package(s) so the script can run.
+- Re-run the script and reproduce the boxplot figure.
+
+You may already have `ggplot2` installed, but if not, you can install it with:
+
+```r
+install.packages("ggplot2")
+```
+
+The `obscurepackage` is not on CRAN. You need to install it from GitHub:
+``` R
+remotes::install_github("stellaprins/obscurepackage")
+```
+
+Now that you have installed the required packages, are you able to reproduce the plot? Why?
+
+[sleep analysis plot](episodes\fig\sleep_analysis_plot.png)
 
 :::::::::::::::::::::::: solution
-## Missing package
+## version matters 
 
-`obscurepackage` will give an error unless it is installed, and `ggplot2` may also give an error or a version warning.
+The newest version of `obscurepackage` contains a bug that causes `none_transform()` to always return `NA`, so the boxplot cannot be reproduced unless you install the earlier version.
 
-Once both packages are installed, the script runs successfully and produces a boxplot.
+[sleep analysis NA plot](episodes\fig\sleep_analysis_NA_plot.png)
 
 :::::::::::::::::::::::::::::::::::::
 
-You open the file, run it, and immediately hit an error.
-
-The script tries to load:
-``` R
-library(obscurepackage)
-```
-But on your machine, that package is not installed, resulting in an error message that looks like the one below.
-
-``` R
-Error in library(obscurepackage) : 
-  there is no package called ‘obscurepackage’
-```
-
-## Why this happens: global vs local environments
-
-On your machine, R looks for packages in your global environment. You might already have `ggplot2` installed, but you probably don not have `obscurepackage` installed, so the script fails.
 
 Installing inside a project environment ensures:
 - the dependency is captured
