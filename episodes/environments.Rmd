@@ -41,7 +41,6 @@ Error in library(obscurepackage) :
 
 On your machine, R looks for packages in your global environment. You might already have `ggplot2` installed, but you probably don not have `obscurepackage` installed, so the script fails.
 
-
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Try to make the script run
 
@@ -93,11 +92,16 @@ The newest version of `obscurepackage` contains a bug that causes `none_transfor
 
 :::::::::::::::::::::::::::::::::::::
 
+## version mismatch
+
+A version mismatch happens when your script loads a package whose functions have changed between releases, causing the same code to produce different results on different machines.
+
+## project environments
 
 Installing inside a project environment ensures:
-- the dependency is captured
-- the version is pinned
-- the environment can be easily reproduced
+- the project environment keeps a record of which packages are used
+- the exact versions of those packages are recorded
+- the environment can be recreated on different machines or at a later timepoint
 
 ::::::::::::::::::::::::::::::::::::: callout
 ## Two different meanings of environment in R
@@ -115,7 +119,7 @@ They enable features like **lexical scoping** and **namespaces**.
 
 # `renv`
 
-In this workshop, we are going to use an R package called `renv` to manage our R environment.
+In this workshop, we are going to use an R package called `renv` to manage our project environment.
 
 To install `renv`
 ``` R 
