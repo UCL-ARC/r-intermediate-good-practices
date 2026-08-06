@@ -164,6 +164,15 @@ This will:
 - Create a file named `renv.locks` that records the state of the project library so it can be restored by others
 - Restart R.
 
+## Activate the `renv` 
+
+r
+``` r
+source("renv/activate.R")
+```
+
+This loads the `renv` environment for the current session and ensures that functionalities like `renv::snapshot()` work correctly.
+
 ## Install packages are in the renv environment
 
 Any package you install into your `renv` will be kept isolated from whatever is installed globally on your machine.
@@ -211,6 +220,59 @@ Restart RStudio and rerun the `sleep_analysis.R` script.
 
 You should be able to replicate the results of your colleague!
 
+## Checking the environment with `renv::status()`
+
+To check whether your project environment is consistent with your lockfile, use:
+``` r
+renv::status()
+```
+
+`renv::status()` compares three things:
+- `renv` project library
+- the `renv.lock` file
+- What your project actually uses
+
+If these differ, `renv::status()` will report inconsistencies such as:
+- packages installed but not recorded
+- packages recorded but not installed
+- packages where the installed version ≠ recorded version
+- a different R version than the one used to generate the lockfile
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Fix `renv` status inconsistencies
+Run:
+
+``` r
+renv::status()
+```
+
+Look at the output.
+
+Now take a "snapshot using `renv::snapshot()`":
+```r 
+renv::snapshot()
+```
+
+Then, run `renv::status` again :
+
+``` r
+renv::status()
+```
+
+Compare the `renv::status` outputs before and after taking a snapshot:
+- Which inconsistencies disappeared?
+- Which (if any) remain?
+- Why did snapshotting fix these issues?
+
+:::::::::::::::::::::::: solution
+
+After running `renv::snapshot()` the second time, you will (hopefully!) see something like
+``` r 
+No issues found -- the project is in a consistent state.
+```
+
+All of the inconsistencies should have disappeared because `renv::snapshot()` rewrites the lockfile to reflect the current state of your project library and R version.
+:::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - An **R environment** defines the exact versions of R and packages used in a project.
