@@ -106,8 +106,6 @@ Installing inside a project environment ensures:
 ::::::::::::::::::::::::::::::::::::: callout
 ## Two different meanings of environment in R
 
-The word **environment** in two completely different ways.
-
 **1) project environments**  
 These are external, project‑specific libraries created by the `renv` package. 
 They store **packages and their versions**, making your project reproducible on any machine.
