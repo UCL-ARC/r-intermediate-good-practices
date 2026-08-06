@@ -6,16 +6,15 @@ exercises:
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What is an R environment and why does it matter?
-- How do package versions affect reproducibility?
-- How can we create project‑specific environment?
+- What is a project environment and why does it matter?
+- How can we create project environment?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the purpose of an R environment.
-- Create a `renv` environment
-- Add R packages to the `renv` environment directly and from a `DESCRIPTION` file.
+- Explain the purpose of an project environment.
+- Create a project environment using `renv`.
+- Add packages to the `renv` environment directly and from a `DESCRIPTION` file.
 - Use use `renv::snapshot()` to take implicit and explicit snapshots of the environment.
 - Restore an environment on a different machine using `renv::restore()` which recreates the environment on another machine.
 
