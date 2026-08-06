@@ -137,7 +137,7 @@ Explore the help page and useful links.
 Summarise what `renv` is and and how it helps with project handovers.
 
 :::::::::::::::::::::::: solution
-## renv
+## Initialise renv
 
 `renv` is an R package that helps create reproducible environments.
 
@@ -158,8 +158,58 @@ Once your working directory is pointing at the correct folder, initialise `renv`
 renv::init()
 ```
 
-This creates a project environment in the current folder, capturing all packages you install next and making the setup reproducible.
+This will:
+- Set up project infrastructure inside your working directory that ensures `renv` will be used in future sessions
+- Discover the packages that are currently installed, and install them into the project library folder where renv puts the packages that this project uses
+- Create a file named `renv.locks` that records the state of the project library so it can be restored by others
+- Restart R.
 
+## Install packages are in the renv environment
+
+Any package you install into your `renv` will be kept isolated from whatever is installed globally on your machine.
+
+### Install ggplot2 from CRAN
+
+Use `renv::install()` to install ggplot2 directly into the renv environment:
+``` r
+renv::install("ggplot2")
+```
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Install a GitHub package using `renv`
+
+Use the help page for `renv::install` to learn how to install packages inside the `renv` environment.
+``` R
+?renv::install
+```
+
+- Use the help page to find out how to install a package from GitHub using `renv::install()`
+- Use what you learned to install `v0.1.0` of the GitHub repository `stellaprins/obscurepackage`.
+
+:::::::::::::::::::::::: solution
+## 
+From the help page, GitHub packages can be installed by using the `username/repository` string, and specific versions can be installed by supplying a commit SHA.
+
+The commit SHA for `v0.1.0` of `stellaprins/obscurepackage` is `9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831`.
+
+
+```R
+renv::install("stellaprins/obscurepackage@9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831")
+```
+
+:::::::::::::::::::::::::::::::::::::
+
+### Install obscurepackage from GitHub
+
+To install a specific version of a GitHub package inside an renv project, use `the username/repo@version` format:
+
+```R
+renv::install("stellaprins/obscurepackage@v0.1.0")
+```
+
+Restart RStudio and rerun the `sleep_analysis.R` script.
+
+You should be able to replicate the results of your colleague!
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints
