@@ -20,8 +20,9 @@ exercises:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-# Sleep analysis
+# Inheriting an R script
 
+A colleague hands you an R script called `sleep_analysis.R` and asks you continue their analysis while their away.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Sleep analysis
@@ -40,7 +41,7 @@ p <- ggplot(data, aes(x = group, y = none_transformed_data)) +
   labs(
     title = "Extra Sleep by Drug Group",
     x = "Drug Group",
-    y = "Extra sleep"
+    y = "Extra sleep (hours)"
   )
 
 print(p)
@@ -57,12 +58,41 @@ Once both packages are installed, the script runs successfully and produces a bo
 
 :::::::::::::::::::::::::::::::::::::
 
-Installing the missing package(s) globally will make the script run on your machine, but it does not guarantee reproducibility for when you switch machines or if a dependency updates and starts clashing.
+You open the file, run it, and immediately hit an error.
 
-Installing inside an R environment ensures:
+The script tries to load:
+``` R
+library(obscurepackage)
+```
+But on your machine, that package is not installed, resulting in an error message that looks like the one below.
+
+``` R
+Error in library(obscurepackage) : 
+  there is no package called ‘obscurepackage’
+```
+
+## Why this happens: global vs local environments
+
+On your machine, R looks for packages in your global environment. You might already have `ggplot2` installed, but you probably don not have `obscurepackage` installed, so the script fails.
+
+Installing inside a project environment ensures:
 - the dependency is captured
 - the version is pinned
 - the environment can be easily reproduced
+
+::::::::::::::::::::::::::::::::::::: callout
+## Two different meanings of environment in R
+
+The word **environment** in two completely different ways.
+
+**1) project environments**  
+These are external, project‑specific libraries created by the `renv` package. 
+They store **packages and their versions**, making your project reproducible on any machine.
+
+**2) R environments**  
+These store variables and track where functions were created, and control how R finds values.  
+They enable features like **lexical scoping** and **namespaces**.
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 # `renv`
 
