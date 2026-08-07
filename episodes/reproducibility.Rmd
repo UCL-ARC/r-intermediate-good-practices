@@ -32,6 +32,8 @@ Give three possible reasons.
 
 ## Possible causes
 
+These are some of the most common causes:
+
 - **Missing packages**  
   The script may rely on packages that are not installed. 
 
@@ -60,6 +62,8 @@ Give three possible reasons for this reproducibility failure.
 :::::::::::::::::::::::: solution 
 
 ## Possible causes 
+
+These are some of the most common causes:
 
 - **Software version**  
   R itself, or one or more packages (e.g. `dplyr` or `ggplot2`), may be a different version on your machine than on your colleague’s. Even minor version updates can change default behaviour. 
@@ -109,12 +113,12 @@ Give three reasons to improve the reproducibility of the project.
 
 :::::::::::::::::::::::: solution
 
-## Reasons
+## Possible causes
 Reproducibility is the essential first benchmark of trustworthy scientific research: without it, no further validation is possible.
 
 Beyond the clear benefits for science, other reasons are:
 - Helping your future self. A reproducible workflow saves time when revisiting or updating your project later. You avoid having to reconstruct your steps from memory.
-- Collaboration. Transparent methods, shared code, and clear documentation make it easier for others to understand, extend, and build on your work.
+- Collaboration. Transparent methods, shared code, use of established conventions, and clear documentation, all make it easier for others to understand, extend, and build on your work.
 - Publishability. Journals and reviewers increasingly expect accessible data and transparent methods. Easily reproducible research is more credible and more likely to be accepted.
 - Impact. Reproducible work is easier to reuse, cite, and adapt, increasing the reach and influence of your research.
 
