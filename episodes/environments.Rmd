@@ -30,9 +30,9 @@ Before working with the script, create an R project in RStudio:
 - Go to File > New Project > New Directory > New Project
 - Name the directory `r‑workshop`
 - Create as a subdirectory of your home directory (for example: `C:/Users/username/`)
-- C
+- Click "Create Project"
  
-If you want to come back to your work later, open the R Project file you created (`r-wokshop.Rproj`). Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
+If you want to come back to your work later, open the R Project file you created (`r-workshop.Rproj`). Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
 
 ## Save the script
 
