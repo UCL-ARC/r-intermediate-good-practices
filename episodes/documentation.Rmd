@@ -22,6 +22,6 @@ exercises:
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Research software has multiple audiences — users, developers, maintainers, and “future you” — each requiring different documentation.
 - Documentation comes in three types: procedural (step‑by‑step guides), conceptual (background, explanations, diagrams), and reference (APIs, parameters, system details)
-- In‑code comments should be minimal and purposeful.Over‑commenting distracts from the code, increases cognitive load, and often indicates unclear naming or structure.
-- Docstrings describe the purpose and behaviour of functions, classes, and modules. They improve readability and can be used to auto‑generate reference documentation.
+- In‑code comments should be minimal and purposeful. Over‑commenting distracts from the code, increases cognitive load, and often indicates unclear naming or structure.  
+- Roxygen comments describe the purpose and behaviour of functions, classes, and modules. They improve readability and can be used to auto‑generate reference documentation.
 ::::::::::::::::::::::::::::::::::::::::::::::::
