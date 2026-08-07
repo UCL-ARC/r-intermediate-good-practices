@@ -1,0 +1,28 @@
+---
+title: "Testing"
+teaching: 45
+exercises: 15
+---
+
+:::::::::::::::::::::::::::::::::::::: questions
+
+- How do you ensure your code does what you think it does?
+- How does testing help maintain reproducible workflows?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain benefits of automated testing and their different types
+- Write structured unit tests using the `testthat` package
+- Organise tests using standard project structure
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: keypoints
+
+- Automated tests increase confidence in your code.
+- Tests support reproducibility.
+- `testthat` provides a structured framework for testing.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
