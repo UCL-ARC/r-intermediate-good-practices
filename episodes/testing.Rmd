@@ -13,7 +13,7 @@ exercises: 15
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain benefits of automated testing
+- Explain benefits of automated testing and their different types
 - Write structured unit tests using the `testthat` package
 - Organise tests using standard project structure
 
