@@ -6,7 +6,8 @@ exercises:
 
 :::::::::::::::::::::::::::::::::::::: questions
 - Why write an R package? 
-- How do I create a package and submit it to CRAN?
+- How do I create a package?
+- Where can I publish my packages and what is required?
 - How do package version numbers signal change?
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
