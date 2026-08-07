@@ -170,15 +170,6 @@ This will:
 - Create a file named `renv.locks` that records the state of the project library so it can be restored by others
 - Restart R.
 
-## Activate the `renv` 
-
-r
-``` r
-source("renv/activate.R")
-```
-
-This loads the `renv` environment for the current session and ensures that functionalities like `renv::snapshot()` work correctly.
-
 ## Install packages are in the renv environment
 
 Any package you install into your `renv` will be kept isolated from whatever is installed globally on your machine.
