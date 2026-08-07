@@ -24,7 +24,41 @@ exercises:
 
 A colleague hands you an R script called `sleep_analysis.R` and asks you to reproduce their results while their away.
 
-You open the file, run it, and immediately hit an error.
+## Create an R project
+
+Before working with the script, create an R project in RStudio:
+- Go to File > New Project > New Directory > New Project
+- Name the directory `r‑workshop`
+- Create as a subdirectory of your home directory (for example: `C:/Users/username/`)
+- C
+ 
+If you want to come back to your work later, open the R Project file you created (`r-wokshop.Rproj`). Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
+
+## Save the script
+
+Create a new R script called `sleep_analysis.R` inside the `r-workshop` folder and paste in the following code:
+
+``` R
+library(obscurepackage)
+library(ggplot2)
+
+data <- sleep
+none_transformed_data <- none_transform(data$extra)
+
+p <- ggplot(data, aes(x = group, y = none_transformed_data)) +
+  geom_boxplot() +
+  labs(
+    title = "Extra Sleep by Drug Group",
+    x = "Drug Group",
+    y = "Extra sleep (hours)"
+  )
+
+print(p)
+```
+
+## Run the script
+
+You will probably hit an error when you try to run `sleep_analysis.R`.
 
 The script tries to load:
 ``` R
@@ -44,29 +78,8 @@ On your machine, R looks for packages in your global environment. You might alre
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Try to make the script run
 
-Create a new R script called `sleep_analysis.R` and paste in the following code:
-
-``` R
-library(ggplot2)
-library(obscurepackage)
-
-data <- sleep
-none_transformed_data <- none_transform(data$extra)
-
-p <- ggplot(data, aes(x = group, y = none_transformed_data)) +
-  geom_boxplot() +
-  labs(
-    title = "Extra Sleep by Drug Group",
-    x = "Drug Group",
-    y = "Extra sleep (hours)"
-  )
-
-print(p)
-```
-
-Your task:
-- Install the missing package(s) so the script can run.
-- Re-run the script and reproduce the boxplot figure.
+- Install the missing package(s) so the script can run
+- Re-run the script and reproduce the boxplot figure
 
 You may already have `ggplot2` installed, but if not, you can install it with:
 
@@ -145,14 +158,7 @@ One of the reasons to use `renv` is to make it easier to share your code in such
 
 :::::::::::::::::::::::::::::::::::::
 
-Before initialising an `renv` environment save `sleep_analysis.R` in a new folder called `r-workshop` in your home directory.
-
-Then set the working directory to that folder (adjust the directory below):
-``` R
-setwd("C:/Users/usermame/r-workshop")
-```
-
-Once your working directory is pointing at the correct folder, initialise `renv`.
+Initialise `renv`:
 
 ``` R
 renv::init()
