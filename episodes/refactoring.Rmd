@@ -1,0 +1,30 @@
+---
+title: "Refactoring"
+teaching: 
+exercises: 
+---
+
+:::::::::::::::::::::::::::::::::::::: questions
+- What can you do when you detect a code smell?
+- What is refactoring and how does it make code less fragile?
+- When is refactoring worth doing, and when should you leave code as it is?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain what refactoring and its purpose is.
+- Understand the role of tests in ensuring behaviour remains correct during refactoring.
+- Perform refactoring step‑by‑step, making small, safe changes and verifying each one with tests.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: keypoints
+
+- Refactoring is restructuring existing code without changing what it does.
+- The goals of refactoring include clearer structure, consistent naming, removing duplication, eliminating hardcoded values, and reducing excess code.
+- Refactoring should be done in small, incremental steps. Large refactors are risky because they can unintentionally change behaviour and are harder to test.
+- Refactoring strengthens the long‑term health of a codebase by reducing complexity and making future changes easier and less prone to bugs.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
