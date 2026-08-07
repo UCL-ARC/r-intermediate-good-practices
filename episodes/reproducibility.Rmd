@@ -46,6 +46,8 @@ These are some of the most common causes:
 - **Missing input**  
   The script may expect other data files or inputs that were not shared with you.
 
+If you are running the analysis on a different dataset, the script may fail because it expects specific column names, orders, or data types. This is actually a replicability issue rather than a reproducibility issue. We will cover that distinction later.
+
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge 
