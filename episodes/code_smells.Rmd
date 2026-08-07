@@ -1,0 +1,26 @@
+---
+title: "Code smells"
+teaching: 25
+exercises: 15
+---
+
+:::::::::::::::::::::::::::::::::::::: questions
+- What can you learn about a codebase just by "sniffing" for code smells before reading it in detail?
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain why sniffing the code is an important first step when working with a new codebase 
+- Recognise common smells such as long functions, duplicated code, hardcoded paths, magic numbers, commented‑out code, and lack of tests.
+- Explain how these smells relate to correctness, clarity, and reproducibility.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: keypoints
+- Code smells can be spotted without understanding the logic of the code.
+- Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
+- A smell warrants inspection as they often point to places where the code is most likely to break in the future.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
