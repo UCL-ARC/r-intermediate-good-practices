@@ -1,0 +1,27 @@
+---
+title: "Packaging"
+teaching: 
+exercises: 
+---
+
+:::::::::::::::::::::::::::::::::::::: questions
+- Why write an R package? 
+- How do I create a package?
+- Where can I publish my packages and what is required?
+- How do package version numbers signal change?
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+- Create a minimal package structure from scratch using `RStudio` or `usethis::create_package()`.
+- Organise R functions by placing them in `.R` files inside the `R/` directory.
+- Recognise optional folders and files you might encounter in an R source package.
+- Understand how version numbers communicate package lifecycle stages.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: keypoints
+- A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
+- `RStudio` can generate a minimal package structure automatically.
+- A minimal R package needs only an `R/` directory and a `DESCRIPTION` file that includes `Package:` and `Version:`.
+- Package version numbers communicate change: patch releases fix bugs, minor releases add features, and major releases may include breaking changes.
+::::::::::::::::::::::::::::::::::::::::::::::::
