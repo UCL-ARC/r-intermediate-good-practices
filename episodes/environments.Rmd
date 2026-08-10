@@ -28,15 +28,15 @@ A colleague hands you an R script called `sleep_analysis.R` and asks you to repr
 
 Before working with the script, create an R project in RStudio:
 - Go to File > New Project > New Directory > New Project
-- Name the directory `r‑workshop`
+- Name the directory `rworkshop`
 - Create as a subdirectory of your home directory (for example: `C:/Users/username/`)
 - Click "Create Project"
  
-If you want to come back to your work later, open the R Project file you created (`r-workshop.Rproj`). Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
+If you want to come back to your work later, open the R Project file you created (`rworkshop.Rproj`). Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
 
 ## Save the script
 
-Create a new R script called `sleep_analysis.R` inside the `r-workshop` folder and paste in the following code:
+Create a new R script called `sleep_analysis.R` inside the `rworkshop` folder and paste in the following code:
 
 ``` R
 library(obscurepackage)
@@ -292,11 +292,81 @@ Use `renv::restore()` when:
 - you want to return to a known working state
 
 
-## Using a DESCRIPTION file
+## `DESCRIPTION`
 
-R packages always contain a `DESCRIPTION` file in the project root with package metadata, but also non-package projects can use a `DESCRIPTION` file to declare which packages they rely on.
+Your colleague emails you  — apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
-The `Imports` fields lists packages that the package depends on and that will be installed (or updated) when the package is installed using `install.packages()`.
+This time, they’ve sent two files:
+    `sleep_analysis_final.R`
+    `DESCRIPTION`
+
+Place the files in your `rworkshop` folder.
+
+:::::::::::::::::::::::: challenge
+## Learn more about `DESCRIPTION` files
+
+Open the `DESCRIPTION` file in RStudio. What information does the file contain?
+
+:::::::::::::::::::::::: solution
+
+This particular `DESCRIPTION` contains one field, `Imports`, which lists the project’s dependencies and the minimum required version for each package.
+
+``` R
+Imports:
+    dplyr (>= 1.1.0),
+    tidyr (>= 1.3.0),
+    ggplot2 (>= 3.4.0)
+
+```
+:::::::::::::::::::::::::::::::::::::
+
+
+:::::::::::::::::::::::: challenge
+## `renv::dependencies()`
+Run `renv::dependencies()`:
+
+``` R
+renv::dependencies()
+```
+What packages does `renv` detect, and where does it say they come from?
+
+:::::::::::::::::::::::: solution
+
+renv detects packages listed in the `DESCRIPTION` file and imported in the R scripts.
+
+`renv` shows the source of each dependency:
+- Packages listed in `DESCRIPTION` appear under `Type = Imports`
+- Packages found only in scripts appear with `Type = <NA>`
+
+:::::::::::::::::::::::::::::::::::::
+
+### Reset the environment
+
+First make sure `ggplot2` and `obscurepackage` are removed from the global R library.
+``` R
+remove.packages("ggplot2")
+remove.packages("obscurepackage")
+```
+
+Then remove the `renv` project library and lockfile, and restart R.
+``` R
+unlink("renv/library", recursive = TRUE)   
+unlink("renv.lock")                        
+.rs.restartR()                             
+```
+
+Now you are back in the same situation as before setting up the environment.
+
+Because `ggplot2` is definitely removed from the global library, you can test whether renv correctly installs everything based on the `DESCRIPTION` file.
+
+Try running `sleep_analysis_final.R`. It should fail with an error. The script cannot run until renv installs the required packages.
+
+Use `renv::install()` to install all packages in the`Imports` field.
+``` R
+renv::install()
+```
+
+:::::::::::::::::::::::::::::::::::::::: solution
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - An **R environment** defines the exact versions of R and packages used in a project.
