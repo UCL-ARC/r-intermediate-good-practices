@@ -294,32 +294,9 @@ Use `renv::restore()` when:
 
 ## Using a DESCRIPTION file
 
-As your project grows, the `renv.lock` file becomes long and detailed. Many R projects use a `DESCRIPTION` file to provide a simple, readable list of the packages your project depends on.
+R packages always contain a `DESCRIPTION` file in the project root with package metadata, but also non-package projects can use a `DESCRIPTION` file to declare which packages they rely on.
 
-A `DESCRIPTION` file:
-- lists the packages your project uses
-- can include version requirements
-- is easy for humans to read
-- helps `renv` know which packages to install
-
-But it often does not guarantee the exact versions installed.
-
-Most DESCRIPTION files use lower limits like `>= 3.4.0`, not exact versions.
-
-Save a file named `DESCRIPTION` in your project folder:
-``` R
-Imports:
-    ggplot2 (>= 3.4.0),
-    obscurepackage (== 0.1.0)
-```
-
-Everything under Imports is treated as a dependency.
-Version numbers here tell renv the minimum versions your project expects.
-
-When you run:
-``` R
-renv::restore()
-```
+The `Imports` fields lists packages that the package depends on and that will be installed (or updated) when the package is installed using `install.packages()`.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - An **R environment** defines the exact versions of R and packages used in a project.
