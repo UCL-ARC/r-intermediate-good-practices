@@ -67,7 +67,8 @@ contact: 'team@carpentries.org' # FIXME
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.Rmd
+- 00-introduction-placeholder.Rmd
+- 02-environments.Rmd
 
 # Information for Learners
 learners: 

@@ -10,6 +10,7 @@ exercises: 30
 - How can we create project environment?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Explain the purpose of an project environment.
@@ -103,7 +104,7 @@ The newest version of `obscurepackage` contains a bug that causes `none_transfor
 
 [sleep analysis NA plot](episodes\fig\sleep_analysis_NA_plot.png)
 
-:::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
 
 ## version mismatch
 
@@ -156,7 +157,7 @@ Summarise what `renv` is and and how it helps with project handovers.
 
 One of the reasons to use `renv` is to make it easier to share your code in such a way that everyone gets exactly the same package versions as you. 
 
-:::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
 
 Initialise `renv`:
 
@@ -203,7 +204,7 @@ The commit SHA for `v0.1.0` of `stellaprins/obscurepackage` is `9e7cfcba9bfbfd1c
 renv::install("stellaprins/obscurepackage@9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831")
 ```
 
-:::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
 
 ### Install obscurepackage from GitHub
 
@@ -269,7 +270,8 @@ No issues found -- the project is in a consistent state.
 ```
 
 All of the inconsistencies should have disappeared because `renv::snapshot()` rewrites the lockfile to reflect the current state of your project library and R version.
-:::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::
 
 ## 
 
@@ -376,7 +378,7 @@ Imports:
     broom (>= 0.8.0)
 
 ```
-:::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
 
 ### Reset the environment
 
@@ -423,7 +425,7 @@ What packages does `renv` detect, and where does it say they come from?
 
 The `Source` column shows the exact file where each dependency was detected.
 
-:::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
 
 ## Install dependencies from `DESCRIPTION` file
 
@@ -442,7 +444,7 @@ This flexibility allows newer, compatible versions to be installed so your proje
 In contrast, the lockfile records the exact package versions used in a specific environment.
 
 This means your colleague’s lockfile may differ from yours even if you share the same `DESCRIPTION` file.
-:::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 Now that the dependencies are installed inside the project environment, rerun your analysis:
 ``` R
@@ -487,7 +489,7 @@ An **explicit snapshot** only records packages listed in the `DESCRIPTION` file.
 
 An explicit snapshot is preferable because it restores the lockfile based solely on the `DESCRIPTION` file and avoids the risk of `renv` adding packages that show up in any "stray scripts" and are not meant to be part of the environment.
 
-:::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
 
 After taking the explicit snapshot, confirm that the project is now consistent.
 ``` R
