@@ -1,16 +1,5 @@
-Package: rworkshop
-Title: Sleep Analysis
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: Reproduces results of my colleague
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
-Imports: 
-    ggplot2
-    obscurepackage
-Remotes:
-    stellaprins/obscurepackage@9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831
+Imports:
+    dplyr (>= 1.1.0),
+    tidyr (>= 1.3.0),
+    ggplot2 (>= 3.4.0),
+    broom (>= 0.8.0)

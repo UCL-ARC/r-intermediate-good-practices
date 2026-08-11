@@ -294,13 +294,67 @@ Use `renv::restore()` when:
 
 ## `DESCRIPTION`
 
-Your colleague emails you  — apparently the earlier file (`sleep_analysis.R`) was the wrong one.
+You receive an email from your colleague. Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
-This time, they’ve sent two files:
+This time, they sent two files:
     `sleep_analysis.R`
     `DESCRIPTION`
 
-Place the files in your `rworkshop` folder.
+Place the `DESCRIPTION` file in your `rworkshop` folder.
+
+Replace the contents of your existing `sleep_analysis.R` with the new script below, then save the file.
+
+``` R
+library(dplyr)
+library(ggplot2)
+library(broom)
+
+data <- sleep
+
+summary_tbl <- data |>
+  group_by(group) |>
+  summarise(
+    mean_extra = mean(extra),
+    sd_extra   = sd(extra),
+    n          = n(),
+    se_extra   = sd_extra / sqrt(n)
+  )
+
+sleep1 <- data |>
+  group_by(ID) |>
+  summarise(
+    prolongation = extra[group == 2] - extra[group == 1]
+  )
+
+# Paired t-test
+tt <- t.test(sleep1$prolongation, mu = 0)
+tt_tidy <- tidy(tt)
+
+p_value <- signif(tt_tidy$p.value, 3)
+t_stat  <- signif(tt_tidy$statistic, 3)
+
+# Bar plot with t-test annotation
+ggplot(summary_tbl, aes(x = factor(group), y = mean_extra)) +
+  geom_col(fill = "steelblue", alpha = 0.8, width = 0.6) +
+  geom_errorbar(aes(ymin = mean_extra - se_extra,
+                    ymax = mean_extra + se_extra),
+                width = 0.2, size = 0.8) +
+  labs(
+    title = "Extra Sleep by Drug",
+    x = "Drug",
+    y = "Extra Sleep (hours)"
+  ) +
+  annotate(
+    "text",
+    x = 1.5,
+    y = max(summary_tbl$mean_extra) + 1,
+    label = paste0("t = ", t_stat, "\n",
+                   "p = ", p_value),
+    size = 5,
+    hjust = 0.5
+  ) +
+  theme_minimal(base_size = 14)
+```
 
 :::::::::::::::::::::::: challenge
 ## Learn more about `DESCRIPTION` files
@@ -315,29 +369,10 @@ This particular `DESCRIPTION` contains one field, `Imports`, which lists the pro
 Imports:
     dplyr (>= 1.1.0),
     tidyr (>= 1.3.0),
-    ggplot2 (>= 3.4.0)
+    ggplot2 (>= 3.4.0),
+    broom (>= 0.8.0)
 
 ```
-:::::::::::::::::::::::::::::::::::::
-
-
-:::::::::::::::::::::::: challenge
-## `renv::dependencies()`
-Run `renv::dependencies()`:
-
-``` R
-renv::dependencies()
-```
-What packages does `renv` detect, and where does it say they come from?
-
-:::::::::::::::::::::::: solution
-
-renv detects packages listed in the `DESCRIPTION` file and imported in the R scripts.
-
-`renv` shows the source of each dependency:
-- Packages listed in `DESCRIPTION` appear under `Type = Imports`
-- Packages found only in scripts appear with `Type = <NA>`
-
 :::::::::::::::::::::::::::::::::::::
 
 ### Reset the environment
@@ -361,12 +396,30 @@ Because `ggplot2` is definitely removed from the global library, you can test wh
 
 Try running `sleep_analysis_final.R`. It should fail with an error. The script cannot run until renv installs the required packages.
 
+
+:::::::::::::::::::::::: challenge
+## `renv::dependencies()`
+Run `renv::dependencies()`:
+
+``` R
+renv::dependencies()
+```
+What packages does `renv` detect, and where does it say they come from?
+
+:::::::::::::::::::::::: solution
+
+renv detects packages listed in the `DESCRIPTION` file and imported in the R scripts.
+
+`renv` shows the source of each dependency:
+- Packages listed in `DESCRIPTION` appear under `Type = Imports`
+- Packages found only in scripts appear with `Type = <NA>`
+
+:::::::::::::::::::::::::::::::::::::
+
 Use `renv::install()` to install all packages in the`Imports` field.
 ``` R
 renv::install()
 ```
-
-:::::::::::::::::::::::::::::::::::::::: solution
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - An **R environment** defines the exact versions of R and packages used in a project.
