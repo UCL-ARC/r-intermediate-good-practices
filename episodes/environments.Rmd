@@ -431,17 +431,27 @@ Use `renv::install()` to install all packages in the`Imports` field.
 renv::install()
 ```
 
-This installs the exact package versions your project declares, ensuring the environment matches what your colleague used.
- 
+This installs the packages that are listed in the `DESCRIPTION` file.
+
+::::::::::::::::::::::::::::::::::::: callout
+The `DESCRIPTION` file usually specifies minimum required versions, not exact pins.
+
+This flexibility allows newer, compatible versions to be installed so your project can benefit from bug fixes, performance improvements, and security updates.
+
+In contrast, the lockfile records the exact package versions used in a specific environment.
+
+This means your colleague’s lockfile may differ from yours even if you share the same `DESCRIPTION` file.
+:::::::::::::::::::::::::::::::::::::::::::::
+
 Now that the dependencies are installed inside the project environment, rerun your analysis:
 ``` R
 source("sleep_analysis.R")
 ```
-The script should now run without errors, because every required package is available inside the renv project library.
+The script should now run without errors, because every required package is available inside the `renv` project library.
 
 ## Explicit snapshot
 
-Because you deleted the lockfile earlier, renv currently has no record of the environment you just rebuilt.
+Because you deleted the lockfile earlier, `renv` currently has no record of the environment you just rebuilt.
 
 If you check:
 ``` R
