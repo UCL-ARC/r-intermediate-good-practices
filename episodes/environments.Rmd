@@ -166,17 +166,17 @@ renv::init()
 
 This will:
 - Set up project infrastructure inside your working directory that ensures `renv` will be used in future sessions
-- Discover the packages that are currently installed, and install them into the project library folder where renv puts the packages that this project uses
-- Create a file named `renv.locks` that records the state of the project library so it can be restored by others
+- Discover the packages that are currently installed, and install them into the project library folder where `renv` puts the packages that this project uses
+- Create a "lockfile" named `renv.locks` that records the exact state of the project library
 - Restart R.
 
-## Install packages are in the renv environment
+## Install packages are in the `renv` environment
 
 Any package you install into your `renv` will be kept isolated from whatever is installed globally on your machine.
 
 ### Install ggplot2 from CRAN
 
-Use `renv::install()` to install ggplot2 directly into the renv environment:
+Use `renv::install()` to install ggplot2 directly into the `renv` environment:
 ``` r
 renv::install("ggplot2")
 ```
@@ -207,7 +207,7 @@ renv::install("stellaprins/obscurepackage@9e7cfcba9bfbfd1cbea4dbc1600f8d5283c718
 
 ### Install obscurepackage from GitHub
 
-To install a specific version of a GitHub package inside an renv project, use `the username/repo@version` format:
+To install a specific version of a GitHub package inside an `renv` project, use `the username/repo@version` format:
 
 ```R
 renv::install("stellaprins/obscurepackage@v0.1.0")
@@ -394,9 +394,9 @@ unlink("renv.lock")
 
 Now you are back in the same situation as before setting up the environment.
 
-Because `ggplot2` is definitely removed from the global library, you can test whether renv correctly installs everything based on the `DESCRIPTION` file.
+Because `ggplot2` is definitely removed from the global library, you can test whether `renv` correctly installs everything based on the `DESCRIPTION` file.
 
-Try running `sleep_analysis.R`. It should fail with an error. The script cannot run until renv installs the required packages.
+Try running `sleep_analysis.R`. It should fail with an error. The script cannot run until `renv` installs the required packages.
 
 ## Find R package dependencies in a project
 
