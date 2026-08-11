@@ -311,6 +311,7 @@ library(broom)
 
 data <- sleep
 
+# Compute group means for bar plot
 summary_tbl <- data |>
   group_by(group) |>
   summarise(
@@ -320,6 +321,7 @@ summary_tbl <- data |>
     se_extra   = sd_extra / sqrt(n)
   )
 
+# Compute prolongation (drug - placebo) per subject
 sleep1 <- data |>
   group_by(ID) |>
   summarise(
@@ -338,7 +340,7 @@ ggplot(summary_tbl, aes(x = factor(group), y = mean_extra)) +
   geom_col(fill = "steelblue", alpha = 0.8, width = 0.6) +
   geom_errorbar(aes(ymin = mean_extra - se_extra,
                     ymax = mean_extra + se_extra),
-                width = 0.2, size = 0.8) +
+                width = 0.2, linewidth = 0.8) +
   labs(
     title = "Extra Sleep by Drug",
     x = "Drug",
@@ -394,9 +396,17 @@ Now you are back in the same situation as before setting up the environment.
 
 Because `ggplot2` is definitely removed from the global library, you can test whether renv correctly installs everything based on the `DESCRIPTION` file.
 
-Try running `sleep_analysis_final.R`. It should fail with an error. The script cannot run until renv installs the required packages.
+Try running `sleep_analysis.R`. It should fail with an error. The script cannot run until renv installs the required packages.
 
+## Find R package dependencies in a project
 
+Before installing anything, it is useful to check which dependencies `renv` detects.
+
+`renv::dependencies()` scans your project files and reports every package it finds, along with where each one came from. 
+
+``` R
+renv::dependencies()
+```
 :::::::::::::::::::::::: challenge
 ## `renv::dependencies()`
 Run `renv::dependencies()`:
@@ -408,18 +418,71 @@ What packages does `renv` detect, and where does it say they come from?
 
 :::::::::::::::::::::::: solution
 
-renv detects packages listed in the `DESCRIPTION` file and imported in the R scripts.
+`renv` detects packages listed in the `DESCRIPTION` file and `sleep_analysis.R`.
 
-`renv` shows the source of each dependency:
-- Packages listed in `DESCRIPTION` appear under `Type = Imports`
-- Packages found only in scripts appear with `Type = <NA>`
+The `Source` column shows the exact file where each dependency was detected.
 
 :::::::::::::::::::::::::::::::::::::
+
+## Install dependencies from `DESCRIPTION` file
 
 Use `renv::install()` to install all packages in the`Imports` field.
 ``` R
 renv::install()
 ```
+
+This installs the exact package versions your project declares, ensuring the environment matches what your colleague used.
+ 
+Now that the dependencies are installed inside the project environment, rerun your analysis:
+``` R
+source("sleep_analysis.R")
+```
+The script should now run without errors, because every required package is available inside the renv project library.
+
+## Explicit snapshot
+
+Because you deleted the lockfile earlier, renv currently has no record of the environment you just rebuilt.
+
+If you check:
+``` R
+renv::status()
+```
+`renv` will report the lockfile as missing.
+
+To fix this, take an **explicit snapshot**.
+
+``` R
+renv::snapshot(type = "explicit")
+```
+
+:::::::::::::::::::::::: challenge
+## Snapshot types
+
+Use the help system to find out what snapshot types are available and how they differ:
+``` R
+?renv::snapshot
+```
+What is the default snapshot type when calling `renv::snapshot()`?
+How do implicit and explicit snapshots differ?
+Why is an explicit snapshot the better choice in this situation?
+
+:::::::::::::::::::::::: solution
+## Explicit and implicit snapshots
+
+The default snapshot type is implicit.
+
+An **implicit snapshot** only records packages that `renv` detects as used in your R scripts.
+An **explicit snapshot** only records packages listed in the `DESCRIPTION` file.
+
+An explicit snapshot is preferable because it restores the lockfile based solely on the `DESCRIPTION` file and avoids the risk of `renv` adding packages that show up in any "stray scripts" and are not meant to be part of the environment.
+
+:::::::::::::::::::::::::::::::::::::
+
+After taking the explicit snapshot, confirm that the project is now consistent.
+``` R
+renv::status()
+```
+You should see a message indicating that there are no issues.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - An **R environment** defines the exact versions of R and packages used in a project.
