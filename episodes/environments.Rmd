@@ -36,7 +36,7 @@ If you want to come back to your work later, open the R Project file you created
 
 ## Save the script
 
-Create a new R script called `sleep_analysis.R` inside the `rworkshop` folder and paste in the following code:
+Create a new R script called `sleep_analysis.R` inside the `rworkshop` folder and save the file after pasting in the following code:
 
 ``` R
 library(obscurepackage)
@@ -297,7 +297,7 @@ Use `renv::restore()` when:
 Your colleague emails you  — apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
 This time, they’ve sent two files:
-    `sleep_analysis_final.R`
+    `sleep_analysis.R`
     `DESCRIPTION`
 
 Place the files in your `rworkshop` folder.
