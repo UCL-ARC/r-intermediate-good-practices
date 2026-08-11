@@ -300,7 +300,8 @@ This time, they sent two files:
     `sleep_analysis.R`
     `DESCRIPTION`
 
-Place the `DESCRIPTION` file in your `rworkshop` folder.
+
+Download the `DESCRIPTION` file [here](episodes/files/environments/DESCRIPTION) and place it in your `rworkshop` folder.
 
 Replace the contents of your existing `sleep_analysis.R` with the new script below, then save the file.
 
