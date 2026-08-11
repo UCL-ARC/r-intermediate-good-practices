@@ -106,6 +106,8 @@ The newest version of `obscurepackage` contains a bug that causes `none_transfor
 
 :::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## version mismatch
 
 A version mismatch happens when your script loads a package whose functions have changed between releases, causing the same code to produce different results on different machines.
@@ -118,6 +120,7 @@ Installing inside a project environment ensures:
 - the environment can be recreated on different machines or at a later timepoint
 
 ::::::::::::::::::::::::::::::::::::: callout
+
 ## Two different meanings of environment in R
 
 **1) project environments**  
@@ -127,6 +130,7 @@ They store **packages and their versions**, making your project reproducible on 
 **2) R environments**  
 These store variables and track where functions were created, and control how R finds values.  
 They enable features like **lexical scoping** and **namespaces**.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 # `renv`
@@ -139,6 +143,7 @@ install.packages("renv")
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
+
 ## Find out more about `renv`
 
 Use the R console to learn more about `renv`.
@@ -158,6 +163,8 @@ Summarise what `renv` is and and how it helps with project handovers.
 One of the reasons to use `renv` is to make it easier to share your code in such a way that everyone gets exactly the same package versions as you. 
 
 :::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 Initialise `renv`:
 
@@ -183,6 +190,7 @@ renv::install("ggplot2")
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
+
 ## Install a GitHub package using `renv`
 
 Use the help page for `renv::install` to learn how to install packages inside the `renv` environment.
@@ -194,7 +202,7 @@ Use the help page for `renv::install` to learn how to install packages inside th
 - Use what you learned to install `v0.1.0` of the GitHub repository `stellaprins/obscurepackage`.
 
 :::::::::::::::::::::::: solution
-## 
+## Use the commit SHA
 From the help page, GitHub packages can be installed by using the `username/repository` string, and specific versions can be installed by supplying a commit SHA.
 
 The commit SHA for `v0.1.0` of `stellaprins/obscurepackage` is `9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831`.
@@ -205,6 +213,8 @@ renv::install("stellaprins/obscurepackage@9e7cfcba9bfbfd1cbea4dbc1600f8d5283c718
 ```
 
 :::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Install obscurepackage from GitHub
 
@@ -237,6 +247,7 @@ If these differ, `renv::status()` will report inconsistencies such as:
 - a different R version than the one used to generate the lockfile
 
 ::::::::::::::::::::::::::::::::::::: challenge
+
 ## Fix `renv` status inconsistencies
 Run:
 
@@ -273,7 +284,9 @@ All of the inconsistencies should have disappeared because `renv::snapshot()` re
 
 :::::::::::::::::::::::::::::::::
 
-## 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Snapshots
 
 Use `renv::snapshot()` to update a lockfile with the current state of dependencies in the project library. 
 
@@ -362,6 +375,7 @@ ggplot(summary_tbl, aes(x = factor(group), y = mean_extra)) +
 ```
 
 :::::::::::::::::::::::: challenge
+
 ## Learn more about `DESCRIPTION` files
 
 Open the `DESCRIPTION` file in RStudio. What information does the file contain?
@@ -379,6 +393,8 @@ Imports:
 
 ```
 :::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Reset the environment
 
@@ -410,7 +426,9 @@ Before installing anything, it is useful to check which dependencies `renv` dete
 ``` R
 renv::dependencies()
 ```
+
 :::::::::::::::::::::::: challenge
+
 ## `renv::dependencies()`
 Run `renv::dependencies()`:
 
@@ -427,6 +445,8 @@ The `Source` column shows the exact file where each dependency was detected.
 
 :::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Install dependencies from `DESCRIPTION` file
 
 Use `renv::install()` to install all packages in the`Imports` field.
@@ -437,6 +457,7 @@ renv::install()
 This installs the packages that are listed in the `DESCRIPTION` file.
 
 ::::::::::::::::::::::::::::::::::::: callout
+
 The `DESCRIPTION` file usually specifies minimum required versions, not exact pins.
 
 This flexibility allows newer, compatible versions to be installed so your project can benefit from bug fixes, performance improvements, and security updates.
@@ -444,6 +465,7 @@ This flexibility allows newer, compatible versions to be installed so your proje
 In contrast, the lockfile records the exact package versions used in a specific environment.
 
 This means your colleague’s lockfile may differ from yours even if you share the same `DESCRIPTION` file.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 Now that the dependencies are installed inside the project environment, rerun your analysis:
@@ -469,6 +491,7 @@ renv::snapshot(type = "explicit")
 ```
 
 :::::::::::::::::::::::: challenge
+
 ## Snapshot types
 
 Use the help system to find out what snapshot types are available and how they differ:
@@ -480,6 +503,7 @@ How do implicit and explicit snapshots differ?
 Why is an explicit snapshot the better choice in this situation?
 
 :::::::::::::::::::::::: solution
+
 ## Explicit and implicit snapshots
 
 The default snapshot type is implicit.
@@ -491,6 +515,8 @@ An explicit snapshot is preferable because it restores the lockfile based solely
 
 :::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 After taking the explicit snapshot, confirm that the project is now consistent.
 ``` R
 renv::status()
@@ -498,6 +524,7 @@ renv::status()
 You should see a message indicating that there are no issues.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
+
 - An **R environment** defines the exact versions of R and packages used in a project.
 - `renv` creates isolated, project‑specific libraries for reproducible workflows.
 - Reproducibility depends on stable, well‑defined environments.
