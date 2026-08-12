@@ -96,7 +96,7 @@ remotes::install_github("stellaprins/obscurepackage")
 
 Now that you have installed the required packages, are you able to reproduce the plot below? Why?
 
-[sleep analysis plot](episodes\fig\sleep_analysis_plot.png)
+![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
 
 :::::::::::::::::::::::: solution
 
@@ -104,7 +104,7 @@ Now that you have installed the required packages, are you able to reproduce the
 
 The newest version of `obscurepackage` contains a bug that causes `none_transform()` to always return `NA`, so the boxplot cannot be reproduced unless you install the earlier version.
 
-[sleep analysis NA plot](episodes\fig\sleep_analysis_NA_plot.png)
+![](fig/sleep_analysis_NA_plot.png){alt="your sleep analysis plot" width='50%'}
 
 :::::::::::::::::::::::::::::::::
 
@@ -123,16 +123,12 @@ Installing packages inside a project environment also ensures that the same setu
 ## Two different meanings of environment in R
 
 **1) project environments**  
-These are external, project‑specific libraries created by the `renv` package. 
-They store **packages and their versions**, making your project reproducible on any machine.
+These are project‑specific libraries created by the `renv` package.  They store packages and their versions, making your project reproducible on any machine.
 
 **2) R environments**  
-These store variables and track where functions were created, and control how R finds values.  
-They enable features like **lexical scoping** and **namespaces**.
+These store variables and track where functions were created, and control how R finds values. They enable features like lexical scoping and namespaces.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-# `renv`
 
 In this workshop, we are going to use an R package called `renv` to manage our project environment.
 
@@ -178,19 +174,21 @@ This will:
 - Create a "lockfile" named `renv.locks` that records the exact state of the project library
 - Restart R.
 
-## Install packages are in the `renv` environment
+### Install packages in the project environment
+
+Before using `renv`, we installed packages using `install.packages(")`. This adds the package to the global R library that every project on the machine has access to. 
 
 Any package you install into your `renv` will be kept isolated from whatever is installed globally on your machine.
 
-### Install ggplot2 from CRAN
+Use `renv::install()` to install `ggplot2` directly into the `renv` environment:
 
-Use `renv::install()` to install ggplot2 directly into the `renv` environment:
 ``` r
 renv::install("ggplot2")
 ```
 
-::::::::::::::::::::::::::::::::::::: challenge
+This installs `ggplot2` only into the project’s `renv` library, leaving the global library untouched.
 
+::::::::::::::::::::::::::::::::::::: challenge
 ## Install a GitHub package using `renv`
 
 Use the help page for `renv::install` to learn how to install packages inside the `renv` environment.
