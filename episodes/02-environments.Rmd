@@ -15,9 +15,8 @@ exercises: 30
 
 - Explain the purpose of an project environment.
 - Create a project environment using `renv`.
-- Add packages to the `renv` environment directly and from a `DESCRIPTION` file.
 - Use use `renv::snapshot()` to take implicit and explicit snapshots of the environment.
-- Restore an environment on a different machine using `renv::restore()` which recreates the environment on another machine.
+- Restore an environment using a lockfile or using a `DESCRIPTION` file.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
