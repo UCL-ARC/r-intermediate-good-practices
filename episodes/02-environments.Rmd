@@ -143,7 +143,7 @@ install.packages("renv")
 
 Use the R console to learn more about `renv`.
 ``` R
-help(renv)
+?renv
 ```
 
 Explore the help page and useful links.
@@ -154,9 +154,9 @@ Summarise what `renv` is and and how it helps with project handovers.
 
 ## Show me the solution
 
-`renv` is an R package that helps create reproducible environments.
+`renv` is an R package that helps create reproducible environments. `renv` gives every R project its own library of packages, separate from everything else on your computer, and records the exact package versions the project uses.
 
-One of the reasons to use `renv` is to make it easier to share your code in such a way that everyone gets exactly the same package versions as you. 
+When you hand a project to someone else `renv` ensures they can recreate your exact environment with one command. This ensures the code runs the same way for the next person as it did for the person handing over de project.
 
 :::::::::::::::::::::::::::::::::
 
