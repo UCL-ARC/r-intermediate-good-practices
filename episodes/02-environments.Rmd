@@ -21,11 +21,13 @@ exercises: 30
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Inheriting an R script
+## Running someone else's script
 
-A colleague hands you an R script called `sleep_analysis.R` and asks you to reproduce their results while their away.
+A colleague emails you an R script called `sleep_analysis.R` and asks you to reproduce their results while they are away.
 
-## Create an R project
+Before running anything, set up a project environment to isolate your work.
+
+### Create an R project
 
 Before working with the script, create an R project in RStudio:
 - Go to File > New Project > New Directory > New Project
@@ -35,9 +37,9 @@ Before working with the script, create an R project in RStudio:
  
 If you want to come back to your work later, open the R Project file you created (`rworkshop.Rproj`). Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
 
-## Save the script
+### Save the script
 
-Create a new R script called `sleep_analysis.R` inside the `rworkshop` folder and save the file after pasting in the following code:
+Create a new R script called `sleep_analysis.R` inside the `rworkshop` folder and save the file after pasting in the code your colleague sent you:
 
 ``` R
 library(obscurepackage)
@@ -57,30 +59,27 @@ p <- ggplot(data, aes(x = group, y = none_transformed_data)) +
 print(p)
 ```
 
-## Run the script
+### Run the script
 
-You will probably hit an error when you try to run `sleep_analysis.R`.
+Run `sleep_analysis.R` to see what happens.
 
-The script tries to load:
-``` R
-library(obscurepackage)
-```
-But on your machine, that package is not installed, resulting in an error message that looks like the one below.
+In RStudio, you can run the script using your editor’s "Source" button.
+
+You will probably hit an error resulting in a message that looks like the one below.
 
 ``` R
 Error in library(obscurepackage) : 
   there is no package called ‘obscurepackage’
 ```
 
-## Missing package
+The script tries to load:
+``` R
+library(obscurepackage)
+```
 
 On your machine, R looks for packages in your global environment. You might already have `ggplot2` installed, but you probably don not have `obscurepackage` installed, so the script fails.
 
-::::::::::::::::::::::::::::::::::::: challenge
-## Try to make the script run
-
-- Install the missing package(s) so the script can run
-- Re-run the script and reproduce the boxplot figure
+### Install the required packages
 
 You may already have `ggplot2` installed, but if not, you can install it with:
 
@@ -93,7 +92,10 @@ The `obscurepackage` is not on CRAN. You need to install it from GitHub:
 remotes::install_github("stellaprins/obscurepackage")
 ```
 
-Now that you have installed the required packages, are you able to reproduce the plot? Why?
+::::::::::::::::::::::::::::::::::::: challenge
+## Reproduce the results
+
+Now that you have installed the required packages, are you able to reproduce the plot below? Why?
 
 [sleep analysis plot](episodes\fig\sleep_analysis_plot.png)
 
@@ -109,16 +111,13 @@ The newest version of `obscurepackage` contains a bug that causes `none_transfor
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## version mismatch
+## Project environments
 
-A version mismatch happens when your script loads a package whose functions have changed between releases, causing the same code to produce different results on different machines.
+A version mismatch happens when your script relies on a package whose behaviour has changed between releases. This can be due to new features, altered defaults, or bugs, and causes the same code to produce different results.
 
-## project environments
+A project environment prevents this by isolating the packages your project uses and recording their exact versions. This keeps your work separate from whatever happens to be installed globally on your system and avoids conflicts between R projects that require different or incompatible dependencies.
 
-Installing inside a project environment ensures:
-- the project environment keeps a record of which packages are used
-- the exact versions of those packages are recorded
-- the environment can be recreated on different machines or at a later timepoint
+Installing packages inside a project environment also ensures that the same setup can be rebuilt, for example when someone else needs to run your analysis or you return to the project in the future.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -449,7 +448,7 @@ What packages does `renv` detect, and where does it say they come from?
 
 ## Show me the solution
 
-`renv` detects packages listed in the `DESCRIPTION` file and `sleep_analysis.R`.
+`renv` detects packages listed in the `DESCRIPTION` file [here](files\02-environments\DESCRIPTION) and `sleep_analysis.R`.
 
 The `Source` column shows the exact file where each dependency was detected.
 
