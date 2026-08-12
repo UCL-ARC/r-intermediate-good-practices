@@ -98,7 +98,8 @@ Now that you have installed the required packages, are you able to reproduce the
 [sleep analysis plot](episodes\fig\sleep_analysis_plot.png)
 
 :::::::::::::::::::::::: solution
-## version matters 
+
+## Show me the solution
 
 The newest version of `obscurepackage` contains a bug that causes `none_transform()` to always return `NA`, so the boxplot cannot be reproduced unless you install the earlier version.
 
@@ -156,7 +157,8 @@ Explore the help page and useful links.
 Summarise what `renv` is and and how it helps with project handovers.
 
 :::::::::::::::::::::::: solution
-## Initialise renv
+
+## Show me the solution
 
 `renv` is an R package that helps create reproducible environments.
 
@@ -202,7 +204,9 @@ Use the help page for `renv::install` to learn how to install packages inside th
 - Use what you learned to install `v0.1.0` of the GitHub repository `stellaprins/obscurepackage`.
 
 :::::::::::::::::::::::: solution
-## Use the commit SHA
+
+## Show me the solution
+
 From the help page, GitHub packages can be installed by using the `username/repository` string, and specific versions can be installed by supplying a commit SHA.
 
 The commit SHA for `v0.1.0` of `stellaprins/obscurepackage` is `9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831`.
@@ -275,6 +279,8 @@ Compare the `renv::status` outputs before and after taking a snapshot:
 
 :::::::::::::::::::::::: solution
 
+## Show me the solution
+
 After running `renv::snapshot()` the second time, you will (hopefully!) see something like
 ``` r 
 No issues found -- the project is in a consistent state.
@@ -316,7 +322,7 @@ This time, they sent two files:
     `DESCRIPTION`
 
 
-Download the `DESCRIPTION` file [here](episodes/files/environments/DESCRIPTION) and place it in your `rworkshop` folder.
+Download the `DESCRIPTION` file, and place it in your `rworkshop` folder.
 
 Replace the contents of your existing `sleep_analysis.R` with the new script below, then save the file.
 
@@ -382,6 +388,8 @@ Open the `DESCRIPTION` file in RStudio. What information does the file contain?
 
 :::::::::::::::::::::::: solution
 
+## Show me the solution
+
 This particular `DESCRIPTION` contains one field, `Imports`, which lists the project’s dependencies and the minimum required version for each package.
 
 ``` R
@@ -438,6 +446,8 @@ renv::dependencies()
 What packages does `renv` detect, and where does it say they come from?
 
 :::::::::::::::::::::::: solution
+
+## Show me the solution
 
 `renv` detects packages listed in the `DESCRIPTION` file and `sleep_analysis.R`.
 
@@ -504,7 +514,7 @@ Why is an explicit snapshot the better choice in this situation?
 
 :::::::::::::::::::::::: solution
 
-## Explicit and implicit snapshots
+## Show me the solution
 
 The default snapshot type is implicit.
 
