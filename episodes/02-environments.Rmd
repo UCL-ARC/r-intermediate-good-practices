@@ -169,10 +169,10 @@ renv::init()
 ```
 
 This will:
-- Set up project infrastructure inside your working directory that ensures `renv` will be used in future sessions
-- Discover the packages that are currently installed, and install them into the project library folder where `renv` puts the packages that this project uses
-- Create a "lockfile" named `renv.locks` that records the exact state of the project library
-- Restart R.
+  - Set up project infrastructure inside your working directory that ensures `renv` will be used in future sessions
+  - Discover the packages that are currently installed, and install them into the project library folder where `renv` puts the packages that this project uses
+  - Create a "lockfile" named `renv.locks` that records the exact state of the project library
+  - Restart R.
 
 ### Install packages in the project environment
 
@@ -189,7 +189,7 @@ renv::install("ggplot2")
 This installs `ggplot2` only into the project’s `renv` library, leaving the global library untouched.
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Install a GitHub package using `renv`
+## Install a GitHub package 
 
 Use the help page for `renv::install` to learn how to install packages inside the `renv` environment.
 ``` R
@@ -216,8 +216,6 @@ renv::install("stellaprins/obscurepackage@9e7cfcba9bfbfd1cbea4dbc1600f8d5283c718
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Install obscurepackage from GitHub
-
 To install a specific version of a GitHub package inside an `renv` project, use `the username/repo@version` format:
 
 ```R
@@ -228,7 +226,9 @@ Restart RStudio and rerun the `sleep_analysis.R` script.
 
 You should be able to replicate the results of your colleague!
 
-## Checking the environment with `renv::status()`
+![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
+
+## Use `renv::snapshot()` to update a lockfile 
 
 To check whether your project environment is consistent with your lockfile, use:
 ``` r
@@ -248,7 +248,7 @@ If these differ, `renv::status()` will report inconsistencies such as:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Fix `renv` status inconsistencies
+##  Fix `renv` status inconsistencies
 Run:
 
 ``` r
@@ -288,15 +288,13 @@ All of the inconsistencies should have disappeared because `renv::snapshot()` re
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Snapshots
-
 Use `renv::snapshot()` to update a lockfile with the current state of dependencies in the project library. 
 
 ``` R
 renv::snapshot()
 ```
 
-Later, you or a collaborator can use it to recreate the same environment with:
+The lockfile can be used to recreate the exact same environment with:
 
 ``` R
 renv::restore()
@@ -309,7 +307,7 @@ Use `renv::restore()` when:
 - you want to return to a known working state
 
 
-## `DESCRIPTION`
+## Construct an environment using a `DESCRIPTION` file
 
 You receive an email from your colleague. Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
@@ -317,6 +315,7 @@ This time, they sent two files:
     `sleep_analysis.R`
     `DESCRIPTION`
 
+In their message, your colleague explains that you should use the `DESCRIPTION` file to create the correct R environment for running the analysis.
 
 Download the `DESCRIPTION` file, and place it in your `rworkshop` folder.
 
@@ -421,7 +420,7 @@ Because `ggplot2` is definitely removed from the global library, you can test wh
 
 Try running `sleep_analysis.R`. It should fail with an error. The script cannot run until `renv` installs the required packages.
 
-## Find R package dependencies in a project
+### Find R package dependencies in a project
 
 Before installing anything, it is useful to check which dependencies `renv` detects.
 
@@ -453,7 +452,7 @@ The `Source` column shows the exact file where each dependency was detected.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Install dependencies from `DESCRIPTION` file
+### Install dependencies from `DESCRIPTION` file
 
 Use `renv::install()` to install all packages in the`Imports` field.
 ``` R
@@ -480,7 +479,7 @@ source("sleep_analysis.R")
 ```
 The script should now run without errors, because every required package is available inside the `renv` project library.
 
-## Explicit snapshot
+### Explicit snapshot
 
 Because you deleted the lockfile earlier, `renv` currently has no record of the environment you just rebuilt.
 
