@@ -408,6 +408,36 @@ Imports:
     broom (>= 0.8.0)
 
 ```
+
+The `>=` operator means greater than or equal to, so the specified version or any newer version can be installed.
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: challenge
+
+## Why specify minimum package versions?
+
+In `DESCRIPTION` files, it is common to use `>=` to specify the minimum required version of each package.
+This means that the specified version or any newer version can be installed.
+
+Discuss the following questions:
+1. What are the benefits of allowing newer package versions?
+2. What potential pitfalls could this introduce?
+
+Think back to your earlier experience with `obscurepackage`.
+
+:::::::::::::::::::::::: solution
+
+## Show me the solution
+
+Specifying minimum versions provides flexibility, allowing projects to benefit from bug fixes, security updates, and new features without constantly updating dependency requirements.
+
+However, newer versions can also introduce breaking changes, alter default behaviour, or contain bugs, as you saw with `obscurepackage`.
+
+Therefore, specifying minimum versions alone does not guarantee reproducibility.
+
+While `DESCRIPTION` defines the project's dependency requirements, `renv.lock` records the exact package versions used in a particular environment.
+
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
