@@ -34,7 +34,8 @@ Before working with the script, create an R project in RStudio:
 - Create as a subdirectory of your home directory (for example: `C:/Users/username/`)
 - Click "Create Project"
  
-If you want to come back to your work later, open the R Project file you created (`rworkshop.Rproj`). Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
+If you want to come back to your work later, open the R Project file you created (`rworkshop.Rproj`).
+Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
 
 ### Save the script
 
@@ -76,7 +77,8 @@ The script tries to load:
 library(obscurepackage)
 ```
 
-On your machine, R looks for packages in your global environment. You might already have `ggplot2` installed, but you probably don not have `obscurepackage` installed, so the script fails.
+On your machine, R looks for packages in your global environment.
+You might already have `ggplot2` installed, but you probably don not have `obscurepackage` installed, so the script fails.
 
 ### Install the required packages
 
@@ -86,7 +88,8 @@ You may already have `ggplot2` installed, but if not, you can install it with:
 install.packages("ggplot2")
 ```
 
-The `obscurepackage` is not on CRAN. You need to install it from GitHub:
+The `obscurepackage` is not on CRAN.
+You need to install it from GitHub:
 ``` R
 remotes::install_github("stellaprins/obscurepackage")
 ```
@@ -94,7 +97,8 @@ remotes::install_github("stellaprins/obscurepackage")
 ::::::::::::::::::::::::::::::::::::: challenge
 ## Reproduce the results
 
-Now that you have installed the required packages, are you able to reproduce the plot below? Why?
+Now that you have installed the required packages, are you able to reproduce the plot below?
+Why?
 
 ![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
 
@@ -112,9 +116,11 @@ The newest version of `obscurepackage` contains a bug that causes `none_transfor
 
 ## Project environments
 
-A version mismatch happens when your script relies on a package whose behaviour has changed between releases. This can be due to new features, altered defaults, or bugs, and causes the same code to produce different results.
+A version mismatch happens when your script relies on a package whose behaviour has changed between releases.
+This can be due to new features, altered defaults, or bugs, and causes the same code to produce different results.
 
-A project environment prevents this by isolating the packages your project uses and recording their exact versions. This keeps your work separate from whatever happens to be installed globally on your system and avoids conflicts between R projects that require different or incompatible dependencies.
+A project environment prevents this by isolating the packages your project uses and recording their exact versions.
+This keeps your work separate from whatever happens to be installed globally on your system and avoids conflicts between R projects that require different or incompatible dependencies.
 
 Installing packages inside a project environment also ensures that the same setup can be rebuilt, for example when someone else needs to run your analysis or you return to the project in the future.
 
@@ -123,10 +129,12 @@ Installing packages inside a project environment also ensures that the same setu
 ## Two different meanings of environment in R
 
 **1) project environments**  
-These are project‑specific libraries created by the `renv` package.  They store packages and their versions, making your project reproducible on any machine.
+These are project‑specific libraries created by the `renv` package.
+They store packages and their versions, making your project reproducible on any machine.
 
 **2) R environments**  
-These store variables and track where functions were created, and control how R finds values. They enable features like lexical scoping and namespaces.
+These store variables and track where functions were created, and control how R finds values.
+They enable features like lexical scoping and namespaces.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -154,9 +162,11 @@ Summarise what `renv` is and and how it helps with project handovers.
 
 ## Show me the solution
 
-`renv` is an R package that helps create reproducible environments. `renv` gives every R project its own library of packages, separate from everything else on your computer, and records the exact package versions the project uses.
+`renv` is an R package that helps create reproducible environments.
+`renv` gives every R project its own library of packages, separate from everything else on your computer, and records the exact package versions the project uses.
 
-When you hand a project to someone else `renv` ensures they can recreate your exact environment with one command. This ensures the code runs the same way for the next person as it did for the person handing over de project.
+When you hand a project to someone else `renv` ensures they can recreate your exact environment with one command.
+This ensures the code runs the same way for the next person as it did for the person handing over de project.
 
 :::::::::::::::::::::::::::::::::
 
@@ -176,7 +186,8 @@ This will:
 
 ### Install packages in the project environment
 
-Before using `renv`, we installed packages using `install.packages(")`. This adds the package to the global R library that every project on the machine has access to. 
+Before using `renv`, we installed packages using `install.packages(")`.
+This adds the package to the global R library that every project on the machine has access to. 
 
 Any package you install into your `renv` will be kept isolated from whatever is installed globally on your machine.
 
@@ -309,7 +320,8 @@ Use `renv::restore()` when:
 
 ## Construct an environment using a `DESCRIPTION` file
 
-You receive an email from your colleague. Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
+You receive an email from your colleague.
+Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
 This time, they sent two files:
     `sleep_analysis.R`
@@ -379,7 +391,8 @@ ggplot(summary_tbl, aes(x = factor(group), y = mean_extra)) +
 
 ## Learn more about `DESCRIPTION` files
 
-Open the `DESCRIPTION` file in RStudio. What information does the file contain?
+Open the `DESCRIPTION` file in RStudio.
+What information does the file contain?
 
 :::::::::::::::::::::::: solution
 
@@ -418,7 +431,9 @@ Now you are back in the same situation as before setting up the environment.
 
 Because `ggplot2` is definitely removed from the global library, you can test whether `renv` correctly installs everything based on the `DESCRIPTION` file.
 
-Try running `sleep_analysis.R`. It should fail with an error. The script cannot run until `renv` installs the required packages.
+Try running `sleep_analysis.R`.
+It should fail with an error.
+The script cannot run until `renv` installs the required packages.
 
 ### Find R package dependencies in a project
 
