@@ -1,5 +1,10 @@
+Package: sleepanalysis
+Title: Sleep Analysis
+Version: 0.1.0
+Description: Dependencies for the sleep analysis.
 Imports:
     dplyr (>= 1.1.0),
     tidyr (>= 1.3.0),
     ggplot2 (>= 3.4.0),
     broom (>= 0.8.0)
+    
