@@ -459,7 +459,7 @@ What packages does `renv` detect, and where does it say they come from?
 
 ## Show me the solution
 
-`renv` detects packages listed in the `DESCRIPTION` file [here](files\02-environments\DESCRIPTION) and `sleep_analysis.R`.
+`renv` detects packages listed in [the `DESCRIPTION` file](files\02-environments\DESCRIPTION) and `sleep_analysis.R`.
 
 The `Source` column shows the exact file where each dependency was detected.
 
@@ -527,9 +527,8 @@ Why is an explicit snapshot the better choice in this situation?
 ## Show me the solution
 
 The default snapshot type is implicit.
-
-An **implicit snapshot** only records packages that `renv` detects as used in your R scripts.
-An **explicit snapshot** only records packages listed in the `DESCRIPTION` file.
+- An **implicit snapshot** only records packages that `renv` detects as used in your R scripts.
+- An **explicit snapshot** only records packages listed in the `DESCRIPTION` file.
 
 An explicit snapshot is preferable because it restores the lockfile based solely on the `DESCRIPTION` file and avoids the risk of `renv` adding packages that show up in any "stray scripts" and are not meant to be part of the environment.
 
