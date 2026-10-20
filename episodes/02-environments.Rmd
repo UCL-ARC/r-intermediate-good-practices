@@ -648,7 +648,7 @@ remotes::install_deps()
 
 This installs the packages listed in the `DESCRIPTION` file and their dependencies.
 
-::::::::::::::::::::: challenge
+:::::::::::::::::::::::: challenge
 
 ## Run both analysis scripts
 
@@ -656,7 +656,7 @@ Now that you have installed the dependencies from `DESCRIPTION`, try running bot
 
 Do both scripts run successfully? Why (not)?
 
-:::::::::::::::::::: solution
+:::::::::::::::::::::::: solution
 
 ## Show me the solution
 
@@ -670,9 +670,9 @@ The original script requires `obscurepackage`, which is not listed in `DESCRIPTI
 
 This shows that the `DESCRIPTION` does not necessarily install every package used in the project's R scripts and must be kept up to date with the packages required by the project.
 
-:::::::::::::::::
+:::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 The `sleep_analysis_final.R` script should now run without errors, because every required package is available inside the `renv` project library.
 
