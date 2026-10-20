@@ -181,7 +181,7 @@ renv::init()
 This will:
   - Set up project infrastructure inside your working directory that ensures `renv` will be used in future sessions
   - Discover the packages that are currently installed, and install them into the project library folder where `renv` puts the packages that this project uses
-  - Create a "lockfile" named `renv.locks` that records the exact state of the project library
+  - Create a "lockfile" named `renv.lock` that records the exact state of the project library
   - Restart R.
 
 ### Install packages in the project environment
