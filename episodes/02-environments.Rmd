@@ -440,18 +440,24 @@ What information does the file contain?
 
 ## Show me the solution
 
-This particular `DESCRIPTION` contains one field, `Imports`, which lists the project’s dependencies and the minimum required version for each package.
+The `DESCRIPTION` file contains information about the project, including its name, version, a short description, and the packages it depends on.
 
 ``` R
+Package: sleepanalysis
+Title: Sleep Analysis
+Version: 0.1.0
+Description: Dependencies for the sleep analysis.
 Imports:
     dplyr (>= 1.1.0),
     tidyr (>= 1.3.0),
     ggplot2 (>= 3.4.0),
     broom (>= 0.8.0)
-
+    
 ```
-
+The `Imports` field lists the packages required by the project and their minimum versions.
 The `>=` operator means greater than or equal to, so the specified version or any newer version can be installed.
+For example, dplyr (>= 1.1.0) means that version 1.1.0 or any newer version can be used.
+
 :::::::::::::::::::::::::::::::::
 
 A `DESCRIPTION` file is normally used in R packages to record information such as the package name, version, authors, and dependencies.
