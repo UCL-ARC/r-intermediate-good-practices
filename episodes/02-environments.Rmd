@@ -459,13 +459,13 @@ The `>=` operator means greater than or equal to, so the specified version or an
 For example, dplyr (>= 1.1.0) means that version 1.1.0 or any newer version can be used.
 
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 A `DESCRIPTION` file is normally used in R packages to record information such as the package name, version, authors, and dependencies.
 
 It can also be used in an R analysis project to document the packages required to run the project. 
 In this case, a minimal `DESCRIPTION` file containing only an `Imports` field is sufficient to declare the project's dependencies for use with `renv`.
 
-::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::: challenge
 
 ## Why specify minimum package versions?
