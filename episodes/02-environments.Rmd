@@ -417,10 +417,7 @@ Use `renv::restore()` when:
 You receive an email from your colleague.
 Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
-This time, your colleague sent you two files:
-
-    - `sleep_analysis.R`
-    - `DESCRIPTION`
+This time, your colleague sent you two files: `sleep_analysis.R` and `DESCRIPTION`.
 
 In their message, your colleague explains that you should use the `DESCRIPTION` file to create the correct R environment for running the analysis.
 
