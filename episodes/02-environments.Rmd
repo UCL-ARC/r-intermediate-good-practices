@@ -29,10 +29,11 @@ Before running anything, create an R project to organise your work.
 ### Create an R project
 
 Before working with the script, create an R project in RStudio:
-- Go to File > New Project > New Directory > New Project
+
+- Go to **File > New Project > New Directory > New Project**
 - Name the directory `rworkshop`
 - Create as a subdirectory of your home directory (for example: `C:/Users/username/`)
-- Click "Create Project"
+- Click **Create Project**
  
 If you want to come back to your work later, open the R Project file you created (`rworkshop.Rproj`).
 Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
@@ -63,7 +64,7 @@ print(p)
 
 Run `sleep_analysis.R` to see what happens.
 
-In RStudio, you can run the script using your editor’s "Source" button.
+In RStudio, you can run the script using your editor’s **Source** button.
 
 You will probably hit an error resulting in a message that looks like the one below.
 
