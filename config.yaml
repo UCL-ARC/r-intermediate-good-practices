@@ -67,7 +67,8 @@ contact: 'ARC.education@ucl.ac.uk'
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.Rmd
+- 00-introduction-placeholder.Rmd
+- 02-environments.Rmd
 
 # Information for Learners
 learners: 
