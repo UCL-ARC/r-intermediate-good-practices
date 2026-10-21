@@ -301,7 +301,26 @@ You should be able to replicate the results of your colleague!
 
 ![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
 
-## Use `renv::snapshot()` to update a lockfile 
+## Recording your environment with a lockfile
+
+You have now reproduced your colleague's results by installing a specific version of `obscurepackage`.
+
+But how can you make sure that you, or someone else, can reproduce these results again in the future?
+
+This is where a **lockfile** comes in.
+
+When you initialise `renv`, it creates a file called `renv.lock`. 
+
+This file records information about your project's software dependencies, including:
+
+- The R version used by the project
+- The packages required by the project
+- The exact versions of those packages
+- Where the packages were installed from, such as CRAN or GitHub
+
+Now that you have installed a different version of `obscurepackage`, your project environment has changed. 
+
+These changes are not automatically recorded in your `renv.lock` file.
 
 To check whether your project environment is consistent with your lockfile, use:
 ``` R
@@ -320,16 +339,18 @@ If these differ, `renv::status()` will report inconsistencies such as:
 - packages recorded but not installed
 - packages where the installed version ≠ recorded version
 
+Once you have reviewed these differences, you can use `renv::snapshot()` to update the lockfile and record the current state of your project environment.
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
-##  Fix `renv` status inconsistencies
+##  Update your lockfile using a snapshot
 Run:
 
 ``` R
 renv::status()
 ```
 
-Look at the output.
+Look at the output. 
 
 Now take a snapshot using `renv::snapshot()`:
 ``` R
@@ -343,6 +364,7 @@ renv::status()
 ```
 
 Compare the `renv::status` outputs before and after taking a snapshot:
+
 - Which inconsistencies disappeared?
 - Which (if any) remain?
 - Why did snapshotting fix these issues?
@@ -360,7 +382,7 @@ No issues found -- the project is in a consistent state.
 
 This can resolve inconsistencies between the lockfile and the project library.
 However, it does not install missing packages. 
-Some issues may still require renv::install() or renv::restore().
+Some issues may still require `renv::install()` or `renv::restore()`.
 
 :::::::::::::::::::::::::::::::::
 
@@ -372,17 +394,22 @@ Use `renv::snapshot()` to record your project's current package dependencies and
 renv::snapshot()
 ```
 
-The lockfile can be used to restore the recorded package versions with:
+## Restoring an environment from a lockfile
 
-``` R
-renv::restore()
+While `renv::snapshot()` records your current environment, `renv::restore()` recreates the environment described by the lockfile.
 
-```
+
+| Command | Purpose |
+|---|---|
+| `renv::status()` | Check whether the project environment and lockfile are consistent |
+| `renv::snapshot()` | Record the current environment in the lockfile |
+| `renv::restore()` | Recreate the environment described by the lockfile |
 
 Use `renv::restore()` when:
-- you open a project on a new computer
-- you clone someone else's project from GitHub
-- you want to return to a known working state
+
+- You open a project on a new computer
+- You clone someone else's project from GitHub
+- You want to return to a known working state
 
 
 ## Construct an environment using a `DESCRIPTION` file
@@ -390,9 +417,10 @@ Use `renv::restore()` when:
 You receive an email from your colleague.
 Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
-This time, they sent two files:
-    `sleep_analysis.R`
-    `DESCRIPTION`
+This time, your colleague sent you two files:
+
+    - `sleep_analysis.R`
+    - `DESCRIPTION`
 
 In their message, your colleague explains that you should use the `DESCRIPTION` file to create the correct R environment for running the analysis.
 
