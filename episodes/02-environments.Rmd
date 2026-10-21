@@ -202,6 +202,7 @@ Open the `renv` help page in the R console:
 Explore the help page and useful links.
 
 In your own words, explain:
+
 - What does `renv` do?
 - How can `renv` help when handing the project over to a colleague?
 
