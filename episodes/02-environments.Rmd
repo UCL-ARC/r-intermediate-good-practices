@@ -84,7 +84,7 @@ You might already have `ggplot2` installed, but you probably do not have `obscur
 
 You may already have `ggplot2` installed, but if not, you can install it with:
 
-```r
+``` R
 install.packages("ggplot2")
 ```
 
@@ -92,7 +92,7 @@ The `obscurepackage` is not on CRAN.
 
 First, install the remotes package, which allows you to install packages from GitHub:
 
-```
+``` R
 install.packages("remotes")
 ```
 
@@ -156,7 +156,7 @@ They enable features like lexical scoping and namespaces.
 In this workshop, we are going to use an R package called `renv` to manage our project environment.
 
 To install `renv`:
-``` R 
+``` R
 install.packages("renv")
 ```
 
@@ -213,7 +213,7 @@ When `renv` is active, `install.packages()` normally uses the project library.
 
 This installs `ggplot2` only into the project’s `renv` library, leaving the global library untouched:
 
-``` r
+``` R
 renv::install("ggplot2")
 ```
 
@@ -237,7 +237,7 @@ From the help page, GitHub packages can be installed by using the `username/repo
 The commit SHA for `v0.1.0` of `stellaprins/obscurepackage` is `9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831`.
 
 
-```R
+``` R
 renv::install("stellaprins/obscurepackage@9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831")
 ```
 
@@ -247,7 +247,7 @@ renv::install("stellaprins/obscurepackage@9e7cfcba9bfbfd1cbea4dbc1600f8d5283c718
 
 To install a specific version of a GitHub package inside a `renv` project, use the `username/repo@version` format:
 
-```R
+``` R
 renv::install("stellaprins/obscurepackage@v0.1.0")
 ```
 
@@ -255,7 +255,7 @@ Restart your R session to make sure R uses the newly installed version of `obscu
 
 In RStudio, select **Session → Restart R**, or run:
 
-```r
+``` R
 .rs.restartR()
 ```
 
@@ -270,7 +270,7 @@ You should be able to replicate the results of your colleague!
 ## Use `renv::snapshot()` to update a lockfile 
 
 To check whether your project environment is consistent with your lockfile, use:
-``` r
+``` R
 renv::status()
 ```
 
@@ -289,20 +289,20 @@ If these differ, `renv::status()` will report inconsistencies such as:
 ##  Fix `renv` status inconsistencies
 Run:
 
-``` r
+``` R
 renv::status()
 ```
 
 Look at the output.
 
 Now take a snapshot using `renv::snapshot()`:
-```r 
+``` R
 renv::snapshot()
 ```
 
 Then, run `renv::status()` again:
 
-``` r
+``` R
 renv::status()
 ```
 
@@ -316,7 +316,7 @@ Compare the `renv::status` outputs before and after taking a snapshot:
 ## Show me the solution
 
 After taking the snapshot, `renv::status()` may report:
-``` r 
+``` R
 No issues found -- the project is in a consistent state.
 ```
 
@@ -503,13 +503,13 @@ You will now create a fresh project environment to explore how `renv` works with
 First, make sure your `rworkshop` project is open in RStudio. Restart R by selecting **Session > Restart R** to unload any packages from your previous session.
 
 Before resetting the environment, remove the packages installed during the previous exercise:
-```
+``` R
 renv::remove(c("ggplot2", "obscurepackage"))
 ```
 
 Then deactivate `renv` and remove the existing project environment:
 
-```r
+``` R
 renv::deactivate(clean = TRUE)
 ```
 
@@ -517,7 +517,7 @@ This removes the project's `renv` infrastructure, including its project library 
 
 After R restarts, initialise a new environment:
 
-```r
+``` R
 renv::init(bare = TRUE)
 ```
 
@@ -637,12 +637,12 @@ Explicit mode tells `renv` to use the dependencies declared in `DESCRIPTION` whe
 To install the packages listed in DESCRIPTION, we can use the remotes package.
 
 First, install `remotes` if you haven't already:
-```
+``` R
 install.packages("remotes")
 ```
 
 Then run:
-```
+``` R
 remotes::install_deps()
 ```
 
@@ -722,6 +722,7 @@ Why is an explicit snapshot the better choice in this situation?
 ## Show me the solution
 
 The default snapshot type is implicit.
+
 - An **implicit snapshot** records installed packages detected by `renv::dependencies()` in project files and their dependencies.
 - An **explicit snapshot** records installed packages declared in the `Imports` or `Depends` fields of `DESCRIPTION` and their dependencies.
 
