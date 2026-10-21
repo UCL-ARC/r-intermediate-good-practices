@@ -116,11 +116,34 @@ If not, what happens, and why do you think the results differ?
 
 ## Show me the solution
 
-The newest version of `obscurepackage` contains a bug that causes `none_transform()` to always return `NA`.
-
-As a result the boxplot cannot be reproduced unless you install the earlier version of the package.
-
 ![](fig/sleep_analysis_NA_plot.png){alt="your sleep analysis plot" width='50%'}
+
+To understand why your results differ, visit the [`obscurepackage` GitHub repository](https://github.com/stellaprins/obscurepackage) and explore its commit history.
+
+Can you identify the commit that changed the behaviour of `none_transform()`?
+
+The `none_transform()` function was originally designed to return its input unchanged:
+
+```r
+none_transform <- function(x) {
+  return(x)
+}
+```
+
+However, a bug introduced in the newer version causes the function to always return `NA`, regardless of its input:
+
+```r
+none_transform <- function(x) {
+  return(NA)
+}
+```
+
+As a result, the analysis produces missing values instead of the expected data, preventing the original boxplot from being reproduced.
+
+To reproduce your colleague's results, you would need to install an earlier version of `obscurepackage` that does not contain the bug.
+
+Changes to software dependencies can affect reproducibility, even when the code and data remain unchanged. 
+This highlights the importance of recording and managing package versions.
 
 :::::::::::::::::::::::::::::::::
 
