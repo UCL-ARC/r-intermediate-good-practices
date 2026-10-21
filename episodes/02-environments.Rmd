@@ -258,7 +258,9 @@ Use the help page for `renv::install` to learn how to install packages inside th
 ```
 
 - Use the help page to find out how to install a package from GitHub using `renv::install()`
-- Use what you learned to install `v0.1.0` of the GitHub repository `stellaprins/obscurepackage`.
+- Use what you learned to install `v0.1.0` of the GitHub repository [`stellaprins/obscurepackage`](https://github.com/stellaprins/obscurepackage).
+
+**Hint:** Explore the repository's commit history to find the commit corresponding to `v0.1.0`, and check how to specify a commit hash when using `renv::install()`.
 
 :::::::::::::::::::::::: solution
 
@@ -266,7 +268,7 @@ Use the help page for `renv::install` to learn how to install packages inside th
 
 From the help page, GitHub packages can be installed by using the `username/repository` string, and specific versions can be installed by supplying a commit SHA.
 
-The commit SHA for `v0.1.0` of `stellaprins/obscurepackage` is `9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831`.
+The commit SHA for `v0.1.0` of `stellaprins/obscurepackage` is [`9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831`](https://github.com/stellaprins/obscurepackage/commit/9e7cfcba9bfbfd1cbea4dbc1600f8d5283c71831).
 
 
 ``` R
@@ -291,7 +293,7 @@ In RStudio, select **Session → Restart R**, or run:
 .rs.restartR()
 ```
 
-Note: `.rs.restartR()` only works in RStudio, not in a standard R terminal or other R editors.
+**Note:** `.rs.restartR()` only works in RStudio, not in a standard R terminal or other R editors.
 
 Then run `sleep_analysis.R` again.
 
@@ -307,11 +309,13 @@ renv::status()
 ```
 
 `renv::status()` compares three things:
+
 - `renv` project library
 - the `renv.lock` file
 - What your project actually uses
 
 If these differ, `renv::status()` will report inconsistencies such as:
+
 - packages installed but not recorded
 - packages recorded but not installed
 - packages where the installed version ≠ recorded version
