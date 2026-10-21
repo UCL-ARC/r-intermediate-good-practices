@@ -412,7 +412,7 @@ Use `renv::restore()` when:
 - You want to return to a known working state
 
 
-## Construct an environment using a `DESCRIPTION` file
+## `DESCRIPTION` files
 
 You receive an email from your colleague.
 Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
@@ -616,7 +616,7 @@ The script should fail because the required packages are not yet available in th
 
 In the next steps, you will identify and install these dependencies.
 
-### Find R package dependencies in a project
+## Find dependencies in a project
 
 Before installing anything, it is useful to check which dependencies `renv` detects.
 
@@ -692,7 +692,7 @@ This shows that the packages declared in `DESCRIPTION` do not always match those
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Install dependencies from `DESCRIPTION` file
+## Install dependencies from a `DESCRIPTION` file
 
 Even though we selected **explicit mode** earlier, `renv::dependencies()` still scans both `DESCRIPTION` and the R scripts. 
 Explicit mode tells `renv` to use the dependencies declared in `DESCRIPTION` when creating the lockfile with `renv::snapshot()`.
