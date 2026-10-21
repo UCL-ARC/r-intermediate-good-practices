@@ -201,6 +201,7 @@ renv::init()
 ```
 
 This will:
+
   - Set up project infrastructure inside your working directory that ensures `renv` will be used in future sessions
   - Discover packages used in your project and add them and their dependencies to the project library
   - Create a "lockfile" named `renv.lock` that records the versions of your project's package dependencies
