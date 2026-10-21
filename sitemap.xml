@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/00-introduction-placeholder.html</loc>
+  </url>
+  <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/02-environments.html</loc>
   </url>
   <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/404.html</loc>
@@ -25,7 +31,13 @@
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/index.html</loc>
   </url>
   <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/00-introduction-placeholder.html</loc>
+  </url>
+  <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/02-environments.html</loc>
   </url>
   <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/404.html</loc>
