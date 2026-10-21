@@ -110,17 +110,23 @@ Now that you have installed the required packages, are you able to reproduce the
 
 If not, what happens, and why do you think the results differ?
 
+**Hint:** visit the [`obscurepackage` GitHub repository](https://github.com/stellaprins/obscurepackage) and explore its commit history.
+Have any changes been made that could explain the difference?
+
+
 ![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
 
 :::::::::::::::::::::::: solution
 
 ## Show me the solution
 
+You will not be able to reproduce your colleague's original plot using the latest version of `obscurepackage`.
+
+Instead, you should see something like this:
+
 ![](fig/sleep_analysis_NA_plot.png){alt="your sleep analysis plot" width='50%'}
 
-To understand why your results differ, visit the [`obscurepackage` GitHub repository](https://github.com/stellaprins/obscurepackage) and explore its commit history.
-
-Can you identify the commit that changed the behaviour of `none_transform()`?
+The difference is caused by a bug introduced in a newer version of `obscurepackage`.
 
 The `none_transform()` function was originally designed to return its input unchanged:
 
