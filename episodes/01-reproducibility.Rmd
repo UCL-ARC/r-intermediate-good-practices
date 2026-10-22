@@ -248,7 +248,7 @@ _The Turing Way Community. This illustration is created by Scriberia with The Tu
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## From reproducibility to good practices
+## Good practices
 
 Our hypothetical scenario has shown us why **reproducibility matters**: without it, we cannot easily check or build on research results.
 
