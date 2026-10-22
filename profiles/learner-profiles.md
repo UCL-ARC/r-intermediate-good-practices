@@ -1,5 +1,8 @@
 ---
-title: FIXME
+title: 'Learner Profiles'
 ---
 
-This is a placeholder file. Please add content here. 
+## Intended audience
+
+This lesson is for researchers who use R and want to make their analyses more reproducible and easier to share. Learners should be comfortable running scripts, working with data frames, writing simple functions, and managing R packages. 
+
