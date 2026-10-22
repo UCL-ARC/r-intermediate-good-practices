@@ -561,17 +561,31 @@ There may be more than one smell in each example.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
+## Exercises: Can you smell something?
+
+Our colleague has shared some code from other research projects.
+
+Read each example and identify the code smells. You do not need to run or fix the code, and there may be more than one smell in each example.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
 ### Exercise 1: Survey responses 
 
 ```r
+# Read in survey results
 survey <- read.csv("data/survey.csv")
 
 # Previous approach
+# get selection 
 # survey$age_group <- ifelse(survey$age > 30, "older", "younger")
 
+# get selection 
 survey$age_group <- ifelse(survey$age > 35, "older", "younger")
 
+# Calculate the mean score for female respondents
 female_mean <- mean(survey$score[survey$gender == "female"])
+
+# Calculate the mean score for male respondents
 male_mean <- mean(survey$score[survey$gender == "male"])
 ```
 
@@ -581,13 +595,15 @@ male_mean <- mean(survey$score[survey$gender == "male"])
 
 ### Show me the solution
 
-- **Magic number:** The age threshold `35` has no explanation.
-- **Commented-out code:** An earlier version of the age classification remains in the script.
-- **Duplicated code:** The same calculation is repeated for two groups.
+- **Magic number:** The age threshold `35` is unexplained.
+- **Commented-out code:** An earlier age classification remains in the script.
+- **Duplicated code:** The mean score is calculated separately for each group.
+- **Overcommenting:** The comments above the mean calculations simply repeat what the code already says.
 
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ### Exercise 2: Temperature analysis 
@@ -603,7 +619,7 @@ analyse_temperature <- function() {
 
   average <- mean(temperature$value)
 
-  histogram <- hist(temperature$value)
+  hist(temperature$value)
 
   write.csv(
     data.frame(average = average),
@@ -620,9 +636,9 @@ analyse_temperature <- function() {
 
 ### Show me the solution
 
-- **Hardcoded paths:** The input and output locations depend on a particular computer.
-- **Long functions with:** The function loads data, removes missing values, calculates a statistic, creates a histogram and saves results.
-- **Lack of modularity:** These different tasks are combined in one function, making them harder to test or change independently.
+- **Hardcoded paths:** The input and output locations are specific to the researcher's computer.
+- **Lack of modularity:** The function loads data, removes missing values, calculates a statistic, creates a plot and saves results.
+- **Lack of function documentation:** The function does not explain what temperature measurements it expects, their units or what the returned average represents.
 
 :::::::::::::::::::::::::::::::::
 
@@ -630,21 +646,20 @@ analyse_temperature <- function() {
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Exercise 3: Laboratory measurements
+### Exercise 3: Laboratory measurements 
 
 ```r
 control <- measurements[measurements$treatment == "control", ]
 treated <- measurements[measurements$treatment == "treated", ]
 
-control$adjusted <- control$value * 1.15
-treated$adjusted <- treated$value * 1.15
+control$adjusted <- control$value * correction_factor
+treated$adjusted <- treated$value * correction_factor
 
-# Old correction
-# treated$adjusted <- treated$value * 1.10
+# Remove sample 42
+treated <- treated[treated$sample_id != 42, ]
 
-if (mean(treated$adjusted) > 50) {
-  message("High measurement")
-}
+# Calculate the mean
+treated_mean <- mean(treated$adjusted)
 ```
 
 **Which code smells can you identify?**
@@ -653,11 +668,11 @@ if (mean(treated$adjusted) > 50) {
 
 ### Show me the solution
 
-- **Duplicated (WET) code:** The same adjustment is performed separately for the control and treated groups.
-- **Magic numbers:** The values `1.15` and `50` are not explained.
-- **Commented-out code:** An earlier correction remains in the script.
+- **Duplicated code:** The same adjustment is performed separately for the control and treated groups.
+- **Unexplained code:** Sample `42` is excluded without explaining why. The comment describes the operation but not the reason.
+- **Overcommenting:** The comment `# Calculate the mean` adds no useful information.
 
-The commented-out calculation also raises a question about why the adjustment factor changed.
+Notice that the comment above the exclusion does not resolve the lack of explanation. A useful comment would explain **why** the sample was excluded.
 
 :::::::::::::::::::::::::::::::::
 
@@ -671,11 +686,15 @@ The commented-out calculation also raises a question about why the adjustment fa
 process_data <- function(data) {
 
   # Previous filter
-  # data <- data[data$quality > 5, ]
+  # data <- data[data$quality > minimum_quality, ]
 
-  data <- data[data$quality > 7, ]
+  data <- data[data$quality >= minimum_quality, ]
 
-  data$adjusted <- data$value * 1.25
+  # Get the adjusted values
+  data$adjusted <- data$value * adjustment_factor
+
+  # Remove one observation
+  data <- data[data$sample_id != "S018", ]
 
   summary <- aggregate(adjusted ~ site, data, mean)
 
@@ -699,17 +718,18 @@ process_data <- function(data) {
 
 ### Show me the solution
 
-- **Magic numbers:** The thresholds `7` and `1.25` are unexplained.
 - **Commented-out code:** An earlier filtering operation remains in the function.
+- **Overcommenting:** Comments such as `# Get the adjusted values` simply describe what the code does.
+- **Unexplained code:** Observation `"S018"` is excluded without a reason.
 - **Hardcoded path:** The output location is specific to the researcher's computer.
-- **Lack of modularity:** Several tasks are combined into one function.
+- **Lack of modularity:** The function filters and transforms data, calculates statistics, creates a plot and saves results.
+- **Lack of function documentation:** The function does not describe its expected input, purpose or returned result.
 
-We cannot determine whether automated tests exist from this snippet alone. We would need to inspect the project's test files.
+The variables `minimum_quality` and `adjustment_factor` are also not defined within the function. They may exist elsewhere, but this makes the function dependent on its surrounding environment.
 
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Code smells can be spotted without understanding the logic of the code.
