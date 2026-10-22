@@ -67,7 +67,8 @@ plot(measurements)
 
 The Console is useful for exploring data and trying out commands, but commands entered there are not automatically saved for future use.
 
-An **R script** is a plain-text file, usually with the `.R` extension, that contains R code. Scripts allow you to organise your analysis into a sequence of steps that can be saved, rerun, and shared with others.
+An **R script** is a plain-text file, usually with the `.R` extension, that contains R code. 
+Scripts allow you to organise your analysis into a sequence of steps that can be saved, rerun, and shared with others.
 
 For example, we can combine our previous commands into a script:
 
