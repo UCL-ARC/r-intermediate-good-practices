@@ -246,6 +246,51 @@ Following shared conventions makes it easier for collaborators to find files, un
 
 **What matters most is that the structure is consistent, documented and understood by everyone working on the project.**
 
+## Magic numbers
+
+A **magic number** is a numerical value used in code without a clear explanation of its meaning.
+
+For example:
+
+```r
+sleep$category <- ifelse(
+  sleep$extra > 2.5,
+  "high",
+  "low"
+)
+```
+
+Why is the threshold `2.5`?
+
+Does it come from a scientific paper, a previous analysis, or an arbitrary decision?
+
+**Why is this a problem?**
+
+Someone reading the code may not understand why the value was chosen.
+
+If the threshold is used in several places, changing it could also lead to inconsistencies.
+
+### Using named constants
+
+A clearer approach is to give the value a meaningful name:
+
+```r
+high_response_threshold <- 2.5
+
+sleep$category <- ifelse(
+  sleep$extra > high_response_threshold,
+  "high",
+  "low"
+)
+```
+
+Now the purpose of the number is easier to understand.
+
+However, a meaningful name does not explain **why** the threshold was chosen. 
+We may still need documentation or a reference to justify it.
+
+**What to look for:** Unexplained numbers used in calculations, conditions, or filtering.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Code smells can be spotted without understanding the logic of the code.
 - Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
