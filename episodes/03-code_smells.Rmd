@@ -291,6 +291,56 @@ We may still need documentation or a reference to justify it.
 
 **What to look for:** Unexplained numbers used in calculations, conditions, or filtering.
 
+## Commented-out code
+
+**Commented-out code** is code that has been disabled by turning it into a comment.
+
+For example:
+
+```r
+# sleep$category <- ifelse(sleep$extra > 1, "high", "low")
+# sleep$category <- ifelse(sleep$extra > 2, "high", "low")
+
+sleep$category <- ifelse(sleep$extra > 2.5, "high", "low")
+```
+
+R ignores lines beginning with `#`, so only the **last calculation** runs.
+
+**Why is this a problem?**
+
+Our colleague has left three versions of the same calculation in the script, each using a different threshold.
+
+But which threshold is correct? Why did it change from `1` to `2`, and then to `2.5`?
+
+Without an explanation, we cannot tell whether these changes were intentional or whether the older calculations are still relevant.
+
+Commented-out code can make it difficult to identify which parts of an analysis are current and trustworthy.
+
+### Comments versus commented-out code
+
+Comments are useful when they explain **why** something is done, rather than preserving old calculations.
+
+For example:
+
+```r
+# Classify responses using the threshold reported in
+# Author et al. (2024), https://doi.org/XX.XXXX/XXXXX
+high_response_threshold <- 2.5
+
+sleep$category <- ifelse(
+  sleep$extra > high_response_threshold,
+  "high",
+  "low"
+)
+```
+
+This comment provides context rather than preserving an unused calculation.
+
+**What to look for:** Disabled calculations, large blocks of commented-out code, or several alternative versions of the same analysis.
+
+Comments are not code smells themselves. 
+The problem is leaving obsolete or unexplained code in comments.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Code smells can be spotted without understanding the logic of the code.
 - Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
