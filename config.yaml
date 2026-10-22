@@ -69,6 +69,7 @@ contact: 'ARC.education@ucl.ac.uk'
 episodes: 
 - 00-introduction-placeholder.Rmd
 - 02-environments.Rmd
+- 03-code_smells.Rmd
 
 # Information for Learners
 learners: 
