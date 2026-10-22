@@ -18,7 +18,7 @@ exercises: 15
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Code smells
+## Sniffing for code smells
 
 We have managed to get our colleague's R workflow running and reproduce the results.
 
@@ -26,7 +26,7 @@ But now that we start reading the code more closely, some parts are difficult to
 
 We want to improve the code, but we don't want to break the workflow.
 
-Before changing anything, let's **sniff out potential code smells**.
+Before changing anything, let's **sniff out code smells**.
 
 A **code smell** is a warning sign that some part of the code might be difficult to understand, maintain, or change.
 
