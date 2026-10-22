@@ -463,6 +463,83 @@ However, **high test coverage does not guarantee correctness**. Tests also need 
 
 The absence of tests does not mean the code is incorrect, but it makes changes riskier.
 
+## Lack of documentation
+
+**Lack of documentation** is a code smell. 
+Even when code works correctly, missing or unclear documentation can make it difficult to understand, use and maintain.
+
+Documentation should explain the purpose of code, its assumptions and any important decisions.
+
+### Comments
+
+In R, comments begin with `#` and are ignored when the code runs.
+
+**Good comments** explain *why* something is done, particularly when the reason is not obvious.
+
+For example:
+
+```r
+# Exclude participant 12 because their measurements
+# were affected by a known equipment failure.
+sleep <- sleep[sleep$ID != 12, ]
+```
+
+Without this comment, someone reading the code would not know why this participant was excluded.
+
+In contrast, **unhelpful comments** simply repeat what the code already says:
+
+```r
+# Remove missing values
+extra <- extra[!is.na(extra)]
+
+# Calculate the mean
+mean_extra <- mean(extra)
+
+# Print the result
+print(mean_extra)
+```
+
+These comments add little information. 
+This is an example of **overcommenting**, where unnecessary comments make code longer and harder to read.
+
+Comments can also become misleading if the code changes but the comments are not updated.
+
+**Rule of thumb:** Code should explain *what* happens; comments should explain *why*, when necessary.
+
+### Function documentation
+
+In some programming languages, documentation written alongside a function is called a **docstring**.
+
+In R, a common equivalent is **roxygen2 documentation**, which uses `#'` immediately before a function.
+
+For example:
+
+```r
+#' Calculate the proportion of high sleep responses
+#'
+#' @param data A data frame containing an `extra` column.
+#' @param threshold The value above which a response is high.
+#'
+#' @return The proportion of non-missing observations
+#'   exceeding the threshold.
+calculate_response <- function(data, threshold = 2.5) {
+  mean(data$extra > threshold, na.rm = TRUE)
+}
+```
+
+This documents the function's **purpose**, **inputs** (`@param`) and **output** (`@return`).
+
+The `roxygen2` package can use these comments to generate R help files.
+
+### Why is this a problem?
+
+Without documentation, others may misunderstand how code should be used or how results should be interpreted.
+
+However, **more documentation is not always better**. 
+Excessive, outdated or unnecessary comments can also make code harder to maintain.
+
+**What to look for:** Undocumented functions, unexplained assumptions, missing usage instructions, comments that repeat obvious code, and outdated or misleading comments.
+
 ## Exercises: Can you smell something?
 
 Our colleague has shared some additional R code from different research projects.
