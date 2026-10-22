@@ -2,11 +2,19 @@
 title: Setup
 ---
 
-## Before the workshop
+## Prerequisites
 
-You should be comfortable running R scripts, installing and loading packages, and writing simple functions.
-The exercises use RStudio projects and the R console.
+Learners are expected to be comfortable running R scripts, installing and loading R packages, and writing simple functions. 
+The exercises will use RStudio projects and the R console.
 
-Install [R for your operating system](https://cran.r-project.org/) and [RStudio Desktop](https://posit.co/download/rstudio-desktop/).
-The examples use the native pipe (`|>`), which requires R 4.1.0 or later.
-You will need an internet connection and permission to install R packages from CRAN and GitHub into your own R libraries.
+## Equipment and access
+
+- **Laptop:** Bring a laptop running Windows, macOS, or Linux. 
+- **Internet access and permissions:** You will need an internet connection and permission to install R packages from CRAN and GitHub.
+
+## Software 
+
+Please install the following software before the workshop:
+
+- **R:** Install [R](https://cran.r-project.org/) (version 4.1.0 or later).
+- **RStudio:** Install [RStudio Desktop](https://posit.co/download/rstudio-desktop/).
