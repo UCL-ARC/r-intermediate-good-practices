@@ -341,6 +341,92 @@ This comment provides context rather than preserving an unused calculation.
 Comments are not code smells themselves. 
 The problem is leaving obsolete or unexplained code in comments.
 
+## Long functions
+
+A **long function** contains many lines of code or tries to do too many things at once.
+
+For example, our colleague has written a function to analyse the sleep data:
+
+```r
+analyse_sleep <- function(data) {
+
+  # Clean the data
+  data <- data[!is.na(data$extra), ]
+  data$group <- factor(data$group)
+
+  # Calculate summary statistics
+  summary <- aggregate(
+    extra ~ group,
+    data = data,
+    FUN = mean
+  )
+
+  names(summary)[2] <- "mean_extra"
+
+  # Create a plot
+  plot <- ggplot2::ggplot(
+    summary,
+    ggplot2::aes(x = group, y = mean_extra)
+  ) +
+    ggplot2::geom_col() +
+    ggplot2::labs(
+      x = "Treatment group",
+      y = "Mean change in sleep"
+    )
+
+  # Save the results
+  write.csv(
+    summary,
+    "results/sleep_summary.csv",
+    row.names = FALSE
+  )
+
+  ggplot2::ggsave(
+    "results/sleep_plot.png",
+    plot = plot
+  )
+
+  return(summary)
+}
+```
+
+This function does several things:
+
+- Cleans and prepares the data.
+- Calculates summary statistics.
+- Creates a plot.
+- Saves the results and plot to files.
+
+**Why is this a problem?**
+
+Imagine we only want to change the appearance of the plot.
+
+We still need to work inside a function that cleans data, calculates statistics and writes files.
+
+Running the function also repeats all these steps, even if we only want to inspect the plot.
+
+As the analysis grows, it becomes harder to understand, test and modify individual parts without affecting others.
+
+### Modularity 
+
+Modularity means organising code into smaller, self-contained parts, or modules, each with a clear purpose.
+
+For example, we could organise the workflow into separate functions:
+
+```r
+clean_sleep_data()
+summarise_sleep()
+plot_sleep_results()
+save_sleep_results()
+```
+
+Each function would have a clear purpose, making the workflow easier to understand, test, and maintain.
+
+**What to look for:** Functions that perform several different tasks, contain many lines of code, or have deeply nested conditions.
+
+A function is not necessarily problematic because it is long. 
+The important question is whether it is easy to understand, test and change.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Code smells can be spotted without understanding the logic of the code.
 - Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
