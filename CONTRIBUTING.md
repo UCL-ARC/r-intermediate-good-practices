@@ -18,20 +18,17 @@ Keep attribution and licence notices when adapting material from other sources.
 
 ### Submit a change
 
-Before making substantial changes, please [open an issue][repo-issues] to discuss your proposal and wait for maintainer feedback before starting work or submitting a large pull request. 
+Before making substantial changes, please [open an issue][repo-issues] to discuss your proposal.
+Wait for maintainer feedback before starting work or submitting a large pull request. 
 This helps avoid duplicated effort and ensures changes align with the lesson's scope.
 
 Small corrections, such as typos or broken links, can be submitted directly as pull requests.
 
-1. Fork the [repository][repo] if you do not have write access, and create a branch for your change.
-2. Edit lesson content in `episodes/`, learner guidance in `learners/`, or teaching notes in `instructors/`.
-   Keep changes focused, use one sentence per line in prose where practical, and preserve the Workbench exercise and solution markup.
-3. For code examples, check that they run with the documented prerequisites.
-   Keep exercises usable on Windows, macOS, and Linux.
-4. Follow the local build instructions in the README to preview your changes. 
-   Check links, formatting, and exercise solutions in the local built before marking a PR as ready for review.
-5. Open a pull request against `main`, explain what the change improves, and describe how you checked it.
-   Address review feedback and any failures reported by the repository's automated checks.
+1. Fork the [repository][repo] (if needed) and create a branch.
+2. Make focused changes in `episodes/`, `learners/`, or `instructors/`. 
+   Preserve Workbench markup and use one sentence per line.
+3. Follow the build instructions in the [README](README.md). **Check the local preview**, including formatting, links, and exercises, before marking your PR ready for review.
+4. Open a pull request against `main`, describe your changes and testing, and address review feedback and automated check failures.
 
 [repo]: https://github.com/UCL-ARC/r-intermediate-good-practices
 [repo-issues]: https://github.com/UCL-ARC/r-intermediate-good-practices/issues
