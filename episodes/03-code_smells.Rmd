@@ -193,6 +193,59 @@ The goal of DRY is to avoid unnecessary duplication, not to make code shorter at
 
 **What to look for:** Similar blocks of code repeated with only small changes, such as different variable names or group labels.
 
+## Hardcoded paths
+
+A **hardcoded path** is a file location written directly into the code.
+
+For example:
+
+```r
+sleep_data <- read.csv(
+  "/home/colleague/research/sleep/data/sleep.csv"
+)
+```
+
+This code assumes that the data file is stored in a specific location on our colleague's computer.
+
+**Why is this a problem?**
+
+The script might work perfectly for our colleague but fail when we run it on another computer.
+
+Even if we have the same data, our files might be stored in a different directory.
+
+This makes the workflow harder to share, reuse, and reproduce.
+
+### Using relative paths
+
+A more portable approach is to use a path relative to the project directory:
+
+```r
+sleep_data <- read.csv(
+  "data/sleep.csv"
+)
+```
+
+Here, the path refers to a file inside the project's `data` directory.
+
+If we share the complete project and run the code from its root directory, the same path can work on another computer.
+
+### How do they differ?
+
+| Hardcoded absolute path | Project-relative path |
+|---|---|
+| Refers to a specific location on a computer | Refers to a location within the project |
+| May fail on another computer | More portable when the project structure is preserved |
+
+**What to look for:** Absolute file paths, personal directories, or file locations that only exist on one computer.
+
+### Project conventions
+
+Tools such as [`rrtools`](https://github.com/benmarwick/rrtools) and [`usethis`](https://usethis.r-lib.org/) can help create projects with a consistent structure, similar to how Cookiecutter templates are used in Python.
+
+Following shared conventions makes it easier for collaborators to find files, understand the workflow and reproduce the analysis.
+
+**What matters most is that the structure is consistent, documented and understood by everyone working on the project.**
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Code smells can be spotted without understanding the logic of the code.
 - Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
