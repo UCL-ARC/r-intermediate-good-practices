@@ -19,6 +19,32 @@ exercises:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## R packages
+
+Throughout this course, you've probably used several R packages.
+Whenever you needed some functionality that wasn't available in base R, you could install a package and start using it.
+
+For example, if you wanted to create a plot using `ggplot2`, you could simply run:
+
+```r
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+You now have access to functions for creating plots, such as `ggplot()` and `geom_point()`.
+
+You don't need to download individual scripts, figure out which files contain which functions, or manually load them in the correct order.
+Someone else has already organised all of that for you.
+
+When you install a package, R downloads it from a repository (such as CRAN) and installs it on your computer, along with any required dependencies.
+Once installed, you can load it whenever you need it using `library()`.
+
+**What makes this possible?**
+
+An R package is a collection of code, documentation, and sometimes data, organised in a standard way that R understands.
+This structure is what makes packages easy to install, load, and share.
+
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
 - `RStudio` can generate a minimal package structure automatically.
