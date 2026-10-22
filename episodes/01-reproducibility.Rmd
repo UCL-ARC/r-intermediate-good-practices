@@ -283,4 +283,6 @@ In the next episode, **Environments**, we'll work with our colleague's R script,
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Reproducibility ensures the **same data** and **same analysis** give the **same result** regardless of who runs the analysis on what machine.
-- Using good practices that ensure reproducibility will help maintain your work over time, enables others to use or contribute to your code, and strengthens
+- Using good practices that ensure reproducibility will help maintain your work over time, enables others to use or contribute to your code, and strengthens the credibility of published outputs.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
