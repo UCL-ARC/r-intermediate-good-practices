@@ -53,7 +53,7 @@ Let's look at some examples of common code smells.
 
 This can cause different kinds of problems.
 
-**Example**
+#### Example
 
 **Repeating a data transformation**
 
@@ -91,7 +91,7 @@ group2_sd <- sd(sleep$extra[sleep$group == 2])
 
 Here, the same calculations are written separately for each group.
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 Repeated operations that modify data can accidentally apply the same transformation more than once.
 
@@ -105,7 +105,7 @@ As the analysis grows, maintaining repeated calculations becomes increasingly di
 
 When the same logic appears in several places, a change must be made consistently everywhere.
 
-**A better approach**
+#### A better approach
 
 An alternative is the **DRY principle**, which stands for *Don't Repeat Yourself*.
 
@@ -141,13 +141,15 @@ If we want to change how the mean is calculated, we only need to update one line
 
 The goal of DRY is to avoid unnecessary duplication, not to make code shorter at the expense of readability.
 
-**What to look for:** Similar blocks of code repeated with only small changes, such as different variable names or group labels.
+#### What to look for
+
+Similar blocks of code repeated with only small changes, such as different variable names or group labels.
 
 ## Hardcoded paths
 
 A **hardcoded path** is a file location written directly into the code.
 
-**Example**
+#### Example
 
 ```r
 sleep_data <- read.csv(
@@ -157,7 +159,7 @@ sleep_data <- read.csv(
 
 This code assumes that the data file is stored in a specific location on our colleague's computer.
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 The script might work perfectly for our colleague but fail when we run it on another computer.
 
@@ -165,7 +167,9 @@ Even if we have the same data, our files might be stored in a different director
 
 This makes the workflow harder to share, reuse, and reproduce.
 
-A better approach is to use a path relative to the project directory:
+#### A better approach
+
+Use a path relative to the project directory:
 
 ```r
 sleep_data <- read.csv(
@@ -190,13 +194,15 @@ Following shared conventions makes it easier for collaborators to find files, un
 
 **What matters most is that the structure is consistent, documented and understood by everyone working on the project.**
 
-**What to look for:** Absolute file paths, personal directories, or file locations that only exist on one computer.
+#### What to look for
+
+Absolute file paths, personal directories, or file locations that only exist on one computer.
 
 ## Magic numbers
 
 A **magic number** is a numerical value used in code without a clear explanation of its meaning.
 
-**Example**
+#### Example
 
 ```r
 sleep$category <- ifelse(
@@ -210,13 +216,15 @@ Why is the threshold `2.5`?
 
 Does it come from a scientific paper, a previous analysis, or an arbitrary decision?
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 Someone reading the code may not understand why the value was chosen.
 
 If the threshold is used in several places, changing it could also lead to inconsistencies.
 
-A better approach is to give the value a meaningful name:
+#### A better approach
+
+Give the value a meaningful name:
 
 ```r
 high_response_threshold <- 2.5
@@ -233,13 +241,15 @@ Now the purpose of the number is easier to understand.
 However, a meaningful name does not explain **why** the threshold was chosen. 
 We may still need documentation or a reference to justify it.
 
-**What to look for:** Unexplained numbers used in calculations, conditions, or filtering.
+#### What to look for
+
+Unexplained numbers used in calculations, conditions, or filtering.
 
 ## Commented-out code
 
 **Commented-out code** is code that has been disabled by turning it into a comment.
 
-**Example**
+#### Example
 
 ```r
 # sleep$category <- ifelse(sleep$extra > 1, "high", "low")
@@ -250,7 +260,7 @@ sleep$category <- ifelse(sleep$extra > 2.5, "high", "low")
 
 R ignores lines beginning with `#`, so only the **last calculation** runs.
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 Our colleague has left three versions of the same calculation in the script, each using a different threshold.
 
@@ -259,6 +269,8 @@ But which threshold is correct? Why did it change from `1` to `2`, and then to `
 Without an explanation, we cannot tell whether these changes were intentional or whether the older calculations are still relevant.
 
 Commented-out code can make it difficult to identify which parts of an analysis are current and trustworthy.
+
+#### A better approach
 
 Comments are useful when they explain **why** something is done, rather than preserving old calculations.
 
@@ -281,13 +293,15 @@ This comment provides context rather than preserving an unused calculation.
 Comments are not code smells themselves. 
 The problem is leaving obsolete or unexplained code in comments.
 
-**What to look for:** Disabled calculations, large blocks of commented-out code, or several alternative versions of the same analysis.
+#### What to look for
+
+Disabled calculations, large blocks of commented-out code, or several alternative versions of the same analysis.
 
 ## Lack of modularity
 
 **Lack of modularity** occurs when different tasks are combined into one large block of code or function, rather than organised into smaller, independent parts.
 
-**Example**
+#### Example
 
 For example, our colleague has written a function to analyse the sleep data:
 
@@ -341,7 +355,7 @@ This function performs several different tasks:
 - Creates a plot.
 - Saves the results to files.
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 Imagine we only want to change the appearance of the plot.
 
@@ -351,7 +365,7 @@ Running the function would repeat all these steps, even though we are only inter
 Combining different tasks in one function makes it harder to understand, test and modify them independently. 
 Changes to one part of the workflow may also affect others.
 
-**A better approach**
+#### A better approach
 
 **Modular code** is organised into small, self-contained parts, each with a clear purpose.
 
@@ -370,14 +384,16 @@ This would make it easier to understand the workflow, test individual steps and 
 A long function is not necessarily a problem. 
 What matters is whether its responsibilities are clear and whether its parts are easy to understand, test and change.
 
-**What to look for:** Long functions that perform several unrelated tasks.
+#### What to look for
+
+Long functions that perform several unrelated tasks.
 
 ## Lack of tests
 
 **Automated tests** check whether code behaves as expected.
 They help us catch mistakes when changing or extending an analysis.
 
-**Example**
+#### Example
 
 R projects using [`testthat`](https://testthat.r-lib.org/) commonly organise their tests as follows:
 
@@ -392,11 +408,11 @@ project/
 
 The `tests/testthat/` directory is the standard convention for R packages using `testthat`, although other projects may organise tests differently.
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 Without tests, we have less confidence that the code works correctly or that changes will preserve its behaviour.
 
-**A better approach**
+#### A better approach
 
 Use automated tests to check expected results and identify code that has not been tested.
 
@@ -409,14 +425,16 @@ Tests also need to check that the code produces the expected results.
 
 The absence of tests does not mean the code is incorrect, but it makes changes riskier.
 
-**What to look for:** Missing test files, functions without tests, assumptions about the data that are never checked, or low test coverage.
+#### What to look for
+
+Missing test files, functions without tests, assumptions about the data that are never checked, or low test coverage.
 
 ## Lack of function documentation
 
 **Lack of function documentation** is a code smell. 
 A function may work correctly but still be difficult to use if its purpose, inputs and outputs are unclear.
 
-**Example**
+#### Example
 
 ```r
 calculate_response <- function(data, threshold = 2.5) {
@@ -424,12 +442,12 @@ calculate_response <- function(data, threshold = 2.5) {
 }
 ```
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 What does the returned value represent?
 What should `data` contain?
 
-**A better approach**
+#### A better approach
 
 In R, functions can be documented using **roxygen2**, which uses comments beginning with `#'`:
 
@@ -448,24 +466,26 @@ calculate_response <- function(data, threshold = 2.5) {
 
 The `roxygen2` package can use them to generate R help files.
 
-**What to look for:** Functions whose purpose, expected inputs or returned values are unclear or undocumented.
+#### What to look for
+
+Functions whose purpose, expected inputs or returned values are unclear or undocumented.
 
 ## Unexplained code
 
 Sometimes code performs an unusual operation without explaining why.
 
-**Example**
+#### Example
 
 ```r
 sleep <- sleep[sleep$ID != 12, ]
 ```
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 Why was participant 12 excluded?
 Is this intentional or a mistake?
 
-**A better approach**
+#### A better approach
 
 A useful comment can explain the decision:
 
@@ -477,13 +497,15 @@ sleep <- sleep[sleep$ID != 12, ]
 
 This comment provides information that cannot be understood from the code alone.
 
-**What to look for:** Unexpected exclusions, unusual calculations or important decisions without an explanation.
+#### What to look for
+
+Unexpected exclusions, unusual calculations or important decisions without an explanation.
 
 ## Overcommenting
 
 **Overcommenting** occurs when comments repeat obvious operations rather than adding useful information.
 
-**Example**
+#### Example
 
 ```r
 # Get the extra column
@@ -499,18 +521,20 @@ mean_extra <- mean(extra)
 print(mean_extra)
 ```
 
-**Why is this a problem?**
+#### Why is this a problem?
 
 These comments make the code longer without helping us understand it.
 
 Excessive comments also require maintenance.
 If the code changes but the comments do not, they may become misleading.
 
-**A better approach**
+#### A better approach
 
 **Rule of thumb:** Code should explain *what* happens; comments should explain *why*, when the reason is not obvious.
 
-**What to look for:** Unnecessary line-by-line comments, comments that simply repeat the code, or outdated explanations.
+#### What to look for
+
+Unnecessary line-by-line comments, comments that simply repeat the code, or outdated explanations.
 
 ## Exercises: Can you smell something?
 
