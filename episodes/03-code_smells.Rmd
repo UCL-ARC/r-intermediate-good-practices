@@ -341,9 +341,9 @@ This comment provides context rather than preserving an unused calculation.
 Comments are not code smells themselves. 
 The problem is leaving obsolete or unexplained code in comments.
 
-## Long functions
+## Lack of modularity
 
-A **long function** contains many lines of code or tries to do too many things at once.
+**Lack of modularity** occurs when different tasks are combined into one large block of code or function, rather than organised into smaller, independent parts.
 
 For example, our colleague has written a function to analyse the sleep data:
 
@@ -390,28 +390,28 @@ analyse_sleep <- function(data) {
 }
 ```
 
-This function does several things:
+This function performs several different tasks:
 
 - Cleans and prepares the data.
 - Calculates summary statistics.
 - Creates a plot.
-- Saves the results and plot to files.
+- Saves the results to files.
 
-**Why is this a problem?**
+### Why is this a problem?
 
 Imagine we only want to change the appearance of the plot.
 
-We still need to work inside a function that cleans data, calculates statistics and writes files.
+We would still need to work inside a function that cleans the data, calculates statistics and saves files. 
+Running the function would repeat all these steps, even though we are only interested in the plot.
 
-Running the function also repeats all these steps, even if we only want to inspect the plot.
+Combining different tasks in one function makes it harder to understand, test and modify them independently. 
+Changes to one part of the workflow may also affect others.
 
-As the analysis grows, it becomes harder to understand, test and modify individual parts without affecting others.
+### Modularity
 
-### Modularity 
+**Modular code** is organised into small, self-contained parts, each with a clear purpose.
 
-Modularity means organising code into smaller, self-contained parts, or modules, each with a clear purpose.
-
-For example, we could organise the workflow into separate functions:
+For example, we could divide our colleague's workflow into separate functions:
 
 ```r
 clean_sleep_data()
@@ -420,12 +420,13 @@ plot_sleep_results()
 save_sleep_results()
 ```
 
-Each function would have a clear purpose, making the workflow easier to understand, test, and maintain.
+Each function would be responsible for a particular task. 
+This would make it easier to understand the workflow, test individual steps and change one part without unnecessarily affecting others.
 
-**What to look for:** Functions that perform several different tasks, contain many lines of code, or have deeply nested conditions.
+**What to look for:** Long functions that perform several unrelated tasks.
 
-A function is not necessarily problematic because it is long. 
-The important question is whether it is easy to understand, test and change.
+A long function is not necessarily a problem. 
+What matters is whether its responsibilities are clear and whether its parts are easy to understand, test and change.
 
 ## Lack of tests
 
@@ -461,6 +462,47 @@ However, **high test coverage does not guarantee correctness**. Tests also need 
 **What to look for:** Missing test files, functions without tests, assumptions about the data that are never checked, or low test coverage.
 
 The absence of tests does not mean the code is incorrect, but it makes changes riskier.
+
+## Exercises: Can you smell something?
+
+Our colleague has shared some additional R code from different research projects.
+
+Look at each example and identify the code smells.
+
+**You do not need to run, understand every calculation, or fix the code.**
+
+There may be more than one smell in each example.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise 1: Survey responses 
+
+```r
+survey <- read.csv("data/survey.csv")
+
+# Previous approach
+# survey$age_group <- ifelse(survey$age > 30, "older", "younger")
+
+survey$age_group <- ifelse(survey$age > 35, "older", "younger")
+
+female_mean <- mean(survey$score[survey$gender == "female"])
+male_mean <- mean(survey$score[survey$gender == "male"])
+```
+
+**Which code smells can you identify?**
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Magic number:** The age threshold `35` has no explanation.
+- **Commented-out code:** An earlier version of the age classification remains in the script.
+- **Duplicated code:** The same calculation is repeated for two groups.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Code smells can be spotted without understanding the logic of the code.
