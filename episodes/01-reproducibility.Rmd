@@ -52,6 +52,8 @@ We will cover that distinction later.
 
 :::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ## Why did the results change?
@@ -98,6 +100,8 @@ These are some of the most common causes:
 
 :::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## How can you increase reproducibility?
@@ -114,6 +118,8 @@ Name three tools or practices you can use to help others — and your future sel
 - Publishing code, data, and notebooks in publicly accessible repositories increases transparency and allows others to easily access your work.
 
 :::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -140,6 +146,8 @@ Beyond the clear benefits for science, other reasons are:
 
 
 :::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -169,10 +177,12 @@ This is an important step toward understanding whether a result reflects a real 
 
 
 
-[How the Turing Way defines reproducible research](https://book.the-turing-way.org/build/reproducible-matrix-e6e559f606e3121b9a1d4640a6644fe2.jpg)
+![How the Turing Way defines reproducible research](https://book.the-turing-way.org/build/reproducible-matrix-e6e559f606e3121b9a1d4640a6644fe2.jpg)
 
 
 :::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
