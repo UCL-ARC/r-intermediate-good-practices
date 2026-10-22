@@ -463,56 +463,22 @@ However, **high test coverage does not guarantee correctness**. Tests also need 
 
 The absence of tests does not mean the code is incorrect, but it makes changes riskier.
 
-## Lack of documentation
+## Lack of function documentation
 
-**Lack of documentation** is a code smell. 
-Even when code works correctly, missing or unclear documentation can make it difficult to understand, use and maintain.
-
-Documentation should explain the purpose of code, its assumptions and any important decisions.
-
-### Comments
-
-In R, comments begin with `#` and are ignored when the code runs.
-
-**Good comments** explain *why* something is done, particularly when the reason is not obvious.
+**Lack of function documentation** is a code smell. 
+A function may work correctly but still be difficult to use if its purpose, inputs and outputs are unclear.
 
 For example:
 
 ```r
-# Exclude participant 12 because their measurements
-# were affected by a known equipment failure.
-sleep <- sleep[sleep$ID != 12, ]
+calculate_response <- function(data, threshold = 2.5) {
+  mean(data$extra > threshold, na.rm = TRUE)
+}
 ```
 
-Without this comment, someone reading the code would not know why this participant was excluded.
+What does the returned value represent? What should `data` contain?
 
-In contrast, **unhelpful comments** simply repeat what the code already says:
-
-```r
-# Remove missing values
-extra <- extra[!is.na(extra)]
-
-# Calculate the mean
-mean_extra <- mean(extra)
-
-# Print the result
-print(mean_extra)
-```
-
-These comments add little information. 
-This is an example of **overcommenting**, where unnecessary comments make code longer and harder to read.
-
-Comments can also become misleading if the code changes but the comments are not updated.
-
-**Rule of thumb:** Code should explain *what* happens; comments should explain *why*, when necessary.
-
-### Function documentation
-
-In some programming languages, documentation written alongside a function is called a **docstring**.
-
-In R, a common equivalent is **roxygen2 documentation**, which uses `#'` immediately before a function.
-
-For example:
+In R, functions can be documented using **roxygen2**, which uses comments beginning with `#'`:
 
 ```r
 #' Calculate the proportion of high sleep responses
@@ -527,18 +493,61 @@ calculate_response <- function(data, threshold = 2.5) {
 }
 ```
 
-This documents the function's **purpose**, **inputs** (`@param`) and **output** (`@return`).
+These comments are similar to **docstrings** in other programming languages. The `roxygen2` package can use them to generate R help files.
 
-The `roxygen2` package can use these comments to generate R help files.
+**What to look for:** Functions whose purpose, expected inputs or returned values are unclear or undocumented.
 
-### Why is this a problem?
+## Unexplained code
 
-Without documentation, others may misunderstand how code should be used or how results should be interpreted.
+Sometimes code performs an unusual operation without explaining why.
 
-However, **more documentation is not always better**. 
-Excessive, outdated or unnecessary comments can also make code harder to maintain.
+For example:
 
-**What to look for:** Undocumented functions, unexplained assumptions, missing usage instructions, comments that repeat obvious code, and outdated or misleading comments.
+```r
+sleep <- sleep[sleep$ID != 12, ]
+```
+
+Why was participant 12 excluded? Is this intentional or a mistake?
+
+A useful comment can explain the decision:
+
+```r
+# Exclude participant 12 because their measurements
+# were affected by a known equipment failure.
+sleep <- sleep[sleep$ID != 12, ]
+```
+
+This comment provides information that cannot be understood from the code alone.
+
+**What to look for:** Unexpected exclusions, unusual calculations or important decisions without an explanation.
+
+## Overcommenting
+
+**Overcommenting** occurs when comments repeat obvious operations rather than adding useful information.
+
+For example:
+
+```r
+# Get the extra column
+extra <- sleep$extra
+
+# Remove missing values
+extra <- extra[!is.na(extra)]
+
+# Calculate the mean
+mean_extra <- mean(extra)
+
+# Print the result
+print(mean_extra)
+```
+
+These comments make the code longer without helping us understand it.
+
+Excessive comments also require maintenance. If the code changes but the comments do not, they may become misleading.
+
+**What to look for:** Unnecessary line-by-line comments, comments that simply repeat the code, or outdated explanations.
+
+**Rule of thumb:** Code should explain *what* happens; comments should explain *why*, when the reason is not obvious.
 
 ## Exercises: Can you smell something?
 
