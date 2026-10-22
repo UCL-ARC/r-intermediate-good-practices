@@ -493,7 +493,7 @@ calculate_response <- function(data, threshold = 2.5) {
 }
 ```
 
-These comments are similar to **docstrings** in other programming languages. The `roxygen2` package can use them to generate R help files.
+The `roxygen2` package can use them to generate R help files.
 
 **What to look for:** Functions whose purpose, expected inputs or returned values are unclear or undocumented.
 
