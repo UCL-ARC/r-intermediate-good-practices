@@ -427,6 +427,41 @@ Each function would have a clear purpose, making the workflow easier to understa
 A function is not necessarily problematic because it is long. 
 The important question is whether it is easy to understand, test and change.
 
+## Lack of tests
+
+**Automated tests** check whether code behaves as expected. They help us catch mistakes when changing or extending an analysis.
+
+**Why is this a problem?**
+
+Without tests, we have less confidence that the code works correctly or that changes will preserve its behaviour.
+
+### Where can we find tests in an R project?
+
+R projects using [`testthat`](https://testthat.r-lib.org/) commonly organise their tests as follows:
+
+```text
+project/
+├── R/
+│   └── functions.R
+└── tests/
+    └── testthat/
+        └── test-functions.R
+```
+
+The `tests/testthat/` directory is the standard convention for R packages using `testthat`, although other projects may organise tests differently.
+
+### Test coverage
+
+**Test coverage** measures how much of our code is executed when automated tests run.
+
+In R, the [`covr`](https://covr.r-lib.org/) package can help identify which parts of the code are covered by tests and which are not.
+
+However, **high test coverage does not guarantee correctness**. Tests also need to check that the code produces the expected results.
+
+**What to look for:** Missing test files, functions without tests, assumptions about the data that are never checked, or low test coverage.
+
+The absence of tests does not mean the code is incorrect, but it makes changes riskier.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Code smells can be spotted without understanding the logic of the code.
 - Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
