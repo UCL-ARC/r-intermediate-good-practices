@@ -4,11 +4,14 @@ title: "Licenses"
 
 ## Instructional Material
 
-All Carpentries (Software Carpentry, Data Carpentry, and Library Carpentry)
-instructional material is made available under the [Creative Commons
+Instructional material in **Good Practices in R** is made available under the [Creative Commons
 Attribution license][cc-by-human]. The following is a human-readable summary of
 (and not a substitute for) the [full legal text of the CC BY 4.0
 license][cc-by-legal].
+
+This lesson uses [The Carpentries Workbench R Markdown template][template]. 
+Original template content remains attributed to The Carpentries. 
+Contributions to this lesson are acknowledged in the [citation metadata](CITATION.cff) and [repository history][history].
 
 You are free:
 
@@ -22,9 +25,10 @@ terms.
 
 Under the following terms:
 
-- **Attribution**---You must give appropriate credit (mentioning that your work
-  is derived from work that is Copyright (c) The Carpentries and, where
-  practical, linking to <https://carpentries.org/>), provide a [link to the
+- **Attribution**---You must give appropriate credit to the authors of the
+  material you reuse, including The Carpentries for material derived from
+  work that is Copyright (c) The Carpentries (and, where practical, linking
+  to <https://carpentries.org/>), provide a [link to the
   license][cc-by-human], and indicate if changes were made. You may do so in
   any reasonable manner, but not in any way that suggests the licensor endorses
   you or your use.
@@ -44,8 +48,8 @@ Notices:
 
 ## Software
 
-Except where otherwise noted, the example programs and other software provided
-by The Carpentries are made available under the [OSI][osi]-approved [MIT
+Except where otherwise noted, the example programs and other software in this
+lesson are made available under the [OSI][osi]-approved [MIT
 license][mit-license].
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -77,3 +81,5 @@ Carpentry" and their respective logos are registered trademarks of [The Carpentr
 [ci]: https://communityin.org/
 [osi]: https://opensource.org
 [the-carpentries]: https://carpentries.org
+[template]: https://github.com/carpentries/workbench-template-rmd
+[history]: https://github.com/UCL-ARC/r-intermediate-good-practices/commits/main/
