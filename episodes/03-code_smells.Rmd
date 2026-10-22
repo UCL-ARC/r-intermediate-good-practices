@@ -5,57 +5,7 @@ exercises: 15
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
-- What can you learn about a codebase just by "sniffing" for code smells before reading it in detail?
 
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: objectives
-
-- Explain why sniffing the code is an important first step when working with a new codebase 
-- Recognise common smells such as long functions, duplicated code, hardcoded paths, magic numbers, commented‑out code, and lack of tests.
-- Explain how these smells relate to correctness, clarity, and reproducibility.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Code smells
-
-We have managed to get our colleague's R workflow running and reproduce the results.
-
-But now that we start reading the code more closely, some parts are difficult to understand.
-
-We want to improve the code, but we don't want to break the workflow.
-
-Before changing anything, let's look for "sniff" the code for "code smells".
-
-## What are code smells?
-
-A **code smell** is a sign that some part of the code might be difficult to understand, maintain, or change.
-
-Code smells are not necessarily bugs. 
-A script can run correctly and produce the expected results while still containing code smells.
-
-However, smells can make it harder to:
-
-- Understand what the code does.
-- Find and fix mistakes.
-- Make changes without introducing new problems.
-- Reuse or maintain the analysis in the future.
-
-**We can often spot code smells without understanding the full logic of the code.**
-
-This makes looking for smells a useful **first step** when exploring an unfamiliar codebase.
-
-## Common code smells
-
-Let's look at some examples of common code smells.
-
----
-title: "Code smells"
-teaching: 25
-exercises: 15
----
-
-:::::::::::::::::::::::::::::::::::::: questions
 - What can you learn about a codebase just by "sniffing" for code smells before reading it in detail?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -561,14 +511,6 @@ There may be more than one smell in each example.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Exercises: Can you smell something?
-
-Our colleague has shared some code from other research projects.
-
-Read each example and identify the code smells. You do not need to run or fix the code, and there may be more than one smell in each example.
-
-::::::::::::::::::::::::::::::::::::: challenge
-
 ### Exercise 1: Survey responses 
 
 ```r
@@ -732,6 +674,7 @@ The variables `minimum_quality` and `adjustment_factor` are also not defined wit
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
+
 - Code smells can be spotted without understanding the logic of the code.
 - Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
 - A smell warrants inspection as they often point to places where the code is most likely to break in the future.
