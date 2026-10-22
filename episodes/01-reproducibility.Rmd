@@ -169,7 +169,7 @@ This is an important step toward understanding whether a result reflects a real 
 
 
 
-[How the Turing Way defines reproducible research](https://book.the-turing-way.org/build/reproducible-matrix-451331f1ef032faa7af5488ef54e649f.jpg)
+[How the Turing Way defines reproducible research](https://book.the-turing-way.org/build/reproducible-matrix-e6e559f606e3121b9a1d4640a6644fe2.jpg)
 
 
 :::::::::::::::::::::::::::::::::
