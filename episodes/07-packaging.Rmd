@@ -88,6 +88,70 @@ Fortunately, no! R has tools that can generate the basic package structure for y
 
 One of these is `usethis`, which can create a package skeleton with a single command.
 
+## Creating an R package
+
+Before getting started, take a look at the [usethis documentation](https://usethis.r-lib.org/). 
+Explore some of the functions available. You'll notice that `usethis` can help with much more than just creating a package!
+
+First, install `usethis` if you haven't already:
+
+```r
+install.packages("usethis")
+```
+
+Then, run the following command to create a package called `researchworkflow`:
+
+```r
+usethis::create_package("researchworkflow")
+```
+
+This creates a new directory called `researchworkflow` inside your current working directory. If you're using RStudio, the new package will also open as an RStudio project.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise: Explore your new package
+
+1. Open the package you just created and explore its files and folders.
+2. Which files and folders do you recognise from the `ggplot2` and `dplyr` repositories?
+3. What is missing compared with those packages?
+4. Return to the [usethis documentation](https://usethis.r-lib.org/reference/index.html). Can you find functions that might help you add some of these missing components?
+
+::::::::::::::: solution
+
+Your new package should contain a structure similar to this:
+
+```text
+researchworkflow/
+├── .Rbuildignore
+├── .gitignore
+├── DESCRIPTION
+├── NAMESPACE
+├── R/
+└── researchworkflow.Rproj
+```
+
+The exact files may vary depending on your setup.
+
+You should recognise `DESCRIPTION`, `NAMESPACE`, and `R/` from the previous exercise.
+
+Unlike `ggplot2` and `dplyr`, your package doesn't yet have folders such as `tests/` or `man/`.
+
+Looking through the `usethis` documentation, you might have found functions such as:
+
+- `use_testthat()` — sets up infrastructure for testing your package.
+- `use_readme_md()` — creates a README file.
+- `use_r()` — creates or opens an R script in the `R/` directory.
+- `use_vignette()` — sets up a longer tutorial or guide for your package.
+
+These functions help you build up your package as you need additional components.
+
+:::::::::::::::::::::::::::::::::::::
+
+You now have the starting structure of an R package!
+
+However, it doesn't contain any of the functions from your analysis workflow yet.
+
+Before adding those, let's look at one of the files `usethis` created: `DESCRIPTION`.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
