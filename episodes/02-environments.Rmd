@@ -114,7 +114,7 @@ If not, what happens, and why do you think the results differ?
 Have any changes been made that could explain the difference?
 
 
-![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
+![](fig/01-sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
 
 :::::::::::::::::::::::: solution
 
@@ -124,7 +124,7 @@ You will not be able to reproduce your colleague's original plot using the lates
 
 Instead, you should see something like this:
 
-![](fig/sleep_analysis_NA_plot.png){alt="your sleep analysis plot" width='50%'}
+![](fig/01-sleep_analysis_NA_plot.png){alt="your sleep analysis plot" width='50%'}
 
 The difference is caused by a bug introduced in a newer version of `obscurepackage`.
 
@@ -299,7 +299,7 @@ Then run `sleep_analysis.R` again.
 
 You should be able to replicate the results of your colleague!
 
-![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
+![](fig/01-sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
 
 ## Recording your environment with a lockfile
 
