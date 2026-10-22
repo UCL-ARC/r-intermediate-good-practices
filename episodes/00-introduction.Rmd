@@ -1,7 +1,7 @@
 ---
-title: "Getting Started with R and RStudio"
+title: "Introduction"
 teaching: 10
-exercises: 5
+exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -19,7 +19,7 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## R and RStudio
 
 R is a programming language for data analysis, statistics, and visualisation.
 It allows you to automate analyses, create figures, and document your work so that others can reproduce your results.
@@ -108,6 +108,11 @@ Throughout this workshop, we will improve this project step by step:
 
 This workshop will introduce good practices to help make your R code more reproducible, maintainable, and easier to share. 
 The principles you learn can also be applied to projects beyond R.
+
+## Code of Conduct 
+
+We aim to provide a welcoming, inclusive, and supportive learning environment for everyone. 
+Please have a look at our [Code of Conduct](../CODE_OF_CONDUCT.md), which outlines expectations for respectful behaviour and how to raise concerns during the workshop.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
