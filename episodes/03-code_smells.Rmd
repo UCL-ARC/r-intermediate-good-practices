@@ -502,6 +502,127 @@ male_mean <- mean(survey$score[survey$gender == "male"])
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise 2: Temperature analysis 
+
+```r
+analyse_temperature <- function() {
+
+  temperature <- read.csv(
+    "C:/Users/researcher/Documents/weather/temperature.csv"
+  )
+
+  temperature <- na.omit(temperature)
+
+  average <- mean(temperature$value)
+
+  histogram <- hist(temperature$value)
+
+  write.csv(
+    data.frame(average = average),
+    "C:/Users/researcher/Desktop/average.csv"
+  )
+
+  return(average)
+}
+```
+
+**Which code smells can you identify?**
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Hardcoded paths:** The input and output locations depend on a particular computer.
+- **Long functions with:** The function loads data, removes missing values, calculates a statistic, creates a histogram and saves results.
+- **Lack of modularity:** These different tasks are combined in one function, making them harder to test or change independently.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise 3: Laboratory measurements
+
+```r
+control <- measurements[measurements$treatment == "control", ]
+treated <- measurements[measurements$treatment == "treated", ]
+
+control$adjusted <- control$value * 1.15
+treated$adjusted <- treated$value * 1.15
+
+# Old correction
+# treated$adjusted <- treated$value * 1.10
+
+if (mean(treated$adjusted) > 50) {
+  message("High measurement")
+}
+```
+
+**Which code smells can you identify?**
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Duplicated (WET) code:** The same adjustment is performed separately for the control and treated groups.
+- **Magic numbers:** The values `1.15` and `50` are not explained.
+- **Commented-out code:** An earlier correction remains in the script.
+
+The commented-out calculation also raises a question about why the adjustment factor changed.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise 4: A new colleague's script 
+
+```r
+process_data <- function(data) {
+
+  # Previous filter
+  # data <- data[data$quality > 5, ]
+
+  data <- data[data$quality > 7, ]
+
+  data$adjusted <- data$value * 1.25
+
+  summary <- aggregate(adjusted ~ site, data, mean)
+
+  barplot(
+    summary$adjusted,
+    names.arg = summary$site
+  )
+
+  write.csv(
+    summary,
+    "/home/researcher/project/results/summary.csv"
+  )
+
+  return(summary)
+}
+```
+
+**Which code smells can you identify?**
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Magic numbers:** The thresholds `7` and `1.25` are unexplained.
+- **Commented-out code:** An earlier filtering operation remains in the function.
+- **Hardcoded path:** The output location is specific to the researcher's computer.
+- **Lack of modularity:** Several tasks are combined into one function.
+
+We cannot determine whether automated tests exist from this snippet alone. We would need to inspect the project's test files.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints
