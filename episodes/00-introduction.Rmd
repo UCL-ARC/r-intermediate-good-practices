@@ -40,7 +40,7 @@ When you open RStudio, you will typically see:
 
 You can use the Console to try commands quickly, but saving your work in scripts makes it easier to reproduce and share.
 
-## Your first R commands
+## Using the R Console
 
 Try running the following in the Console:
 
@@ -61,9 +61,12 @@ You can visualise these values:
 plot(measurements)
 ```
 
+``` output
 ![](fig/00-measurements.png){alt="Measurements of 10, 12, 15, 11, and 20 plotted against their index." width='50%'}
+```
 
-## Working with R scripts
+
+## R scripts
 
 The Console is useful for exploring data and trying out commands, but commands entered there are not automatically saved for future use.
 
