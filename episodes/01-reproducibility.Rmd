@@ -54,9 +54,7 @@ These are some of the most common causes:
 - **Missing input:** The script may expect other data files or inputs that were not shared with you.
 
 If you are running the analysis on a different dataset, the script may fail because it expects specific column names, orders, or data types.
-
 This is actually a **replicability** issue rather than a **reproducibility** issue.
-
 We will cover that distinction later.
 
 :::::::::::::::::::::::::::::::::
@@ -117,9 +115,7 @@ So far, we've encountered two problems:
 1. The script did not run.
 2. The results did not match.
 
-Both could have been avoided.
-
-What could have been done better?
+**What could your colleague have done differently?**
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -144,32 +140,16 @@ Tools and Practices for Reproducibility
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-A reproducible project needs more than code:
+## What about your future self?
 
-- **Data:** The correct input files.
-- **Environment:** The required R and package versions.
-- **Instructions:** How to run the analysis.
-- **Documentation:** What the project does and how it works.
-- **Version control:** A record of changes.
+Imagine returning to your own analysis a year later.
 
-These are not just things to think about when sharing a project.
+The code has changed. You've updated your packages.
 
-They are good practices to follow from the beginning.
+**Could you still reproduce your original results?**
 
-## Why do good practices matter?
-
-Imagine your colleague had followed these practices.
-
-You could have spent less time fixing the setup and more time understanding the research.
-
-But what happens when you return to **your own project** a year later?
-
-You have changed the code, updated some packages, and forgotten which data you used.
-Could you still reproduce your results?
-
-Good practices help other people work with your code.
-
-They also help **your future self**.
+Reproducibility isn't just about sharing research. 
+It's also about being able to return to it.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -198,55 +178,71 @@ Beyond the clear benefits for science, other reasons are:
 
 ## Is reproducibility enough?
 
-Imagine you have finally reproduced your colleague's results.
+Back to our colleague's analysis.
 
-The numbers match!
+The script runs. 
+The results match.
+**Success!**
 
-**Does that mean the research conclusions are correct?**
+But what if the original analysis contains a mistake?
 
-Not necessarily.
+We could reproduce that mistake too.
 
-If the original analysis contains an error, you can reproduce that error too.
+**Reproducibility tells us whether we can obtain the same results, not whether those results are correct.**
 
-Reproducibility is important, but it is only one part of trustworthy research.
+So, what else should we consider when assessing research?
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Replicability, Robustness, and Generalisability
+## Beyond reproducibility
 
-What do replicability, robustness, and generalisability have in common with reproducibility, and how do they differ?
+Reproducibility is one way to assess research, but it is not the only one.
+
+Explore [The Turing Way's guide to reproducibility](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions.html).
+
+Find out what **replicability**, **robustness**, and **generalisability** mean.
+
+Then consider:
+
+- How do **replicability**, **robustness**, and **generalisability** differ in terms of the data and analyses used?
+- What does each help us assess about the research findings?
 
 :::::::::::::::::::::::: solution
 
 ## Show me the solution
 
-These terms describe qualities of trustworthy scientific results.
+These concepts help us assess whether research findings hold under different conditions.
 
-### Replicability
+#### Replicability
 
-Replicability checks whether the **same analysis** applied to **different data** produces qualitatively similar outcomes.
+**Same analysis, different data.**
 
-This shows whether your findings hold beyond the specific dataset you originally used.
+Do we reach similar conclusions when we repeat the analysis using a new dataset?
 
-### Robustness
+Replicability helps us assess whether findings depend on the original data.
 
-Robustness assesses whether conclusions persist when a **different analysis** is applied to the **same data**.
+#### Robustness
 
-A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar answer is produced.
+**Same data, different analysis.**
 
-Robust results do not depend on implementation-specific details such as programming language or things like slightly different preprocessing choices within a given workflow.
+Do we reach similar conclusions when we analyse the same data differently?
 
-### Generalisability
+For example, we might use different statistical methods or preprocessing choices.
 
-Generalisability can be assessed by combining replicable and robust findings.
+Robustness helps us assess whether findings depend on a particular analytical approach.
 
-However, running an analysis on a different software implementation and with a different dataset does not automatically guarantee that the findings apply broadly across contexts.
+#### Generalisability
 
-Generalisability requires a deep assessment of whether results hold across **multiple datasets**, **multiple analytical approaches**, and **multiple conditions** relevant to the research question.
+**Different data, different analyses, or different conditions.**
 
-This is an important step toward understanding whether a result reflects a real underlying pattern rather than something tied to narrow conditions.
+Do the findings hold beyond the original study?
 
-![How the Turing Way defines reproducible research](https://book.the-turing-way.org/build/reproducible-matrix-e6e559f606e3121b9a1d4640a6644fe2.jpg){width="50%"}
+Generalisability considers whether conclusions apply across the populations, settings, or conditions relevant to the research question.
+
+
+![The Turing Way's illustration of reproducibility](https://book.the-turing-way.org/build/reproducible-definit-cc16a756218c82222318d6f42a126c51.svg){width="100%"}
+
+_The Turing Way Community. This illustration is created by Scriberia with The Turing Way community, used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807_
 
 :::::::::::::::::::::::::::::::::
 
@@ -254,35 +250,28 @@ This is an important step toward understanding whether a result reflects a real 
 
 ## From reproducibility to good practices
 
-Our hypothetical scenario started with a simple task: running a colleague's R script.
+Our hypothetical scenario has shown us why **reproducibility matters**: without it, we cannot easily check or build on research results.
 
-But we discovered that **having working code is not enough**.
+But **reproducibility alone is not enough**. 
+We also need code that is easy to understand, test, maintain, and reuse.
 
-Even reproducible code can **produce incorrect results** or be difficult to understand, test, maintain, or reuse.
-
-That's where good practices come in.
-
-Throughout this workshop, we'll learn how to:
-
-- **Manage environments** to reproduce results.
-- **Recognise code smells** that make code difficult to understand.
-- **Write tests** to check expected behaviour and catch mistakes.
-- **Refactor code** to improve readability and maintainability.
-- **Document and package code** so others can understand and reuse it.
+That's where good coding practices come in.
 
 Together, these practices help us produce **more reliable, transparent, and reusable research**.
 
 ## What's next?
 
-So far, we've explored what could go wrong in a hypothetical scenario.
+We've explored these challenges through a hypothetical scenario.
 
-**Now it's time to put these ideas into practice.**
+**Now let's see what happens with real R code.**
 
-In the next episode, **Environments**, we'll work with our colleague's R script, investigate why it fails, and explore how package versions affect results.
+In the next episode, **Environments**, we'll work with our colleague's script, investigate why it fails, and learn how to manage package dependencies using `renv`.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Reproducibility ensures the **same data** and **same analysis** give the **same result** regardless of who runs the analysis on what machine.
-- Using good practices that ensure reproducibility will help maintain your work over time, enables others to use or contribute to your code, and strengthens the credibility of published outputs.
+- **Reproducibility:** Same data and analysis, same results.
+- **Reproducible does not necessarily mean correct.**
+- **Replicability, robustness, and generalisability** help us assess findings beyond the original analysis.
+- **Good coding practices** make research easier to check, maintain, and reuse.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
