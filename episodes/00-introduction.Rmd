@@ -29,7 +29,10 @@ It provides a code editor, console, file browser, and tools for viewing plots an
 
 Before continuing, make sure you have installed R and RStudio by following the [Setup instructions](../learners/setup.md).
 
-## Exploring RStudio
+## RStudio
+
+Throughout this workshop, we will use RStudio to write, run, and manage our R code. 
+Although R can be used with other tools and editors, all demonstrations and exercises will use RStudio.
 
 When you open RStudio, you will typically see:
 
@@ -40,7 +43,7 @@ When you open RStudio, you will typically see:
 
 You can use the Console to try commands quickly, but saving your work in scripts makes it easier to reproduce and share.
 
-## Using the R Console
+## Using the R Console in RStudio
 
 Try running the following in the Console:
 
