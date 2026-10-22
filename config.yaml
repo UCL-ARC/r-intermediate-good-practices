@@ -70,6 +70,7 @@ episodes:
 - 00-introduction-placeholder.Rmd
 - 01-reproducibility.Rmd
 - 02-environments.Rmd
+- 07-packaging.Rmd
 
 # Information for Learners
 learners: 
