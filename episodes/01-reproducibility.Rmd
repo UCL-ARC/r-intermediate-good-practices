@@ -74,7 +74,7 @@ These are some of the most common causes:
 - **Uncontrolled randomness:** Many R functions use randomness internally (e.g., `sample()`, bootstrapping, cross‑validation).
   If the script does not set a random seed using `set.seed()`, each run can produce different results.
   Different machines may also use different random number generators or parallel backends, increasing variability.
-- **Different compute environments:** In some cases, operating systems can influence numerical results.
+- **Different compute environments:** In some cases, operating systems or hardware can influence numerical results.
 - **Hidden state in the workspace:** If the script is run in an R session that contains objects from previous work, those objects can interfere.
 
 
