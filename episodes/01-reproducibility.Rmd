@@ -26,7 +26,7 @@ exercises:
 ## Why is the code not running?
 You try to run an R script you received from a colleague, but it fails with errors or does not run at all.
 
-Give three possible reasons.
+Give **three possible reasons**.
 
 :::::::::::::::::::::::: solution
 
@@ -34,20 +34,13 @@ Give three possible reasons.
 
 These are some of the most common causes:
 
-- **Missing packages**  
-  The script may rely on packages that are not installed. 
-
-- **Incorrect file paths**  
-  The script may use file paths that only exist on your colleague’s computer.
-
-- **Documentation missing or unclear**  
-  If the script does not explain required inputs, expected file locations, or setup steps, you may not know how to run it correctly. 
-
-- **Missing input**  
-  The script may expect other data files or inputs that were not shared with you.
+- **Missing packages:** The script may rely on packages that are not installed.
+- **Incorrect file paths:** The script may use file paths that only exist on your colleague’s computer.
+- **Documentation missing or unclear:** If the script does not explain required inputs, expected file locations, or setup steps, you may not know how to run it correctly.
+- **Missing input:** The script may expect other data files or inputs that were not shared with you.
 
 If you are running the analysis on a different dataset, the script may fail because it expects specific column names, orders, or data types.
-This is actually a replicability issue rather than a reproducibility issue.
+This is actually a **replicability** issue rather than a **reproducibility** issue.
 We will cover that distinction later.
 
 :::::::::::::::::::::::::::::::::
@@ -63,7 +56,7 @@ You run the script again and now it runs!
 
 However... the results are different from your colleague’s.
 
-Give three possible reasons for this reproducibility failure.
+Give **three possible reasons** for this reproducibility failure.
 
 :::::::::::::::::::::::: solution 
 
@@ -71,31 +64,18 @@ Give three possible reasons for this reproducibility failure.
 
 These are some of the most common causes:
 
-- **Software version**  
-  R itself, or one or more packages (e.g. `dplyr` or `ggplot2`), may be a different version on your machine than on your colleague’s.
+- **Software version:** R itself, or one or more packages (e.g. `dplyr` or `ggplot2`), may be a different version on your machine than on your colleague’s.
   Even minor version updates can change default behaviour. 
-
-- **Data**  
-  The script may rely on a specific version of a dataset, but you might be using a different copy.
+- **Data:** The script may rely on a specific version of a dataset, but you might be using a different copy.
   Files may have been edited, rows removed, variables renamed, or missing values handled differently. .
-
-- **Unclear documentation**
-  If the workflow is poorly documented, you may unknowingly run steps differently — for example, using the wrong file, wrong parameters, or missing preprocessing steps.
-
-- **Manual steps that are not reproducible**  
-  If your colleague performed manual data cleaning, interactive filtering, or hand‑edited files, those steps may not be captured in the script.
+- **Unclear documentation:** If the workflow is poorly documented, you may unknowingly run steps differently — for example, using the wrong file, wrong parameters, or missing preprocessing steps.
+- **Manual steps that are not reproducible:** If your colleague performed manual data cleaning, interactive filtering, or hand‑edited files, those steps may not be captured in the script.
   As a result, your run will not match theirs.
-
-- **Uncontrolled randomness**  
-  Many R functions use randomness internally (e.g., `sample()`, bootstrapping, cross‑validation).
+- **Uncontrolled randomness:** Many R functions use randomness internally (e.g., `sample()`, bootstrapping, cross‑validation).
   If the script does not set a random seed using `set.seed()`, each run can produce different results.
   Different machines may also use different random number generators or parallel backends, increasing variability.
-
-- **Different compute environments**  
-  In some cases, operating systems can influence numerical results. 
-
-- **Hidden state in the workspace**  
-  If the script is run in an R session that contains objects from previous work, those objects can interfere. 
+- **Different compute environments:** In some cases, operating systems can influence numerical results.
+- **Hidden state in the workspace:** If the script is run in an R session that contains objects from previous work, those objects can interfere.
 
 
 :::::::::::::::::::::::::::::::::
@@ -105,17 +85,18 @@ These are some of the most common causes:
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## How can you increase reproducibility?
-Name three tools or practices you can use to help others — and your future self — to reproduce your work.
+Name **three tools or practices** you can use to help others — and your future self — to reproduce your work.
 
 :::::::::::::::::::::::: solution
 
 ## Tools and Practices for Reproducibility
-- Version control with Git captures the exact state of your project at any point in time.
+
+- **Version control with Git** captures the exact state of your project at any point in time.
   This ensures the code used for an analysis workflow is preserved and recoverable, even after changes have been made later.
-- Environment management with tools like `renv` capture software dependencies so others can recreate your computational environment.
-- Clear documentation including READMEs, comments, and usage instructions.
-- Good data management practices like using consistent naming, metadata, and storing raw data separately from processed data.
-- Publishing code, data, and notebooks in publicly accessible repositories increases transparency and allows others to easily access your work.
+- **Environment management** with tools like `renv` capture software dependencies so others can recreate your computational environment.
+- **Clear documentation** including READMEs, comments, and usage instructions.
+- **Good data management practices** like using consistent naming, metadata, and storing raw data separately from processed data.
+- **Publishing code, data, and notebooks** in publicly accessible repositories increases transparency and allows others to easily access your work.
 
 :::::::::::::::::::::::::::::::::
 
@@ -125,7 +106,7 @@ Name three tools or practices you can use to help others — and your future sel
 
 ## Why should research be reproducible? 
 
-Give three reasons to improve the reproducibility of the project.
+Give **three reasons** to improve the reproducibility of the project.
 
 :::::::::::::::::::::::: solution
 
@@ -133,16 +114,13 @@ Give three reasons to improve the reproducibility of the project.
 Reproducibility is the essential first benchmark of trustworthy scientific research: without it, no further validation is possible.
 
 Beyond the clear benefits for science, other reasons are:
-- Helping your future self.
-  A reproducible workflow saves time when revisiting or updating your project later.
+
+- **Helping your future self:** A reproducible workflow saves time when revisiting or updating your project later.
   You avoid having to reconstruct your steps from memory.
-- Collaboration.
-  Transparent methods, shared code, use of established conventions, and clear documentation, all make it easier for others to understand, extend, and build on your work.
-- Publishability.
-  Journals and reviewers increasingly expect accessible data and transparent methods.
+- **Collaboration:** Transparent methods, shared code, use of established conventions, and clear documentation, all make it easier for others to understand, extend, and build on your work.
+- **Publishability:** Journals and reviewers increasingly expect accessible data and transparent methods.
   Easily reproducible research is more credible and more likely to be accepted.
-- Impact.
-  Reproducible work is easier to reuse, cite, and adapt, increasing the reach and influence of your research.
+- **Impact:** Reproducible work is easier to reuse, cite, and adapt, increasing the reach and influence of your research.
 
 
 :::::::::::::::::::::::::::::::::
@@ -161,18 +139,18 @@ What do replicability, robustness, and generalisability have in common with repr
 These terms describe qualities of trustworthy scientific results. 
 
 ### Replicability
-Replicability checks whether the same analysis applied to different data produces qualitatively similar outcomes.
+Replicability checks whether the **same analysis** applied to **different data** produces qualitatively similar outcomes.
 This shows whether your findings hold beyond the specific dataset you originally used.
 
 ### Robustness
-Robustness assesses whether conclusions persist when a different analysis is applied to the same data.
+Robustness assesses whether conclusions persist when a **different analysis** is applied to the **same data**.
 A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar answer is produced.
 Robust results do not depend on implementation‑specific details such as programming language or things like slightly different preprocessing choices within a given workflow.
 
 ### Generalisability
 Generalisability can be assessed by combining replicable and robust findings.
 However, running an analysis on a different software implementation and with a different dataset does not automatically not guarantee that the findings apply broadly across contexts.
-Generalisability requires a deep assessment of whether results hold across multiple datasets, multiple analytical approaches, and multiple conditions relevant to the research question.
+Generalisability requires a deep assessment of whether results hold across **multiple datasets**, **multiple analytical approaches**, and **multiple conditions** relevant to the research question.
 This is an important step toward understanding whether a result reflects a real underlying pattern rather than something tied to narrow conditions.
 
 
@@ -186,9 +164,9 @@ This is an important step toward understanding whether a result reflects a real 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Reproducibility ensures the same data and same analysis give the same result regardless of who runs the analysis on what machine.
+- Reproducibility ensures the **same data** and **same analysis** give the **same result** regardless of who runs the analysis on what machine.
 - Using good practices that ensure reproducibility will help maintain your work over time, enables others to use or contribute to your code, and strengthens the credibility of published outputs.
-- Reproducibility requires more than code: environment, commands, data, documentation, and packaging must all be captured clearly.
+- Reproducibility requires **more than code**: environment, commands, data, documentation, and packaging must all be captured clearly.
 - Reproducibility is the first and most basic step of good research — without it, replicability, robustness, or generalisability cannot be assessed.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
