@@ -11,7 +11,7 @@ license][cc-by-legal].
 
 This lesson uses [The Carpentries Workbench R Markdown template][template]. 
 Original template content remains attributed to The Carpentries. 
-Contributions to this lesson are acknowledged in the [citation metadata](CITATION.cff) and [repository history][history].
+Contributions to this lesson are acknowledged in the [citation metadata](CITATION.cff) and [repository commit history][history].
 
 You are free:
 
