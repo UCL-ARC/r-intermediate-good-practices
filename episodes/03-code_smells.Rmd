@@ -7,6 +7,56 @@ exercises: 15
 :::::::::::::::::::::::::::::::::::::: questions
 - What can you learn about a codebase just by "sniffing" for code smells before reading it in detail?
 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain why sniffing the code is an important first step when working with a new codebase 
+- Recognise common smells such as long functions, duplicated code, hardcoded paths, magic numbers, commented‑out code, and lack of tests.
+- Explain how these smells relate to correctness, clarity, and reproducibility.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Code smells
+
+We have managed to get our colleague's R workflow running and reproduce the results.
+
+But now that we start reading the code more closely, some parts are difficult to understand.
+
+We want to improve the code, but we don't want to break the workflow.
+
+Before changing anything, let's look for "sniff" the code for "code smells".
+
+## What are code smells?
+
+A **code smell** is a sign that some part of the code might be difficult to understand, maintain, or change.
+
+Code smells are not necessarily bugs. 
+A script can run correctly and produce the expected results while still containing code smells.
+
+However, smells can make it harder to:
+
+- Understand what the code does.
+- Find and fix mistakes.
+- Make changes without introducing new problems.
+- Reuse or maintain the analysis in the future.
+
+**We can often spot code smells without understanding the full logic of the code.**
+
+This makes looking for smells a useful **first step** when exploring an unfamiliar codebase.
+
+## Common code smells
+
+Let's look at some examples of common code smells.
+
+---
+title: "Code smells"
+teaching: 25
+exercises: 15
+---
+
+:::::::::::::::::::::::::::::::::::::: questions
+- What can you learn about a codebase just by "sniffing" for code smells before reading it in detail?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -15,6 +65,138 @@ exercises: 15
 - Explain why sniffing the code is an important first step when working with a new codebase 
 - Recognise common smells such as long functions, duplicated code, hardcoded paths, magic numbers, commented‑out code, and lack of tests.
 - Explain how these smells relate to correctness, clarity, and reproducibility.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Code smells
+
+We have managed to get our colleague's R workflow running and reproduce the results.
+
+But now that we start reading the code more closely, some parts are difficult to understand.
+
+We want to improve the code, but we don't want to break the workflow.
+
+Before changing anything, let's **sniff out potential code smells**.
+
+## What are code smells?
+
+A **code smell** is a warning sign that some part of the code might be difficult to understand, maintain, or change.
+
+Code smells are not necessarily bugs.
+
+A script can run correctly and produce the expected results while still containing code smells.
+
+However, smells can make it harder to:
+
+- Understand what the code does.
+- Find and fix mistakes.
+- Make changes without introducing new problems.
+- Reuse or maintain the analysis in the future.
+
+**We can often spot code smells without understanding the full logic of the code.**
+
+This makes looking for smells a useful **first step** when exploring an unfamiliar codebase.
+
+Let's look at some examples of common code smells.
+
+## Duplicated code
+
+**Duplicated code** occurs when the same or very similar operations appear in multiple places.
+
+This can cause different kinds of problems.
+
+### Example 1: Repeating a data transformation
+
+```r
+sleep$extra <- sleep$extra * 2
+
+# Later in the script
+sleep$extra <- sleep$extra * 2
+```
+
+The first operation multiplies the values by 2.
+
+The second operation acts on the already modified values, multiplying them by 2 again.
+
+As a result, the original values are **multiplied by 4 instead of 2**.
+
+If the second operation is accidental, the analysis will produce incorrect results, even though the code runs without errors.
+
+**The problem:** Repeated operations that modify data can accidentally apply the same transformation more than once.
+
+### Example 2: WET code
+
+Duplicated code is also associated with **WET code**, an informal term sometimes expanded as *Write Everything Twice*.
+
+WET code repeats similar calculations or logic in different places.
+
+For example:
+
+```r
+# WET code
+group1_mean <- mean(sleep$extra[sleep$group == 1])
+group2_mean <- mean(sleep$extra[sleep$group == 2])
+
+group1_sd <- sd(sleep$extra[sleep$group == 1])
+group2_sd <- sd(sleep$extra[sleep$group == 2])
+```
+
+Here, the same calculations are written separately for each group.
+
+**Why is this a problem?**
+
+Imagine we decide to handle missing values using `na.rm = TRUE`.
+
+We would need to update all four calculations.
+
+If we forget one, the groups might be analysed differently, producing inconsistent results.
+
+As the analysis grows, maintaining repeated calculations becomes increasingly difficult.
+
+**The problem:** When the same logic appears in several places, a change must be made consistently everywhere.
+
+### The DRY principle
+
+An alternative is the **DRY principle**, which stands for *Don't Repeat Yourself*.
+
+DRY encourages us to avoid unnecessary duplication by expressing shared logic in one place.
+
+For example, we can calculate the same statistics for both groups using `dplyr`:
+
+```r
+# DRY code
+sleep |>
+  dplyr::group_by(group) |>
+  dplyr::summarise(
+    mean_extra = mean(extra),
+    sd_extra = sd(extra),
+    .groups = "drop"
+  )
+```
+
+Here, we define each calculation once.
+
+R then applies those calculations to each group.
+
+If we want to change how the mean is calculated, we only need to update one line.
+
+### How do WET and DRY differ?
+
+| WET code | DRY code |
+|---|---|
+| Repeats similar calculations | Defines shared calculations once |
+| Changes may be needed in several places | Changes can often be made in one place |
+| Greater risk of inconsistent updates | Lower risk of inconsistent updates |
+| Can become difficult to maintain as the analysis grows | Often easier to maintain and extend |
+
+The goal of DRY is to avoid unnecessary duplication, not to make code shorter at the expense of readability.
+
+**What to look for:** Similar blocks of code repeated with only small changes, such as different variable names or group labels.
+
+::::::::::::::::::::::::::::::::::::: keypoints
+- Code smells can be spotted without understanding the logic of the code.
+- Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
+- A smell warrants inspection as they often point to places where the code is most likely to break in the future.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
