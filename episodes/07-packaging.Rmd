@@ -648,20 +648,26 @@ Declare the packages used by our functions in `DESCRIPTION`:
 
 ``` R
 usethis::use_package("datasets")
-usethis::use_package("dplyr")
-usethis::use_package("ggplot2")
+usethis::use_package("dplyr", min_version = "1.1.0")
+usethis::use_package("ggplot2", min_version = "2.2.0")
+usethis::use_package("R", type = "Depends", min_version = "4.1.0")
 ```
 
 These commands add the packages to the `Imports` field in `DESCRIPTION`.
 `datasets` is included with R; `dplyr` and `ggplot2` are packages we've used in earlier episodes.
+The `min_version` argument records a minimum supported version: `>=` means "this version or newer".
+We need `dplyr` 1.1.0 for `.by`, `ggplot2` 2.2.0 for `geom_col()`, and R 4.1.0 for the `|>` pipe.
+The R requirement is recorded in `Depends`; `datasets` comes with R and doesn't need a separate version requirement.
 
 Open `DESCRIPTION` in the **Files** pane. It should now include:
 
 ```text
+Depends:
+    R (>= 4.1.0)
 Imports:
     datasets,
-    dplyr,
-    ggplot2
+    dplyr (>= 1.1.0),
+    ggplot2 (>= 2.2.0)
 ```
 
 We can use `devtools::load_all()` to load our package functions during development without installing the package.
@@ -801,6 +807,224 @@ The documentation opens in RStudio's **Help** pane, showing what the function do
 You can open the other functions' help pages in the same way using `?summarise_data` and `?plot_summary`.
 
 When you change the documentation comments, save the script and run `devtools::document()` again to update the help files.
+
+## Preparing our package for someone else
+
+You're going away, and a new colleague will take over your sleep analysis.
+They need to reproduce your findings and reuse your code.
+Think back to the environments episode, when you received a colleague's script and had to recreate their setup.
+How can we make that handover easier?
+
+So far, we've used `devtools::load_all()` to access our functions during development.
+To make them available when someone installs and loads our package, add a line containing `#' @export` above `@examples` in each function's documentation block.
+For example, the complete `R/load_sleep_data.R` file should now look like this:
+
+``` R
+#' Load the built-in sleep data
+#'
+#' Get the data used in our sleep analysis.
+#'
+#' @returns A data frame with columns extra (extra sleep in hours),
+#'   group (drug group), and ID (participant).
+#' @seealso [Official sleep dataset documentation](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html)
+#' @export
+#' @examples
+#' load_sleep_data()
+load_sleep_data <- function() {
+  datasets::sleep
+}
+```
+
+Add `#' @export` to the documentation for `summarise_data()` and `plot_summary()` too.
+Then regenerate the documentation:
+
+``` R
+devtools::document()
+```
+
+You should see messages similar to these in the Console:
+
+```text
+ℹ Updating sleep documentation
+ℹ Loading sleep
+Writing NAMESPACE
+```
+
+The `Writing NAMESPACE` message confirms that the list of exported functions has been updated.
+Open `NAMESPACE` in the **Files** pane.
+
+
+The `NAMESPACE` should now include these lines:
+
+```text
+export(load_sleep_data)
+export(plot_summary)
+export(summarise_data)
+```
+
+Update `DESCRIPTION` to describe our package. The complete file could look like this:
+
+```text
+Package: sleep
+Title: Summarise and Visualise Grouped Measurements
+Version: 0.0.0.9000
+Authors@R:
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: Summarise numeric measurements by group using means,
+    standard deviations, sample sizes, and standard errors. Visualise
+    group means with standard-error bars. Includes a helper for loading
+    the built-in sleep dataset as a worked example; see
+    <https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html>.
+License: MIT + file LICENSE
+Config/roxygen2/version: 8.1.1
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.1.0)
+Imports:
+    datasets,
+    dplyr (>= 1.1.0),
+    ggplot2 (>= 2.2.0)
+```
+
+Replace `First`, `Last`, and the example email with your own details, and keep the generated roxygen2 version field as it appears in your file.
+This example uses the MIT licence, which explains how others may use the code.
+To create the matching licence files, run:
+
+``` R
+usethis::use_mit_license()
+```
+
+You should see messages similar to these in the Console:
+
+```text
+✔ Writing LICENSE.
+✔ Writing LICENSE.md.
+✔ Adding "^LICENSE\\.md$" to .Rbuildignore.
+```
+
+This updates the licence field in `DESCRIPTION` and creates the licence files.
+
+Add a README to introduce the package:
+
+``` R
+usethis::use_readme_md()
+```
+
+This creates and opens `README.md` with a template similar to this:
+
+````markdown
+# sleep
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of sleep is to ...
+
+## Installation
+
+You can install the development version of sleep like so:
+
+``` R
+# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` R
+library(sleep)
+## basic example code
+```
+````
+
+Replace the template in `README.md` with a short introduction, installation instructions, and an example, such as:
+
+````markdown
+# sleep
+
+Calculate summary statistics for grouped measurements and plot means
+with standard-error bars.
+
+## Installation
+
+``` R
+remotes::install_github("yourusername/sleep")
+```
+
+## Example
+
+``` R
+library(sleep)
+summary_data <- summarise_data(load_sleep_data())
+print(summary_data)
+plot_summary(summary_data)
+```
+
+## Setting up an environment from source
+
+Download or clone this repository and open the package project in RStudio.
+To create a new environment using the dependencies in `DESCRIPTION`, run
+these commands from the package folder. Install `renv` first if needed.
+
+``` R
+renv::init(bare = TRUE)
+renv::install()
+renv::snapshot()
+```
+
+This creates a project library, installs the declared dependencies, and
+records their installed versions in a new `renv.lock`.
+````
+
+These installation instructions assume you have uploaded the package to a GitHub repository called `sleep` under your own account.
+Replace `yourusername` with your GitHub username; the command will work once that repository contains the package.
+
+### Sharing the package and the analysis
+
+Earlier, we installed `obscurepackage` using `remotes::install_github("stellaprins/obscurepackage")`.
+We can share our package in the same way by uploading its files to GitHub.
+The repository should contain the package files, including `DESCRIPTION`, `NAMESPACE`, and `R/`, at its top level.
+
+If you create a repository called `sleep` under your GitHub account, your colleague can install it with the command below.
+Replace `yourusername` with your GitHub username; `sleep` is the repository name.
+This command will work once the package files are available in that repository:
+
+``` R
+remotes::install_github("yourusername/sleep")
+```
+
+After installation, your colleague can load the package and run the analysis:
+
+``` R
+library(sleep)
+data <- load_sleep_data()
+summary_data <- summarise_data(data)
+plot_summary(summary_data)
+```
+
+The package provides reusable functions; an analysis script records the steps that produced our findings.
+Save the commands from `library(sleep)` onwards in `sleep_analysis.R` in a separate analysis project, outside the package's `R/` folder.
+Share that script too, along with its analysis project's `renv.lock`, and record the package version or Git commit used in the analysis project's README.
+For example, the files you share could look like this (other package files are omitted):
+
+```text
+sleep/                     # package source, shared on GitHub
+├── DESCRIPTION
+├── NAMESPACE
+├── R/
+│   ├── load_sleep_data.R
+│   ├── summarise_data.R
+│   └── plot_summary.R
+├── man/
+└── README.md
+sleep-analysis/            # analysis project
+├── sleep_analysis.R
+├── renv.lock
+└── README.md              # run instructions and package version or commit
+```
+
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
