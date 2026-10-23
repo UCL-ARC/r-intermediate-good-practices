@@ -656,7 +656,8 @@ usethis::use_package("R", type = "Depends", min_version = "4.1.0")
 These commands record package dependencies in `Imports` and the R requirement in `Depends` in `DESCRIPTION`.
 The minimum versions ensure the features we use are available; `>=` means "this version or newer".
 
-Open `DESCRIPTION` in the **Files** pane. It should now include:
+Open `DESCRIPTION` in the **Files** pane.
+It should now include:
 
 ```text
 Depends:
@@ -859,7 +860,8 @@ export(plot_summary)
 export(summarise_data)
 ```
 
-Update `DESCRIPTION` to describe our package. The complete file could look like this:
+Update `DESCRIPTION` to describe our package.
+The complete file could look like this:
 
 ```text
 Package: sleep
@@ -936,21 +938,27 @@ library(sleep)
 ```
 ````
 
-Replace the template in `README.md` with a short introduction, installation instructions, and an example, such as:
+Here, **users** run our functions in their own analyses, for example a colleague reproducing the sleep summaries and plot.
+**Developers** change the package itself, for example by fixing a bug or adding a function.
+The same colleague might do both.
+Users need installation instructions and examples; developers also need the source files and a shared development environment so they can make and test changes with the same dependency versions.
+Our README should explain both workflows.
+Replace the template in `README.md` with an introduction and instructions for these two uses, such as:
 
 ````markdown
 # sleep
 
-Calculate summary statistics for grouped measurements and plot means
-with standard-error bars.
+Calculate summary statistics for grouped measurements and plot means with standard-error bars.
 
-## Installation
+### Sharing with users
+
+To use the functions in your own analysis, install the package from GitHub:
 
 ``` R
 remotes::install_github("yourusername/sleep")
 ```
 
-## Example
+### Example
 
 ``` R
 library(sleep)
@@ -959,34 +967,78 @@ print(summary_data)
 plot_summary(summary_data)
 ```
 
-## Setting up an environment from source
+## Sharing with developers
 
-Download or clone this repository and open the package project in RStudio.
-To create a new environment using the dependencies in `DESCRIPTION`, run
-these commands from the package folder. Install `renv` first if needed.
+If you want others to **modify, improve, or extend your package**, you can share its source code through a repository such as GitHub.
+
+Here, *developers* means anyone who wants to work on the package itself, rather than simply install and use its functions. For example, they might want to fix a bug, add a new function, or improve the documentation.
+
+Developers need access to the package's source files and a suitable development environment. They can download or clone the repository, open the package project in RStudio, and use `renv` to restore the package versions used during development.
+
+Run the following commands from the package's root directory (the folder containing `DESCRIPTION`). Install `renv` first if it isn't already available.
+
+If a `renv.lock` is supplied, restore the recorded dependencies and install your local copy of the package:
+
+``` R
+renv::restore()
+renv::install(".")
+```
+
+If no lockfile exists yet, create a new environment from `DESCRIPTION`:
 
 ``` R
 renv::init(bare = TRUE)
+renv::settings$snapshot.type("explicit")
 renv::install()
+renv::install(".")
 renv::snapshot()
 ```
 
-This creates a project library, installs the declared dependencies, and
-records their installed versions in a new `renv.lock`.
+`renv::install()` installs the declared dependencies; `renv::install(".")` installs the package from this folder, ready for `library(sleep)`.
+The explicit snapshot records dependency versions in `renv.lock`.
+Share the lockfile with the source so other developers can restore those versions.
+Minimum versions in `DESCRIPTION` allow newer releases; the lockfile records the versions actually installed.
 ````
 
 These installation instructions assume you have uploaded the package to a GitHub repository called `sleep` under your own account.
 Replace `yourusername` with your GitHub username; the command will work once that repository contains the package.
 
-### Sharing the package and the analysis
+### Sharing with users
 
-Earlier, we installed `obscurepackage` using `remotes::install_github("stellaprins/obscurepackage")`.
-We can share our package in the same way by uploading its files to GitHub.
-The repository should contain the package files, including `DESCRIPTION`, `NAMESPACE`, and `R/`, at its top level.
+If you want others to **use your package without modifying its code**, you can share it through GitHub.
 
-If you create a repository called `sleep` under your GitHub account, your colleague can install it with the command below.
-Replace `yourusername` with your GitHub username; `sleep` is the repository name.
-This command will work once the package files are available in that repository:
+Here, *users* means people who want to install the package and use its functions in their own analyses.
+
+Earlier, we installed `obscurepackage` from GitHub. We can share our `sleep` package in the same way.
+
+Open the `sleep` project in RStudio and run:
+
+```r
+usethis::use_git()
+usethis::use_github()
+```
+
+The first command initialises Git for our package. The second creates a GitHub repository and uploads the committed package files, preserving their directory structure.
+
+You'll need a GitHub account and authentication configured. Follow the instructions shown in the R console.
+
+Once the repository is available on GitHub, other users can install the package with:
+
+```r
+remotes::install_github("yourusername/sleep")
+```
+
+Replace `yourusername` with your GitHub username.
+
+They can then load the package and use its exported functions:
+
+```r
+library(sleep)
+summarise_sleep(datasets::sleep)
+```
+
+Unlike developers, users don't need to download the source code manually or open the package project in RStudio. 
+They can simply install the package and use its exported functions.
 
 ``` R
 remotes::install_github("yourusername/sleep")
@@ -1021,6 +1073,25 @@ sleep-analysis/            # analysis project
 ├── renv.lock
 └── README.md              # run instructions and package version or commit
 ```
+
+### Keeping track of versions
+
+Remember how a newer version of `obscurepackage` changed the results in the environments episode?
+Recording which version was used helps our colleague reproduce the analysis.
+
+Our initial `Version: 0.0.0.9000` marks a development version.
+For a first release, we could change this to `Version: 0.1.0` in `DESCRIPTION`.
+A common convention is to increase the patch number for fixes (`0.1.1`), the minor number for new features (`0.2.0`), and the major number for breaking changes (for example, `1.0.0` to `2.0.0`).
+
+GitHub's [Releases tools](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) let us label a committed version with a tag such as `v0.1.0` and add notes explaining what changed.
+Updating `DESCRIPTION` alone doesn't create that tag.
+Once the tag exists on GitHub, our colleague can install that version:
+
+``` R
+remotes::install_github("yourusername/sleep@v0.1.0")
+```
+
+Record the tag or Git commit alongside the analysis project's lockfile so the handover identifies both the package code and its dependencies.
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints
