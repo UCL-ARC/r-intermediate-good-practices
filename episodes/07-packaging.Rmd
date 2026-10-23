@@ -683,7 +683,17 @@ plot_summary(iris_summary, title = "Sepal length by species")
 
 ### Generating help pages
 
-Save all three scripts, then run `devtools::document()` to turn the `roxygen2` comments into help files in `man/`.
+Earlier, we used commands such as `?renv` to access help in R.
+Before generating our package's documentation, try opening the help for one of our functions:
+
+``` R
+?summarise_data
+```
+
+R cannot find a help page for this function yet.
+Although we've added `roxygen2` comments above the function, we still need to turn them into help files.
+
+Save all three scripts, then run `devtools::document()` to generate these files in `man/`.
 Reload the package so we can view the help pages during development:
 
 ``` R
