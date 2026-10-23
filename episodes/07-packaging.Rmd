@@ -252,56 +252,23 @@ Once you're happy with your working directory, run:
 usethis::create_package("rworkshoppackage")
 ```
 
-This creates a new directory called `rworkshoppackage` inside your current working directory.
-If you're using RStudio, the package will also open as a new RStudio project.
+Because we already created a package called `rworkshoppackage` using RStudio, `usethis` will find the existing directory.
 
-::::::::::::::::::::::::::::::::::::: challenge
+You will probably see a prompt like this:
 
-### Explore your new package
+``` text
+! Overwrite pre-existing file rworkshoppackage.Rproj?
 
-1. Open the package you just created and explore its files and folders.
-2. Which files and folders do you recognise from the `ggplot2` and `dplyr` repositories?
-3. What is missing compared with those packages?
-4. Return to the [usethis documentation](https://usethis.r-lib.org/reference/index.html). Can you find functions that might help you add some of these missing components?
-
-::::::::::::::: solution
-
-Your new package should contain a structure similar to this:
-
-```text
-researchworkflow/
-├── .Rbuildignore
-├── .gitignore
-├── DESCRIPTION
-├── NAMESPACE
-├── R/
-└── researchworkflow.Rproj
+1: Yes
+2: Nope
+3: Absolutely not
 ```
 
-The exact files may vary depending on your setup.
+Select **1: Yes** to allow `usethis` to overwrite the existing RStudio project file.
 
-You should recognise `DESCRIPTION`, `NAMESPACE`, and `R/` from the previous exercise.
+This lets us use the same package directory rather than creating a second package.
+Note that this prompt only asks about replacing the `.Rproj` file, but it will replace the entire folder.
 
-Unlike `ggplot2` and `dplyr`, your package doesn't yet have folders such as `tests/` or `man/`.
-
-Looking through the `usethis` documentation, you might have found functions such as:
-
-- `use_testthat()` — sets up infrastructure for testing your package.
-- `use_readme_md()` — creates a README file.
-- `use_r()` — creates or opens an R script in the `R/` directory.
-- `use_vignette()` — sets up a longer tutorial or guide for your package.
-
-These functions help you build up your package as you need additional components.
-
-:::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::
-
-You now have the starting structure of an R package!
-
-However, it doesn't contain any of the functions from your analysis workflow yet.
-
-Before adding those, let's look at one of the files `usethis` created: `DESCRIPTION`.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
