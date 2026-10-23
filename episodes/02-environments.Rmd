@@ -287,7 +287,7 @@ renv::install("stellaprins/obscurepackage@v0.1.0")
 
 Restart your R session to make sure R uses the newly installed version of `obscurepackage`.
 
-In RStudio, select **Session → Restart R**, or run:
+In RStudio, select **Session > Restart R**, or run:
 
 ``` R
 .rs.restartR()
