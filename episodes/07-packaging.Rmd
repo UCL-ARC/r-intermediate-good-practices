@@ -630,6 +630,10 @@ plot_summary <- function(summary_data, fill = "steelblue",
 The function expects columns named `group`, `mean`, and `se`, matching the output of `summarise_data()`.
 Other summary tables can also be used if they contain these columns.
 
+Save all three scripts, then open the `R/` folder in RStudio's **Files** pane.
+You should see `load_sleep_data.R`, `summarise_data.R`, and `plot_summary.R` inside your package.
+`usethis::use_r()` is a convenient way to create and open them, but you can also create `.R` scripts manually and save them in this folder.
+
 ### Declaring dependencies and trying the functions
 
 Declare the packages used by our functions in `DESCRIPTION`:
