@@ -1,7 +1,7 @@
 ---
 title: "Packaging"
-teaching: 
-exercises: 
+teaching: 5
+exercises: 5
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
@@ -76,6 +76,8 @@ As you read, consider the following questions:
   For example, `usethis` helps create and configure package files, while `devtools` provides functions for loading, testing, and checking packages.
   By automating these tasks, we can spend less time worrying about the details of package development and more time focusing on what our package should do.
 
+:::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::
 
 ### What does an R package look like?
@@ -89,7 +91,7 @@ Let's explore the structure of two packages we've already encountered.
 
 ### What do R packages have in common?
 
-Explore the GitHub repositories of two packages you might have used before:
+Explore the GitHub repositories of two packages that came up in previous episodes:
 
 - [ggplot2](https://github.com/tidyverse/ggplot2): for creating plots.
 - [dplyr](https://github.com/tidyverse/dplyr): for manipulating data.
@@ -128,6 +130,8 @@ Packages share a standard structure, but they can also include additional files 
 
 For example, `ggplot2` is a data visualisation package, so its `icons/` folder contains graphical assets that help illustrate its features.
 These are useful for `ggplot2` but are not part of the standard R package structure.
+
+:::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::
 
@@ -268,6 +272,8 @@ For example, `Title` and `Description` contain instructions rather than meaningf
 The author information also contains example details that need to be replaced.
 
 These placeholders help us understand what information is expected, but we'll need to update them as we develop the package.
+
+:::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::
 
@@ -419,7 +425,59 @@ For example, the initial version number is typically `0.0.0.9000` rather than `0
 
 Both templates also contain placeholder information that we'll need to update as we develop our packages.
 
+:::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::
+
+## Essential components of an R package
+
+We've now created two R packages and explored their structure.
+
+Let's take a closer look at three important components: `DESCRIPTION`, `R/`, and `NAMESPACE`.
+
+### The `DESCRIPTION` file
+
+Every R package needs a `DESCRIPTION` file.
+
+It contains information about the package, including its name, version, authors, description, licence, and dependencies.
+
+We've already seen that RStudio and `usethis` create this file automatically, with placeholder information that we can update later.
+
+### The `R/` directory
+
+The `R/` directory contains the R functions that make up our package.
+
+Functions are written in `.R` scripts, just as in a regular R project.
+
+We can organise related functions in the same script or across several scripts.
+The filenames don't need to match the function names.
+
+Packages without R code don't need an `R/` directory.
+
+### The `NAMESPACE` file
+
+The `NAMESPACE` file controls which functions are available to users of our package and how functions from other packages are imported.
+
+Functions made available to users are called **exported functions**.
+
+We usually don't edit `NAMESPACE` manually.
+Instead, tools such as `roxygen2` generate and update it for us.
+
+### Other files and folders
+
+Packages can also contain additional components:
+
+- `man/`: Documentation for package functions.
+- `tests/`: Automated tests.
+- `README.md`: An overview of the package and how to use it.
+- `vignettes/`: Longer tutorials and examples.
+- `data/`: Datasets included with the package.
+
+Not every package needs all these components.
+
+We'll encounter some of them as we add functions, documentation, and tests to our own package.
+
+For more information, see the [Package structure](https://r-pkgs.org/structure.html) chapter of *R Packages*, 2nd edition.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
