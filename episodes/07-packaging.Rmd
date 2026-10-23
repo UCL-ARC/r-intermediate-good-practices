@@ -653,11 +653,8 @@ usethis::use_package("ggplot2", min_version = "2.2.0")
 usethis::use_package("R", type = "Depends", min_version = "4.1.0")
 ```
 
-These commands add the packages to the `Imports` field in `DESCRIPTION`.
-`datasets` is included with R; `dplyr` and `ggplot2` are packages we've used in earlier episodes.
-The `min_version` argument records a minimum supported version: `>=` means "this version or newer".
-We need `dplyr` 1.1.0 for `.by`, `ggplot2` 2.2.0 for `geom_col()`, and R 4.1.0 for the `|>` pipe.
-The R requirement is recorded in `Depends`; `datasets` comes with R and doesn't need a separate version requirement.
+These commands record package dependencies in `Imports` and the R requirement in `Depends` in `DESCRIPTION`.
+The minimum versions ensure the features we use are available; `>=` means "this version or newer".
 
 Open `DESCRIPTION` in the **Files** pane. It should now include:
 
