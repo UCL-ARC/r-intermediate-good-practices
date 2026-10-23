@@ -702,11 +702,20 @@ The suggestion `??summarise_data` searches help topic names, titles, and concept
 It searches existing documentation, not our script comments, so it won't find help for our function yet.
 
 Save all three scripts, then run `devtools::document()` to generate these files in `man/`.
-Reload the package so we can view the help pages during development:
 
 ``` R
 devtools::document()
+```
+
+Reload the package so we can view the help pages during development:
+
+``` R
 devtools::load_all()
+```
+
+Now open the help pages for our functions:
+
+``` R
 ?load_sleep_data
 ?summarise_data
 ?plot_summary
