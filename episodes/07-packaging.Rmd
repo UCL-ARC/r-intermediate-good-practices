@@ -26,7 +26,7 @@ Each of these packages provides functionality beyond what's available in base R.
 
 For example, to create plots using `ggplot2`, you can install and load the package:
 
-```r
+``` R
 install.packages("ggplot2")
 library(ggplot2)
 ```
@@ -93,18 +93,46 @@ You don't need to understand the code itself; we're interested in how the packag
 
 Despite serving different purposes, `ggplot2` and `dplyr` follow a recognisable structure. This is what allows R to install and load packages in a consistent way.
 
-**Do you need to create all these files and folders yourself?**
+## Creating an R package using RStudio
 
-Fortunately, R has tools that can generate the basic package structure for you.
+Now that you looked at how existing R packages are organised, let's create one of our own.
 
-One of these is `usethis`, which can create a package skeleton with a single command.
+Fortunately, we don't need to create all the files and folders ourselves.
+RStudio provides a way to generate the basic package structure automatically.
 
-## Creating an R package
+To create a package using RStudio:
 
-Before getting started, take a look at the [usethis documentation](https://usethis.r-lib.org/). 
-Explore some of the functions available. You'll notice that `usethis` can help with much more than just creating a package!
+1. Go to **File > New Project...**
+2. Select **New Directory**.
+3. Select **R Package**.
+4. Enter `rworkshoppackage` as the package name.
+5. Choose where you'd like to save the package.
+6. Click **Create Project**.
 
-First, install `usethis` if you haven't already:
+RStudio will create the package directory and open it as a new project.
+
+## Creating an R package using `usethis`
+
+Alternatively, we can create a package using [`usethis`](https://usethis.r-lib.org/).
+
+In fact, RStudio uses `usethis` behind the scenes when creating a new R package.
+
+While RStudio provides a convenient interface for creating, building, and testing R packages, [`usethis`](https://usethis.r-lib.org/) helps automate many additional package development tasks.
+
+For example, `usethis` can:
+
+- **Set up testing infrastructure** with `use_testthat()`, creating the necessary files and folders and updating `DESCRIPTION`.
+- **Add package dependencies** with `use_package()`, updating `DESCRIPTION` automatically.
+- **Create a README** with `use_readme_md()`, providing a starting point for documenting the package.
+- **Set up longer tutorials** with `use_vignette()`, creating a vignette template and updating the necessary configuration.
+- **Configure automated checks on GitHub** with `use_github_action()`, creating a GitHub Actions workflow.
+
+These tasks are not all available as dedicated options in RStudio's standard menus.
+They can be completed manually, but `usethis` reduces the amount of setup required and helps ensure the necessary files and configuration are in place.
+
+Let's use `usethis` to create our package.
+
+First, install it if you haven't already:
 
 ``` R
 install.packages("usethis")
@@ -112,28 +140,26 @@ install.packages("usethis")
 
 Before creating your package, decide where you'd like to save it on your computer.
 
-In RStudio, you can set your working directory using the menu:
-
-1. Go to **Session > Set Working Directory > Choose Directory...**
-2. Navigate to the folder where you'd like to create your package.
-3. Click **Open** (or **Choose**, depending on your operating system).
-
 You can check your current working directory by running:
 
 ``` R
 getwd()
 ```
 
-Once you're happy with your working directory, you can use usethis to create your package.
+The working directory can be changed using the RStudio menu:
 
-Run the following command to create a package called `rworkshoppackage`:
+1. Go to **Session > Set Working Directory > Choose Directory...**
+2. Navigate to the folder where you'd like to create your package.
+3. Click **Open** (or **Choose**, depending on your operating system).
+
+Once you're happy with your working directory, run:
 
 ``` R
 usethis::create_package("rworkshoppackage")
 ```
 
 This creates a new directory called `rworkshoppackage` inside your current working directory.
-If you're using RStudio, the new package will also open as an RStudio project.
+If you're using RStudio, the package will also open as a new RStudio project.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
