@@ -107,7 +107,15 @@ To create a package using RStudio:
 3. Select **R Package**.
 4. Enter `rworkshoppackage` as the package name.
 5. Choose where you'd like to save the package.
-6. Click **Create Project**.
+   We suggest using your home directory, which is your personal folder on your computer (for example, `C:\Users\YourName` on Windows or `/home/yourname` on Linux).
+   RStudio may suggest a different location by default.
+6. You'll also see some optional settings:
+   - **Create a git repository:** Initialises a local Git repository so you can track changes to your package using version control.
+     This doesn't automatically create a repository on GitHub.
+   - **Use renv with this project:** Sets up `renv` to manage the package versions used during development, helping make your development environment reproducible.
+     You might recognise `renv` from the reproducibility episode.
+   For this exercise, leave both options unchecked.
+8. Click **Create Project**.
 
 RStudio will create the package directory and open it as a new project.
 
