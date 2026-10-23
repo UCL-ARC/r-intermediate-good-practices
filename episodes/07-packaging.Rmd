@@ -21,10 +21,10 @@ exercises:
 
 ## R packages
 
-Throughout this course, you've probably used several R packages.
-Whenever you needed some functionality that wasn't available in base R, you could install a package and start using it.
+We've used several R packages throughout the previous episodes, including `renv`, `ggplot2`, `dplyr`, and `remotes`.
+Each of these packages provides functionality beyond what's available in base R.
 
-For example, if you wanted to create a plot using `ggplot2`, you could simply run:
+For example, to create plots using `ggplot2`, you can install and load the package:
 
 ```r
 install.packages("ggplot2")
@@ -33,11 +33,15 @@ library(ggplot2)
 
 You now have access to functions for creating plots, such as `ggplot()` and `geom_point()`.
 
-You don't need to download individual scripts, figure out which files contain which functions, or manually load them in the correct order.
-Someone else has already organised all of that for you.
+When you install a package using `install.packages()`, R typically downloads it from [CRAN (the Comprehensive R Archive Network)](https://cran.r-project.org/), the default package repository in most R setups.
 
-When you install a package, R downloads it from a repository (such as CRAN) and installs it on your computer, along with any required dependencies.
-Once installed, you can load it whenever you need it using `library()`.
+CRAN hosts thousands of packages that have been checked against a set of requirements before being made available for others to install.
+
+When you install a package from CRAN, R will also install any required dependencies that aren't already available on your computer.
+
+Once a package is installed, you can load it into your current R session using `library()`.
+
+You only need to install a package once for a given R library, but you need to load it again in each new R session where you want to use it.
 
 **What makes this possible?**
 
@@ -46,45 +50,52 @@ This structure is what makes packages easy to install, load, and share.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### What do R packages have in common?
+### Exercise: What do R packages have in common?
 
-You've seen how easy it is to install and use an R package. But what does a package actually look like behind the scenes?
+You've seen how easy it is to install and use an R package.
+But what does a package actually look like behind the scenes?
 
-Let's explore two packages you might have used before:
+Let's explore the GitHub repositories of two packages you might have used before:
 
-- [ggplot2](https://github.com/tidyverse/ggplot2) — a package for creating plots.
-- [dplyr](https://github.com/tidyverse/dplyr) — a package for manipulating data.
+- [ggplot2](https://github.com/tidyverse/ggplot2): for creating plots.
+- [dplyr](https://github.com/tidyverse/dplyr): for manipulating data.
 
-Open both GitHub repositories and explore their files and folders. You don't need to understand the code itself. Instead, focus on how the projects are organised.
+Explore the files and folders in both repositories.
+You don't need to understand the code itself; we're interested in how the packages are organised.
 
 1. What files and folders do both packages have in common?
-2. Can you find where the R functions, tests, and documentation are stored? Do you recognise any of these from the previous lessons?
-3. Can you spot any files or folders that differ between the two repositories? Why do you think packages might need different files or folders?
+2. Where are the R functions, tests, and documentation stored?
+3. What differences can you spot between the two repositories?
+4. Why do you think packages might need different files or folders?
 
 ::::::::::::::: solution
 
-1. Both packages share several files and folders, including `R/`, `DESCRIPTION`, `NAMESPACE`, `man/`, `tests/`, and `README.md`. This is not a coincidence! R packages follow a standard structure that makes them easier to develop, install, and use.
+1. Both packages share several files and folders, including `R/`, `DESCRIPTION`, `NAMESPACE`, `man/`, `tests/`, and `README.md`.
 
-2. You should find several familiar components:
+2. You can find the different components of a package in the following locations:
+
    - `R/` contains the R functions.
    - `tests/testthat/` contains automated tests.
    - `man/` contains documentation for functions.
-   - `README.md` introduces the package and explains how to use it.
-   - `DESCRIPTION` contains information about the package, including its version and dependencies.
+   - `README.md` provides an overview of the package, including what it does, how to install it, and examples of how to use it.
+      It serves as an introduction to the package and a starting point for its documentation.
 
-   You may recognise some of these from the previous lessons, particularly the tests and documentation.
+3. Although both packages follow a common structure, they also have differences.
+   For example, `ggplot2` includes an `icons/` folder, which you won't find in `dplyr`.
 
-3. Although both packages follow a common structure, they also have differences. For example, `ggplot2` includes an `icons/` folder containing graphical assets, which you won't find in `dplyr`.
+4. Packages share a standard structure, but they can also include additional files and folders depending on their purpose and development needs.
+   For example, `ggplot2` is a data visualisation package, so its `icons/` folder contains graphical assets that help illustrate its features.
+   These are useful for `ggplot2` but are not part of the standard R package structure.
 
-   This shows that packages can include additional files and folders depending on their purpose and development needs.
+:::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::
 
 Despite serving different purposes, `ggplot2` and `dplyr` follow a recognisable structure. This is what allows R to install and load packages in a consistent way.
 
-**But do you need to create all these files and folders yourself?**
+**Do you need to create all these files and folders yourself?**
 
-Fortunately, no! R has tools that can generate the basic package structure for you.
+Fortunately, R has tools that can generate the basic package structure for you.
 
 One of these is `usethis`, which can create a package skeleton with a single command.
 
@@ -95,17 +106,34 @@ Explore some of the functions available. You'll notice that `usethis` can help w
 
 First, install `usethis` if you haven't already:
 
-```r
+``` R
 install.packages("usethis")
 ```
 
-Then, run the following command to create a package called `researchworkflow`:
+Before creating your package, decide where you'd like to save it on your computer.
 
-```r
-usethis::create_package("researchworkflow")
+In RStudio, you can set your working directory using the menu:
+
+1. Go to **Session > Set Working Directory > Choose Directory...**
+2. Navigate to the folder where you'd like to create your package.
+3. Click **Open** (or **Choose**, depending on your operating system).
+
+You can check your current working directory by running:
+
+``` R
+getwd()
 ```
 
-This creates a new directory called `researchworkflow` inside your current working directory. If you're using RStudio, the new package will also open as an RStudio project.
+Once you're happy with your working directory, you can use usethis to create your package.
+
+Run the following command to create a package called `rworkshoppackage`:
+
+``` R
+usethis::create_package("rworkshoppackage")
+```
+
+This creates a new directory called `rworkshoppackage` inside your current working directory.
+If you're using RStudio, the new package will also open as an RStudio project.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -144,6 +172,8 @@ Looking through the `usethis` documentation, you might have found functions such
 - `use_vignette()` — sets up a longer tutorial or guide for your package.
 
 These functions help you build up your package as you need additional components.
+
+:::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::
 
