@@ -667,13 +667,28 @@ Imports:
 We can use `devtools::load_all()` to load our package functions during development without installing the package.
 If you haven't already installed `devtools`, run `install.packages("devtools")` in the R console first.
 
-Load the package and try the three functions together:
+First, load the package functions:
 
 ``` R
 devtools::load_all()
+```
+
+Load the sleep dataset:
+
+``` R
 data <- load_sleep_data()
+```
+
+Calculate the summary statistics:
+
+``` R
 summary_data <- summarise_data(data)
-summary_data
+```
+
+Print the summary table:
+
+``` R
+print(summary_data)
 ```
 
 You should see this table in the Console (the number of decimal places displayed may vary):
