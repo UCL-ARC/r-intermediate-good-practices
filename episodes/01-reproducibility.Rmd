@@ -242,7 +242,7 @@ Generalisability considers whether conclusions apply across the populations, set
 
 ![The Turing Way's illustration of reproducibility](https://book.the-turing-way.org/build/reproducible-definit-cc16a756218c82222318d6f42a126c51.svg){width="100%"}
 
-_The Turing Way Community. This illustration is created by Scriberia with The Turing Way community, used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807_
+_The Turing Way Community. This illustration is created by Scriberia with The Turing Way community, used under a CC-BY 4.0 licence. [DOI: 10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332808)_
 
 :::::::::::::::::::::::::::::::::
 
