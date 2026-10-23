@@ -279,13 +279,12 @@ These placeholders help us understand what information is expected, but we'll ne
 
 ## Creating an R package using `usethis`
 
-We can also create an R package using [`usethis`](https://usethis.r-lib.org/).
+RStudio uses [`usethis`](https://usethis.r-lib.org/) behind the scenes when creating a new R package.
 
-RStudio provides a convenient graphical interface for creating packages, while `usethis` allows us to perform package development tasks directly from the R console.
+RStudio provides a convenient graphical interface for creating packages, but `usethis` can also be used directly from the R console to perform package development tasks.
 
-In fact, RStudio uses `usethis` behind the scenes when creating a new R package.
-
-The `usethis` package can also automate many additional development tasks.
+Using `usethis` directly gives us access to a wider range of functions than those available through the RStudio interface.
+These functions help automate many additional package development tasks.
 
 For example, it can:
 
@@ -376,6 +375,8 @@ After running `usethis::create_package()`, your second package should contain a 
 ```text
 rpackages/
 ├── rstudiopackage/
+│   ├── .Rbuildignore
+│   ├── .gitignore
 │   ├── DESCRIPTION
 │   ├── NAMESPACE
 │   ├── R/
@@ -384,6 +385,7 @@ rpackages/
 └── usethispackage/
     ├── .Rbuildignore
     ├── .gitignore
+    ├── .Rhistory
     ├── DESCRIPTION
     ├── NAMESPACE
     ├── R/
