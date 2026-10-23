@@ -346,6 +346,14 @@ Check that your working directory is now `rpackages`:
 getwd()
 ```
 
+For example, on Windows you might see:
+
+```text
+[1] "C:/Users/YourName/rpackages"
+```
+
+Your full path will differ, but it should end in `rpackages`.
+
 Once you're in the correct directory, run:
 
 ``` R
@@ -647,6 +655,15 @@ usethis::use_package("ggplot2")
 These commands add the packages to the `Imports` field in `DESCRIPTION`.
 `datasets` is included with R; `dplyr` and `ggplot2` are packages we've used in earlier episodes.
 
+Open `DESCRIPTION` in the **Files** pane. It should now include:
+
+```text
+Imports:
+    datasets,
+    dplyr,
+    ggplot2
+```
+
 We can use `devtools::load_all()` to load our package functions during development without installing the package.
 If you haven't already installed `devtools`, run `install.packages("devtools")` in the R console first.
 
@@ -657,14 +674,34 @@ devtools::load_all()
 data <- load_sleep_data()
 summary_data <- summarise_data(data)
 summary_data
+```
+
+You should see this table in the Console (the number of decimal places displayed may vary):
+
+```text
+  group mean       sd  n        se
+1     1 0.75 1.789010 10 0.5657345
+2     2 2.33 2.002249 10 0.6331666
+```
+
+There is one row per drug group, with 10 observations in each group.
+Now plot the summaries:
+
+``` R
 plot_summary(summary_data)
 ```
+
+The following plot should appear in RStudio's **Plots** pane, with one bar per drug group and error bars showing one standard error above and below each mean:
+
+![Bar plot of mean extra sleep: 0.75 hours for drug group 1 and 2.33 hours for drug group 2, with standard-error bars.](fig/07-sleep_package_summary.png)
 
 We can change the bar colour and title using the optional arguments:
 
 ``` R
 plot_summary(summary_data, fill = "darkorange", title = "Extra sleep by drug")
 ```
+
+The **Plots** pane should now show the same values with orange bars and the title "Extra sleep by drug".
 
 The function returns a `ggplot` object, so we can also add layers such as `ggplot2::labs()` or `ggplot2::theme_classic()` to customise it further.
 
@@ -678,6 +715,8 @@ iris_summary <- summarise_data(
 )
 plot_summary(iris_summary, title = "Sepal length by species")
 ```
+
+This plot should show three bars, one per species, with mean sepal lengths of approximately 5.01, 5.94, and 6.59 for setosa, versicolor, and virginica respectively.
 
 `load_sleep_data()` remains a helper for our example dataset; the summary and plotting functions work with other datasets too.
 
