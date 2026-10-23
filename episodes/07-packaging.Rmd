@@ -268,7 +268,79 @@ Select **1: Yes** to allow `usethis` to overwrite the existing RStudio project f
 
 This lets us use the same package directory rather than creating a second package.
 Note that this prompt only asks about replacing the `.Rproj` file, but it will replace the entire folder.
+::::::::::::::::::::::::::::::::::::: challenge
 
+### Explore your new package
+
+Take a few minutes to explore what `usethis` has created and compare it with the package we created using the RStudio menus.
+
+- Look at the **Files** pane in RStudio.
+  What files and folders have been created?
+- Open the `R/` folder.
+  Does it contain any scripts?
+- Open the `DESCRIPTION` file and look at its contents.
+  What information does it contain?
+  Can you identify any placeholder values?
+- How does the package structure and the `DESCRIPTION` file differ from those created using the RStudio menus?
+
+::::::::::::::: solution
+
+## Show me the solution
+
+**Package structure**
+
+After running `usethis::create_package()`, your package should contain a structure similar to this:
+
+```text
+rworkshoppackage/
+├── .Rbuildignore
+├── .gitignore
+├── .Rhistory
+├── DESCRIPTION
+├── NAMESPACE
+├── R/
+└── rworkshoppackage.Rproj
+```
+
+Both RStudio and `usethis` create the basic structure of an R package, including `DESCRIPTION`, `NAMESPACE`, and `R/`.
+
+One difference is that RStudio creates an example `hello.R` script inside `R/`, whereas `usethis` does not create an example function by default.
+You may therefore find that the `R/` folder is empty, ready for you to add your own functions.
+
+Some files beginning with a dot (`.`), such as `.gitignore`, might not be visible in the Files pane.
+
+**The `R/` folder**
+
+When we created the package using the RStudio menus, it included an example script called `hello.R`.
+
+By contrast, `usethis::create_package()` does not create an example function when starting a new package.
+
+The `R/` folder is where we'll add our own functions later in the episode.
+
+**The `DESCRIPTION` file**
+
+Both methods create a `DESCRIPTION` file containing information about the package, including its name, version, authors, description, and licence.
+
+After running `usethis::create_package()`, your file should look similar to this:
+
+```text
+Package: rworkshoppackage
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R:
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Config/roxygen2/version: 8.1.1
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+```
+
+Compared with the template created using the RStudio menus, you might notice a few differences.
+Both templates contain placeholder information that we'll update as we develop our package.
+
+:::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
