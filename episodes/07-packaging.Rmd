@@ -18,7 +18,6 @@ exercises:
 - Understand how version numbers communicate package lifecycle stages.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
 ## R packages
 
 We've used several R packages throughout the previous episodes, including `renv`, `ggplot2`, `dplyr`, and `remotes`.
@@ -43,56 +42,99 @@ Once a package is installed, you can load it into your current R session using `
 
 You only need to install a package once for a given R library, but you need to load it again in each new R session where you want to use it.
 
-**What makes this possible?**
+### What is an R package?
 
 An R package is a collection of code, documentation, and sometimes data, organised in a standard way that R understands.
-This structure is what makes packages easy to install, load, and share.
+This structure makes packages easy to install, load, reuse, and share.
+
+An excellent resource for learning about R package development is [*R Packages*, 2nd edition](https://r-pkgs.org/), a freely available online book by Hadley Wickham and Jennifer Bryan.
+It covers everything from organising functions and managing dependencies to writing documentation, testing code, and preparing packages for publication.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Why create an R package?
+
+Visit the [Introduction](https://r-pkgs.org/introduction.html) chapter of *R Packages*, 2nd edition, and read the **Introduction** and **Philosophy** sections.
+
+As you read, consider the following questions:
+
+- Why might creating an R package be useful, even if you never share it with others?
+- How do the standard conventions of R packages save time and make package development easier?
+
+::::::::::::::: solution
+
+## Show me the solution
+
+- **Packages aren't just for sharing code:** Creating an R package allows us to bring related functions together in one place, rather than keeping them scattered across different scripts and projects.
+  This makes our code easier to find, update, and reuse without repeatedly copying and pasting functions.
+  Even if we never share our package with anyone else, organising our code in this way can save time and make our work easier to maintain.
+  If we do decide to share it, others can install and use our functions just like any other R package.
+
+- **Following conventions saves time and effort:** R packages follow a standard structure, with R code stored in `R/`, tests in `tests/`, and data in `data/`.
+  These conventions mean we don't need to decide how to organise every new project from scratch.
+  They also allow us to use tools designed specifically for package development.
+  For example, `usethis` helps create and configure package files, while `devtools` provides functions for loading, testing, and checking packages.
+  By automating these tasks, we can spend less time worrying about the details of package development and more time focusing on what our package should do.
+
+:::::::::::::::::::::::::::::::::::::
+
+### What does an R package look like?
+
+We've seen why creating an R package can be useful.
+But what does a package actually look like behind the scenes?
+
+Let's explore the structure of two packages we've already encountered.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ### What do R packages have in common?
 
-You've seen how easy it is to install and use an R package.
-But what does a package actually look like behind the scenes?
-
-Let's explore the GitHub repositories of two packages you might have used before:
+Explore the GitHub repositories of two packages you might have used before:
 
 - [ggplot2](https://github.com/tidyverse/ggplot2): for creating plots.
 - [dplyr](https://github.com/tidyverse/dplyr): for manipulating data.
 
-Explore the files and folders in both repositories.
+Take a few minutes to explore the files and folders in both repositories.
 You don't need to understand the code itself; we're interested in how the packages are organised.
 
-1. What files and folders do both packages have in common?
-2. Where are the R functions, tests, and documentation stored?
-3. What differences can you spot between the two repositories?
-4. Why do you think packages might need different files or folders?
+- What files and folders do both packages have in common?
+- Where are the R functions, tests, and documentation stored?
+- What differences can you spot between the two repositories?
+- Why do you think packages might need different files or folders?
 
 ::::::::::::::: solution
 
-1. Both packages share several files and folders, including `R/`, `DESCRIPTION`, `NAMESPACE`, `man/`, `tests/`, and `README.md`.
+## Show me the solution
 
-2. You can find the different components of a package in the following locations:
+**Files and folders in common**
 
-   - `R/` contains the R functions.
-   - `tests/testthat/` contains automated tests.
-   - `man/` contains documentation for functions.
-   - `README.md` provides an overview of the package, including what it does, how to install it, and examples of how to use it.
-      It serves as an introduction to the package and a starting point for its documentation.
+Both packages share several files and folders, including `R/`, `DESCRIPTION`, `NAMESPACE`, `man/`, `tests/`, and `README.md`.
 
-3. Although both packages follow a common structure, they also have differences.
-   For example, `ggplot2` includes an `icons/` folder, which you won't find in `dplyr`.
+**Where are the different components stored?**
 
-4. Packages share a standard structure, but they can also include additional files and folders depending on their purpose and development needs.
-   For example, `ggplot2` is a data visualisation package, so its `icons/` folder contains graphical assets that help illustrate its features.
-   These are useful for `ggplot2` but are not part of the standard R package structure.
+- `R/` contains the R functions.
+- `tests/testthat/` contains automated tests.
+- `man/` contains documentation for functions.
+- `README.md` provides an overview of the package, including what it does, how to install it, and examples of how to use it.
+  It serves as an introduction to the package and a starting point for its documentation.
 
-:::::::::::::::
+**Differences between packages**
+
+Although both packages follow a common structure, they also have differences.
+
+For example, `ggplot2` includes an `icons/` folder, which you won't find in `dplyr`.
+
+Packages share a standard structure, but they can also include additional files and folders depending on their purpose and development needs.
+
+For example, `ggplot2` is a data visualisation package, so its `icons/` folder contains graphical assets that help illustrate its features.
+These are useful for `ggplot2` but are not part of the standard R package structure.
 
 :::::::::::::::::::::::::::::::::::::
 
-Despite serving different purposes, `ggplot2` and `dplyr` follow a recognisable structure. This is what allows R to install and load packages in a consistent way.
+Despite serving different purposes, `ggplot2` and `dplyr` follow a recognisable structure.
+This is what allows R to install and load packages in a consistent way.
 
+Now that we've explored why packages are useful and how they're organised, let's create one of our own.
 ## Creating an R package using RStudio
 
 Now that you looked at how existing R packages are organised, let's create one of our own.
