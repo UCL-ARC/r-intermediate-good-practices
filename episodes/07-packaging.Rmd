@@ -231,6 +231,21 @@ Some hidden files, such as `.gitignore`, might not be visible in the Files pane.
 Inside `R/`, you'll find an example function:
 
 ``` R
+# Hello, world!
+#
+# This is an example function named 'hello' 
+# which prints 'Hello, world!'.
+#
+# You can learn more about package authoring with RStudio at:
+#
+#   https://r-pkgs.org
+#
+# Some useful keyboard shortcuts for package authoring:
+#
+#   Install Package:           'Ctrl + Shift + B'
+#   Check Package:             'Ctrl + Shift + E'
+#   Test Package:              'Ctrl + Shift + T'
+
 hello <- function() {
   print("Hello, world!")
 }
@@ -476,8 +491,6 @@ Packages can also contain additional components:
 - `data/`: Datasets included with the package.
 
 Not every package needs all these components.
-
-We'll encounter some of them as we add functions, documentation, and tests to our own package.
 
 For more information, see the [Package structure](https://r-pkgs.org/structure.html) chapter of *R Packages*, 2nd edition.
 
