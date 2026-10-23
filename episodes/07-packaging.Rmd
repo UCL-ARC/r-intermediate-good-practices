@@ -13,7 +13,9 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::: objectives
 - Create a minimal package structure from scratch using `RStudio` or `usethis::create_package()`.
-- Organise R functions by placing them in `.R` files inside the `R/` directory.
+- Add reusable functions with optional arguments in `.R` files inside the `R/` directory.
+- Declare package dependencies and load package functions during development.
+- Document functions with `roxygen2` and generate their help pages.
 - Recognise optional folders and files you might encounter in an R source package.
 - Understand how version numbers communicate package lifecycle stages.
 
@@ -161,7 +163,7 @@ You should now have a folder called `rpackages` in your home directory.
 
 We'll create our first package, `rstudiopackage`, inside this folder using the RStudio menus.
 
-Later, we'll create a second package, `usethispackage`, using `usethis`.
+Later, we'll create a second package, `sleep`, using `usethis` and develop it using code from our earlier sleep analysis.
 
 This will allow us to compare the two approaches without overwriting either package.
 
@@ -313,7 +315,8 @@ These tasks can be completed manually, but `usethis` reduces the amount of setup
 
 Let's create a second package using `usethis` and compare it with the one we created using RStudio.
 
-We'll call this package `usethispackage` and save it inside the same `rpackages` folder.
+We'll call this package `sleep` and save it inside the same `rpackages` folder.
+We'll develop it using code from our earlier sleep analysis.
 
 ### Creating a package with `usethis::create_package()`
 
@@ -346,10 +349,10 @@ getwd()
 Once you're in the correct directory, run:
 
 ``` R
-usethis::create_package("usethispackage")
+usethis::create_package("sleep")
 ```
 
-This creates a new directory called `usethispackage` inside `rpackages`, containing the basic structure of an R package.
+This creates a new directory called `sleep` inside `rpackages`, containing the basic structure of an R package.
 
 Depending on your RStudio settings, the new package may also open automatically as an RStudio project.
 
@@ -360,14 +363,14 @@ We should now have two packages stored inside `rpackages`:
 ```text
 rpackages/
 ├── rstudiopackage/
-└── usethispackage/
+└── sleep/
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ### Compare the two packages
 
-We now have two packages: one created using RStudio and another using `usethis`.
+We now have two packages: `rstudiopackage`, created using RStudio, and `sleep`, created using `usethis`.
 
 Take a few minutes to explore their files and folders.
 
@@ -397,14 +400,14 @@ rpackages/
 │   ├── R/
 │   │   └── hello.R
 │   └── rstudiopackage.Rproj
-└── usethispackage/
+└── sleep/
     ├── .Rbuildignore
     ├── .gitignore
     ├── .Rhistory
     ├── DESCRIPTION
     ├── NAMESPACE
     ├── R/
-    └── usethispackage.Rproj
+    └── sleep.Rproj
 ```
 
 The exact files and folders may vary depending on the versions of RStudio and `usethis` you're using.
@@ -413,7 +416,7 @@ Both RStudio and `usethis` create the basic structure of an R package, including
 
 One difference is that RStudio typically creates an example `hello.R` script inside `R/`, whereas `usethis::create_package()` does not create an example function by default.
 
-The `R/` directory in `usethispackage` will therefore initially be empty, ready for us to add our own functions.
+The `R/` directory in `sleep` will therefore initially be empty, ready for us to add our own functions.
 
 Some files beginning with a dot (`.`), such as `.gitignore`, might not be visible in the Files pane.
 
@@ -424,7 +427,7 @@ Both methods create a `DESCRIPTION` file containing information about the packag
 After running `usethis::create_package()`, your file should look similar to this:
 
 ```text
-Package: usethispackage
+Package: sleep
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R:
@@ -494,9 +497,184 @@ Not every package needs all these components.
 
 For more information, see the [Package structure](https://r-pkgs.org/structure.html) chapter of *R Packages*, 2nd edition.
 
+## Adding functions to our package
+
+In our earlier sleep analysis, we used the built-in `sleep` dataset to calculate summary statistics for each drug group and plot the results.
+Let's organise those steps into three functions in our `sleep` package:
+
+- `load_sleep_data()`: returns the built-in sleep dataset.
+- `summarise_sleep()`: calculates summary statistics for each drug group.
+- `plot_summary()`: plots group means and standard errors, with options for the bar colour and title.
+
+Open the `sleep` package project in RStudio by opening `sleep.Rproj` inside `rpackages/sleep/`.
+
+We'll keep each function in its own script and add documentation above it using [`roxygen2`](https://roxygen2.r-lib.org/articles/rd.html) comments, which begin with `#'`.
+These comments describe what a function does, its inputs (`@param`), its output (`@returns`), and examples of how to use it (`@examples`).
+
+### Loading the sleep data
+
+Run this command in the R console to create and open `R/load_sleep_data.R`:
+
+``` R
+usethis::use_r("load_sleep_data")
+```
+
+Add the following code and save the file:
+
+``` R
+#' Load the built-in sleep data
+#'
+#' Get the data used in our sleep analysis.
+#'
+#' @returns A data frame with columns extra (extra sleep in hours),
+#'   group (drug group), and ID (participant).
+#' @seealso [Official sleep dataset documentation](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html)
+#' @examples
+#' load_sleep_data()
+load_sleep_data <- function() {
+  datasets::sleep
+}
+```
+
+We use `datasets::sleep` to refer to the built-in dataset and distinguish it from our package named `sleep`.
+This function has no inputs, so it doesn't need an `@param` tag.
+
+### Summarising the sleep data
+
+Create and open `R/summarise_sleep.R`:
+
+``` R
+usethis::use_r("summarise_sleep")
+```
+
+Add the following code and save the file:
+
+``` R
+#' Summarise extra sleep by drug group
+#'
+#' Calculate summary statistics for each drug group.
+#'
+#' @param data A data frame with a numeric extra column and a group column.
+#' @returns A table with one row per group and columns group, mean_extra,
+#'   sd_extra, n (number of observations), and se_extra.
+#' @examples
+#' summarise_sleep(datasets::sleep)
+summarise_sleep <- function(data) {
+  data |>
+    dplyr::summarise(
+      mean_extra = mean(extra),
+      sd_extra = sd(extra),
+      n = dplyr::n(),
+      se_extra = sd_extra / sqrt(n),
+      .by = group
+    )
+}
+
+```
+
+This function packages up the summary calculation from our earlier analysis, using the data we pass to it.
+The `.by = group` argument calculates the statistics separately for each drug group.
+
+### Plotting the summaries
+
+Create and open `R/plot_summary.R`:
+
+``` R
+usethis::use_r("plot_summary")
+```
+
+Add the following code and save the file:
+
+``` R
+#' Plot group means and standard errors
+#'
+#' Show means with error bars extending one standard error above and below.
+#'
+#' @param summary_data A table containing group, mean_extra, and se_extra.
+#' @param fill The bar colour.
+#' @param title The plot title, or NULL to omit it.
+#' @returns A ggplot object.
+#' @examples
+#' summary_data <- summarise_sleep(load_sleep_data())
+#' plot_summary(summary_data)
+plot_summary <- function(summary_data, fill = "steelblue",
+                         title = "Group means") {
+  ggplot2::ggplot(
+    summary_data,
+    ggplot2::aes(x = factor(group), y = mean_extra)
+  ) +
+    ggplot2::geom_col(fill = fill) +
+    ggplot2::geom_errorbar(
+      ggplot2::aes(
+        ymin = mean_extra - se_extra,
+        ymax = mean_extra + se_extra
+      ),
+      width = 0.2
+    ) +
+    ggplot2::labs(title = title, x = "Group", y = "Mean") +
+    ggplot2::theme_minimal()
+}
+```
+
+The function expects columns named `group`, `mean_extra`, and `se_extra`, matching the output of `summarise_sleep()`.
+Other summary tables can also be used if they contain these columns.
+
+### Declaring dependencies and trying the functions
+
+Declare the packages used by our functions in `DESCRIPTION`:
+
+``` R
+usethis::use_package("datasets")
+usethis::use_package("dplyr")
+usethis::use_package("ggplot2")
+```
+
+These commands add the packages to the `Imports` field in `DESCRIPTION`.
+`datasets` is included with R; `dplyr` and `ggplot2` are packages we've used in earlier episodes.
+
+We can use `devtools::load_all()` to load our package functions during development without installing the package.
+If you haven't already installed `devtools`, run `install.packages("devtools")` in the R console first.
+
+Load the package and try the three functions together:
+
+``` R
+devtools::load_all()
+data <- load_sleep_data()
+summary_data <- summarise_sleep(data)
+summary_data
+plot_summary(summary_data)
+```
+
+We can change the bar colour and title using the optional arguments:
+
+``` R
+plot_summary(summary_data, fill = "darkorange", title = "Extra sleep by drug")
+```
+
+The function returns a `ggplot` object, so we can also add layers such as `ggplot2::labs()` or `ggplot2::theme_classic()` to customise it further.
+
+### Generating help pages
+
+Save all three scripts, then run `devtools::document()` to turn the `roxygen2` comments into help files in `man/`.
+Reload the package so we can view the help pages during development:
+
+``` R
+devtools::document()
+devtools::load_all()
+?load_sleep_data
+?summarise_sleep
+?plot_summary
+```
+
+When you change the documentation comments, save the script and run `devtools::document()` again to update the help files.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
 - `RStudio` can generate a minimal package structure automatically.
 - A minimal R package needs only an `R/` directory and a `DESCRIPTION` file that includes `Package:` and `Version:`.
+- Store package functions in `R/` and declare their dependencies in `DESCRIPTION`.
+- Give arguments default values so functions work immediately and can be customised when needed.
+- Use `devtools::load_all()` to try package functions during development without installing the package.
+- Keep function documentation alongside the code using `roxygen2` comments and generate help pages with `devtools::document()`.
 - Package version numbers communicate change: patch releases fix bugs, minor releases add features, and major releases may include breaking changes.
 ::::::::::::::::::::::::::::::::::::::::::::::::
