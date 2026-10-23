@@ -707,19 +707,44 @@ Save all three scripts, then run `devtools::document()` to generate these files 
 devtools::document()
 ```
 
+The first time you generate the help files, you should see messages similar to these:
+
+```text
+ℹ Updating sleep documentation
+ℹ Loading sleep
+Writing load_sleep_data.Rd
+Writing plot_summary.Rd
+Writing summarise_data.Rd
+```
+
+Each `Writing` message names a help file saved in your package's `man/` folder.
+
 Reload the package so we can view the help pages during development:
 
 ``` R
 devtools::load_all()
 ```
 
-Now open the help pages for our functions:
+You should see a message confirming that the package is loading:
+
+```text
+ℹ Loading sleep
+```
+
+Now open the help page for `load_sleep_data()`:
 
 ``` R
 ?load_sleep_data
-?summarise_data
-?plot_summary
 ```
+
+You should see this message in the Console:
+
+```text
+ℹ Rendering development documentation for "load_sleep_data"
+```
+
+The documentation opens in RStudio's **Help** pane, showing what the function does, what it returns, and an example of how to use it.
+You can open the other functions' help pages in the same way using `?summarise_data` and `?plot_summary`.
 
 When you change the documentation comments, save the script and run `devtools::document()` again to update the help files.
 
