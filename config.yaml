@@ -67,7 +67,7 @@ contact: 'ARC.education@ucl.ac.uk'
 
 # Order of episodes in your lesson
 episodes: 
-- 00-introduction-placeholder.Rmd
+- 00-introduction.Rmd
 - 01-reproducibility.Rmd
 - 02-environments.Rmd
 
