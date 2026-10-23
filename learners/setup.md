@@ -28,6 +28,23 @@ You should see the version of R installed on your computer.
 
 - **Laptop:** Bring your own laptop running Windows, macOS, or Linux, with R and RStudio installed.
 - **Internet access:** You will need an internet connection during the workshop.
-- **Installation permissions:** Make sure you can install R packages from CRAN and GitHub. 
+- **Installation permissions:** Check that you can install R packages by installing `ggplot2` as described below.
 
-If you are using a university-managed computer, check whether you need additional permissions before the workshop.
+#### Test package installation
+
+To check that you can install and load an R package, run these commands one at a time in the RStudio Console:
+
+``` R
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+Installation prints progress messages, which vary by system.
+Loading the package usually produces no output; your Console should look like this:
+
+``` text
+> library(ggplot2)
+>
+```
+
+If the prompt returns without an error, you're all set!
