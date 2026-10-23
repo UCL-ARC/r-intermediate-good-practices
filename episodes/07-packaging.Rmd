@@ -134,7 +134,6 @@ These are useful for `ggplot2` but are not part of the standard R package struct
 Despite serving different purposes, `ggplot2` and `dplyr` follow a recognisable structure.
 This is what allows R to install and load packages in a consistent way.
 
-Now that we've explored why packages are useful and how they're organised, let's create one of our own.
 ## Creating an R package using RStudio
 
 Now that you looked at how existing R packages are organised, let's create one of our own.
