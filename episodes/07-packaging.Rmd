@@ -503,7 +503,7 @@ In our earlier sleep analysis, we used the built-in `sleep` dataset to calculate
 Let's organise those steps into three functions in our `sleep` package:
 
 - `load_sleep_data()`: returns the built-in sleep dataset.
-- `summarise_sleep()`: calculates summary statistics for each drug group.
+- `summarise_data()`: calculates summary statistics for a chosen measurement and grouping column.
 - `plot_summary()`: plots group means and standard errors, with options for the bar colour and title.
 
 Open the `sleep` package project in RStudio by opening `sleep.Rproj` inside `rpackages/sleep/`.
@@ -539,33 +539,41 @@ load_sleep_data <- function() {
 We use `datasets::sleep` to refer to the built-in dataset and distinguish it from our package named `sleep`.
 This function has no inputs, so it doesn't need an `@param` tag.
 
-### Summarising the sleep data
+### Summarising data by group
 
-Create and open `R/summarise_sleep.R`:
+Create and open `R/summarise_data.R`:
 
 ``` R
-usethis::use_r("summarise_sleep")
+usethis::use_r("summarise_data")
 ```
 
 Add the following code and save the file:
 
 ``` R
-#' Summarise extra sleep by drug group
+#' Summarise a numeric measurement by group
 #'
-#' Calculate summary statistics for each drug group.
+#' Calculate the mean, standard deviation, sample size, and standard error
+#' for each group.
 #'
-#' @param data A data frame with a numeric extra column and a group column.
-#' @returns A table with one row per group and columns group, mean_extra,
-#'   sd_extra, n (number of observations), and se_extra.
+#' @param data A data frame.
+#' @param value_col Name of the numeric measurement column, as a string.
+#' @param group_col Name of the grouping column, as a string.
+#' @returns A table with one row per group and columns group, mean,
+#'   sd, n (number of observations), and se.
 #' @examples
-#' summarise_sleep(datasets::sleep)
-summarise_sleep <- function(data) {
-  data |>
+#' summarise_data(datasets::sleep)
+#' summarise_data(datasets::iris, value_col = "Sepal.Length", group_col = "Species")
+summarise_data <- function(data, value_col = "extra", group_col = "group") {
+  selected_data <- data.frame(
+    group = data[[group_col]],
+    value = data[[value_col]]
+  )
+  selected_data |>
     dplyr::summarise(
-      mean_extra = mean(extra),
-      sd_extra = sd(extra),
+      mean = mean(value),
+      sd = sd(value),
       n = dplyr::n(),
-      se_extra = sd_extra / sqrt(n),
+      se = sd / sqrt(n),
       .by = group
     )
 }
@@ -573,7 +581,10 @@ summarise_sleep <- function(data) {
 ```
 
 This function packages up the summary calculation from our earlier analysis, using the data we pass to it.
-The `.by = group` argument calculates the statistics separately for each drug group.
+The column-name arguments let us choose what to summarise and how to group it.
+For example, `data[[value_col]]` selects the column named by `value_col`.
+The defaults match the sleep dataset; `.by = group` calculates separate statistics for each group.
+The output always uses the same column names, so it can be passed directly to `plot_summary()`.
 
 ### Plotting the summaries
 
@@ -590,24 +601,24 @@ Add the following code and save the file:
 #'
 #' Show means with error bars extending one standard error above and below.
 #'
-#' @param summary_data A table containing group, mean_extra, and se_extra.
+#' @param summary_data A table containing group, mean, and se.
 #' @param fill The bar colour.
 #' @param title The plot title, or NULL to omit it.
 #' @returns A ggplot object.
 #' @examples
-#' summary_data <- summarise_sleep(load_sleep_data())
+#' summary_data <- summarise_data(load_sleep_data())
 #' plot_summary(summary_data)
 plot_summary <- function(summary_data, fill = "steelblue",
                          title = "Group means") {
   ggplot2::ggplot(
     summary_data,
-    ggplot2::aes(x = factor(group), y = mean_extra)
+    ggplot2::aes(x = factor(group), y = mean)
   ) +
     ggplot2::geom_col(fill = fill) +
     ggplot2::geom_errorbar(
       ggplot2::aes(
-        ymin = mean_extra - se_extra,
-        ymax = mean_extra + se_extra
+        ymin = mean - se,
+        ymax = mean + se
       ),
       width = 0.2
     ) +
@@ -616,7 +627,7 @@ plot_summary <- function(summary_data, fill = "steelblue",
 }
 ```
 
-The function expects columns named `group`, `mean_extra`, and `se_extra`, matching the output of `summarise_sleep()`.
+The function expects columns named `group`, `mean`, and `se`, matching the output of `summarise_data()`.
 Other summary tables can also be used if they contain these columns.
 
 ### Declaring dependencies and trying the functions
@@ -640,7 +651,7 @@ Load the package and try the three functions together:
 ``` R
 devtools::load_all()
 data <- load_sleep_data()
-summary_data <- summarise_sleep(data)
+summary_data <- summarise_data(data)
 summary_data
 plot_summary(summary_data)
 ```
@@ -653,6 +664,19 @@ plot_summary(summary_data, fill = "darkorange", title = "Extra sleep by drug")
 
 The function returns a `ggplot` object, so we can also add layers such as `ggplot2::labs()` or `ggplot2::theme_classic()` to customise it further.
 
+The same functions can summarise and plot a different dataset by choosing its columns:
+
+``` R
+iris_summary <- summarise_data(
+  datasets::iris,
+  value_col = "Sepal.Length",
+  group_col = "Species"
+)
+plot_summary(iris_summary, title = "Sepal length by species")
+```
+
+`load_sleep_data()` remains a helper for our example dataset; the summary and plotting functions work with other datasets too.
+
 ### Generating help pages
 
 Save all three scripts, then run `devtools::document()` to turn the `roxygen2` comments into help files in `man/`.
@@ -662,7 +686,7 @@ Reload the package so we can view the help pages during development:
 devtools::document()
 devtools::load_all()
 ?load_sleep_data
-?summarise_sleep
+?summarise_data
 ?plot_summary
 ```
 
