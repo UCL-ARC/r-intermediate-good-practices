@@ -691,7 +691,15 @@ Before generating our package's documentation, try opening the help for one of o
 ```
 
 R cannot find a help page for this function yet.
-Although we've added `roxygen2` comments above the function, we still need to turn them into help files.
+You may see a message like this:
+
+```text
+No documentation for ‘summarise_data’ in specified packages and libraries:
+you could try ‘??summarise_data’
+```
+
+The suggestion `??summarise_data` searches help topic names, titles, and concepts across installed packages (see [`help.search()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/help.search.html)).
+It searches existing documentation, not our script comments, so it won't find help for our function yet.
 
 Save all three scripts, then run `devtools::document()` to generate these files in `man/`.
 Reload the package so we can view the help pages during development:
