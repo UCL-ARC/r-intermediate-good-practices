@@ -136,35 +136,56 @@ This is what allows R to install and load packages in a consistent way.
 
 ## Creating an R package using RStudio
 
-Now that you looked at how existing R packages are organised, let's create one of our own.
+Now that we've explored how existing R packages are organised, let's create one of our own.
 
 Fortunately, we don't need to create all the files and folders ourselves.
-RStudio provides a way to generate the basic package structure automatically.
+
+RStudio can generate the basic package structure automatically.
+
+### Creating a folder for our packages
+
+Before creating our first package, let's create a folder to keep our R packages together.
+
+We'll call this folder `rpackages` and use it to store the two packages we'll create in this lesson.
+
+1. Open the **Files** pane in RStudio.
+2. Navigate to your home directory, which is your personal folder on your computer (for example, `C:\Users\YourName` on Windows or `/home/yourname` on Linux).
+3. Click **New Folder**.
+4. Enter `rpackages` as the folder name and click **OK**.
+
+You should now have a folder called `rpackages` in your home directory.
+
+We'll create our first package, `rstudiopackage`, inside this folder using the RStudio menus.
+
+Later, we'll create a second package, `usethispackage`, using `usethis`.
+
+This will allow us to compare the two approaches without overwriting either package.
+
+### Creating a package using the RStudio menus
 
 To create a package using RStudio:
 
-1. Go to **File > New Project...**
+1. Go to **File > New Project...**.
 2. Select **New Directory**.
 3. Select **R Package**.
-4. Enter `rworkshoppackage` as the package name.
-5. Choose where you'd like to save the package.
-   We suggest using your home directory, which is your personal folder on your computer (for example, `C:\Users\YourName` on Windows or `/home/yourname` on Linux).
-   RStudio may suggest a different location by default.
+4. Enter `rstudiopackage` as the package name.
+5. Under **Create project as subdirectory of**, click **Browse** and select the `rpackages` folder you just created.
 6. You'll also see some optional settings:
    - **Create a git repository:** Initialises a local Git repository so you can track changes to your package using version control.
      This doesn't automatically create a repository on GitHub.
-   - **Use renv with this project:** Sets up `renv` to manage the package versions used during development, helping make your development environment reproducible.
+   - **Use renv with this project:** Sets up `renv` to manage package versions used during development, helping make your development environment reproducible.
      You might recognise `renv` from the reproducibility episode.
-   For this exercise, leave both options unchecked.
+7. For this exercise, leave both options unchecked.
 8. Click **Create Project**.
 
-RStudio will create the package directory and open it as a new project.
+RStudio will create a directory called `rstudiopackage` inside `rpackages` and open it as a new project.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ### Explore your new package
 
 RStudio has created a new project for your package.
+
 You might also notice that an example R script has opened automatically, containing a function called `hello()`.
 
 Take a few minutes to explore what RStudio has created.
@@ -173,30 +194,32 @@ Take a few minutes to explore what RStudio has created.
   What files and folders have been created?
 - Open the `R/` folder and find the example `hello.R` script.
   What does the `hello()` function do?
-- Open the `DESCRIPTION` file and look at its contents.
+- Open the `DESCRIPTION` file.
   What information does it contain?
   Can you identify any placeholder values?
 
 ::::::::::::::: solution
 
-## Show the solution
+## Show me the solution
 
 **Package structure**
 
 Your package should contain a structure similar to this:
 
 ```text
-rworkshoppackage/
-├── .Rbuildignore
-├── .gitignore
-├── DESCRIPTION
-├── NAMESPACE
-├── R/
-│   └── hello.R
-└── rworkshoppackage.Rproj
+rpackages/
+└── rstudiopackage/
+    ├── .Rbuildignore
+    ├── .gitignore
+    ├── DESCRIPTION
+    ├── NAMESPACE
+    ├── R/
+    │   └── hello.R
+    └── rstudiopackage.Rproj
 ```
 
 The exact files may vary depending on your RStudio version and the options you selected when creating the project.
+
 Some hidden files, such as `.gitignore`, might not be visible in the Files pane.
 
 **The `hello.R` script**
@@ -210,18 +233,19 @@ hello <- function() {
 ```
 
 The `hello()` function simply prints `"Hello, world!"` when called.
+
 RStudio includes it as an example of how functions are organised inside an R package.
-The comments above the function also provide links to further documentation and useful keyboard shortcuts for package development.
 
 **The `DESCRIPTION` file**
 
 The `DESCRIPTION` file contains information about your package, including its name, version, authors, description, and licence.
 
 RStudio generates this file from a template, so some fields contain example values or placeholders.
+
 Your file will look something like this:
 
 ```text
-Package: rworkshoppackage
+Package: rstudiopackage
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
@@ -240,21 +264,24 @@ LazyData: true
 ```
 
 For example, `Title` and `Description` contain instructions rather than meaningful descriptions of your package.
+
 The author information also contains example details that need to be replaced.
 
-These placeholders help you understand what information is expected, but you'll need to update them before sharing your package.
+These placeholders help us understand what information is expected, but we'll need to update them as we develop the package.
 
 :::::::::::::::::::::::::::::::::::::
 
 ## Creating an R package using `usethis`
 
-Alternatively, we can create a package using [`usethis`](https://usethis.r-lib.org/).
+We can also create an R package using [`usethis`](https://usethis.r-lib.org/).
+
+RStudio provides a convenient graphical interface for creating packages, while `usethis` allows us to perform package development tasks directly from the R console.
 
 In fact, RStudio uses `usethis` behind the scenes when creating a new R package.
 
-While RStudio provides a convenient interface for creating, building, and testing R packages, [`usethis`](https://usethis.r-lib.org/) helps automate many additional package development tasks.
+The `usethis` package can also automate many additional development tasks.
 
-For example, `usethis` can:
+For example, it can:
 
 - **Set up testing infrastructure** with `use_testthat()`, creating the necessary files and folders and updating `DESCRIPTION`.
 - **Add package dependencies** with `use_package()`, updating `DESCRIPTION` automatically.
@@ -262,67 +289,75 @@ For example, `usethis` can:
 - **Set up longer tutorials** with `use_vignette()`, creating a vignette template and updating the necessary configuration.
 - **Configure automated checks on GitHub** with `use_github_action()`, creating a GitHub Actions workflow.
 
-These tasks are not all available as dedicated options in RStudio's standard menus.
-They can be completed manually, but `usethis` reduces the amount of setup required and helps ensure the necessary files and configuration are in place.
+These tasks can be completed manually, but `usethis` reduces the amount of setup required and helps ensure that the necessary files and configuration are in place.
 
-Let's use `usethis` to create our package.
+Let's create a second package using `usethis` and compare it with the one we created using RStudio.
 
-First, install it if you haven't already:
+We'll call this package `usethispackage` and save it inside the same `rpackages` folder.
+
+### Creating a package with `usethis::create_package()`
+
+First, install `usethis` if you haven't already:
 
 ``` R
 install.packages("usethis")
 ```
 
-Before creating your package, decide where you'd like to save it on your computer.
+Before creating the package, we need to make sure that our working directory is set to the `rpackages` folder we created earlier.
 
-You can check your current working directory by running:
+You can check your current working directory using:
 
 ``` R
 getwd()
 ```
 
-The working directory can be changed using the RStudio menu:
+If necessary, change your working directory using the RStudio menu:
 
-1. Go to **Session > Set Working Directory > Choose Directory...**
-2. Navigate to the folder where you'd like to create your package.
-3. Click **Open** (or **Choose**, depending on your operating system).
+1. Go to **Session > Set Working Directory > Choose Directory...**.
+2. Navigate to the `rpackages` folder.
+3. Click **Open** or **Choose**, depending on your operating system.
 
-Once you're happy with your working directory, run:
+Check that your working directory is now `rpackages`:
 
 ``` R
-usethis::create_package("rworkshoppackage")
+getwd()
 ```
 
-Because we already created a package called `rworkshoppackage` using RStudio, `usethis` will find the existing directory.
+Once you're in the correct directory, run:
 
-You will probably see a prompt like this:
-
-``` text
-! Overwrite pre-existing file rworkshoppackage.Rproj?
-
-1: Yes
-2: Nope
-3: Absolutely not
+``` R
+usethis::create_package("usethispackage")
 ```
 
-Select **1: Yes** to allow `usethis` to overwrite the existing RStudio project file.
+This creates a new directory called `usethispackage` inside `rpackages`, containing the basic structure of an R package.
 
-This lets us use the same package directory rather than creating a second package.
-Note that this prompt only asks about replacing the `.Rproj` file, but it will replace the entire folder.
+Depending on your RStudio settings, the new package may also open automatically as an RStudio project.
+
+Because we're using a different package name, our original `rstudiopackage` directory remains unchanged.
+
+We should now have two packages stored inside `rpackages`:
+
+```text
+rpackages/
+├── rstudiopackage/
+└── usethispackage/
+```
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Explore your new package
+### Compare the two packages
 
-Take a few minutes to explore what `usethis` has created and compare it with the package we created using the RStudio menus.
+We now have two packages: one created using RStudio and another using `usethis`.
 
-- Look at the **Files** pane in RStudio.
-  What files and folders have been created?
-- Open the `R/` folder.
-  Does it contain any scripts?
-- Open the `DESCRIPTION` file and look at its contents.
+Take a few minutes to explore their files and folders.
+
+- What files and folders do both packages have in common?
+- Open the `R/` directory in each package.
+  Does either contain an example function?
+- Open the `DESCRIPTION` file in each package.
   What information does it contain?
   Can you identify any placeholder values?
-- How does the package structure and the `DESCRIPTION` file differ from those created using the RStudio menus?
+- What differences can you spot between the two packages?
 
 ::::::::::::::: solution
 
@@ -330,33 +365,34 @@ Take a few minutes to explore what `usethis` has created and compare it with the
 
 **Package structure**
 
-After running `usethis::create_package()`, your package should contain a structure similar to this:
+After running `usethis::create_package()`, your second package should contain a structure similar to this:
 
 ```text
-rworkshoppackage/
-├── .Rbuildignore
-├── .gitignore
-├── .Rhistory
-├── DESCRIPTION
-├── NAMESPACE
-├── R/
-└── rworkshoppackage.Rproj
+rpackages/
+├── rstudiopackage/
+│   ├── DESCRIPTION
+│   ├── NAMESPACE
+│   ├── R/
+│   │   └── hello.R
+│   └── rstudiopackage.Rproj
+└── usethispackage/
+    ├── .Rbuildignore
+    ├── .gitignore
+    ├── DESCRIPTION
+    ├── NAMESPACE
+    ├── R/
+    └── usethispackage.Rproj
 ```
+
+The exact files and folders may vary depending on the versions of RStudio and `usethis` you're using.
 
 Both RStudio and `usethis` create the basic structure of an R package, including `DESCRIPTION`, `NAMESPACE`, and `R/`.
 
-One difference is that RStudio creates an example `hello.R` script inside `R/`, whereas `usethis` does not create an example function by default.
-You may therefore find that the `R/` folder is empty, ready for you to add your own functions.
+One difference is that RStudio typically creates an example `hello.R` script inside `R/`, whereas `usethis::create_package()` does not create an example function by default.
+
+The `R/` directory in `usethispackage` will therefore initially be empty, ready for us to add our own functions.
 
 Some files beginning with a dot (`.`), such as `.gitignore`, might not be visible in the Files pane.
-
-**The `R/` folder**
-
-When we created the package using the RStudio menus, it included an example script called `hello.R`.
-
-By contrast, `usethis::create_package()` does not create an example function when starting a new package.
-
-The `R/` folder is where we'll add our own functions later in the episode.
 
 **The `DESCRIPTION` file**
 
@@ -365,7 +401,7 @@ Both methods create a `DESCRIPTION` file containing information about the packag
 After running `usethis::create_package()`, your file should look similar to this:
 
 ```text
-Package: rworkshoppackage
+Package: usethispackage
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R:
@@ -373,13 +409,15 @@ Authors@R:
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
-Config/roxygen2/version: 8.1.1
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 ```
 
-Compared with the template created using the RStudio menus, you might notice a few differences.
-Both templates contain placeholder information that we'll update as we develop our package.
+You may notice some differences compared with the template created using the RStudio menus.
+
+For example, the initial version number is typically `0.0.0.9000` rather than `0.1.0`.
+
+Both templates also contain placeholder information that we'll need to update as we develop our packages.
 
 :::::::::::::::::::::::::::::::::::::
 
