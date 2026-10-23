@@ -119,6 +119,92 @@ To create a package using RStudio:
 
 RStudio will create the package directory and open it as a new project.
 
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Explore your new package
+
+RStudio has created a new project for your package.
+You might also notice that an example R script has opened automatically, containing a function called `hello()`.
+
+Take a few minutes to explore what RStudio has created.
+
+- Look at the **Files** pane in RStudio.
+  What files and folders have been created?
+- Open the `R/` folder and find the example `hello.R` script.
+  What does the `hello()` function do?
+- Open the `DESCRIPTION` file and look at its contents.
+  What information does it contain?
+  Can you identify any placeholder values?
+
+::::::::::::::: solution
+
+## Show the solution
+
+**Package structure**
+
+Your package should contain a structure similar to this:
+
+```text
+rworkshoppackage/
+├── .Rbuildignore
+├── .gitignore
+├── DESCRIPTION
+├── NAMESPACE
+├── R/
+│   └── hello.R
+└── rworkshoppackage.Rproj
+```
+
+The exact files may vary depending on your RStudio version and the options you selected when creating the project.
+Some hidden files, such as `.gitignore`, might not be visible in the Files pane.
+
+**The `hello.R` script**
+
+Inside `R/`, you'll find an example function:
+
+``` R
+hello <- function() {
+  print("Hello, world!")
+}
+```
+
+The `hello()` function simply prints `"Hello, world!"` when called.
+RStudio includes it as an example of how functions are organised inside an R package.
+The comments above the function also provide links to further documentation and useful keyboard shortcuts for package development.
+
+**The `DESCRIPTION` file**
+
+The `DESCRIPTION` file contains information about your package, including its name, version, authors, description, and licence.
+
+RStudio generates this file from a template, so some fields contain example values or placeholders.
+Your file will look something like this:
+
+```text
+Package: rworkshoppackage
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Jane", "Doe",
+      email = "jane@example.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: More about what it does (maybe more than one line).
+    Continuation lines should be indented.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+```
+
+For example, `Title` and `Description` contain instructions rather than meaningful descriptions of your package.
+The author information also contains example details that need to be replaced.
+
+These placeholders help you understand what information is expected, but you'll need to update them before sharing your package.
+
+:::::::::::::::::::::::::::::::::::::
+
 ## Creating an R package using `usethis`
 
 Alternatively, we can create a package using [`usethis`](https://usethis.r-lib.org/).
