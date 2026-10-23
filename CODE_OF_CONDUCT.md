@@ -4,7 +4,8 @@ title: "Code of Conduct"
 
 As contributors, maintainers, and instructors of **Good Practices in R**, we are committed to providing a welcoming, inclusive, and supportive learning environment.
 
-This lesson uses **The Carpentries lesson template** and adopts the behavioural standards outlined in [The Carpentries Code of Conduct][coc]. However, it is maintained by UCL Advanced Research Computing (ARC) and is not currently an official Carpentries lesson.
+This lesson uses **The Carpentries lesson template** and adopts the behavioural standards outlined in [The Carpentries Code of Conduct][coc].
+However, it is maintained by UCL Advanced Research Computing (ARC) and is not currently an official Carpentries lesson.
 
 We expect all participants and contributors to:
 
