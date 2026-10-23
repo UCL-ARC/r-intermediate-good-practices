@@ -91,9 +91,10 @@ plot(measurements)
 
 In RStudio, you can create a script using **File → New File → R Script** and save it as `analysis.R`.
 
-You can run individual lines using **Ctrl+Enter** (Windows/Linux) or **Cmd+Enter** (macOS), or run the entire script using the **Source** button in the script editor.
+You can run individual lines using <kbd>Ctrl</kbd>+<kbd>Enter</kbd> (Windows/Linux) or <kbd>Cmd</kbd>+<kbd>Enter</kbd> (macOS), or run the entire script using the **Source** button in the script editor.
 
-Scripts are an important step towards reproducibility: instead of manually repeating commands, you can rerun the same analysis whenever your data changes. However, a script alone does not guarantee reproducibility. 
+Scripts are an important step towards reproducibility: instead of manually repeating commands, you can rerun the same analysis whenever your data changes.
+However, a script alone does not guarantee reproducibility.
 
 It may still depend on external files, installed packages, or settings specific to your computer.
 
