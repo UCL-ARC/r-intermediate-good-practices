@@ -67,16 +67,16 @@ As you read, consider the following questions:
 
 ## Show me the solution
 
-- **Packages aren't just for sharing code:** Creating an R package allows us to bring related functions together in one place, rather than keeping them scattered across different scripts and projects.
-  This makes our code easier to find, update, and reuse without repeatedly copying and pasting functions.
-  Even if we never share our package with anyone else, organising our code in this way can save time and make our work easier to maintain.
-  If we do decide to share it, others can install and use our functions just like any other R package.
+**Packages aren't just for sharing code:** Creating an R package allows us to bring related functions together in one place, rather than keeping them scattered across different scripts and projects.
+This makes our code easier to find, update, and reuse without repeatedly copying and pasting functions.
+Even if we never share our package with anyone else, organising our code in this way can save time and make our work easier to maintain.
+If we do decide to share it, others can install and use our functions just like any other R package.
 
-- **Following conventions saves time and effort:** R packages follow a standard structure, with R code stored in `R/`, tests in `tests/`, and data in `data/`.
-  These conventions mean we don't need to decide how to organise every new project from scratch.
-  They also allow us to use tools designed specifically for package development.
-  For example, `usethis` helps create and configure package files, while `devtools` provides functions for loading, testing, and checking packages.
-  By automating these tasks, we can spend less time worrying about the details of package development and more time focusing on what our package should do.
+**Following conventions saves time and effort:** R packages follow a standard structure, with R code stored in `R/`, tests in `tests/`, and data in `data/`.
+These conventions mean we don't need to decide how to organise every new project from scratch.
+They also allow us to use tools designed specifically for package development.
+For example, `usethis` helps create and configure package files, while `devtools` provides functions for loading, testing, and checking packages.
+By automating these tasks, we can spend less time worrying about the details of package development and more time focusing on what our package should do.
 
 :::::::::::::::
 
