@@ -50,7 +50,7 @@ This structure is what makes packages easy to install, load, and share.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Exercise: What do R packages have in common?
+### What do R packages have in common?
 
 You've seen how easy it is to install and use an R package.
 But what does a package actually look like behind the scenes?
@@ -137,7 +137,7 @@ If you're using RStudio, the new package will also open as an RStudio project.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Exercise: Explore your new package
+### Explore your new package
 
 1. Open the package you just created and explore its files and folders.
 2. Which files and folders do you recognise from the `ggplot2` and `dplyr` repositories?
