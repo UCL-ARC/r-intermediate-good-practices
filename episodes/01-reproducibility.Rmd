@@ -52,8 +52,7 @@ These are some of the most common causes:
 - **Missing packages:** The script may rely on packages that are not installed.
 - **Incorrect file paths:** The script may use file paths that only exist on your colleague's computer.
 - **Operating-system differences:** An operating system, such as Windows, macOS or Linux, is the main software that manages your computer and runs programs such as R.
-  For example, Linux usually treats `Small-01.csv` and `small-01.csv` as different filenames, while Windows usually treats them as the same.
-  We explore this example [below](#how-can-the-operating-system-matter).
+  We give an example in the [How can the operating system matter?](#how-can-the-operating-system-matter) callout below.
 - **Documentation missing or unclear:** If the script does not explain required inputs, expected file locations, or setup steps, you may not know how to run it correctly.
 - **Missing input:** The script may expect other data files or inputs that were not shared with you.
 
