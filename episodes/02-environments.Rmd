@@ -823,35 +823,61 @@ Your lockfile now records the dependencies for the final analysis.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Restore an environment using it's lockfile
+## Restore an environment using its lockfile
 
-Now that you have recorded a working environment in your lockfile, try using it to restore a missing package.
+Now that you have recorded a working environment in your lockfile, let's see how you can use it to recover a missing package.
 
-Select **Session > Restart R** to unload packages, then remove `broom`:
+**1. Remove a package**
 
-``` R
+Select **Session > Restart R** to unload packages, then remove `broom` from your project library:
+
+```r
 renv::remove("broom")
 ```
 
-Run `sleep_analysis_final.R` and examine the error.
-Restore the recorded environment:
+**2. Run your analysis**
 
-``` R
-renv::restore()
-```
+Run `sleep_analysis_final.R` again and examine the error message.
 
-Run the script again.
+Why does the script no longer work?
 
-Why should you use `restore()` rather than `snapshot()` here?
+**3. Restore your environment**
+
+Think back to [Restoring an environment from a lockfile](#restoring-an-environment-from-a-lockfile), where you learned about `renv::snapshot()` and `renv::restore()`.
+
+- Which function would you use to recover the missing package: `snapshot()` or `restore()`?
+- Try running the function you think is appropriate.
+- Run `sleep_analysis_final.R` again. Does it work now?
+- Why did your chosen function work (or not work)?
 
 :::::::::::::::::::::::: solution
 
 ## Show me the solution
 
-The script initially fails because `broom` is missing.
-`renv::restore()` reinstalls the version recorded in `renv.lock`, allowing the script to run again.
-Use `restore()` because the lockfile already describes the environment you want.
-`snapshot()` updates the lockfile; it does not reinstall missing packages.
+The script initially fails because `broom` has been removed from the project library, so R can no longer find the package it needs.
+
+The correct function to use is:
+
+```r
+renv::restore()
+```
+
+This tells `renv` to compare the packages installed in your project with those recorded in `renv.lock`. Because `broom` is recorded in the lockfile but is no longer installed, `renv` identifies the missing package and reinstalls the recorded version.
+
+After restoring the environment, `sleep_analysis_final.R` should run successfully again.
+
+**Why does `restore()` work, but `snapshot()` does not?**
+
+The two functions serve different purposes:
+
+- **`renv::snapshot()`** records the current state of your project's package dependencies in `renv.lock`.
+- **`renv::restore()`** uses the lockfile to recreate the recorded package environment.
+
+In this exercise, the lockfile already describes a working environment. We want to **recover that environment**, not record its current, incomplete state.
+
+Running `snapshot()` would not reinstall `broom`. Depending on how dependencies are detected, it could also update the lockfile to reflect the changed environment.
+
+**Key takeaway:** Use `snapshot()` to record a working environment and `restore()` to recover it when packages are missing or have changed.
 
 :::::::::::::::::::::::::::::::::
 
