@@ -22,7 +22,7 @@ exercises: 60
 
 ## Running someone else's script
 
-A colleague emails you an R script called `sleep_analysis.R` and asks you to reproduce their results while they are away.
+A colleague emails you an R script called [sleep_analysis.R](files/02-environments/sleep_analysis.R) and asks you to reproduce their results while they are away.
 
 Before running anything, create an R project to organise your work.
 
@@ -429,7 +429,7 @@ Use `renv::restore()` when:
 You receive an email from your colleague.
 Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
-This time, your colleague sent you two files: `sleep_analysis.R` and `DESCRIPTION`.
+This time, your colleague sent you two files: [sleep_analysis_final.R](files/02-environments/sleep_analysis_final.R) and [DESCRIPTION](files/02-environments/DESCRIPTION).
 
 In their message, your colleague explains that you should use the `DESCRIPTION` file to create the correct R environment for running the analysis.
 
