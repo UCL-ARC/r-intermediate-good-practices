@@ -6,15 +6,15 @@ exercises: 15
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What can you learn about a codebase just by "sniffing" for code smells before reading it in detail?
+- How can you recognise potential problems in a script before fully understanding what it does?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain why sniffing the code is an important first step when working with a new codebase 
-- Recognise common smells such as long functions, duplicated code, hardcoded paths, magic numbers, commented‑out code, and lack of tests.
-- Explain how these smells relate to correctness, clarity, and reproducibility.
+- Explain what code smells are and why identifying them is useful when exploring unfamiliar code.
+- Explain how code smells can affect readability, maintainability, correctness, and reproducibility.
+- Identify code smells in R scripts and be familiar with better approaches.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
