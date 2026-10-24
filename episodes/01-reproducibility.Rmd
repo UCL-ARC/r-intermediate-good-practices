@@ -51,6 +51,9 @@ These are some of the most common causes:
 
 - **Missing packages:** The script may rely on packages that are not installed.
 - **Incorrect file paths:** The script may use file paths that only exist on your colleague's computer.
+- **Operating-system differences:** An operating system, such as Windows, macOS or Linux, is the main software that manages your computer and runs programs such as R.
+  For example, Linux usually treats `Small-01.csv` and `small-01.csv` as different filenames, while Windows usually treats them as the same.
+  We explore this example [below](#how-can-the-operating-system-matter).
 - **Documentation missing or unclear:** If the script does not explain required inputs, expected file locations, or setup steps, you may not know how to run it correctly.
 - **Missing input:** The script may expect other data files or inputs that were not shared with you.
 
@@ -59,6 +62,37 @@ This is actually a **replicability** issue rather than a **reproducibility** iss
 We will cover that distinction later.
 
 :::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## How can the operating system matter?
+
+
+An **operating system** is the main software that manages your computer's files, memory and hardware, and allows programs such as R to run.
+**Windows**, **macOS** and **Linux** are examples of operating systems.
+
+The same R code can behave differently on different operating systems.
+So, your colleague's script might run on their Linux computer but fail on your Windows computer because the two systems handle some tasks differently.
+The reverse can also happen.
+
+
+For example, suppose a file in your working directory is called `Small-01.csv`, but your code uses a lowercase `s`:
+
+``` R
+read.csv("small-01.csv")
+```
+
+On your Windows computer, this code might work because filenames are usually matched regardless of capitalisation.
+
+On your colleague's Linux computer, it would usually fail because `small-01.csv` does not match `Small-01.csv`.
+
+Always match the filename exactly to avoid this problem:
+
+``` R
+read.csv("Small-01.csv")
+```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -102,7 +136,7 @@ These are some of the most common causes:
 - **Uncontrolled randomness:** Many R functions use randomness internally (e.g. `sample()`, bootstrapping, cross-validation).
   If the script does not set a random seed using `set.seed()`, each run can produce different results.
   Different machines may also use different random number generators or parallel backends, increasing variability.
-- **Different compute environments:** In some cases, operating systems or hardware can influence numerical results.
+- **Different computer setups:** Windows, macOS and Linux can use different software to perform calculations, leading to small differences in results even with the same R code and package versions.
 - **Hidden state in the workspace:** If the script is run in an R session that contains objects from previous work, those objects can interfere.
 
 :::::::::::::::::::::::::::::::::
