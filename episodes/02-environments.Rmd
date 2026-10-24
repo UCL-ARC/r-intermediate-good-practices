@@ -42,8 +42,8 @@ Double‑clicking this file launches RStudio, sets the working directory, and re
 
 ### Save the script
 
-Create a new R script called `sleep_analysis.R` inside the `sleep` folder.
-Paste in the code your colleague sent you and save the file:
+Download [sleep_analysis.R](files/02-environments/sleep_analysis.R) and save it in the `sleep` folder.
+Open it in RStudio to view the code your colleague sent you:
 
 ``` R
 library(obscurepackage)
@@ -436,11 +436,8 @@ In their message, your colleague explains that you should use the `DESCRIPTION` 
 Continue in the same `sleep` project.
 Download the [DESCRIPTION file](files/02-environments/DESCRIPTION) and save it in `rworkshop/sleep`.
 
-Next, create a new R script called `sleep_analysis_final.R` in the same folder.
-Copy the following code into it and save the file.
-
-Keep your original `sleep_analysis.R` file.
-We will compare the dependencies detected in both scripts later.
+Download [sleep_analysis_final.R](files/02-environments/sleep_analysis_final.R) and save it in the same folder.
+Its contents are shown below.
 
 ``` R
 library(dplyr)
@@ -496,6 +493,8 @@ ggplot(summary_tbl, aes(x = factor(group), y = mean_extra)) +
   theme_minimal(base_size = 14)
 ```
 
+Keep your original `sleep_analysis.R` file.
+We will compare the dependencies detected in both scripts later.
 
 Your workshop folder should now include these files:
 ``` text
