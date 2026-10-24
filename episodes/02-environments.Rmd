@@ -821,10 +821,47 @@ You should see a message indicating that there are no issues.
 Your lockfile now records the dependencies for the final analysis.
 `obscurepackage` is neither installed nor recorded in the lockfile.
 
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Restore an environment using it's lockfile
+
+Now that you have recorded a working environment in your lockfile, try using it to restore a missing package.
+
+Select **Session > Restart R** to unload packages, then remove `broom`:
+
+``` R
+renv::remove("broom")
+```
+
+Run `sleep_analysis_final.R` and examine the error.
+Restore the recorded environment:
+
+``` R
+renv::restore()
+```
+
+Run the script again.
+
+Why should you use `restore()` rather than `snapshot()` here?
+
+:::::::::::::::::::::::: solution
+
+## Show me the solution
+
+The script initially fails because `broom` is missing.
+`renv::restore()` reinstalls the version recorded in `renv.lock`, allowing the script to run again.
+Use `restore()` because the lockfile already describes the environment you want.
+`snapshot()` updates the lockfile; it does not reinstall missing packages.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- A **project environment** tracks the R and package versions used in a project.
-- `renv` creates isolated, project‑specific libraries for reproducible workflows.
-- Reproducibility depends on stable, well‑defined environments.
+- Package versions can affect results, even when code and data stay the same.
+- `renv` creates an isolated package library for each project.
+- `DESCRIPTION` declares required packages, and `renv.lock` records exact versions.
+- Use `renv::snapshot()` to record installed versions and `renv::restore()` to recreate the recorded package environment.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
