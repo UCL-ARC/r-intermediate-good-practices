@@ -1,22 +1,23 @@
-# This template CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to replace its contents
-# with information about your lesson.
-# Remember to update this file periodically, 
-# ensuring that the author list and other fields remain accurate.
-
 cff-version: 1.2.0
-title: FIXME
+title: Good Practices in R
 message: >-
   Please cite this lesson using the information in this file
-  when you refer to it in publications, and/or if you
-  re-use, adapt, or expand on the content in your own
-  training material.
-type: dataset
+  when you refer to it in publications, or reuse, adapt, or
+  expand on its content in your own training material.
 authors:
-  - given-names: FIXME
-    family-names: FIXME
+  - name: Good Practices in R contributors
+    website: https://github.com/UCL-ARC/r-intermediate-good-practices/graphs/contributors
 abstract: >-
-  FIXME Replace this with a short abstract describing the
-  lesson, e.g. its target audience and main intended
-  learning objectives.
+  An intermediate R lesson on writing reproducible and maintainable
+  research software. The current material introduces reproducible
+  workflows and project dependency management with renv. Draft
+  episodes cover testing, code smells, refactoring, documentation,
+  packaging, and reproducibility.
+keywords:
+  - R
+  - reproducibility
+  - research software
+  - good practices
+url: https://github.com/UCL-ARC/r-intermediate-good-practices
+repository-code: https://github.com/UCL-ARC/r-intermediate-good-practices
 license: CC-BY-4.0

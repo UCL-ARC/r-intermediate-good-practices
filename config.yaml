@@ -15,13 +15,13 @@
 carpentry: 'incubator'
 
 # Alt-text description of the lesson.
-carpentry_description: 'Lesson Description' # FIXME
+carpentry_description: 'An intermediate R lesson on reproducible and maintainable code.'
 
 # Overall title for pages.
 title: 'Good Practices in R' 
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: ~ # FIXME: ( ~ means empty, replace with date formatted as above)
+created: ~ # Leave empty until all episodes are merged; replace ~ with a date in YYYY-MM-DD format.
 
 # Comma-separated list of keywords for the lesson
 keywords: 'R, software, good practices' 
@@ -67,19 +67,23 @@ contact: 'ARC.education@ucl.ac.uk'
 
 # Order of episodes in your lesson
 episodes: 
-- 00-introduction-placeholder.Rmd
+- 00-introduction.Rmd
 - 01-reproducibility.Rmd
 - 02-environments.Rmd
 - 03-code_smells.Rmd
 
 # Information for Learners
-learners: 
+learners:
+- setup.md
+- reference.md
 
 # Information for Instructors
-instructors: 
+instructors:
+- instructor-notes.md
 
 # Learner Profiles
-profiles: 
+profiles:
+- learner-profiles.md
 
 # Customisation ---------------------------------------------
 #
