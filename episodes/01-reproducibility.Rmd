@@ -38,7 +38,8 @@ It should be straightforward.
 
 ## Why is the code not running?
 
-You try to run an R script you received from a colleague, but it fails with errors or does not run at all.
+You try to run an R script you received from a colleague.
+But it fails with and error or does not run at all.
 
 Give **three possible reasons**.
 
