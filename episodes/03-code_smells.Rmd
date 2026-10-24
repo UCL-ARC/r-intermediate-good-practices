@@ -1,0 +1,719 @@
+---
+title: "Code smells"
+teaching: 25
+exercises: 15
+---
+
+:::::::::::::::::::::::::::::::::::::: questions
+
+- What can you learn about a codebase just by "sniffing" for code smells before reading it in detail?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain why sniffing the code is an important first step when working with a new codebase 
+- Recognise common smells such as long functions, duplicated code, hardcoded paths, magic numbers, commented‑out code, and lack of tests.
+- Explain how these smells relate to correctness, clarity, and reproducibility.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Sniffing for code smells
+
+We have managed to get our colleague's R workflow running and reproduce the results.
+
+But now that we start reading the code more closely, some parts are difficult to understand.
+
+We want to improve the code, but we don't want to break the workflow.
+
+Before changing anything, let's **sniff out code smells**.
+
+A **code smell** is a warning sign that some part of the code might be difficult to understand, maintain, or change.
+
+Code smells are not necessarily bugs.
+
+A script can run correctly and produce the expected results while still containing code smells.
+
+However, smells can make it harder to:
+
+- Understand what the code does.
+- Find and fix mistakes.
+- Make changes without introducing new problems.
+- Reuse or maintain the analysis in the future.
+
+**We can often spot code smells without understanding the full logic of the code.**
+
+This makes looking for smells a useful **first step** when exploring an unfamiliar codebase.
+
+Let's look at some examples of common code smells.
+
+## Duplicated code
+
+**Duplicated code** occurs when the same or very similar operations appear in multiple places.
+
+This can cause different kinds of problems.
+
+#### Example
+
+**Repeating a data transformation**
+
+```r
+sleep$extra <- sleep$extra * 2
+
+# Later in the script
+sleep$extra <- sleep$extra * 2
+```
+
+The first operation multiplies the values by 2.
+
+The second operation acts on the already modified values, multiplying them by 2 again.
+
+As a result, the original values are **multiplied by 4 instead of 2**.
+
+If the second operation is accidental, the analysis will produce incorrect results, even though the code runs without errors.
+
+**WET code**
+
+Duplicated code is also associated with **WET code**, an informal term sometimes expanded as *Write Everything Twice*.
+
+WET code repeats similar calculations or logic in different places.
+
+For example:
+
+```r
+# WET code
+group1_mean <- mean(sleep$extra[sleep$group == 1])
+group2_mean <- mean(sleep$extra[sleep$group == 2])
+
+group1_sd <- sd(sleep$extra[sleep$group == 1])
+group2_sd <- sd(sleep$extra[sleep$group == 2])
+```
+
+Here, the same calculations are written separately for each group.
+
+#### Why is this a problem?
+
+Repeated operations that modify data can accidentally apply the same transformation more than once.
+
+Imagine we decide to handle missing values using `na.rm = TRUE`.
+
+We would need to update all four calculations.
+
+If we forget one, the groups might be analysed differently, producing inconsistent results.
+
+As the analysis grows, maintaining repeated calculations becomes increasingly difficult.
+
+When the same logic appears in several places, a change must be made consistently everywhere.
+
+#### A better approach
+
+An alternative is the **DRY principle**, which stands for *Don't Repeat Yourself*.
+
+DRY encourages us to avoid unnecessary duplication by expressing shared logic in one place.
+
+For example, we can calculate the same statistics for both groups using `dplyr`:
+
+```r
+# DRY code
+sleep |>
+  dplyr::group_by(group) |>
+  dplyr::summarise(
+    mean_extra = mean(extra),
+    sd_extra = sd(extra),
+    .groups = "drop"
+  )
+```
+
+Here, we define each calculation once.
+
+R then applies those calculations to each group.
+
+If we want to change how the mean is calculated, we only need to update one line.
+
+**How do WET and DRY differ?**
+
+| WET code | DRY code |
+|---|---|
+| Repeats similar calculations | Defines shared calculations once |
+| Changes may be needed in several places | Changes can often be made in one place |
+| Greater risk of inconsistent updates | Lower risk of inconsistent updates |
+| Can become difficult to maintain as the analysis grows | Often easier to maintain and extend |
+
+The goal of DRY is to avoid unnecessary duplication, not to make code shorter at the expense of readability.
+
+#### What to look for
+
+Similar blocks of code repeated with only small changes, such as different variable names or group labels.
+
+## Hardcoded paths
+
+A **hardcoded path** is a file location written directly into the code.
+
+#### Example
+
+```r
+sleep_data <- read.csv(
+  "/home/colleague/research/sleep/data/sleep.csv"
+)
+```
+
+This code assumes that the data file is stored in a specific location on our colleague's computer.
+
+#### Why is this a problem?
+
+The script might work perfectly for our colleague but fail when we run it on another computer.
+
+Even if we have the same data, our files might be stored in a different directory.
+
+This makes the workflow harder to share, reuse, and reproduce.
+
+#### A better approach
+
+Use a path relative to the project directory:
+
+```r
+sleep_data <- read.csv(
+  "data/sleep.csv"
+)
+```
+
+Here, the path refers to a file inside the project's `data` directory.
+
+If we share the complete project and run the code from its root directory, the same path can work on another computer.
+
+**How do they differ?**
+
+| Hardcoded absolute path | Project-relative path |
+|---|---|
+| Refers to a specific location on a computer | Refers to a location within the project |
+| May fail on another computer | More portable when the project structure is preserved |
+
+Tools such as [`rrtools`](https://github.com/benmarwick/rrtools) and [`usethis`](https://usethis.r-lib.org/) can help create projects with a consistent structure, similar to how Cookiecutter templates are used in Python.
+
+Following shared conventions makes it easier for collaborators to find files, understand the workflow and reproduce the analysis.
+
+**What matters most is that the structure is consistent, documented and understood by everyone working on the project.**
+
+#### What to look for
+
+Absolute file paths, personal directories, or file locations that only exist on one computer.
+
+## Magic numbers
+
+A **magic number** is a numerical value used in code without a clear explanation of its meaning.
+
+#### Example
+
+```r
+sleep$category <- ifelse(
+  sleep$extra > 2.5,
+  "high",
+  "low"
+)
+```
+
+Why is the threshold `2.5`?
+
+Does it come from a scientific paper, a previous analysis, or an arbitrary decision?
+
+#### Why is this a problem?
+
+Someone reading the code may not understand why the value was chosen.
+
+If the threshold is used in several places, changing it could also lead to inconsistencies.
+
+#### A better approach
+
+Give the value a meaningful name:
+
+```r
+high_response_threshold <- 2.5
+
+sleep$category <- ifelse(
+  sleep$extra > high_response_threshold,
+  "high",
+  "low"
+)
+```
+
+Now the purpose of the number is easier to understand.
+
+However, a meaningful name does not explain **why** the threshold was chosen. 
+We may still need documentation or a reference to justify it.
+
+#### What to look for
+
+Unexplained numbers used in calculations, conditions, or filtering.
+
+## Commented-out code
+
+**Commented-out code** is code that has been disabled by turning it into a comment.
+
+#### Example
+
+```r
+# sleep$category <- ifelse(sleep$extra > 1, "high", "low")
+# sleep$category <- ifelse(sleep$extra > 2, "high", "low")
+
+sleep$category <- ifelse(sleep$extra > 2.5, "high", "low")
+```
+
+R ignores lines beginning with `#`, so only the **last calculation** runs.
+
+#### Why is this a problem?
+
+Our colleague has left three versions of the same calculation in the script, each using a different threshold.
+
+But which threshold is correct? Why did it change from `1` to `2`, and then to `2.5`?
+
+Without an explanation, we cannot tell whether these changes were intentional or whether the older calculations are still relevant.
+
+Commented-out code can make it difficult to identify which parts of an analysis are current and trustworthy.
+
+#### A better approach
+
+Comments are useful when they explain **why** something is done, rather than preserving old calculations.
+
+For example:
+
+```r
+# Classify responses using the threshold reported in
+# Author et al. (2024), https://doi.org/XX.XXXX/XXXXX
+high_response_threshold <- 2.5
+
+sleep$category <- ifelse(
+  sleep$extra > high_response_threshold,
+  "high",
+  "low"
+)
+```
+
+This comment provides context rather than preserving an unused calculation.
+
+Comments are not code smells themselves. 
+The problem is leaving obsolete or unexplained code in comments.
+
+#### What to look for
+
+Disabled calculations, large blocks of commented-out code, or several alternative versions of the same analysis.
+
+## Lack of modularity
+
+**Lack of modularity** occurs when different tasks are combined into one large block of code or function, rather than organised into smaller, independent parts.
+
+#### Example
+
+For example, our colleague has written a function to analyse the sleep data:
+
+```r
+analyse_sleep <- function(data) {
+
+  # Clean the data
+  data <- data[!is.na(data$extra), ]
+  data$group <- factor(data$group)
+
+  # Calculate summary statistics
+  summary <- aggregate(
+    extra ~ group,
+    data = data,
+    FUN = mean
+  )
+
+  names(summary)[2] <- "mean_extra"
+
+  # Create a plot
+  plot <- ggplot2::ggplot(
+    summary,
+    ggplot2::aes(x = group, y = mean_extra)
+  ) +
+    ggplot2::geom_col() +
+    ggplot2::labs(
+      x = "Treatment group",
+      y = "Mean change in sleep"
+    )
+
+  # Save the results
+  write.csv(
+    summary,
+    "results/sleep_summary.csv",
+    row.names = FALSE
+  )
+
+  ggplot2::ggsave(
+    "results/sleep_plot.png",
+    plot = plot
+  )
+
+  return(summary)
+}
+```
+
+This function performs several different tasks:
+
+- Cleans and prepares the data.
+- Calculates summary statistics.
+- Creates a plot.
+- Saves the results to files.
+
+#### Why is this a problem?
+
+Imagine we only want to change the appearance of the plot.
+
+We would still need to work inside a function that cleans the data, calculates statistics and saves files. 
+Running the function would repeat all these steps, even though we are only interested in the plot.
+
+Combining different tasks in one function makes it harder to understand, test and modify them independently. 
+Changes to one part of the workflow may also affect others.
+
+#### A better approach
+
+**Modular code** is organised into small, self-contained parts, each with a clear purpose.
+
+For example, we could divide our colleague's workflow into separate functions:
+
+```r
+clean_sleep_data()
+summarise_sleep()
+plot_sleep_results()
+save_sleep_results()
+```
+
+Each function would be responsible for a particular task. 
+This would make it easier to understand the workflow, test individual steps and change one part without unnecessarily affecting others.
+
+A long function is not necessarily a problem. 
+What matters is whether its responsibilities are clear and whether its parts are easy to understand, test and change.
+
+#### What to look for
+
+Long functions that perform several unrelated tasks.
+
+## Lack of tests
+
+**Automated tests** check whether code behaves as expected.
+They help us catch mistakes when changing or extending an analysis.
+
+#### Example
+
+R projects using [`testthat`](https://testthat.r-lib.org/) commonly organise their tests as follows:
+
+```text
+project/
+├── R/
+│   └── functions.R
+└── tests/
+    └── testthat/
+        └── test-functions.R
+```
+
+The `tests/testthat/` directory is the standard convention for R packages using `testthat`, although other projects may organise tests differently.
+
+#### Why is this a problem?
+
+Without tests, we have less confidence that the code works correctly or that changes will preserve its behaviour.
+
+#### A better approach
+
+Use automated tests to check expected results and identify code that has not been tested.
+
+**Test coverage** measures how much of our code is executed when automated tests run.
+
+In R, the [`covr`](https://covr.r-lib.org/) package can help identify which parts of the code are covered by tests and which are not.
+
+However, **high test coverage does not guarantee correctness**.
+Tests also need to check that the code produces the expected results.
+
+The absence of tests does not mean the code is incorrect, but it makes changes riskier.
+
+#### What to look for
+
+Missing test files, functions without tests, assumptions about the data that are never checked, or low test coverage.
+
+## Lack of function documentation
+
+**Lack of function documentation** is a code smell. 
+A function may work correctly but still be difficult to use if its purpose, inputs and outputs are unclear.
+
+#### Example
+
+```r
+calculate_response <- function(data, threshold = 2.5) {
+  mean(data$extra > threshold, na.rm = TRUE)
+}
+```
+
+#### Why is this a problem?
+
+What does the returned value represent?
+What should `data` contain?
+
+#### A better approach
+
+In R, functions can be documented using **roxygen2**, which uses comments beginning with `#'`:
+
+```r
+#' Calculate the proportion of high sleep responses
+#'
+#' @param data A data frame containing an `extra` column.
+#' @param threshold The value above which a response is high.
+#'
+#' @return The proportion of non-missing observations
+#'   exceeding the threshold.
+calculate_response <- function(data, threshold = 2.5) {
+  mean(data$extra > threshold, na.rm = TRUE)
+}
+```
+
+The `roxygen2` package can use them to generate R help files.
+
+#### What to look for
+
+Functions whose purpose, expected inputs or returned values are unclear or undocumented.
+
+## Unexplained code
+
+Sometimes code performs an unusual operation without explaining why.
+
+#### Example
+
+```r
+sleep <- sleep[sleep$ID != 12, ]
+```
+
+#### Why is this a problem?
+
+Why was participant 12 excluded?
+Is this intentional or a mistake?
+
+#### A better approach
+
+A useful comment can explain the decision:
+
+```r
+# Exclude participant 12 because their measurements
+# were affected by a known equipment failure.
+sleep <- sleep[sleep$ID != 12, ]
+```
+
+This comment provides information that cannot be understood from the code alone.
+
+#### What to look for
+
+Unexpected exclusions, unusual calculations or important decisions without an explanation.
+
+## Overcommenting
+
+**Overcommenting** occurs when comments repeat obvious operations rather than adding useful information.
+
+#### Example
+
+```r
+# Get the extra column
+extra <- sleep$extra
+
+# Remove missing values
+extra <- extra[!is.na(extra)]
+
+# Calculate the mean
+mean_extra <- mean(extra)
+
+# Print the result
+print(mean_extra)
+```
+
+#### Why is this a problem?
+
+These comments make the code longer without helping us understand it.
+
+Excessive comments also require maintenance.
+If the code changes but the comments do not, they may become misleading.
+
+#### A better approach
+
+**Rule of thumb:** Code should explain *what* happens; comments should explain *why*, when the reason is not obvious.
+
+#### What to look for
+
+Unnecessary line-by-line comments, comments that simply repeat the code, or outdated explanations.
+
+## Exercises: Can you smell something?
+
+Our colleague has shared some additional R code from different research projects.
+
+Look at each example and identify the code smells.
+
+**You do not need to run, understand every calculation, or fix the code.**
+
+There may be more than one smell in each example.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise 1: Survey responses 
+
+```r
+# Read in survey results
+survey <- read.csv("data/survey.csv")
+
+# Previous approach
+# get selection 
+# survey$age_group <- ifelse(survey$age > 30, "older", "younger")
+
+# get selection 
+survey$age_group <- ifelse(survey$age > 35, "older", "younger")
+
+# Calculate the mean score for female respondents
+female_mean <- mean(survey$score[survey$gender == "female"])
+
+# Calculate the mean score for male respondents
+male_mean <- mean(survey$score[survey$gender == "male"])
+```
+
+**Which code smells can you identify?**
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Magic number:** The age threshold `35` is unexplained.
+- **Commented-out code:** An earlier age classification remains in the script.
+- **Duplicated code:** The mean score is calculated separately for each group.
+- **Overcommenting:** The comments above the mean calculations simply repeat what the code already says.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise 2: Temperature analysis 
+
+```r
+analyse_temperature <- function() {
+
+  temperature <- read.csv(
+    "C:/Users/researcher/Documents/weather/temperature.csv"
+  )
+
+  temperature <- na.omit(temperature)
+
+  average <- mean(temperature$value)
+
+  hist(temperature$value)
+
+  write.csv(
+    data.frame(average = average),
+    "C:/Users/researcher/Desktop/average.csv"
+  )
+
+  return(average)
+}
+```
+
+**Which code smells can you identify?**
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Hardcoded paths:** The input and output locations are specific to the researcher's computer.
+- **Lack of modularity:** The function loads data, removes missing values, calculates a statistic, creates a plot and saves results.
+- **Lack of function documentation:** The function does not explain what temperature measurements it expects, their units or what the returned average represents.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise 3: Laboratory measurements 
+
+```r
+control <- measurements[measurements$treatment == "control", ]
+treated <- measurements[measurements$treatment == "treated", ]
+
+control$adjusted <- control$value * correction_factor
+treated$adjusted <- treated$value * correction_factor
+
+# Remove sample 42
+treated <- treated[treated$sample_id != 42, ]
+
+# Calculate the mean
+treated_mean <- mean(treated$adjusted)
+```
+
+**Which code smells can you identify?**
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Duplicated code:** The same adjustment is performed separately for the control and treated groups.
+- **Unexplained code:** Sample `42` is excluded without explaining why. The comment describes the operation but not the reason.
+- **Overcommenting:** The comment `# Calculate the mean` adds no useful information.
+
+Notice that the comment above the exclusion does not resolve the lack of explanation. A useful comment would explain **why** the sample was excluded.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exercise 4: A new colleague's script 
+
+```r
+process_data <- function(data) {
+
+  # Previous filter
+  # data <- data[data$quality > minimum_quality, ]
+
+  data <- data[data$quality >= minimum_quality, ]
+
+  # Get the adjusted values
+  data$adjusted <- data$value * adjustment_factor
+
+  # Remove one observation
+  data <- data[data$sample_id != "S018", ]
+
+  summary <- aggregate(adjusted ~ site, data, mean)
+
+  barplot(
+    summary$adjusted,
+    names.arg = summary$site
+  )
+
+  write.csv(
+    summary,
+    "/home/researcher/project/results/summary.csv"
+  )
+
+  return(summary)
+}
+```
+
+**Which code smells can you identify?**
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Commented-out code:** An earlier filtering operation remains in the function.
+- **Overcommenting:** Comments such as `# Get the adjusted values` simply describe what the code does.
+- **Unexplained code:** Observation `"S018"` is excluded without a reason.
+- **Hardcoded path:** The output location is specific to the researcher's computer.
+- **Lack of modularity:** The function filters and transforms data, calculates statistics, creates a plot and saves results.
+- **Lack of function documentation:** The function does not describe its expected input, purpose or returned result.
+
+The variables `minimum_quality` and `adjustment_factor` are also not defined within the function. They may exist elsewhere, but this makes the function dependent on its surrounding environment.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: keypoints
+
+- Code smells can be spotted without understanding the logic of the code.
+- Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
+- A smell warrants inspection as they often point to places where the code is most likely to break in the future.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
