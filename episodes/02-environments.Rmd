@@ -770,7 +770,7 @@ Use the help system to find out what snapshot types are available and how they d
 ?renv::snapshot
 ```
 
-- What is the default snapshot type when calling `renv::snapshot()`?
+- What is the default snapshot type, and why does our project use a different type?
 - How do implicit and explicit snapshots differ?
 - Why is an explicit snapshot the better choice in this situation?
 
@@ -778,7 +778,8 @@ Use the help system to find out what snapshot types are available and how they d
 
 ## Show me the solution
 
-The default snapshot type is implicit.
+The default is **implicit**, but `renv::snapshot()` uses the project's saved setting.
+Our project uses **explicit** because you selected that mode when initialising the new environment.
 
 - An **implicit snapshot** records installed packages detected by `renv::dependencies()` in project files and their dependencies.
 - An **explicit snapshot** records installed packages declared in the `Imports` or `Depends` fields of `DESCRIPTION` and their dependencies.
@@ -794,15 +795,29 @@ Since our colleague has provided a `DESCRIPTION` file listing the packages neede
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Earlier, you used `renv::snapshot()` without specifying a snapshot type.
+Check the project's snapshot type:
 
-This time, use:
+``` R
+renv::settings$snapshot.type()
+```
+
+The result should be `"explicit"`. 
+Take a snapshot using this setting:
+
+``` R
+renv::snapshot()
+```
+
+You can also specify the type for an individual snapshot:
 
 ``` R
 renv::snapshot(type = "explicit")
 ```
 
-After taking the explicit snapshot, confirm that the project is now consistent.
+Both commands use explicit mode here. 
+Supplying `type` overrides the saved setting for that call.
+
+Check that the project is now consistent:
 
 ``` R
 renv::status()
