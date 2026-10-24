@@ -2,53 +2,49 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
+Please complete the following setup before attending the workshop.
 
-## Data Sets
+### Software
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+Install the following software on your computer:
 
-## Software Setup
+- **R:** Install [R](https://cran.r-project.org/) (version 4.1.0 or later).
+- **RStudio:** Install [RStudio Desktop](https://posit.co/download/rstudio-desktop/).
 
-::::::::::::::::::::::::::::::::::::::: discussion
+Install R before installing RStudio. 
+Both are available for Windows, macOS, and Linux.
 
-### Details
+#### Check your installation
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+Open RStudio and run the following command in the Console:
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+``` R
+R.version.string
+```
 
-:::::::::::::::: spoiler
+You should see the version of R installed on your computer.
 
-### Windows
+### Equipment and access
 
-Use PuTTY
+- **Laptop:** Bring your own laptop running Windows, macOS, or Linux, with R and RStudio installed.
+- **Internet access:** You will need an internet connection during the workshop.
+- **Installation permissions:** Check that you can install R packages by installing `ggplot2` as described below.
 
-::::::::::::::::::::::::
+#### Test package installation
 
-:::::::::::::::: spoiler
+To check that you can install and load an R package, run these commands one at a time in the RStudio Console:
 
-### MacOS
+``` R
+install.packages("ggplot2")
+library(ggplot2)
+```
 
-Use Terminal.app
+Installation prints progress messages, which vary by system.
+Loading the package usually produces no output; your Console should look like this:
 
-::::::::::::::::::::::::
+``` text
+> library(ggplot2)
+>
+```
 
-
-:::::::::::::::: spoiler
-
-### Linux
-
-Use Terminal
-
-::::::::::::::::::::::::
-
+If the prompt returns without an error, you're all set!
