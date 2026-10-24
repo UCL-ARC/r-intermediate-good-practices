@@ -1,0 +1,1106 @@
+---
+title: "Packaging"
+teaching: 5
+exercises: 5
+---
+
+:::::::::::::::::::::::::::::::::::::: questions
+- Why write an R package? 
+- How do I create a package?
+- Where can I publish my packages and what is required?
+- How do package version numbers signal change?
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+- Create a minimal package structure from scratch using `RStudio` or `usethis::create_package()`.
+- Add reusable functions with optional arguments in `.R` files inside the `R/` directory.
+- Declare package dependencies and load package functions during development.
+- Document functions with `roxygen2` and generate their help pages.
+- Recognise optional folders and files you might encounter in an R source package.
+- Understand how version numbers communicate package lifecycle stages.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+## R packages
+
+We've used several R packages throughout the previous episodes, including `renv`, `ggplot2`, `dplyr`, and `remotes`.
+Each of these packages provides functionality beyond what's available in base R.
+
+For example, to create plots using `ggplot2`, you can install and load the package:
+
+``` R
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+You now have access to functions for creating plots, such as `ggplot()` and `geom_point()`.
+
+When you install a package using `install.packages()`, R typically downloads it from [CRAN (the Comprehensive R Archive Network)](https://cran.r-project.org/), the default package repository in most R setups.
+
+CRAN hosts thousands of packages that have been checked against a set of requirements before being made available for others to install.
+
+When you install a package from CRAN, R will also install any required dependencies that aren't already available on your computer.
+
+Once a package is installed, you can load it into your current R session using `library()`.
+
+You only need to install a package once for a given R library, but you need to load it again in each new R session where you want to use it.
+
+### What is an R package?
+
+An R package is a collection of code, documentation, and sometimes data, organised in a standard way that R understands.
+This structure makes packages easy to install, load, reuse, and share.
+
+An excellent resource for learning about R package development is [*R Packages*, 2nd edition](https://r-pkgs.org/), a freely available online book by Hadley Wickham and Jennifer Bryan.
+It covers everything from organising functions and managing dependencies to writing documentation, testing code, and preparing packages for publication.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Why create an R package?
+
+Visit the [Introduction](https://r-pkgs.org/introduction.html) chapter of *R Packages*, 2nd edition, and read the **Introduction** and **Philosophy** sections.
+
+As you read, consider the following questions:
+
+- Why might creating an R package be useful, even if you never share it with others?
+- How do the standard conventions of R packages save time and make package development easier?
+
+::::::::::::::: solution
+
+## Show me the solution
+
+**Packages aren't just for sharing code:** Creating an R package allows us to bring related functions together in one place, rather than keeping them scattered across different scripts and projects.
+This makes our code easier to find, update, and reuse without repeatedly copying and pasting functions.
+Even if we never share our package with anyone else, organising our code in this way can save time and make our work easier to maintain.
+If we do decide to share it, others can install and use our functions just like any other R package.
+
+**Following conventions saves time and effort:** R packages follow a standard structure, with R code stored in `R/`, tests in `tests/`, and data in `data/`.
+These conventions mean we don't need to decide how to organise every new project from scratch.
+They also allow us to use tools designed specifically for package development.
+For example, `usethis` helps create and configure package files, while `devtools` provides functions for loading, testing, and checking packages.
+By automating these tasks, we can spend less time worrying about the details of package development and more time focusing on what our package should do.
+
+:::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::
+
+### What does an R package look like?
+
+We've seen why creating an R package can be useful.
+But what does a package actually look like behind the scenes?
+
+Let's explore the structure of two packages we've already encountered.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### What do R packages have in common?
+
+Explore the GitHub repositories of two packages that came up in previous episodes:
+
+- [ggplot2](https://github.com/tidyverse/ggplot2): for creating plots.
+- [dplyr](https://github.com/tidyverse/dplyr): for manipulating data.
+
+Take a few minutes to explore the files and folders in both repositories.
+You don't need to understand the code itself; we're interested in how the packages are organised.
+
+- What files and folders do both packages have in common?
+- Where are the R functions, tests, and documentation stored?
+- What differences can you spot between the two repositories?
+- Why do you think packages might need different files or folders?
+
+::::::::::::::: solution
+
+## Show me the solution
+
+**Files and folders in common**
+
+Both packages share several files and folders, including `R/`, `DESCRIPTION`, `NAMESPACE`, `man/`, `tests/`, and `README.md`.
+
+**Where are the different components stored?**
+
+- `R/` contains the R functions.
+- `tests/testthat/` contains automated tests.
+- `man/` contains documentation for functions.
+- `README.md` provides an overview of the package, including what it does, how to install it, and examples of how to use it.
+  It serves as an introduction to the package and a starting point for its documentation.
+
+**Differences between packages**
+
+Although both packages follow a common structure, they also have differences.
+
+For example, `ggplot2` includes an `icons/` folder, which you won't find in `dplyr`.
+
+Packages share a standard structure, but they can also include additional files and folders depending on their purpose and development needs.
+
+For example, `ggplot2` is a data visualisation package, so its `icons/` folder contains graphical assets that help illustrate its features.
+These are useful for `ggplot2` but are not part of the standard R package structure.
+
+:::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::
+
+Despite serving different purposes, `ggplot2` and `dplyr` follow a recognisable structure.
+This is what allows R to install and load packages in a consistent way.
+
+## Creating an R package using RStudio
+
+Now that we've explored how existing R packages are organised, let's create one of our own.
+
+Fortunately, we don't need to create all the files and folders ourselves.
+
+RStudio can generate the basic package structure automatically.
+
+### Creating a folder for our packages
+
+Before creating our first package, let's create a folder to keep our R packages together.
+
+We'll call this folder `rpackages` and use it to store the two packages we'll create in this lesson.
+
+1. Open the **Files** pane in RStudio.
+2. Navigate to your home directory, which is your personal folder on your computer (for example, `C:\Users\YourName` on Windows or `/home/yourname` on Linux).
+3. Click **New Folder**.
+4. Enter `rpackages` as the folder name and click **OK**.
+
+You should now have a folder called `rpackages` in your home directory.
+
+We'll create our first package, `rstudiopackage`, inside this folder using the RStudio menus.
+
+Later, we'll create a second package, `sleep`, using `usethis` and develop it using code from our earlier sleep analysis.
+
+This will allow us to compare the two approaches without overwriting either package.
+
+### Creating a package using the RStudio menus
+
+To create a package using RStudio:
+
+1. Go to **File > New Project...**.
+2. Select **New Directory**.
+3. Select **R Package**.
+4. Enter `rstudiopackage` as the package name.
+5. Under **Create project as subdirectory of**, click **Browse** and select the `rpackages` folder you just created.
+6. You'll also see some optional settings:
+   - **Create a git repository:** Initialises a local Git repository so you can track changes to your package using version control.
+     This doesn't automatically create a repository on GitHub.
+   - **Use renv with this project:** Sets up `renv` to manage package versions used during development, helping make your development environment reproducible.
+     You might recognise `renv` from the reproducibility episode.
+7. For this exercise, leave both options unchecked.
+8. Click **Create Project**.
+
+RStudio will create a directory called `rstudiopackage` inside `rpackages` and open it as a new project.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Explore your new package
+
+RStudio has created a new project for your package.
+
+You might also notice that an example R script has opened automatically, containing a function called `hello()`.
+
+Take a few minutes to explore what RStudio has created.
+
+- Look at the **Files** pane in RStudio.
+  What files and folders have been created?
+- Open the `R/` folder and find the example `hello.R` script.
+  What does the `hello()` function do?
+- Open the `DESCRIPTION` file.
+  What information does it contain?
+  Can you identify any placeholder values?
+
+::::::::::::::: solution
+
+## Show me the solution
+
+**Package structure**
+
+Your package should contain a structure similar to this:
+
+```text
+rpackages/
+└── rstudiopackage/
+    ├── .Rbuildignore
+    ├── .gitignore
+    ├── DESCRIPTION
+    ├── NAMESPACE
+    ├── R/
+    │   └── hello.R
+    └── rstudiopackage.Rproj
+```
+
+The exact files may vary depending on your RStudio version and the options you selected when creating the project.
+
+Some hidden files, such as `.gitignore`, might not be visible in the Files pane.
+
+**The `hello.R` script**
+
+Inside `R/`, you'll find an example function:
+
+``` R
+# Hello, world!
+#
+# This is an example function named 'hello' 
+# which prints 'Hello, world!'.
+#
+# You can learn more about package authoring with RStudio at:
+#
+#   https://r-pkgs.org
+#
+# Some useful keyboard shortcuts for package authoring:
+#
+#   Install Package:           'Ctrl + Shift + B'
+#   Check Package:             'Ctrl + Shift + E'
+#   Test Package:              'Ctrl + Shift + T'
+
+hello <- function() {
+  print("Hello, world!")
+}
+```
+
+The `hello()` function simply prints `"Hello, world!"` when called.
+
+RStudio includes it as an example of how functions are organised inside an R package.
+
+**The `DESCRIPTION` file**
+
+The `DESCRIPTION` file contains information about your package, including its name, version, authors, description, and licence.
+
+RStudio generates this file from a template, so some fields contain example values or placeholders.
+
+Your file will look something like this:
+
+```text
+Package: rstudiopackage
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Jane", "Doe",
+      email = "jane@example.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: More about what it does (maybe more than one line).
+    Continuation lines should be indented.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+```
+
+For example, `Title` and `Description` contain instructions rather than meaningful descriptions of your package.
+
+The author information also contains example details that need to be replaced.
+
+These placeholders help us understand what information is expected, but we'll need to update them as we develop the package.
+
+:::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::
+
+## Creating an R package using `usethis`
+
+RStudio uses [`usethis`](https://usethis.r-lib.org/) behind the scenes when creating a new R package.
+
+RStudio provides a convenient graphical interface for creating packages, but `usethis` can also be used directly from the R console to perform package development tasks.
+
+Using `usethis` directly gives us access to a wider range of functions than those available through the RStudio interface.
+These functions help automate many additional package development tasks.
+
+For example, it can:
+
+- **Set up testing infrastructure** with `use_testthat()`, creating the necessary files and folders and updating `DESCRIPTION`.
+- **Add package dependencies** with `use_package()`, updating `DESCRIPTION` automatically.
+- **Create a README** with `use_readme_md()`, providing a starting point for documenting the package.
+- **Set up longer tutorials** with `use_vignette()`, creating a vignette template and updating the necessary configuration.
+- **Configure automated checks on GitHub** with `use_github_action()`, creating a GitHub Actions workflow.
+
+These tasks can be completed manually, but `usethis` reduces the amount of setup required and helps ensure that the necessary files and configuration are in place.
+
+Let's create a second package using `usethis` and compare it with the one we created using RStudio.
+
+We'll call this package `sleep` and save it inside the same `rpackages` folder.
+We'll develop it using code from our earlier sleep analysis.
+
+### Creating a package with `usethis::create_package()`
+
+First, install `usethis` if you haven't already:
+
+``` R
+install.packages("usethis")
+```
+
+Before creating the package, we need to make sure that our working directory is set to the `rpackages` folder we created earlier.
+
+You can check your current working directory using:
+
+``` R
+getwd()
+```
+
+If necessary, change your working directory using the RStudio menu:
+
+1. Go to **Session > Set Working Directory > Choose Directory...**.
+2. Navigate to the `rpackages` folder.
+3. Click **Open** or **Choose**, depending on your operating system.
+
+Check that your working directory is now `rpackages`:
+
+``` R
+getwd()
+```
+
+For example, on Windows you might see:
+
+```text
+[1] "C:/Users/YourName/rpackages"
+```
+
+Your full path will differ, but it should end in `rpackages`.
+
+Once you're in the correct directory, run:
+
+``` R
+usethis::create_package("sleep")
+```
+
+This creates a new directory called `sleep` inside `rpackages`, containing the basic structure of an R package.
+
+Depending on your RStudio settings, the new package may also open automatically as an RStudio project.
+
+Because we're using a different package name, our original `rstudiopackage` directory remains unchanged.
+
+We should now have two packages stored inside `rpackages`:
+
+```text
+rpackages/
+├── rstudiopackage/
+└── sleep/
+```
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Compare the two packages
+
+We now have two packages: `rstudiopackage`, created using RStudio, and `sleep`, created using `usethis`.
+
+Take a few minutes to explore their files and folders.
+
+- What files and folders do both packages have in common?
+- Open the `R/` directory in each package.
+  Does either contain an example function?
+- Open the `DESCRIPTION` file in each package.
+  What information does it contain?
+  Can you identify any placeholder values?
+- What differences can you spot between the two packages?
+
+::::::::::::::: solution
+
+## Show me the solution
+
+**Package structure**
+
+After running `usethis::create_package()`, your second package should contain a structure similar to this:
+
+```text
+rpackages/
+├── rstudiopackage/
+│   ├── .Rbuildignore
+│   ├── .gitignore
+│   ├── DESCRIPTION
+│   ├── NAMESPACE
+│   ├── R/
+│   │   └── hello.R
+│   └── rstudiopackage.Rproj
+└── sleep/
+    ├── .Rbuildignore
+    ├── .gitignore
+    ├── .Rhistory
+    ├── DESCRIPTION
+    ├── NAMESPACE
+    ├── R/
+    └── sleep.Rproj
+```
+
+The exact files and folders may vary depending on the versions of RStudio and `usethis` you're using.
+
+Both RStudio and `usethis` create the basic structure of an R package, including `DESCRIPTION`, `NAMESPACE`, and `R/`.
+
+One difference is that RStudio typically creates an example `hello.R` script inside `R/`, whereas `usethis::create_package()` does not create an example function by default.
+
+The `R/` directory in `sleep` will therefore initially be empty, ready for us to add our own functions.
+
+Some files beginning with a dot (`.`), such as `.gitignore`, might not be visible in the Files pane.
+
+**The `DESCRIPTION` file**
+
+Both methods create a `DESCRIPTION` file containing information about the package, including its name, version, authors, description, and licence.
+
+After running `usethis::create_package()`, your file should look similar to this:
+
+```text
+Package: sleep
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R:
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+```
+
+You may notice some differences compared with the template created using the RStudio menus.
+
+For example, the initial version number is typically `0.0.0.9000` rather than `0.1.0`.
+
+Both templates also contain placeholder information that we'll need to update as we develop our packages.
+
+:::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::
+
+## Essential components of an R package
+
+We've now created two R packages and explored their structure.
+
+Let's take a closer look at three important components: `DESCRIPTION`, `R/`, and `NAMESPACE`.
+
+### The `DESCRIPTION` file
+
+Every R package needs a `DESCRIPTION` file.
+
+It contains information about the package, including its name, version, authors, description, licence, and dependencies.
+
+We've already seen that RStudio and `usethis` create this file automatically, with placeholder information that we can update later.
+
+### The `R/` directory
+
+The `R/` directory contains the R functions that make up our package.
+
+Functions are written in `.R` scripts, just as in a regular R project.
+
+We can organise related functions in the same script or across several scripts.
+The filenames don't need to match the function names.
+
+Packages without R code don't need an `R/` directory.
+
+### The `NAMESPACE` file
+
+The `NAMESPACE` file controls which functions are available to users of our package and how functions from other packages are imported.
+
+Functions made available to users are called **exported functions**.
+
+We usually don't edit `NAMESPACE` manually.
+Instead, tools such as `roxygen2` generate and update it for us.
+
+### Other files and folders
+
+Packages can also contain additional components:
+
+- `man/`: Documentation for package functions.
+- `tests/`: Automated tests.
+- `README.md`: An overview of the package and how to use it.
+- `vignettes/`: Longer tutorials and examples.
+- `data/`: Datasets included with the package.
+
+Not every package needs all these components.
+
+For more information, see the [Package structure](https://r-pkgs.org/structure.html) chapter of *R Packages*, 2nd edition.
+
+## Adding functions to our package
+
+In our earlier sleep analysis, we used the built-in `sleep` dataset to calculate summary statistics for each drug group and plot the results.
+Let's organise those steps into three functions in our `sleep` package:
+
+- `load_sleep_data()`: returns the built-in sleep dataset.
+- `summarise_data()`: calculates summary statistics for a chosen measurement and grouping column.
+- `plot_summary()`: plots group means and standard errors, with options for the bar colour and title.
+
+Open the `sleep` package project in RStudio by opening `sleep.Rproj` inside `rpackages/sleep/`.
+
+We'll keep each function in its own script and add documentation above it using [`roxygen2`](https://roxygen2.r-lib.org/articles/rd.html) comments, which begin with `#'`.
+These comments describe what a function does, its inputs (`@param`), its output (`@returns`), and examples of how to use it (`@examples`).
+
+### Loading the sleep data
+
+Run this command in the R console to create and open `R/load_sleep_data.R`:
+
+``` R
+usethis::use_r("load_sleep_data")
+```
+
+Add the following code and save the file:
+
+``` R
+#' Load the built-in sleep data
+#'
+#' Get the data used in our sleep analysis.
+#'
+#' @returns A data frame with columns extra (extra sleep in hours),
+#'   group (drug group), and ID (participant).
+#' @seealso [Official sleep dataset documentation](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html)
+#' @examples
+#' load_sleep_data()
+load_sleep_data <- function() {
+  datasets::sleep
+}
+```
+
+We use `datasets::sleep` to refer to the built-in dataset and distinguish it from our package named `sleep`.
+This function has no inputs, so it doesn't need an `@param` tag.
+
+### Summarising data by group
+
+Create and open `R/summarise_data.R`:
+
+``` R
+usethis::use_r("summarise_data")
+```
+
+Add the following code and save the file:
+
+``` R
+#' Summarise a numeric measurement by group
+#'
+#' Calculate the mean, standard deviation, sample size, and standard error
+#' for each group.
+#'
+#' @param data A data frame.
+#' @param value_col Name of the numeric measurement column, as a string.
+#' @param group_col Name of the grouping column, as a string.
+#' @returns A table with one row per group and columns group, mean,
+#'   sd, n (number of observations), and se.
+#' @examples
+#' summarise_data(datasets::sleep)
+#' summarise_data(datasets::iris, value_col = "Sepal.Length", group_col = "Species")
+summarise_data <- function(data, value_col = "extra", group_col = "group") {
+  selected_data <- data.frame(
+    group = data[[group_col]],
+    value = data[[value_col]]
+  )
+  selected_data |>
+    dplyr::summarise(
+      mean = mean(value),
+      sd = sd(value),
+      n = dplyr::n(),
+      se = sd / sqrt(n),
+      .by = group
+    )
+}
+
+```
+
+This function packages up the summary calculation from our earlier analysis, using the data we pass to it.
+The column-name arguments let us choose what to summarise and how to group it.
+For example, `data[[value_col]]` selects the column named by `value_col`.
+The defaults match the sleep dataset; `.by = group` calculates separate statistics for each group.
+The output always uses the same column names, so it can be passed directly to `plot_summary()`.
+
+### Plotting the summaries
+
+Create and open `R/plot_summary.R`:
+
+``` R
+usethis::use_r("plot_summary")
+```
+
+Add the following code and save the file:
+
+``` R
+#' Plot group means and standard errors
+#'
+#' Show means with error bars extending one standard error above and below.
+#'
+#' @param summary_data A table containing group, mean, and se.
+#' @param fill The bar colour.
+#' @param title The plot title, or NULL to omit it.
+#' @returns A ggplot object.
+#' @examples
+#' summary_data <- summarise_data(load_sleep_data())
+#' plot_summary(summary_data)
+plot_summary <- function(summary_data, fill = "steelblue",
+                         title = "Group means") {
+  ggplot2::ggplot(
+    summary_data,
+    ggplot2::aes(x = factor(group), y = mean)
+  ) +
+    ggplot2::geom_col(fill = fill) +
+    ggplot2::geom_errorbar(
+      ggplot2::aes(
+        ymin = mean - se,
+        ymax = mean + se
+      ),
+      width = 0.2
+    ) +
+    ggplot2::labs(title = title, x = "Group", y = "Mean") +
+    ggplot2::theme_minimal()
+}
+```
+
+The function expects columns named `group`, `mean`, and `se`, matching the output of `summarise_data()`.
+Other summary tables can also be used if they contain these columns.
+
+Save all three scripts, then open the `R/` folder in RStudio's **Files** pane.
+You should see `load_sleep_data.R`, `summarise_data.R`, and `plot_summary.R` inside your package.
+`usethis::use_r()` is a convenient way to create and open them, but you can also create `.R` scripts manually and save them in this folder.
+
+### Declaring dependencies and trying the functions
+
+Declare the packages used by our functions in `DESCRIPTION`:
+
+``` R
+usethis::use_package("datasets")
+usethis::use_package("dplyr", min_version = "1.1.0")
+usethis::use_package("ggplot2", min_version = "2.2.0")
+usethis::use_package("R", type = "Depends", min_version = "4.1.0")
+```
+
+These commands record package dependencies in `Imports` and the R requirement in `Depends` in `DESCRIPTION`.
+The minimum versions ensure the features we use are available; `>=` means "this version or newer".
+
+Open `DESCRIPTION` in the **Files** pane.
+It should now include:
+
+```text
+Depends:
+    R (>= 4.1.0)
+Imports:
+    datasets,
+    dplyr (>= 1.1.0),
+    ggplot2 (>= 2.2.0)
+```
+
+We can use `devtools::load_all()` to load our package functions during development without installing the package.
+If you haven't already installed `devtools`, run `install.packages("devtools")` in the R console first.
+
+First, load the package functions:
+
+``` R
+devtools::load_all()
+```
+
+Load the sleep dataset:
+
+``` R
+data <- load_sleep_data()
+```
+
+Calculate the summary statistics:
+
+``` R
+summary_data <- summarise_data(data)
+```
+
+Print the summary table:
+
+``` R
+print(summary_data)
+```
+
+You should see this table in the Console (the number of decimal places displayed may vary):
+
+```text
+  group mean       sd  n        se
+1     1 0.75 1.789010 10 0.5657345
+2     2 2.33 2.002249 10 0.6331666
+```
+
+There is one row per drug group, with 10 observations in each group.
+Now plot the summaries:
+
+``` R
+plot_summary(summary_data)
+```
+
+The following plot should appear in RStudio's **Plots** pane, with one bar per drug group and error bars showing one standard error above and below each mean:
+
+![Bar plot of mean extra sleep: 0.75 hours for drug group 1 and 2.33 hours for drug group 2, with standard-error bars.](fig/07-sleep_package_summary.png)
+
+We can change the bar colour and title using the optional arguments:
+
+``` R
+plot_summary(summary_data, fill = "darkorange", title = "Extra sleep by drug")
+```
+
+The **Plots** pane should now show the same values with orange bars and the title "Extra sleep by drug".
+
+The function returns a `ggplot` object, so we can also add layers such as `ggplot2::labs()` or `ggplot2::theme_classic()` to customise it further.
+
+The same functions can summarise and plot a different dataset by choosing its columns:
+
+``` R
+iris_summary <- summarise_data(
+  datasets::iris,
+  value_col = "Sepal.Length",
+  group_col = "Species"
+)
+plot_summary(iris_summary, title = "Sepal length by species")
+```
+
+This plot should show three bars, one per species, with mean sepal lengths of approximately 5.01, 5.94, and 6.59 for setosa, versicolor, and virginica respectively.
+
+`load_sleep_data()` remains a helper for our example dataset; the summary and plotting functions work with other datasets too.
+
+### Generating help pages
+
+Earlier, we used commands such as `?renv` to access help in R.
+Before generating our package's documentation, try opening the help for one of our functions:
+
+``` R
+?summarise_data
+```
+
+R cannot find a help page for this function yet.
+You may see a message like this:
+
+```text
+No documentation for ‘summarise_data’ in specified packages and libraries:
+you could try ‘??summarise_data’
+```
+
+The suggestion `??summarise_data` searches help topic names, titles, and concepts across installed packages (see [`help.search()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/help.search.html)).
+It searches existing documentation, not our script comments, so it won't find help for our function yet.
+
+Save all three scripts, then run `devtools::document()` to generate these files in `man/`.
+
+``` R
+devtools::document()
+```
+
+The first time you generate the help files, you should see messages similar to these:
+
+```text
+ℹ Updating sleep documentation
+ℹ Loading sleep
+Writing load_sleep_data.Rd
+Writing plot_summary.Rd
+Writing summarise_data.Rd
+```
+
+Each `Writing` message names a help file saved in your package's `man/` folder.
+
+Reload the package so we can view the help pages during development:
+
+``` R
+devtools::load_all()
+```
+
+You should see a message confirming that the package is loading:
+
+```text
+ℹ Loading sleep
+```
+
+Now open the help page for `load_sleep_data()`:
+
+``` R
+?load_sleep_data
+```
+
+You should see this message in the Console:
+
+```text
+ℹ Rendering development documentation for "load_sleep_data"
+```
+
+The documentation opens in RStudio's **Help** pane, showing what the function does, what it returns, and an example of how to use it.
+You can open the other functions' help pages in the same way using `?summarise_data` and `?plot_summary`.
+
+When you change the documentation comments, save the script and run `devtools::document()` again to update the help files.
+
+## Preparing our package for someone else
+
+You're going away, and a new colleague will take over your sleep analysis.
+They need to reproduce your findings and reuse your code.
+Think back to the environments episode, when you received a colleague's script and had to recreate their setup.
+How can we make that handover easier?
+
+So far, we've used `devtools::load_all()` to access our functions during development.
+To make them available when someone installs and loads our package, add a line containing `#' @export` above `@examples` in each function's documentation block.
+For example, the complete `R/load_sleep_data.R` file should now look like this:
+
+``` R
+#' Load the built-in sleep data
+#'
+#' Get the data used in our sleep analysis.
+#'
+#' @returns A data frame with columns extra (extra sleep in hours),
+#'   group (drug group), and ID (participant).
+#' @seealso [Official sleep dataset documentation](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html)
+#' @export
+#' @examples
+#' load_sleep_data()
+load_sleep_data <- function() {
+  datasets::sleep
+}
+```
+
+Add `#' @export` to the documentation for `summarise_data()` and `plot_summary()` too.
+Then regenerate the documentation:
+
+``` R
+devtools::document()
+```
+
+You should see messages similar to these in the Console:
+
+```text
+ℹ Updating sleep documentation
+ℹ Loading sleep
+Writing NAMESPACE
+```
+
+The `Writing NAMESPACE` message confirms that the list of exported functions has been updated.
+Open `NAMESPACE` in the **Files** pane.
+
+
+The `NAMESPACE` should now include these lines:
+
+```text
+export(load_sleep_data)
+export(plot_summary)
+export(summarise_data)
+```
+
+Update `DESCRIPTION` to describe our package.
+The complete file could look like this:
+
+```text
+Package: sleep
+Title: Summarise and Visualise Grouped Measurements
+Version: 0.0.0.9000
+Authors@R:
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: Summarise numeric measurements by group using means,
+    standard deviations, sample sizes, and standard errors. Visualise
+    group means with standard-error bars. Includes a helper for loading
+    the built-in sleep dataset as a worked example; see
+    <https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html>.
+License: MIT + file LICENSE
+Config/roxygen2/version: 8.1.1
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.1.0)
+Imports:
+    datasets,
+    dplyr (>= 1.1.0),
+    ggplot2 (>= 2.2.0)
+```
+
+Replace `First`, `Last`, and the example email with your own details, and keep the generated roxygen2 version field as it appears in your file.
+This example uses the MIT licence, which explains how others may use the code.
+To create the matching licence files, run:
+
+``` R
+usethis::use_mit_license()
+```
+
+You should see messages similar to these in the Console:
+
+```text
+✔ Writing LICENSE.
+✔ Writing LICENSE.md.
+✔ Adding "^LICENSE\\.md$" to .Rbuildignore.
+```
+
+This updates the licence field in `DESCRIPTION` and creates the licence files.
+
+Add a README to introduce the package:
+
+``` R
+usethis::use_readme_md()
+```
+
+This creates and opens `README.md` with a template similar to this:
+
+````markdown
+# sleep
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of sleep is to ...
+
+## Installation
+
+You can install the development version of sleep like so:
+
+``` R
+# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` R
+library(sleep)
+## basic example code
+```
+````
+
+Here, **users** run our functions in their own analyses, for example a colleague reproducing the sleep summaries and plot.
+**Developers** change the package itself, for example by fixing a bug or adding a function.
+The same colleague might do both.
+Users need installation instructions and examples; developers also need the source files and a shared development environment so they can make and test changes with the same dependency versions.
+Our README should explain both workflows.
+Replace the template in `README.md` with an introduction and instructions for these two uses, such as:
+
+````markdown
+# sleep
+
+Calculate summary statistics for grouped measurements and plot means with standard-error bars.
+
+### Sharing with users
+
+To use the functions in your own analysis, install the package from GitHub:
+
+``` R
+remotes::install_github("yourusername/sleep")
+```
+
+### Example
+
+``` R
+library(sleep)
+summary_data <- summarise_data(load_sleep_data())
+print(summary_data)
+plot_summary(summary_data)
+```
+
+## Sharing with developers
+
+If you want others to **modify, improve, or extend your package**, you can share its source code through a repository such as GitHub.
+
+Here, *developers* means anyone who wants to work on the package itself, rather than simply install and use its functions. For example, they might want to fix a bug, add a new function, or improve the documentation.
+
+Developers need access to the package's source files and a suitable development environment. They can download or clone the repository, open the package project in RStudio, and use `renv` to restore the package versions used during development.
+
+Run the following commands from the package's root directory (the folder containing `DESCRIPTION`). Install `renv` first if it isn't already available.
+
+If a `renv.lock` is supplied, restore the recorded dependencies and install your local copy of the package:
+
+``` R
+renv::restore()
+renv::install(".")
+```
+
+If no lockfile exists yet, create a new environment from `DESCRIPTION`:
+
+``` R
+renv::init(bare = TRUE)
+renv::settings$snapshot.type("explicit")
+renv::install()
+renv::install(".")
+renv::snapshot()
+```
+
+`renv::install()` installs the declared dependencies; `renv::install(".")` installs the package from this folder, ready for `library(sleep)`.
+The explicit snapshot records dependency versions in `renv.lock`.
+Share the lockfile with the source so other developers can restore those versions.
+Minimum versions in `DESCRIPTION` allow newer releases; the lockfile records the versions actually installed.
+````
+
+These installation instructions assume you have uploaded the package to a GitHub repository called `sleep` under your own account.
+Replace `yourusername` with your GitHub username; the command will work once that repository contains the package.
+
+### Sharing with users
+
+If you want others to **use your package without modifying its code**, you can share it through GitHub.
+
+Here, *users* means people who want to install the package and use its functions in their own analyses.
+
+Earlier, we installed `obscurepackage` from GitHub. We can share our `sleep` package in the same way.
+
+Open the `sleep` project in RStudio and run:
+
+```r
+usethis::use_git()
+usethis::use_github()
+```
+
+The first command initialises Git for our package. The second creates a GitHub repository and uploads the committed package files, preserving their directory structure.
+
+You'll need a GitHub account and authentication configured. Follow the instructions shown in the R console.
+
+Once the repository is available on GitHub, other users can install the package with:
+
+```r
+remotes::install_github("yourusername/sleep")
+```
+
+Replace `yourusername` with your GitHub username.
+
+They can then load the package and use its exported functions:
+
+```r
+library(sleep)
+summarise_sleep(datasets::sleep)
+```
+
+Unlike developers, users don't need to download the source code manually or open the package project in RStudio. 
+They can simply install the package and use its exported functions.
+
+``` R
+remotes::install_github("yourusername/sleep")
+```
+
+After installation, your colleague can load the package and run the analysis:
+
+``` R
+library(sleep)
+data <- load_sleep_data()
+summary_data <- summarise_data(data)
+plot_summary(summary_data)
+```
+
+The package provides reusable functions; an analysis script records the steps that produced our findings.
+Save the commands from `library(sleep)` onwards in `sleep_analysis.R` in a separate analysis project, outside the package's `R/` folder.
+Share that script too, along with its analysis project's `renv.lock`, and record the package version or Git commit used in the analysis project's README.
+For example, the files you share could look like this (other package files are omitted):
+
+```text
+sleep/                     # package source, shared on GitHub
+├── DESCRIPTION
+├── NAMESPACE
+├── R/
+│   ├── load_sleep_data.R
+│   ├── summarise_data.R
+│   └── plot_summary.R
+├── man/
+└── README.md
+sleep-analysis/            # analysis project
+├── sleep_analysis.R
+├── renv.lock
+└── README.md              # run instructions and package version or commit
+```
+
+### Keeping track of versions
+
+Remember how a newer version of `obscurepackage` changed the results in the environments episode?
+Recording which version was used helps our colleague reproduce the analysis.
+
+Our initial `Version: 0.0.0.9000` marks a development version.
+For a first release, we could change this to `Version: 0.1.0` in `DESCRIPTION`.
+A common convention is to increase the patch number for fixes (`0.1.1`), the minor number for new features (`0.2.0`), and the major number for breaking changes (for example, `1.0.0` to `2.0.0`).
+
+GitHub's [Releases tools](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) let us label a committed version with a tag such as `v0.1.0` and add notes explaining what changed.
+Updating `DESCRIPTION` alone doesn't create that tag.
+Once the tag exists on GitHub, our colleague can install that version:
+
+``` R
+remotes::install_github("yourusername/sleep@v0.1.0")
+```
+
+Record the tag or Git commit alongside the analysis project's lockfile so the handover identifies both the package code and its dependencies.
+
+
+::::::::::::::::::::::::::::::::::::: keypoints
+- A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
+- `RStudio` can generate a minimal package structure automatically.
+- A minimal R package needs only an `R/` directory and a `DESCRIPTION` file that includes `Package:` and `Version:`.
+- Store package functions in `R/` and declare their dependencies in `DESCRIPTION`.
+- Give arguments default values so functions work immediately and can be customised when needed.
+- Use `devtools::load_all()` to try package functions during development without installing the package.
+- Keep function documentation alongside the code using `roxygen2` comments and generate help pages with `devtools::document()`.
+- Package version numbers communicate change: patch releases fix bugs, minor releases add features, and major releases may include breaking changes.
+::::::::::::::::::::::::::::::::::::::::::::::::
