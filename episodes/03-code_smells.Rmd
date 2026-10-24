@@ -6,15 +6,15 @@ exercises: 15
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What can you learn about a codebase just by "sniffing" for code smells before reading it in detail?
+- How can you recognise potential problems in a script before fully understanding what it does?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain why sniffing the code is an important first step when working with a new codebase 
-- Recognise common smells such as long functions, duplicated code, hardcoded paths, magic numbers, commented‑out code, and lack of tests.
-- Explain how these smells relate to correctness, clarity, and reproducibility.
+- Explain what code smells are and why identifying them is useful when exploring unfamiliar code.
+- Explain how code smells can affect readability, maintainability, correctness, and reproducibility.
+- Identify code smells in R scripts and be familiar with better approaches.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -197,6 +197,20 @@ Following shared conventions makes it easier for collaborators to find files, un
 #### What to look for
 
 Absolute file paths, personal directories, or file locations that only exist on one computer.
+
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## symlinks
+
+Sensitive data may need to remain on secure shared drives, meaning absolute file paths are sometimes necessary instead of relative paths.
+
+One possible workaround is to use [symbolic links (symlinks)](https://en.wikipedia.org/wiki/Symbolic_link), which allow you to access data stored outside your project using relative paths.
+The linked Wikipedia page explains how to create symbolic links on different operating systems.
+Creating them may require additional permissions, particularly on managed Windows computers.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ## Magic numbers
 
@@ -709,10 +723,20 @@ The variables `minimum_quality` and `adjustment_factor` are also not defined wit
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Code smells can be spotted without understanding the logic of the code.
+- Code smells are warning signs of potential problems, even when the code runs correctly.
+- Common code smells include:
+  - Duplicated code
+  - Hardcoded paths
+  - Magic numbers
+  - Commented-out code
+  - Lack of modularity
+  - Missing tests
+  - Poor documentation
+  - Unexplained code
+  - Overcommenting
+- Code smells can be identified by recognising common patterns.
 - Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
 - A smell warrants inspection as they often point to places where the code is most likely to break in the future.
 
