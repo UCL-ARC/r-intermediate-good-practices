@@ -723,10 +723,20 @@ The variables `minimum_quality` and `adjustment_factor` are also not defined wit
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Code smells can be spotted without understanding the logic of the code.
+- Code smells are warning signs of potential problems, even when the code runs correctly.
+- Common code smells include:
+  - Duplicated code
+  - Hardcoded paths
+  - Magic numbers
+  - Commented-out code
+  - Lack of modularity
+  - Missing tests
+  - Poor documentation
+  - Unexplained code
+  - Overcommenting
+- Code smells can be identified by recognising common patterns.
 - Smells don’t always mean bugs, but they usually reduce readability and maintainability, making code harder to understand, update, and trust.
 - A smell warrants inspection as they often point to places where the code is most likely to break in the future.
 
