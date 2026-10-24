@@ -181,11 +181,6 @@ Here, the path refers to a file inside the project's `data` directory.
 
 If we share the complete project and run the code from its root directory, the same path can work on another computer.
 
-Sensitive data may need to remain on secure shared drives, meaning absolute file paths are sometimes necessary instead of relative paths.
-One possible workaround is to use [symbolic links (symlinks)](https://en.wikipedia.org/wiki/Symbolic_link), which allow you to access data stored outside your project using relative paths.
-The linked Wikipedia page explains how to create symbolic links on different operating systems.
-Creating them may require additional permissions, particularly on managed Windows computers.
-
 **How do they differ?**
 
 | Hardcoded absolute path | Project-relative path |
@@ -202,6 +197,20 @@ Following shared conventions makes it easier for collaborators to find files, un
 #### What to look for
 
 Absolute file paths, personal directories, or file locations that only exist on one computer.
+
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## symlinks
+
+Sensitive data may need to remain on secure shared drives, meaning absolute file paths are sometimes necessary instead of relative paths.
+
+One possible workaround is to use [symbolic links (symlinks)](https://en.wikipedia.org/wiki/Symbolic_link), which allow you to access data stored outside your project using relative paths.
+The linked Wikipedia page explains how to create symbolic links on different operating systems.
+Creating them may require additional permissions, particularly on managed Windows computers.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ## Magic numbers
 
