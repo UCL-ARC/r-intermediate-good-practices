@@ -1368,12 +1368,13 @@ For reproducibility, record the package version or Git commit used in the analys
 We've now taken our sleep analysis from a collection of scripts to a reusable package that others can install, understand, and develop further.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
-- A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
-- `RStudio` can generate a minimal package structure automatically.
-- A minimal R package needs only an `R/` directory and a `DESCRIPTION` file that includes `Package:` and `Version:`.
-- Store package functions in `R/` and declare their dependencies in `DESCRIPTION`.
-- Give arguments default values so functions work immediately and can be customised when needed.
-- Use `devtools::load_all()` to try package functions during development without installing the package.
-- Keep function documentation alongside the code using `roxygen2` comments and generate help pages with `devtools::document()`.
-- Package version numbers communicate change: patch releases fix bugs, minor releases add features, and major releases may include breaking changes.
+
+- R packages organise reusable code, documentation, and data in a standard structure.
+- `RStudio` and `usethis` can create package structures automatically.
+- Store functions in `R/` and declare dependencies in `DESCRIPTION`.
+- Use `devtools::load_all()` to test functions during development.
+- Document and export functions using `roxygen2`, and generate help pages with `devtools::document()`.
+- Use `devtools::check()` to identify issues before sharing a package.
+- Share packages through platforms such as GitHub and use version numbers to track changes.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
