@@ -501,7 +501,7 @@ We can use `::` to call an **exported function** from a specific package without
 
 For example, we used this when installing `obscurepackage` from GitHub:
 
-```r
+``` R
 remotes::install_github("stellaprins/obscurepackage")
 ```
 
@@ -542,7 +542,7 @@ This means the same function call could give different results depending on the 
 
 We can use `::` to specify exactly which function we want:
 
-```r
+``` R
 here::here()
 lubridate::here()
 ```
@@ -557,7 +557,7 @@ Namespaces help them find the correct functions, even when other objects have th
 For example, `stats::sd()` uses `var()` to calculate standard deviations.
 Suppose we define our own function:
 
-```r
+``` R
 var <- function(x) -5
 ```
 
@@ -891,15 +891,8 @@ Imports:
     dplyr (>= 1.1.0),
     ggplot2 (>= 2.2.0)
 ```
-## Sharing your package with others
 
-Imagine a colleague wants to reproduce our sleep analysis.
-Rather than sending them several scripts, we can share our `sleep` package so they can install it and use our functions.
-
-Think back to the environments episode, when a change in `obscurepackage` affected our results.
-To make our analysis easier to reproduce, we need to share not only our functions, but also enough information about the package and its dependencies.
-
-### Making our functions available
+## Making our functions available
 
 So far, we've used `devtools::load_all()` to try our functions during development.
 However, we also want people who install our package to be able to use them.
@@ -909,7 +902,7 @@ We can **export** our three functions by adding `#' @export` to their `roxygen2`
 
 For example, update `R/load_sleep_data.R` to include:
 
-```r
+``` R
 #' Load the built-in sleep data
 #'
 #' Get the data used in our sleep analysis.
@@ -929,7 +922,7 @@ Add `#' @export` to the documentation for `summarise_data()` and `plot_summary()
 
 Then regenerate the documentation:
 
-```r
+``` R
 devtools::document()
 ```
 
@@ -945,7 +938,39 @@ export(summarise_data)
 These instructions tell R which functions people can use after installing and loading our package.
 As we saw earlier, `roxygen2` generates `NAMESPACE` automatically, so we don't need to edit it ourselves.
 
-### Preparing our package for sharing
+## Adding the analysis script
+
+Installing our package gives others access to its functions, but doesn't show how we used them to produce our results.
+For that, we also need an **analysis script**.
+
+In the `sleep` project, create a folder called `scripts/`.
+Inside it, create a file called `sleep_analysis.R` and add:
+
+``` R
+library(sleep)
+
+data <- load_sleep_data()
+summary_data <- summarise_data(data)
+
+print(summary_data)
+plot_summary(summary_data)
+```
+
+Our project now has two places for R code:
+
+- **`R/`** contains reusable package functions.
+- **`scripts/`** contains scripts that use those functions to perform an analysis.
+
+We should commit our analysis scripts to Git alongside the package code.
+When we push these changes to GitHub, colleagues can access the scripts and see how our results were produced.
+
+These scripts aren't needed to install and use the package, so we can exclude them from the files distributed with the package:
+
+``` R
+usethis::use_build_ignore("scripts")
+```
+
+## Preparing our package for sharing
 
 Before sharing our package, we should make sure it explains what it does, who created it, and how others can use it.
 
@@ -974,7 +999,7 @@ Keep the dependency and other configuration fields already present in your `DESC
 We should also choose a licence so others know how they are allowed to use and share our code.
 For example, to use the MIT licence, run:
 
-```r
+``` R
 usethis::use_mit_license()
 ```
 
@@ -986,7 +1011,7 @@ A README introduces a package and helps others get started.
 
 Create one for our package:
 
-```r
+``` R
 usethis::use_readme_md()
 ```
 
@@ -1003,13 +1028,13 @@ Summarise grouped measurements and plot means with standard-error bars.
 
 Install the package from GitHub:
 
-```r
+``` R
 remotes::install_github("yourusername/sleep")
 ```
 
 ## Example
 
-```r
+``` R
 library(sleep)
 
 summary_data <- summarise_data(load_sleep_data())
@@ -1023,21 +1048,21 @@ The installation command will work once we've uploaded our package to that repos
 
 Before sharing, it's also good practice to check the package for problems using:
 
-```r
+``` R
 devtools::check()
 ```
 
 This checks the package's structure, documentation, dependencies, and other requirements.
 Review any errors, warnings, or notes before sharing.
 
-### Sharing our package on GitHub
+## Publishing our package 
 
 Like `ggplot2` and `dplyr`, we can share our `sleep` package on [GitHub](https://github.com/).
 [GitLab](https://gitlab.com/) is a similar alternative for hosting and sharing code.
 
 **If you have a GitHub account**, open the `sleep` project in RStudio and run:
 
-```r
+``` R
 usethis::use_git()
 usethis::use_github()
 ```
@@ -1048,7 +1073,7 @@ Follow the instructions in the R console to configure authentication and commit 
 
 Once published, others can install the package, just as we installed `obscurepackage` earlier:
 
-```r
+``` R
 remotes::install_github("yourusername/sleep")
 ```
 
@@ -1056,7 +1081,7 @@ Replace `yourusername` with your GitHub username.
 
 They can then load the package and use our exported functions:
 
-```r
+``` R
 library(sleep)
 
 data <- load_sleep_data()
@@ -1064,33 +1089,6 @@ summary_data <- summarise_data(data)
 print(summary_data)
 plot_summary(summary_data)
 ```
-
-They don't need to open the package project or copy our functions into their own scripts.
-
-### Reproducing the analysis
-
-Installing the package gives our colleague access to the functions, but it doesn't record which functions we called or in what order.
-
-For that, we also need an **analysis script**.
-
-Save the commands above in a script called `sleep_analysis.R`, in a separate analysis project rather than inside the package's `R/` directory.
-
-This distinction is important:
-
-- **The package** contains reusable functions.
-- **The analysis script** records how we used those functions to produce our results.
-
-To help our colleague reproduce the analysis, we should also record the software versions used.
-This connects to our earlier work with `renv`.
-
-In the analysis project, we can use `renv` to record the installed package versions in `renv.lock`.
-Our colleague can then restore those versions using:
-
-```r
-renv::restore()
-```
-
-This assumes we've shared the analysis project's lockfile and that the recorded packages are available to install.
 
 ### Sharing with someone who wants to develop the package
 
@@ -1135,7 +1133,7 @@ We can also use [GitHub Releases](https://docs.github.com/en/repositories/releas
 
 Once that tag exists, someone can install the tagged version using:
 
-```r
+``` R
 remotes::install_github("yourusername/sleep@v0.1.0")
 ```
 
