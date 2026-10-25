@@ -727,7 +727,7 @@ Save all three scripts, then open the `R/` folder in RStudio's **Files** pane.
 You should see `load_sleep_data.R`, `summarise_data.R`, and `plot_summary.R` inside your package.
 `usethis::use_r()` is a convenient way to create and open them, but you can also create `.R` scripts manually and save them in this folder.
 
-### Declaring dependencies and trying the functions
+### Declaring dependencies
 
 Declare the packages used by our functions in `DESCRIPTION`:
 
@@ -752,6 +752,8 @@ Imports:
     dplyr (>= 1.1.0),
     ggplot2 (>= 2.2.0)
 ```
+
+### Testing our package functions using `devtools`
 
 We can use `devtools::load_all()` to load our package functions during development without installing the package.
 If you haven't already installed `devtools`, run `install.packages("devtools")` in the R console first.
