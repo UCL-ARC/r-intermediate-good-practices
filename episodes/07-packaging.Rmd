@@ -1335,7 +1335,7 @@ print(summary_data)
 plot_summary(summary_data)
 ```
 
-Alternatively, the repositort can be **cloned** to get a local copy of the package's source code, including its functions, documentation, and analysis scripts.
+Alternatively, the repository can be **cloned** to get a local copy of the package's source code, including its functions, documentation, and analysis scripts.
 
 This can be done using [`git`](https://git-scm.com/), by running:
 
