@@ -364,8 +364,6 @@ This creates a new directory called `sleep` inside `rpackages`, containing the b
 
 Depending on your RStudio settings, the new package may also open automatically as an RStudio project.
 
-Because we're using a different package name, our original `rstudiopackage` directory remains unchanged.
-
 We should now have two packages stored inside `rpackages`:
 
 ```text
