@@ -461,9 +461,9 @@ Both templates also contain placeholder information that we'll need to update as
 
 We've now created two R packages and explored their structure.
 
-### The core components
+Let's take a closer look at three core components.
 
-Let's start with three important components we'll work with when creating our own package.
+### Core components 
 
 | Component | Purpose |
 |---|---|
@@ -492,7 +492,7 @@ The `NAMESPACE` file contains instructions that control which functions a packag
 
 We'll explore this in more detail below.
 
-### Understanding namespaces
+#### Understanding namespaces
 
 Two important types of namespace instructions are:
 
@@ -520,7 +520,7 @@ Later, we'll use `@export` to make functions from our own package available to u
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Why are namespaces useful?
+## Why are namespaces useful?
 
 Read [Section 10.2.1, *Motivation*](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace) in *R Packages*, 2nd edition.
 
@@ -572,7 +572,7 @@ The first shows how we can use `::` to choose a function, while the second shows
 
 For more information, see the [discussion of namespaces in *R Packages*, 2nd edition](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace).
 
-### Other files and directories
+### Other components 
 
 As our package develops, we may add other files and directories.
 
