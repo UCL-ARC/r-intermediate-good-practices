@@ -799,7 +799,7 @@ This plot should show three bars, one per species, with mean sepal lengths of ap
 
 `load_sleep_data()` remains a helper for our example dataset; the summary and plotting functions work with other datasets too.
 
-### Generating help pages
+## Generating help pages
 
 Earlier, we used commands such as `?renv` to access help in R.
 Before generating our package's documentation, try opening the help for one of our functions:
@@ -891,19 +891,25 @@ Imports:
     dplyr (>= 1.1.0),
     ggplot2 (>= 2.2.0)
 ```
+## Sharing your package with others
 
-## Preparing our package for someone else
+Imagine a colleague wants to reproduce our sleep analysis.
+Rather than sending them several scripts, we can share our `sleep` package so they can install it and use our functions.
 
-You're going away, and a new colleague will take over your sleep analysis.
-They need to reproduce your findings and reuse your code.
-Think back to the environments episode, when you received a colleague's script and had to recreate their setup.
-How can we make that handover easier?
+Think back to the environments episode, when a change in `obscurepackage` affected our results.
+To make our analysis easier to reproduce, we need to share not only our functions, but also enough information about the package and its dependencies.
 
-So far, we've used `devtools::load_all()` to access our functions during development.
-To make them available when someone installs and loads our package, add a line containing `#' @export` above `@examples` in each function's documentation block.
-For example, the complete `R/load_sleep_data.R` file should now look like this:
+### Making our functions available
 
-``` R
+So far, we've used `devtools::load_all()` to try our functions during development.
+However, we also want people who install our package to be able to use them.
+
+Earlier, we learned that a package's `NAMESPACE` controls which functions are available to users.
+We can **export** our three functions by adding `#' @export` to their `roxygen2` documentation.
+
+For example, update `R/load_sleep_data.R` to include:
+
+```r
 #' Load the built-in sleep data
 #'
 #' Get the data used in our sleep analysis.
@@ -920,25 +926,15 @@ load_sleep_data <- function() {
 ```
 
 Add `#' @export` to the documentation for `summarise_data()` and `plot_summary()` too.
+
 Then regenerate the documentation:
 
-``` R
+```r
 devtools::document()
 ```
 
-You should see messages similar to these in the Console:
-
-```text
-ℹ Updating sleep documentation
-ℹ Loading sleep
-Writing NAMESPACE
-```
-
-The `Writing NAMESPACE` message confirms that the list of exported functions has been updated.
-Open `NAMESPACE` in the **Files** pane.
-
-
-The `NAMESPACE` should now include these lines:
+Open `NAMESPACE` in RStudio.
+It should now contain:
 
 ```text
 export(load_sleep_data)
@@ -946,8 +942,19 @@ export(plot_summary)
 export(summarise_data)
 ```
 
-Update `DESCRIPTION` to describe our package.
-The complete file could look like this:
+These instructions tell R which functions people can use after installing and loading our package.
+As we saw earlier, `roxygen2` generates `NAMESPACE` automatically, so we don't need to edit it ourselves.
+
+### Preparing our package for sharing
+
+Before sharing our package, we should make sure it explains what it does, who created it, and how others can use it.
+
+**Updating `DESCRIPTION`**
+
+We've already used `DESCRIPTION` to declare our dependencies.
+Now let's replace its placeholder information with a meaningful title, description, and author details.
+
+For example, the main fields could look like this:
 
 ```text
 Package: sleep
@@ -956,159 +963,90 @@ Version: 0.0.0.9000
 Authors@R:
     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
 Description: Summarise numeric measurements by group using means,
-    standard deviations, sample sizes, and standard errors. Visualise
-    group means with standard-error bars. Includes a helper for loading
-    the built-in sleep dataset as a worked example; see
-    <https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html>.
-License: MIT + file LICENSE
-Config/roxygen2/version: 8.1.1
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-Depends:
-    R (>= 4.1.0)
-Imports:
-    datasets,
-    dplyr (>= 1.1.0),
-    ggplot2 (>= 2.2.0)
+    standard deviations, sample sizes, and standard errors.
+    Visualise group means with standard-error bars.
+    Includes a helper for loading the built-in sleep dataset.
 ```
 
-Replace `First`, `Last`, and the example email with your own details, and keep the generated roxygen2 version field as it appears in your file.
-This example uses the MIT licence, which explains how others may use the code.
-To create the matching licence files, run:
+Replace the example author details with your own.
+Keep the dependency and other configuration fields already present in your `DESCRIPTION` file.
 
-``` R
+We should also choose a licence so others know how they are allowed to use and share our code.
+For example, to use the MIT licence, run:
+
+```r
 usethis::use_mit_license()
 ```
 
-You should see messages similar to these in the Console:
+This creates the licence files and updates `DESCRIPTION`.
 
-```text
-✔ Writing LICENSE.
-✔ Writing LICENSE.md.
-✔ Adding "^LICENSE\\.md$" to .Rbuildignore.
-```
+**Adding a README**
 
-This updates the licence field in `DESCRIPTION` and creates the licence files.
+A README introduces a package and helps others get started.
 
-Add a README to introduce the package:
+Create one for our package:
 
-``` R
+```r
 usethis::use_readme_md()
 ```
 
-This creates and opens `README.md` with a template similar to this:
+This creates a template that we can replace with a short introduction, installation instructions, and an example.
+
+For example:
 
 ````markdown
 # sleep
 
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of sleep is to ...
+Summarise grouped measurements and plot means with standard-error bars.
 
 ## Installation
 
-You can install the development version of sleep like so:
+Install the package from GitHub:
 
-``` R
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+```r
+remotes::install_github("yourusername/sleep")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
-``` R
+```r
 library(sleep)
-## basic example code
-```
-````
 
-Here, **users** run our functions in their own analyses, for example a colleague reproducing the sleep summaries and plot.
-**Developers** change the package itself, for example by fixing a bug or adding a function.
-The same colleague might do both.
-Users need installation instructions and examples; developers also need the source files and a shared development environment so they can make and test changes with the same dependency versions.
-Our README should explain both workflows.
-Replace the template in `README.md` with an introduction and instructions for these two uses, such as:
-
-````markdown
-# sleep
-
-Calculate summary statistics for grouped measurements and plot means with standard-error bars.
-
-### Sharing with users
-
-To use the functions in your own analysis, install the package from GitHub:
-
-``` R
-remotes::install_github("yourusername/sleep")
-```
-
-### Example
-
-``` R
-library(sleep)
 summary_data <- summarise_data(load_sleep_data())
 print(summary_data)
 plot_summary(summary_data)
 ```
-
-## Sharing with developers
-
-If you want others to **modify, improve, or extend your package**, you can share its source code through a repository such as GitHub.
-
-Here, *developers* means anyone who wants to work on the package itself, rather than simply install and use its functions. For example, they might want to fix a bug, add a new function, or improve the documentation.
-
-Developers need access to the package's source files and a suitable development environment. They can download or clone the repository, open the package project in RStudio, and use `renv` to restore the package versions used during development.
-
-Run the following commands from the package's root directory (the folder containing `DESCRIPTION`). Install `renv` first if it isn't already available.
-
-If a `renv.lock` is supplied, restore the recorded dependencies and install your local copy of the package:
-
-``` R
-renv::restore()
-renv::install(".")
-```
-
-If no lockfile exists yet, create a new environment from `DESCRIPTION`:
-
-``` R
-renv::init(bare = TRUE)
-renv::settings$snapshot.type("explicit")
-renv::install()
-renv::install(".")
-renv::snapshot()
-```
-
-`renv::install()` installs the declared dependencies; `renv::install(".")` installs the package from this folder, ready for `library(sleep)`.
-The explicit snapshot records dependency versions in `renv.lock`.
-Share the lockfile with the source so other developers can restore those versions.
-Minimum versions in `DESCRIPTION` allow newer releases; the lockfile records the versions actually installed.
 ````
 
-These installation instructions assume you have uploaded the package to a GitHub repository called `sleep` under your own account.
-Replace `yourusername` with your GitHub username; the command will work once that repository contains the package.
+Replace `yourusername` with your GitHub username.
+The installation command will work once we've uploaded our package to that repository.
 
-### Sharing with users
+Before sharing, it's also good practice to check the package for problems using:
 
-If you want others to **use your package without modifying its code**, you can share it through GitHub.
+```r
+devtools::check()
+```
 
-Here, *users* means people who want to install the package and use its functions in their own analyses.
+This checks the package's structure, documentation, dependencies, and other requirements.
+Review any errors, warnings, or notes before sharing.
 
-Earlier, we installed `obscurepackage` from GitHub. We can share our `sleep` package in the same way.
+### Sharing our package on GitHub
 
-Open the `sleep` project in RStudio and run:
+Like `ggplot2` and `dplyr`, we can share our `sleep` package on [GitHub](https://github.com/).
+[GitLab](https://gitlab.com/) is a similar alternative for hosting and sharing code.
+
+**If you have a GitHub account**, open the `sleep` project in RStudio and run:
 
 ```r
 usethis::use_git()
 usethis::use_github()
 ```
 
-The first command initialises Git for our package. The second creates a GitHub repository and uploads the committed package files, preserving their directory structure.
+The first command sets up Git to track changes, while the second helps publish our package on GitHub.
 
-You'll need a GitHub account and authentication configured. Follow the instructions shown in the R console.
+Follow the instructions in the R console to configure authentication and commit your changes.
 
-Once the repository is available on GitHub, other users can install the package with:
+Once published, others can install the package, just as we installed `obscurepackage` earlier:
 
 ```r
 remotes::install_github("yourusername/sleep")
@@ -1116,69 +1054,96 @@ remotes::install_github("yourusername/sleep")
 
 Replace `yourusername` with your GitHub username.
 
-They can then load the package and use its exported functions:
+They can then load the package and use our exported functions:
 
 ```r
 library(sleep)
-summarise_sleep(datasets::sleep)
-```
 
-Unlike developers, users don't need to download the source code manually or open the package project in RStudio. 
-They can simply install the package and use its exported functions.
-
-``` R
-remotes::install_github("yourusername/sleep")
-```
-
-After installation, your colleague can load the package and run the analysis:
-
-``` R
-library(sleep)
 data <- load_sleep_data()
 summary_data <- summarise_data(data)
+print(summary_data)
 plot_summary(summary_data)
 ```
 
-The package provides reusable functions; an analysis script records the steps that produced our findings.
-Save the commands from `library(sleep)` onwards in `sleep_analysis.R` in a separate analysis project, outside the package's `R/` folder.
-Share that script too, along with its analysis project's `renv.lock`, and record the package version or Git commit used in the analysis project's README.
-For example, the files you share could look like this (other package files are omitted):
+They don't need to open the package project or copy our functions into their own scripts.
 
-```text
-sleep/                     # package source, shared on GitHub
-├── DESCRIPTION
-├── NAMESPACE
-├── R/
-│   ├── load_sleep_data.R
-│   ├── summarise_data.R
-│   └── plot_summary.R
-├── man/
-└── README.md
-sleep-analysis/            # analysis project
-├── sleep_analysis.R
-├── renv.lock
-└── README.md              # run instructions and package version or commit
+### Reproducing the analysis
+
+Installing the package gives our colleague access to the functions, but it doesn't record which functions we called or in what order.
+
+For that, we also need an **analysis script**.
+
+Save the commands above in a script called `sleep_analysis.R`, in a separate analysis project rather than inside the package's `R/` directory.
+
+This distinction is important:
+
+- **The package** contains reusable functions.
+- **The analysis script** records how we used those functions to produce our results.
+
+To help our colleague reproduce the analysis, we should also record the software versions used.
+This connects to our earlier work with `renv`.
+
+In the analysis project, we can use `renv` to record the installed package versions in `renv.lock`.
+Our colleague can then restore those versions using:
+
+```r
+renv::restore()
 ```
+
+This assumes we've shared the analysis project's lockfile and that the recorded packages are available to install.
+
+### Sharing with someone who wants to develop the package
+
+Our colleague might also want to fix a bug, add a function, or improve the documentation.
+
+In that case, installing the package isn't enough.
+They need its **source code**, which we've made available through GitHub.
+
+They can download or clone the repository, open `sleep.Rproj` in RStudio, and work with the package files directly.
+
+If we also provide a development `renv.lock` file, they can use `renv::restore()` to recreate the recorded development environment.
+
+They can then use the tools we've practised in this lesson, including `devtools::load_all()`, `devtools::document()`, and `devtools::check()`, as they make changes.
 
 ### Keeping track of versions
 
 Remember how a newer version of `obscurepackage` changed the results in the environments episode?
-Recording which version was used helps our colleague reproduce the analysis.
+Even when we share our code, we need to know **which version** was used.
 
-Our initial `Version: 0.0.0.9000` marks a development version.
-For a first release, we could change this to `Version: 0.1.0` in `DESCRIPTION`.
-A common convention is to increase the patch number for fixes (`0.1.1`), the minor number for new features (`0.2.0`), and the major number for breaking changes (for example, `1.0.0` to `2.0.0`).
+Our package started with:
 
-GitHub's [Releases tools](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) let us label a committed version with a tag such as `v0.1.0` and add notes explaining what changed.
-Updating `DESCRIPTION` alone doesn't create that tag.
-Once the tag exists on GitHub, our colleague can install that version:
+```text
+Version: 0.0.0.9000
+```
 
-``` R
+This indicates a development version.
+For a first release, we might change it to:
+
+```text
+Version: 0.1.0
+```
+
+A common versioning convention is:
+
+| Change | Example |
+|---|---|
+| Bug fix (patch) | `0.1.0` → `0.1.1` |
+| New feature (minor) | `0.1.0` → `0.2.0` |
+| Breaking change (major) | `1.0.0` → `2.0.0` |
+
+We can also use [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) to mark a particular version of our package with a tag, such as `v0.1.0`.
+
+Once that tag exists, someone can install the tagged version using:
+
+```r
 remotes::install_github("yourusername/sleep@v0.1.0")
 ```
 
-Record the tag or Git commit alongside the analysis project's lockfile so the handover identifies both the package code and its dependencies.
+Changing the version number in `DESCRIPTION` doesn't automatically create a GitHub release or tag.
 
+For reproducibility, record the package version or Git commit used in the analysis, alongside the analysis project's `renv.lock`.
+
+We've now taken our sleep analysis from a collection of scripts to a reusable package that others can install, understand, and develop further.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - A package is a structured directory which bundles code, data, documentation, and tests and makes it easy to share.
