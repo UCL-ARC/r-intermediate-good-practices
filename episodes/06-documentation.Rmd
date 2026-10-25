@@ -120,6 +120,23 @@ We'll use `roxygen2` again in the **Packaging** episode, where we will document 
 
 For more information, see the [roxygen2 introduction](https://roxygen2.r-lib.org/articles/roxygen2.html) and the [function documentation chapter of *R Packages*](https://r-pkgs.org/man.html).
 
+## README
+
+One of the first things someone sees when opening a research project on GitHub is its **README**.
+
+A README is usually a file called `README.md`, written in Markdown and stored in the project's main directory.
+It provides a starting point for understanding and using the project.
+
+At a minimum, a README should explain:
+
+- **Purpose:** What problem does the project solve.
+- **Getting started:** How do I install and use it?
+
+For more developed packages or community projects, it should ideally also cover:
+
+- **Features and scope:** What does it do, what are its limitations and what is planned?
+- **Contributing and support:** How can others contribute, report issues or get help?
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Research software has multiple audiences — users, developers, maintainers, and “future you” — each requiring different documentation.
 - Documentation comes in three types: procedural (step-by-step guides), conceptual (background, explanations, diagrams), and reference (APIs, parameters, system details)
