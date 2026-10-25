@@ -430,7 +430,7 @@ Some files beginning with a dot (`.`), such as `.gitignore`, might not be visibl
 
 Both methods create a `DESCRIPTION` file containing information about the package, including its name, version, authors, description, and licence.
 
-After running `usethis::create_package()`, your file should look similar to this:
+The `DESCRIPTION` file created by `usethis`, should look similar to this:
 
 ```text
 Package: sleep
