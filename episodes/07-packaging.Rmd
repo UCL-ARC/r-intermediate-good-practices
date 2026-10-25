@@ -604,7 +604,7 @@ Open the `sleep` package project in RStudio by opening `sleep.Rproj` inside `rpa
 We'll keep each function in its own script and add documentation above it using [`roxygen2`](https://roxygen2.r-lib.org/articles/rd.html) comments, which begin with `#'`.
 These comments describe what a function does, its inputs (`@param`), its output (`@returns`), and examples of how to use it (`@examples`).
 
-### Loading the sleep data
+### `load_sleep_data()`
 
 Run this command in the R console to create and open `R/load_sleep_data.R`:
 
@@ -632,7 +632,7 @@ load_sleep_data <- function() {
 We use `datasets::sleep` to refer to the built-in dataset and distinguish it from our package named `sleep`.
 This function has no inputs, so it doesn't need an `@param` tag.
 
-### Summarising data by group
+### `summarise_data()`
 
 Create and open `R/summarise_data.R`:
 
@@ -679,7 +679,7 @@ For example, `data[[value_col]]` selects the column named by `value_col`.
 The defaults match the sleep dataset; `.by = group` calculates separate statistics for each group.
 The output always uses the same column names, so it can be passed directly to `plot_summary()`.
 
-### Plotting the summaries
+### `plot_summary()`
 
 Create and open `R/plot_summary.R`:
 
@@ -727,33 +727,7 @@ Save all three scripts, then open the `R/` folder in RStudio's **Files** pane.
 You should see `load_sleep_data.R`, `summarise_data.R`, and `plot_summary.R` inside your package.
 `usethis::use_r()` is a convenient way to create and open them, but you can also create `.R` scripts manually and save them in this folder.
 
-### Declaring dependencies
-
-Declare the packages used by our functions in `DESCRIPTION`:
-
-``` R
-usethis::use_package("datasets")
-usethis::use_package("dplyr", min_version = "1.1.0")
-usethis::use_package("ggplot2", min_version = "2.2.0")
-usethis::use_package("R", type = "Depends", min_version = "4.1.0")
-```
-
-These commands record package dependencies in `Imports` and the R requirement in `Depends` in `DESCRIPTION`.
-The minimum versions ensure the features we use are available; `>=` means "this version or newer".
-
-Open `DESCRIPTION` in the **Files** pane.
-It should now include:
-
-```text
-Depends:
-    R (>= 4.1.0)
-Imports:
-    datasets,
-    dplyr (>= 1.1.0),
-    ggplot2 (>= 2.2.0)
-```
-
-### Testing our package functions using `devtools`
+## Testing our package functions using `devtools`
 
 We can use `devtools::load_all()` to load our package functions during development without installing the package.
 If you haven't already installed `devtools`, run `install.packages("devtools")` in the R console first.
@@ -892,6 +866,32 @@ The documentation opens in RStudio's **Help** pane, showing what the function do
 You can open the other functions' help pages in the same way using `?summarise_data` and `?plot_summary`.
 
 When you change the documentation comments, save the script and run `devtools::document()` again to update the help files.
+
+## Declaring dependencies
+
+Declare the packages used by our functions in `DESCRIPTION`:
+
+``` R
+usethis::use_package("datasets")
+usethis::use_package("dplyr", min_version = "1.1.0")
+usethis::use_package("ggplot2", min_version = "2.2.0")
+usethis::use_package("R", type = "Depends", min_version = "4.1.0")
+```
+
+These commands record package dependencies in `Imports` and the R requirement in `Depends` in `DESCRIPTION`.
+The minimum versions ensure the features we use are available; `>=` means "this version or newer".
+
+Open `DESCRIPTION` in the **Files** pane.
+It should now include:
+
+```text
+Depends:
+    R (>= 4.1.0)
+Imports:
+    datasets,
+    dplyr (>= 1.1.0),
+    ggplot2 (>= 2.2.0)
+```
 
 ## Preparing our package for someone else
 
