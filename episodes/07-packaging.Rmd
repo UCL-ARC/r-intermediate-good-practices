@@ -455,7 +455,7 @@ Both templates also contain placeholder information that we'll need to update as
 
 :::::::::::::::::::::::::::::::::::::
 
-## Understanding the structure of an R package
+## The structure of an R package
 
 We've now created two R packages and explored their structure.
 
@@ -490,7 +490,7 @@ The `NAMESPACE` file contains instructions that control which functions a packag
 
 We'll explore this in more detail below.
 
-#### Understanding namespaces
+#### More about namespaces
 
 Two important types of namespace instructions are:
 
@@ -1026,7 +1026,7 @@ This runs a series of checks and reports three types of messages:
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Understanding the check results
+### Check your package
 
 Look at the output from `devtools::check()`.
 
