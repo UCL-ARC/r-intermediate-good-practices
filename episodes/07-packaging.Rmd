@@ -5,19 +5,23 @@ exercises: 25
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
-- Why write an R package? 
-- How do I create a package?
-- Where can I publish my packages and what is required?
-- How do package version numbers signal change?
+
+- Why is it useful to organise R code into a package?
+- How do I create and develop an R package?
+- How can I check and share an R package?
+- What do package version numbers tell us?
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
-- Create a minimal package structure from scratch using `RStudio` or `usethis::create_package()`.
-- Add reusable functions with optional arguments in `.R` files inside the `R/` directory.
-- Declare package dependencies and load package functions during development.
-- Document functions with `roxygen2` and generate their help pages.
-- Recognise optional folders and files you might encounter in an R source package.
-- Understand how version numbers communicate package lifecycle stages.
+
+- Create an R package using RStudio or `usethis::create_package()`.
+- Organise reusable functions in the `R/` directory and understand the main components of a package.
+- Declare package dependencies and test functions using `devtools::load_all()`.
+- Document and export functions using `roxygen2`.
+- Install a package locally and run an analysis script that uses its functions.
+- Check a package using `devtools::check()` and interpret its output.
+- Describe how packages can be shared through GitHub and how version numbers communicate changes.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 ## R packages
