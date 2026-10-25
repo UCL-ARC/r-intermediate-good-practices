@@ -1353,8 +1353,11 @@ They can then open `sleep.Rproj` in RStudio to explore the code, reproduce the a
 
 ### Keeping track of versions
 
-Remember how a newer version of `obscurepackage` changed the results in the environments episode?
-Even when we share our code, we need to know **which version** was used.
+We've now turned our sleep analysis into a reusable package that others can install, understand and develop further!
+
+But what happens when we update our package?
+Remember how a newer version of `obscurepackage` changed the results in the environments episode? 
+To keep analyses reproducible, it's important to know **which package version** was used.
 
 Our package started with:
 
@@ -1362,34 +1365,30 @@ Our package started with:
 Version: 0.0.0.9000
 ```
 
-This indicates a development version.
-For a first release, we might change it to:
+The `.9000` indicates a development version. 
+When we're ready for our first release, we might change this to `0.1.0`.
 
-```text
-Version: 0.1.0
-```
-
-A common versioning convention is:
+As we continue developing the package, we can use version numbers to communicate what has changed. 
+A common convention is [semantic versioning](https://semver.org/), which follows the format `MAJOR.MINOR.PATCH`:
 
 | Change | Example |
 |---|---|
 | Bug fix (patch) | `0.1.0` -> `0.1.1` |
-| New feature (minor) | `0.1.0` -> `0.2.0` |
+| New feature (minor) | `1.1.0` -> `1.2.0` |
 | Breaking change (major) | `1.0.0` -> `2.0.0` |
 
-We can also use [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) to mark a particular version of our package with a tag, such as `v0.1.0`.
+We can also use [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) to mark a specific version with a tag, such as `v0.1.0`.
 
-Once that tag exists, someone can install the tagged version using:
+Others can then install that version:
 
-``` R
+```r
 remotes::install_github("yourusername/sleep@v0.1.0")
 ```
 
-Changing the version number in `DESCRIPTION` doesn't automatically create a GitHub release or tag.
+Remember that changing `Version` in `DESCRIPTION` does not automatically create a GitHub tag or release.
 
-For reproducibility, record the package version or Git commit used in the analysis, alongside the analysis project's `renv.lock`.
-
-We've now taken our sleep analysis from a collection of scripts to a reusable package that others can install, understand, and develop further.
+For reproducibility, record the package version or Git commit used in an analysis, alongside the project's `renv.lock`. 
+This helps others recreate the analysis even as the package continues to evolve.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
