@@ -528,41 +528,42 @@ Using the examples in this section, **explain two reasons why namespaces are use
 
 ## Show me the solution
 
-1. **Choosing the right function when different packages use the same name**
-
-   Both `here` and `lubridate` provide a function called `here()`, but these functions do different things.
-
-   If we attach both packages using `library()`, calling `here()` uses the version from whichever package was attached last.
-   This means the same function call could give different results depending on the order in which we attach the packages.
-
-   We can use `::` to specify exactly which function we want:
-
-   ```r
-   here::here()
-   lubridate::here()
-   ```
-
-   This works regardless of the order in which the packages were attached.
-
-2. **Ensuring package functions use the correct functions internally**
-
-   Package functions often use other functions internally.
-   Namespaces help them find the correct functions, even when other objects have the same names.
-
-   For example, `stats::sd()` uses `var()` to calculate standard deviations.
-   Suppose we define our own function:
-
-   ```r
-   var <- function(x) -5
-   ```
-
-   Calling `var(1:5)` now returns `-5`, but `stats::sd(1:5)` still works correctly.
-   This is because `sd()` uses `var()` from the `stats` namespace rather than our version.
-
-   Namespaces therefore help packages behave consistently, even when users define functions with the same names.
+Namespaces therefore help packages behave consistently, even when users define functions with the same names.
 
 Both examples show how namespaces **prevent naming conflicts**.
 The first shows how we can use `::` to choose a function, while the second shows how namespaces ensure that package functions use the correct functions internally.
+
+**1. Choosing the right function when different packages use the same name**
+
+Both `here` and `lubridate` provide a function called `here()`, but these functions do different things.
+
+If we attach both packages using `library()`, calling `here()` uses the version from whichever package was attached last.
+This means the same function call could give different results depending on the order in which we attach the packages.
+
+We can use `::` to specify exactly which function we want:
+
+```r
+here::here()
+lubridate::here()
+```
+
+This works regardless of the order in which the packages were attached.
+
+**2. Ensuring package functions use the correct functions internally**
+
+Package functions often use other functions internally.
+Namespaces help them find the correct functions, even when other objects have the same names.
+
+For example, `stats::sd()` uses `var()` to calculate standard deviations.
+Suppose we define our own function:
+
+```r
+var <- function(x) -5
+```
+
+Calling `var(1:5)` now returns `-5`, but `stats::sd(1:5)` still works correctly.
+This is because `sd()` uses `var()` from the `stats` namespace rather than our version.
+
 
 :::::::::::::::
 
