@@ -776,51 +776,6 @@ The **Plots** pane should now show the same values with orange bars and the titl
 
 <img src="fig/07-sleep_package_summary_orange.png" alt="Orange bar plot of mean extra sleep for each drug group, with standard-error bars and the title Extra sleep by drug." width="50%"> 
 
-
-## Adding the analysis script
-
-Installing our package gives others access to its functions, but doesn't show how we used them to produce our results.
-For that, we also need an **analysis script**.
-
-In the `sleep` project, create a folder called `scripts/`.
-
-Download [sleep_analysis.R](files\02-environments\07-packaging\sleep_analysis.R) and save it in the `scripts` folder.
-
-``` R
-# Sleep analysis
-#
-# Load the built-in sleep dataset, calculate and plot summary statistics
-#
-# Uses functions from the sleep package.
-
-library(sleep)
-
-data <- load_sleep_data()
-summary_data <- summarise_data(data)
-
-print(summary_data)
-
-plot_summary(
-  summary_data,
-  fill = "mediumpurple",
-  title = "Extra Sleep by Drug"
-)
-```
-
-Our project now has two places for R code:
-
-- **`R/`** contains reusable package functions.
-- **`scripts/`** contains scripts that use those functions to perform an analysis.
-
-We should commit our analysis scripts to Git alongside the package code.
-When we push these changes to GitHub, colleagues can access the scripts and see how our results were produced.
-
-These scripts aren't needed to install and use the package, so we can exclude them from the files distributed with the package:
-
-``` R
-usethis::use_build_ignore("scripts")
-```
-
 ## Generating help pages
 
 Earlier, we used commands such as `?renv` to access help in R.
@@ -957,6 +912,71 @@ export(summarise_data)
 
 These instructions tell R which functions people can use after installing and loading our package.
 As we saw earlier, `roxygen2` generates `NAMESPACE` automatically, so we don't need to edit it ourselves.
+
+
+
+## Adding the analysis script
+
+Installing our package gives others access to its functions, but doesn't show how we used them to produce our results.
+For that, we also need an **analysis script**.
+
+In the `sleep` project, create a folder called `scripts/`.
+
+Download [sleep_analysis.R](files\02-environments\07-packaging\sleep_analysis.R) and save it in the `scripts` folder.
+
+``` R
+# Sleep analysis
+#
+# Load the built-in sleep dataset, calculate and plot summary statistics
+#
+# Uses functions from the sleep package.
+
+library(sleep)
+
+data <- load_sleep_data()
+summary_data <- summarise_data(data)
+
+print(summary_data)
+
+plot_summary(
+  summary_data,
+  fill = "mediumpurple",
+  title = "Extra Sleep by Drug"
+)
+```
+
+Our project now has two places for R code:
+
+- **`R/`** contains reusable package functions.
+- **`scripts/`** contains scripts that use those functions to perform an analysis.
+
+We should commit our analysis scripts to Git alongside the package code.
+When we push these changes to GitHub, colleagues can access the scripts and see how our results were produced.
+
+These scripts aren't needed to install and use the package, so we can exclude them from the files distributed with the package:
+
+```r
+usethis::use_build_ignore("scripts")
+```
+
+**Running the analysis script**
+
+Now that we've exported our functions, we can install the package locally from the `sleep` project:
+
+```r
+devtools::install()
+```
+
+Then run the analysis script:
+
+```r
+source("scripts/sleep_analysis.R")
+```
+
+The script uses `library(sleep)` to load our installed package. It should print the summary statistics and display the plot in RStudio's **Plots** pane.
+
+Although `scripts/` is excluded from the installed package, it remains in our project and can be shared through GitHub.
+
 
 ## Checking our package
 
