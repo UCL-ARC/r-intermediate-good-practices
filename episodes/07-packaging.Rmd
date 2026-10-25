@@ -457,39 +457,44 @@ Both templates also contain placeholder information that we'll need to update as
 
 :::::::::::::::::::::::::::::::::::::
 
-## Essential components of an R package
+## Understanding the structure of an R package
 
 We've now created two R packages and explored their structure.
 
-Let's take a closer look at three important components: `DESCRIPTION`, `R/`, and `NAMESPACE`.
+### The core components
 
-### The `DESCRIPTION` file
+Let's start with three important components we'll work with when creating our own package.
+
+| Component | Purpose |
+|---|---|
+| `DESCRIPTION` | Contains information about the package, such as its name, version, authors, licence, and dependencies. |
+| `R/` | Contains the R scripts defining the package's functions. |
+| `NAMESPACE` | Contains instructions about which functions the package makes available and how it uses functions from other packages. |
+
+**The `DESCRIPTION` file**
 
 Every R package needs a `DESCRIPTION` file.
+We've already seen that RStudio and `usethis` create it automatically with placeholder information that we can update.
 
-It contains information about the package, including its name, version, authors, description, licence, and dependencies.
+**The `R/` directory**
 
-We've already seen that RStudio and `usethis` create this file automatically, with placeholder information that we can update later.
+Every R package containing R code has an `R/` directory.
+This directory contains the `.R` scripts that define the package's functions.
 
-### The `R/` directory
+We can organise related functions in one or several scripts, and filenames don't need to match function names.
 
-The `R/` directory contains the R functions that make up our package.
-
-Functions are written in `.R` scripts, just as in a regular R project.
-
-We can organise related functions in the same script or across several scripts.
-The filenames don't need to match the function names.
-
-Packages without R code don't need an `R/` directory.
-
-### The `NAMESPACE` file
+**The `NAMESPACE` file**
 
 Each R package has its own **namespace**, which keeps its functions and other objects separate from those in other packages.
 This helps R distinguish between functions with the same name.
 
-The `NAMESPACE` file contains instructions about which functions a package makes available to users and which functions it uses from other packages.
+The `NAMESPACE` file contains instructions that control which functions a package makes available to users and which functions it imports from other packages.
 
-Two important instructions are:
+We'll explore this in more detail below.
+
+### Understanding namespaces
+
+Two important types of namespace instructions are:
 
 - **Exports:** Functions that a package makes available to users.
 - **Imports:** Functions that a package brings in from other packages for use in its own code.
@@ -506,20 +511,20 @@ Here, `remotes` is the **package name**, and `install_github()` is the **functio
 This works because `remotes` exports `install_github()`.
 
 When writing our own package, we can also use functions from other packages.
-For example, we can call `dplyr::summarise()` inside our functions without importing it.
+For example, we can call `dplyr::summarise()` inside our functions without importing it into our namespace.
 Alternatively, we could import `summarise()` and call it without the `dplyr::` prefix.
 
 We usually don't edit `NAMESPACE` manually.
 Instead, `roxygen2` generates it from special comments in our R scripts.
-Later, we will use `@export` to make functions from our own package available to users.
+Later, we'll use `@export` to make functions from our own package available to users.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ### Why are namespaces useful?
 
-Read [Section 10.2.1](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace) in *R Packages*, 2nd edition.
+Read [Section 10.2.1, *Motivation*](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace) in *R Packages*, 2nd edition.
 
-Looking at the examples given in this section, **explain two reasons why namespaces are useful**.
+Using the examples in this section, **explain two reasons why namespaces are useful**.
 
 ::::::::::::::: solution
 
@@ -529,8 +534,8 @@ Looking at the examples given in this section, **explain two reasons why namespa
 
    Both `here` and `lubridate` provide a function called `here()`, but these functions do different things.
 
-   If we load both packages and simply call `here()`, R uses the function from whichever package was attached most recently.
-   This can lead to unexpected results.
+   If we attach both packages using `library()`, calling `here()` uses the version from whichever package was attached last.
+   This means the same function call could give different results depending on the order in which we attach the packages.
 
    We can use `::` to specify exactly which function we want:
 
@@ -539,12 +544,12 @@ Looking at the examples given in this section, **explain two reasons why namespa
    lubridate::here()
    ```
 
-   This works regardless of the order in which the packages were loaded.
+   This works regardless of the order in which the packages were attached.
 
-2. **Ensuring package functions use the right functions internally**
+2. **Ensuring package functions use the correct functions internally**
 
    Package functions often use other functions internally.
-   Namespaces ensure they find the correct functions, even when other objects have the same names.
+   Namespaces help them find the correct functions, even when other objects have the same names.
 
    For example, `stats::sd()` uses `var()` to calculate standard deviations.
    Suppose we define our own function:
@@ -559,27 +564,29 @@ Looking at the examples given in this section, **explain two reasons why namespa
    Namespaces therefore help packages behave consistently, even when users define functions with the same names.
 
 Both examples show how namespaces **prevent naming conflicts**.
-
-The first shows how we can use `::` to choose the function we want.
-The second shows how namespaces ensure that package functions automatically use the correct functions internally.
+The first shows how we can use `::` to choose a function, while the second shows how namespaces ensure that package functions use the correct functions internally.
 
 :::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::
 
-For more information about exports, imports, and other namespace instructions, see [*R Packages*: The `NAMESPACE` file](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace).
+For more information, see the [discussion of namespaces in *R Packages*, 2nd edition](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace).
 
-### Other files and folders
+### Other files and directories
 
-Packages can also contain additional components:
+As our package develops, we may add other files and directories.
 
-- `man/`: Documentation for package functions.
-- `tests/`: Automated tests.
-- `README.md`: An overview of the package and how to use it.
-- `vignettes/`: Longer tutorials and examples.
-- `data/`: Datasets included with the package.
+| Component | Purpose |
+|---|---|
+| `man/` | Help files for package functions, typically generated automatically by `roxygen2`. |
+| `tests/` | Automated tests that check our code works as expected. |
+| `README.md` | An introduction to the package and how to use it. |
+| `vignettes/` | Longer tutorials showing how to use the package. |
+| `data/` | Datasets included with the package. |
 
 Not every package needs all these components.
+
+However, a `README.md` file and automated tests are highly recommended, even for small packages, to help others understand the package and ensure it works as expected.
 
 For more information, see the [Package structure](https://r-pkgs.org/structure.html) chapter of *R Packages*, 2nd edition.
 
