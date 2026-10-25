@@ -40,14 +40,14 @@ Good comments explain **why** something is done, rather than simply repeating **
 
 For example:
 
-```r
+``` R
 # Remove incomplete records so they do not affect the summary
 clean_data <- na.omit(data)
 ```
 
 Compare this with a comment that simply repeats the code:
 
-```r
+``` R
 # Calculate the mean
 mean_age <- mean(ages)
 ```
@@ -64,7 +64,7 @@ These special comments begin with `#'` and can be used to generate help pages.
 
 For example:
 
-```r
+``` R
 #' Add two numbers
 #'
 #' @param x First number.
@@ -93,7 +93,7 @@ This approach keeps reference documentation alongside the code, making it easier
 
 Add `roxygen2` documentation to the following function:
 
-```r
+``` R
 double_number <- function(x) {
   x * 2
 }
@@ -105,7 +105,7 @@ Include a short title, an `@param` description and an `@return` description.
 
 ### Show me the solution
 
-```r
+``` R
 #' Double a number
 #'
 #' @param x A number to double.
