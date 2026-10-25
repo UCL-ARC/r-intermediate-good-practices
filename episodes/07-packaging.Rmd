@@ -1317,13 +1317,6 @@ devtools::load_all()
 
 To install the package locally, use `devtools::install()`.
 
-## Reproducing the analysis
-
-After installing the package, run the analysis script from the project directory:
-
-```r
-source("scripts/sleep_analysis.R")
-```
 
 ## License
 MIT License.
