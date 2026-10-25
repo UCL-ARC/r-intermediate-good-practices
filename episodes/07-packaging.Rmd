@@ -946,7 +946,7 @@ Then regenerate the documentation:
 devtools::document()
 ```
 
-Ope the `NAMESPACE` file in RStudio.
+Open the `NAMESPACE` file in RStudio.
 It should now contain:
 
 ```text
