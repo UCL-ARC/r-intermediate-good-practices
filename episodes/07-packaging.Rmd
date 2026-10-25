@@ -784,7 +784,7 @@ For that, we also need an **analysis script**.
 
 In the `sleep` project, create a folder called `scripts/`.
 
-Download [sleep_analysis.R](files\02-environments\07-packaging\load_sleep_data.R) and save it in the `scripts` folder.
+Download [sleep_analysis.R](files\02-environments\07-packaging\sleep_analysis.R) and save it in the `scripts` folder.
 
 ``` R
 # Sleep analysis
