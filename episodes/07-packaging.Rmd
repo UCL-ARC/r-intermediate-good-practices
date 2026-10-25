@@ -672,7 +672,7 @@ summarise_data <- function(data, value_col = "extra", group_col = "group") {
 This function packages up the summary calculation from our earlier analysis, using the data we pass to it.
 The column-name arguments let us choose what to summarise and how to group it.
 For example, `data[[value_col]]` selects the column named by `value_col`.
-The defaults match the sleep dataset; `.by = group` calculates separate statistics for each group.
+The defaults match the sleep dataset; `.by = "group"` calculates separate statistics for each group.
 The output always uses the same column names, so it can be passed directly to `plot_summary()`.
 
 ### `plot_summary()`
