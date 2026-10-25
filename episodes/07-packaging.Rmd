@@ -958,52 +958,6 @@ export(summarise_data)
 These instructions tell R which functions people can use after installing and loading our package.
 As we saw earlier, `roxygen2` generates `NAMESPACE` automatically, so we don't need to edit it ourselves.
 
-## Publishing our package 
-
-Like `ggplot2` and `dplyr`, we can share our `sleep` package on [GitHub](https://github.com/).
-[GitLab](https://gitlab.com/) is a similar alternative for hosting and sharing code.
-
-**If you have a GitHub account**, open the `sleep` project in RStudio and run:
-
-``` R
-usethis::use_git()
-usethis::use_github()
-```
-
-The first command sets up Git to track changes, while the second helps publish our package on GitHub.
-
-Follow the instructions in the R console to configure authentication and commit your changes.
-
-Once published, others can install the package, just as we installed `obscurepackage` earlier:
-
-``` R
-remotes::install_github("yourusername/sleep")
-```
-
-Replace `yourusername` with your GitHub username.
-
-They can then load the package and use our exported functions:
-
-``` R
-library(sleep)
-
-data <- load_sleep_data()
-summary_data <- summarise_data(data)
-print(summary_data)
-plot_summary(summary_data)
-```
-
-Alternatively, the repositort can be **cloned** to get a local copy of the package's source code, including its functions, documentation, and analysis scripts.
-
-This can be done using [`git`](https://git-scm.com/), by running:
-
-```bash
-git clone https://github.com/yourusername/sleep.git
-```
-
-This creates a folder called `sleep` containing the project files. 
-They can then open `sleep.Rproj` in RStudio to explore the code, reproduce the analysis, or contribute to the package.
-
 ## Checking our package
 
 We've now added functions to our `sleep` package, generated their help pages, declared dependencies, and made the functions available to users.
@@ -1324,6 +1278,54 @@ MIT License.
 
 Replace `yourusername` with your GitHub username.
 The installation command will work once we've uploaded our package to that repository.
+
+
+## Publishing our package 
+
+Like `ggplot2` and `dplyr`, we can share our `sleep` package on [GitHub](https://github.com/).
+[GitLab](https://gitlab.com/) is a similar alternative for hosting and sharing code.
+
+**If you have a GitHub account**, open the `sleep` project in RStudio and run:
+
+``` R
+usethis::use_git()
+usethis::use_github()
+```
+
+The first command sets up Git to track changes, while the second helps publish our package on GitHub.
+
+Follow the instructions in the R console to configure authentication and commit your changes.
+
+Once published, others can install the package, just as we installed `obscurepackage` earlier:
+
+``` R
+remotes::install_github("yourusername/sleep")
+```
+
+Replace `yourusername` with your GitHub username.
+
+They can then load the package and use our exported functions:
+
+``` R
+library(sleep)
+
+data <- load_sleep_data()
+summary_data <- summarise_data(data)
+print(summary_data)
+plot_summary(summary_data)
+```
+
+Alternatively, the repositort can be **cloned** to get a local copy of the package's source code, including its functions, documentation, and analysis scripts.
+
+This can be done using [`git`](https://git-scm.com/), by running:
+
+```bash
+git clone https://github.com/yourusername/sleep.git
+```
+
+This creates a folder called `sleep` containing the project files. 
+They can then open `sleep.Rproj` in RStudio to explore the code, reproduce the analysis, or contribute to the package.
+
 
 ### Keeping track of versions
 
