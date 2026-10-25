@@ -683,7 +683,7 @@ Create and open `R/plot_summary.R`:
 usethis::use_r("plot_summary")
 ```
 
-Download [load_sleep_data.R](files\02-environments\07-packaging\load_sleep_data.R) and save it in the `R` folder.
+Download [plot_summary.R](files\02-environments\07-packaging\plot_summary.R) and save it in the `R` folder.
 
 ``` R
 #' Plot group means and standard errors
