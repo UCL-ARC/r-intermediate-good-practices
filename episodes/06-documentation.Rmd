@@ -34,6 +34,54 @@ Documentation is useful for collaborators, other researchers and our future selv
 
 Before writing documentation, consider: **Who is it for? What do they need to know? What is the clearest way to communicate it?**
 
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+
+### Exploring the ggplot2 documentation
+
+Explore the [ggplot2 website](https://ggplot2.tidyverse.org/).
+
+As you browse, consider:
+
+- Who might use each section?
+- Can you identify procedural, conceptual and reference documentation?
+- How do tutorials and examples help users learn?
+- Why might the News section be useful for reproducibility?
+
+:::::::::::::::::::::::: solution
+
+### Show me the solution
+
+- **Different audiences**
+  - *Get started* helps beginners learn the basics and create their first plots.
+  - *Articles* help users explore particular features in more detail.
+  - *Reference* helps users find information about specific functions, arguments and return values.
+  - *News* helps users understand what has changed between package versions.
+
+- **Types of documentation**
+  - **Procedural:** Tutorials guide users through the steps needed to create plots.
+  - **Conceptual:** Articles explain ideas and features, helping users understand how and why they work.
+  - **Reference:** Function documentation describes what each function does, its arguments and its output.
+
+- **Tutorials and examples**
+  - They demonstrate how to use the package to complete practical tasks.
+  - Users can follow the examples and adapt the code for their own analyses.
+  - This helps users learn by doing rather than relying only on explanations.
+
+- **News and reproducibility**
+  - The News section records changes introduced in new versions of `ggplot2`.
+  - Updates may change behaviour, introduce new features or affect existing code.
+  - Checking the News can help researchers understand differences in results after updating a package.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+Not every research project needs documentation this extensive, but exploring established packages can give us ideas for documenting our own work as it develops.
+
+
 ## Writing useful code comments
 
 One way to document code is through comments. In R, ordinary comments start with `#`.
@@ -141,64 +189,6 @@ For more developed packages or community projects, it should ideally also cover:
 - **Features and scope:** What does it do, what are its limitations and what is planned?
 - **Contributing and support:** How can others contribute, report issues or get help?
 
-
-## Exploring documentation in practice
-
-Well-developed software projects often provide several types of documentation to support different audiences and needs.
-
-A good example is [ggplot2](https://ggplot2.tidyverse.org/), an R package for data visualisation. Its website includes:
-
-- **Get started:** An introduction to creating plots with ggplot2.
-- **Articles:** Tutorials and guides explaining how to use different features.
-- **Reference:** Documentation for individual functions and their arguments.
-- **News:** Information about updates, new features and changes between versions.
-
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-
-### Exploring the ggplot2 documentation
-
-Explore the [ggplot2 website](https://ggplot2.tidyverse.org/).
-
-As you browse, consider:
-
-- Who might use each section?
-- Can you identify procedural, conceptual and reference documentation?
-- How do tutorials and examples help users learn?
-- Why might the News section be useful for reproducibility?
-
-:::::::::::::::::::::::: solution
-
-### Show me the solution
-
-- **Different audiences**
-  - *Get started* helps beginners learn the basics and create their first plots.
-  - *Articles* help users explore particular features in more detail.
-  - *Reference* helps users find information about specific functions, arguments and return values.
-  - *News* helps users understand what has changed between package versions.
-
-- **Types of documentation**
-  - **Procedural:** Tutorials guide users through the steps needed to create plots.
-  - **Conceptual:** Articles explain ideas and features, helping users understand how and why they work.
-  - **Reference:** Function documentation describes what each function does, its arguments and its output.
-
-- **Tutorials and examples**
-  - They demonstrate how to use the package to complete practical tasks.
-  - Users can follow the examples and adapt the code for their own analyses.
-  - This helps users learn by doing rather than relying only on explanations.
-
-- **News and reproducibility**
-  - The News section records changes introduced in new versions of `ggplot2`.
-  - Updates may change behaviour, introduce new features or affect existing code.
-  - Checking the News can help researchers understand differences in results after updating a package.
-
-:::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-Not every research project needs documentation this extensive, but exploring established packages can give us ideas for documenting our own work as it develops.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 - Research software has multiple audiences — users, developers, maintainers, and “future you” — each requiring different documentation.
