@@ -1090,18 +1090,16 @@ print(summary_data)
 plot_summary(summary_data)
 ```
 
-### Sharing with someone who wants to develop the package
+Alternatively, colleagues can **clone the repository** to get a local copy of the package's source code, including its functions, documentation, and analysis scripts.
 
-Our colleague might also want to fix a bug, add a function, or improve the documentation.
+They can do this by running:
 
-In that case, installing the package isn't enough.
-They need its **source code**, which we've made available through GitHub.
+```bash
+git clone https://github.com/yourusername/sleep.git
+```
 
-They can download or clone the repository, open `sleep.Rproj` in RStudio, and work with the package files directly.
-
-If we also provide a development `renv.lock` file, they can use `renv::restore()` to recreate the recorded development environment.
-
-They can then use the tools we've practised in this lesson, including `devtools::load_all()`, `devtools::document()`, and `devtools::check()`, as they make changes.
+This creates a folder called `sleep` containing the project files. 
+They can then open `sleep.Rproj` in RStudio to explore the code, reproduce the analysis, or contribute to the package.
 
 ### Keeping track of versions
 
@@ -1125,9 +1123,9 @@ A common versioning convention is:
 
 | Change | Example |
 |---|---|
-| Bug fix (patch) | `0.1.0` → `0.1.1` |
-| New feature (minor) | `0.1.0` → `0.2.0` |
-| Breaking change (major) | `1.0.0` → `2.0.0` |
+| Bug fix (patch) | `0.1.0` -> `0.1.1` |
+| New feature (minor) | `0.1.0` -> `0.2.0` |
+| Breaking change (major) | `1.0.0` -> `2.0.0` |
 
 We can also use [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) to mark a particular version of our package with a tag, such as `v0.1.0`.
 
