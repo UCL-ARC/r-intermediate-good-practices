@@ -1,0 +1,128 @@
+---
+title: "Documentation"
+teaching:
+exercises:
+---
+
+::::::::::::::::::::::::::::::::: questions
+
+- How do different audiences influence what you document?
+- How does your intention (citation, collaboration, onboarding) shape the documentation you write?
+- What types of documentation should research software include?
+- When should you use in-code comments, and why can over-commenting be harmful?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::: objectives
+
+- Identify and distinguish between procedural, conceptual, and reference documentation.
+- Plan documentation using the questions: Who is it for? What do they want? How else could I communicate with them?
+- Produce concise, audience-appropriate documentation.
+- Explain why it is good practice to avoid line-by-line commentary.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Why document our code?
+
+Writing code that works is only part of making research reproducible. We also need to help others understand **what our code does, how to use it and why certain decisions were made**.
+
+Documentation is useful for collaborators, other researchers and our future selves. Different audiences may need different information:
+
+- **Procedural documentation** explains how to complete a task, such as installing software or running an analysis.
+- **Conceptual documentation** explains how something works or why a particular approach was chosen.
+- **Reference documentation** describes specific functions, arguments and outputs.
+
+Before writing documentation, consider: **Who is it for? What do they need to know? What is the clearest way to communicate it?**
+
+## Writing useful code comments
+
+One way to document code is through comments. In R, ordinary comments start with `#`.
+
+Good comments explain **why** something is done, rather than simply repeating **what** the code does.
+
+For example:
+
+```r
+# Remove incomplete records so they do not affect the summary
+clean_data <- na.omit(data)
+```
+
+Avoid comments that describe obvious operations:
+
+```r
+# Calculate the mean
+mean_age <- mean(ages)
+```
+
+Clear function and variable names often make these comments unnecessary. Too many comments can make code harder to read and maintain, especially when the code changes but the comments do not.
+
+## Documenting R functions with `roxygen2`
+
+As we make our code more reusable, we also need to explain how others can use our functions.
+
+In R packages, we can use [`roxygen2`](https://roxygen2.r-lib.org/) to write documentation directly above a function. Unlike ordinary comments, these start with `#'` and can be used to generate help pages.
+
+For example:
+
+```r
+#' Add two numbers
+#'
+#' @param x First number.
+#' @param y Second number.
+#' @return The sum of x and y.
+#' @export
+add_numbers <- function(x, y) {
+  x + y
+}
+```
+
+Here:
+
+- `@param` describes each argument.
+- `@return` describes what the function returns.
+- `@export` makes the function available to package users.
+
+Running `devtools::document()` inside an R package generates help files from these comments. Once the package is loaded, users can access the documentation with `?add_numbers`.
+
+This keeps documentation close to the code it describes, making it easier to maintain.
+
+::::::::::::::::::::::::::::::::: challenge
+
+### Writing function documentation
+
+Add `roxygen2` documentation to the following function:
+
+```r
+double_number <- function(x) {
+  x * 2
+}
+```
+
+Include a short title, an `@param` description and an `@return` description.
+
+:::::::::::::::::::: solution
+
+### Show me the solution
+
+```r
+#' Double a number
+#'
+#' @param x A number to double.
+#' @return The input multiplied by two.
+double_number <- function(x) {
+  x * 2
+}
+```
+
+We don't need an ordinary comment explaining `x * 2` because the code is already clear.
+
+We'll use `roxygen2` again in the **Packaging** episode, where we will document and export functions from our own package.
+
+For more information, see the [roxygen2 introduction](https://roxygen2.r-lib.org/articles/roxygen2.html) and the [function documentation chapter of *R Packages*](https://r-pkgs.org/man.html).
+
+::::::::::::::::::::::::::::::::::::: keypoints
+- Research software has multiple audiences — users, developers, maintainers, and “future you” — each requiring different documentation.
+- Documentation comes in three types: procedural (step-by-step guides), conceptual (background, explanations, diagrams), and reference (APIs, parameters, system details)
+- In-code comments should be minimal and purposeful. Over-commenting distracts from the code, increases cognitive load, and often indicates unclear naming or structure.
+- Roxygen comments describe the purpose and behaviour of functions, classes, and modules. They improve readability and can be used to auto-generate reference documentation.
+::::::::::::::::::::::::::::::::::::::::::::::::
