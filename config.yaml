@@ -71,6 +71,8 @@ episodes:
 - 01-reproducibility.Rmd
 - 02-environments.Rmd
 - 03-code_smells.Rmd
+- 07-packaging.Rmd
+
 
 # Information for Learners
 learners:
