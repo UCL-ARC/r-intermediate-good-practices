@@ -32,27 +32,34 @@ The right approach depends on who will use the code and what they need to know.
 
 ## Writing useful code comments
 
-Comments help explain parts of our code that might otherwise be difficult to understand.
+Comments help explain parts of our code that might otherwise be difficult to understand. 
 In R, ordinary comments start with `#`.
 
-Good comments explain **why** something is done, rather than simply repeating **what** the code does.
+A useful rule of thumb is to explain **why** something is done, rather than simply repeating **what** the code does.
 
 For example:
 
-``` R
-# Remove incomplete records so they do not affect the summary
-clean_data <- na.omit(data)
+```r
+# Exclude sample 42 because its readings were affected
+# by an equipment malfunction during data collection.
+measurements <- measurements[measurements$sample_id != 42, ]
 ```
 
-Compare this with a comment that simply repeats the code:
+Compare this with a comment that simply describes the operation:
 
-``` R
-# Calculate the mean
-mean_age <- mean(ages)
+```r
+# Exclude sample 42
+measurements <- measurements[measurements$sample_id != 42, ]
 ```
 
-The second comment adds little because the code already makes the operation clear.
-Too many comments can make code harder to read and maintain, especially when the code changes but the comments do not.
+The second comment adds little because we can already see from the code that sample 42 is being excluded. 
+What we cannot tell is *why*.
+
+**This is not a strict rule**.
+Comments can also help explain **what** the code does when the logic is complex or not immediately obvious.
+
+**The key is to write comments that add useful information.** 
+Comments that simply repeat obvious code can make scripts harder to read and maintain, particularly if the code changes but the comments are not updated.
 
 ## Documenting R functions with `roxygen2`
 
