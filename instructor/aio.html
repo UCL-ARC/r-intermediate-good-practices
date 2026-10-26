@@ -290,6 +290,30 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="06-documentation.html">5. Documentation</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="07-packaging.html">6. Packaging</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -1055,8 +1079,8 @@ snapshots of the environment.</li>
 <section><h2 class="section-heading" id="running-someone-elses-script">Running someone else’s script<a class="anchor" aria-label="anchor" href="#running-someone-elses-script"></a>
 </h2>
 <hr class="half-width">
-<p>A colleague emails you an R script called <a href="../code/02-environments/sleep_analysis.R">sleep_analysis.R</a> and
-asks you to reproduce their results while they are away.</p>
+<p>A colleague emails you an R script called <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/02-environments/sleep_analysis.R" class="external-link">sleep_analysis.R</a>
+and asks you to reproduce their results while they are away.</p>
 <p>Before running anything, create an R project to organise your
 work.</p>
 <div class="section level3">
@@ -1087,9 +1111,9 @@ it.</p>
 <div class="section level3">
 <h3 id="save-the-script">Save the script<a class="anchor" aria-label="anchor" href="#save-the-script"></a>
 </h3>
-<p>Download <a href="../code/02-environments/sleep_analysis.R">sleep_analysis.R</a> and
-save it in the <code>sleep</code> folder. Open it in RStudio to view the
-code your colleague sent you:</p>
+<p>Download <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/02-environments/sleep_analysis.R" class="external-link">sleep_analysis.R</a>
+and save it in the <code>sleep</code> folder. Open it in RStudio to view
+the code your colleague sent you:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1599,14 +1623,14 @@ consistent</td>
 <hr class="half-width">
 <p>You receive an email from your colleague. Apparently the earlier file
 (<code>sleep_analysis.R</code>) was the wrong one.</p>
-<p>This time, your colleague sent you two files: <a href="../code/02-environments/sleep_analysis_final.R">sleep_analysis_final.R</a>
-and <a href="../code/02-environments/DESCRIPTION">DESCRIPTION</a>.</p>
+<p>This time, your colleague sent you two files: <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/02-environments/sleep_analysis_final.R" class="external-link">sleep_analysis_final.R</a>
+and <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/02-environments/DESCRIPTION" class="external-link">DESCRIPTION</a>.</p>
 <p>In their message, your colleague explains that you should use the
 <code>DESCRIPTION</code> file to create the correct R environment for
 running the analysis.</p>
-<p>Continue in the same <code>sleep</code> project. Download the <a href="../code/02-environments/DESCRIPTION">DESCRIPTION file</a> and save it
-in <code>rworkshop/sleep</code>.</p>
-<p>Download <a href="../code/02-environments/sleep_analysis_final.R">sleep_analysis_final.R</a>
+<p>Continue in the same <code>sleep</code> project. Download the <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/02-environments/DESCRIPTION" class="external-link">DESCRIPTION
+file</a> and save it in <code>rworkshop/sleep</code>.</p>
+<p>Download <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/02-environments/sleep_analysis_final.R" class="external-link">sleep_analysis_final.R</a>
 and save it in the same folder. Its contents are shown below.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2963,7 +2987,7 @@ the code.</strong></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -3024,7 +3048,7 @@ calculations simply repeat what the code already says.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -3076,7 +3100,7 @@ what the returned average represents.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ul>
 <li>
@@ -3146,7 +3170,7 @@ sample was excluded.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <ul>
 <li>
@@ -3215,6 +3239,2225 @@ code is most likely to break in the future.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</section></section><section id="aio-06-documentation"><p>Content from <a href="06-documentation.html">Documentation</a></p>
+<hr>
+<p>Last updated on 2026-10-26 |
+
+        <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/edit/main/episodes/06-documentation.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do different audiences influence what you document?</li>
+<li>How does your intention (citation, collaboration, onboarding) shape
+the documentation you write?</li>
+<li>What types of documentation should research software include?</li>
+<li>When should you use in-code comments, and why can over-commenting be
+harmful?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Identify and distinguish between procedural, conceptual, and
+reference documentation.</li>
+<li>Plan documentation using the questions: Who is it for? What do they
+want? How else could I communicate with them?</li>
+<li>Produce concise, audience-appropriate documentation.</li>
+<li>Explain why it is good practice to avoid line-by-line
+commentary.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="what-is-documentation">What is documentation?<a class="anchor" aria-label="anchor" href="#what-is-documentation"></a>
+</h2>
+<hr class="half-width">
+<p>Writing code that works is only part of making research reproducible.
+We also need to help others understand what our code does, how to use it
+and why certain decisions were made.</p>
+<p><strong>Documentation is information that helps people understand,
+use and maintain software.</strong></p>
+<p>It can take many forms, from a short comment explaining a decision to
+a website containing tutorials and reference guides.</p>
+<p>Documentation can be divided into three broad types:</p>
+<ul>
+<li>
+<strong>Procedural documentation:</strong> Explains <strong>how to
+do something</strong>, usually through step-by-step instructions or
+tutorials.</li>
+<li>
+<strong>Conceptual documentation:</strong> Explains <strong>how and
+why something works</strong>, providing background information and
+helping users understand underlying ideas.</li>
+<li>
+<strong>Reference documentation:</strong> Provides <strong>detailed
+information to look up</strong>, such as descriptions of functions,
+arguments and return values.</li>
+</ul>
+<p>These types of documentation serve different purposes and often
+complement each other.</p>
+<p>The right documentation depends on <strong>who will use the software
+and what they need to know</strong>.</p>
+<div id="exercise-who-needs-what-documentation" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-who-needs-what-documentation" class="callout-inner">
+<h3 class="callout-title">Exercise: Who needs what documentation?</h3>
+<div class="callout-content">
+<p>Imagine you have expanded your colleague’s R workflow for analysing
+the <code>sleep</code> dataset into a package and now want to share it
+with others.</p>
+<p>For each situation, consider:</p>
+<ul>
+<li>
+<strong>Who</strong> is the documentation for?</li>
+<li>
+<strong>What</strong> do they need to know?</li>
+<li>
+<strong>Which type</strong> of documentation (procedural, conceptual
+or reference) would be most appropriate?</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>A new colleague wants to install your R package and contribute to
+its development.</li>
+<li>A researcher wants to understand why you chose a particular
+statistical test.</li>
+<li>A researcher wants to know what a particular function in the sleep
+analysis does and what it returns.</li>
+<li>The head of department who made funding available for your project
+wants a brief update on its progress and key findings.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p><strong>1. A new colleague wants to install your R package and
+contribute to its development.</strong></p>
+<ul>
+<li>
+<strong>Who?</strong> A colleague who is new to the project.</li>
+<li>
+<strong>What?</strong> They need instructions for installing the
+package, getting started and contributing changes.</li>
+<li>
+<strong>Type: Procedural documentation.</strong> A README and
+contributing guide (<code>CONTRIBUTING.md</code>) can provide
+step-by-step instructions for installation, usage and
+contributions.</li>
+</ul>
+<p><strong>2. A researcher wants to understand the statistical
+approach.</strong></p>
+<ul>
+<li>
+<strong>Who?</strong> A researcher reviewing or building on the
+analysis.</li>
+<li>
+<strong>What?</strong> They need to understand why a particular
+statistical test was chosen and what assumptions it makes.</li>
+<li>
+<strong>Type: Conceptual documentation.</strong> An explanation of
+the reasoning behind the statistical approach would help them evaluate
+the analysis.</li>
+</ul>
+<p><strong>3. A researcher wants to understand a function.</strong></p>
+<ul>
+<li>
+<strong>Who?</strong> Someone using or reviewing the analysis
+code.</li>
+<li>
+<strong>What?</strong> They need to know what the function does,
+which inputs it accepts and what it returns.</li>
+<li>
+<strong>Type: Reference documentation.</strong> A function help page
+would provide these details.</li>
+</ul>
+<p><strong>4. The head of department wants an update.</strong></p>
+<ul>
+<li>
+<strong>Who?</strong> Someone interested in the project’s outcomes
+who may not be familiar with R or the analysis code.</li>
+<li>
+<strong>What?</strong> They need a clear summary of progress, key
+findings and next steps.</li>
+<li>
+<strong>Type: Most closely related to conceptual
+documentation.</strong> A short, non-technical summary explaining the
+project’s purpose, findings and significance could be shared as a news
+article, blog post or project update. This is project communication
+rather than software documentation.</li>
+</ul>
+<p>Different audiences may need different information about the same
+project, and not all communication needs to be technical
+documentation.</p>
+</div>
+</div>
+</div>
+</div>
+<p>In this lesson, we’ll explore different ways of documenting research
+software, from code comments and function documentation to READMEs and
+documentation websites.</p>
+</section><section><h2 class="section-heading" id="writing-useful-code-comments">Writing useful code comments<a class="anchor" aria-label="anchor" href="#writing-useful-code-comments"></a>
+</h2>
+<hr class="half-width">
+<p>Comments help explain parts of our code that might otherwise be
+difficult to understand. In R, ordinary comments start with
+<code>#</code>.</p>
+<p>A useful rule of thumb is to explain <strong>why</strong> something
+is done, rather than simply repeating <strong>what</strong> the code
+does.</p>
+<p>For example:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Exclude sample 42 because its readings were affected</span></span>
+<span><span class="co"># by an equipment malfunction during data collection.</span></span>
+<span><span class="va">measurements</span> <span class="op">&lt;-</span> <span class="va">measurements</span><span class="op">[</span><span class="va">measurements</span><span class="op">$</span><span class="va">sample_id</span> <span class="op">!=</span> <span class="fl">42</span>, <span class="op">]</span></span></code></pre>
+</div>
+<p>Compare this with a comment that simply describes the operation:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Exclude sample 42</span></span>
+<span><span class="va">measurements</span> <span class="op">&lt;-</span> <span class="va">measurements</span><span class="op">[</span><span class="va">measurements</span><span class="op">$</span><span class="va">sample_id</span> <span class="op">!=</span> <span class="fl">42</span>, <span class="op">]</span></span></code></pre>
+</div>
+<p>The second comment adds little because we can already see from the
+code that sample 42 is being excluded. What we cannot tell is
+<em>why</em>.</p>
+<p><strong>This is not a strict rule</strong>. Comments can also help
+explain <strong>what</strong> the code does when the logic is complex or
+not immediately obvious.</p>
+<p><strong>The key is to write comments that add useful
+information.</strong> Comments that simply repeat obvious code can make
+scripts harder to read and maintain, particularly if the code changes
+but the comments are not updated.</p>
+</section><section><h2 class="section-heading" id="documenting-r-functions-with-roxygen2">Documenting R functions with <code>roxygen2</code>
+<a class="anchor" aria-label="anchor" href="#documenting-r-functions-with-roxygen2"></a>
+</h2>
+<hr class="half-width">
+<p>Comments can explain decisions within our code, but people using our
+functions also need to know what the functions do, which arguments they
+accept and what they return.</p>
+<p>In R packages, we can use <a href="https://roxygen2.r-lib.org/" class="external-link"><code>roxygen2</code></a> to write
+this documentation directly above a function. These special comments
+begin with <code>#'</code> and can be used to generate help pages.</p>
+<p>For example:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Add two numbers</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param x First number.</span></span>
+<span><span class="co">#' @param y Second number.</span></span>
+<span><span class="co">#' @return The sum of x and y.</span></span>
+<span><span class="co">#' @export</span></span>
+<span><span class="va">add_numbers</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>Here:</p>
+<ul>
+<li>
+<code>@param</code> describes each argument.</li>
+<li>
+<code>@return</code> describes what the function returns.</li>
+<li>
+<code>@export</code> makes the function available to package
+users.</li>
+</ul>
+<p>Running <code>devtools::document()</code> inside an R package
+generates help files from these comments. Users can then access the
+function’s documentation with <code>?add_numbers</code>.</p>
+<div id="writing-function-documentation" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="writing-function-documentation" class="callout-inner">
+<h3 class="callout-title">Writing function documentation</h3>
+<div class="callout-content">
+<p>Use <code>roxygen2</code> to document the function below for people
+using your R package.</p>
+<p>Include: - A short title. - <code>@param</code> to describe the
+input. - <code>@return</code> to describe the output. -
+<code>@export</code> to make the function available to package
+users.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">double_number</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">*</span> <span class="fl">2</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Double a number</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param x A number to double.</span></span>
+<span><span class="co">#' @return The input multiplied by two.</span></span>
+<span><span class="co">#' @export</span></span>
+<span><span class="va">double_number</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">*</span> <span class="fl">2</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p><code>@param</code> and <code>@return</code> explain how to use the
+function; <code>@export</code> makes it accessible to package users.</p>
+</div>
+</div>
+</div>
+</div>
+<p>We’ll practise generating and exploring these help pages in the
+<strong>Packaging</strong> episode.</p>
+</section><section><h2 class="section-heading" id="writing-a-useful-readme">Writing a useful README<a class="anchor" aria-label="anchor" href="#writing-a-useful-readme"></a>
+</h2>
+<hr class="half-width">
+<p>Function documentation explains how to use individual functions, but
+someone discovering an entire project needs a broader introduction.</p>
+<p>A <strong>README</strong> is usually a file named
+<code>README.md</code> in the project’s main directory. It provides a
+starting point for understanding and using the project.</p>
+<p>At a minimum, a README should explain:</p>
+<ul>
+<li>
+<strong>Purpose:</strong> What problem does the project solve, and
+for whom?</li>
+<li>
+<strong>Getting started:</strong> How can someone install and use
+it?</li>
+</ul>
+<p>For more developed packages or community projects, it should ideally
+also cover:</p>
+<ul>
+<li>
+<strong>Features and scope:</strong> What does it do, what are its
+limitations and what is planned?</li>
+<li>
+<strong>Contributing and support:</strong> How can others
+contribute, report issues or get help?</li>
+</ul>
+<p>A README is often the first thing people see when visiting a project
+on GitHub, so it should help them quickly decide whether the project is
+relevant and how to get started.</p>
+</section><section><h2 class="section-heading" id="exploring-documentation-websites">Exploring documentation websites<a class="anchor" aria-label="anchor" href="#exploring-documentation-websites"></a>
+</h2>
+<hr class="half-width">
+<p>For larger projects, a README and function help pages may not be
+enough. A documentation website can bring together tutorials,
+explanations, reference material, release notes and contribution
+guides.</p>
+<p>The <a href="https://ggplot2.tidyverse.org/" class="external-link"><code>ggplot2</code>
+website</a> is a useful example because it includes several types of
+documentation:</p>
+<ul>
+<li>
+<strong>Get started:</strong> Introduces the package and helps
+beginners create their first plots.</li>
+<li>
+<strong>Articles:</strong> Explore features and explain concepts in
+more detail.</li>
+<li>
+<strong>Reference:</strong> Documents individual functions,
+arguments and outputs.</li>
+<li>
+<strong>News:</strong> Records changes between package
+versions.</li>
+</ul>
+<div id="exploring-the-ggplot2-documentation" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exploring-the-ggplot2-documentation" class="callout-inner">
+<h3 class="callout-title">Exploring the ggplot2 documentation</h3>
+<div class="callout-content">
+<p>Explore the <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2
+website</a>.</p>
+<p>As you browse, consider:</p>
+<ul>
+<li>Who might use each section?</li>
+<li>Can you identify procedural, conceptual and reference
+documentation?</li>
+<li>How do tutorials and examples help users learn?</li>
+<li>Why might the News section be useful for reproducibility?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<ul>
+<li>
+<strong>Different audiences</strong>
+<ul>
+<li>
+<em>Get started</em> helps beginners learn the basics and create
+their first plots.</li>
+<li>
+<em>Articles</em> help users explore particular features in more
+detail.</li>
+<li>
+<em>Reference</em> helps users find information about specific
+functions and arguments.</li>
+<li>
+<em>News</em> helps users understand what has changed between
+package versions.</li>
+</ul>
+</li>
+<li>
+<strong>Types of documentation</strong>
+<ul>
+<li>
+<strong>Procedural:</strong> Tutorials guide users through the steps
+needed to create plots.</li>
+<li>
+<strong>Conceptual:</strong> Articles explain ideas and features,
+helping users understand how and why they work.</li>
+<li>
+<strong>Reference:</strong> Function documentation describes what
+each function does, its arguments and its output.</li>
+</ul>
+</li>
+<li>
+<strong>Tutorials and examples</strong>
+<ul>
+<li>They demonstrate how to use the package to complete practical
+tasks.</li>
+<li>Users can follow the examples and adapt the code for their own
+analyses.</li>
+</ul>
+</li>
+<li>
+<strong>News and reproducibility</strong>
+<ul>
+<li>The News section records changes introduced in new versions of
+<code>ggplot2</code>.</li>
+<li>Checking these changes can help researchers understand differences
+in code behaviour or results after updating a package.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Documentation websites can also be built automatically from source
+files, rather than maintained as separate web pages.</p>
+<p>For example, this workshop is written in source files and built into
+a website. When the source files change, the website can be rebuilt to
+reflect those changes.</p>
+<p>In R, tools such as <a href="https://pkgdown.r-lib.org/" class="external-link"><code>pkgdown</code></a> can build
+documentation websites from package documentation, articles and a
+README. Build automation tools such as <a href="https://docs.github.com/en/actions" class="external-link">GitHub Actions</a> can run
+this process when changes are pushed to a repository.</p>
+<p>Not every project needs a full documentation website, but exploring
+established projects can give us ideas for documenting our own work as
+it grows.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Research software has multiple audiences — users, developers,
+maintainers, and “future you” — each requiring different
+documentation.</li>
+<li>Documentation comes in three types: procedural (step-by-step
+guides), conceptual (background, explanations, diagrams), and reference
+(APIs, parameters, system details)</li>
+<li>In-code comments should be minimal and purposeful. Over-commenting
+distracts from the code, increases cognitive load, and often indicates
+unclear naming or structure.</li>
+<li>Roxygen comments describe the purpose and behaviour of functions,
+classes, and modules. They improve readability and can be used to
+auto-generate reference documentation.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-07-packaging"><p>Content from <a href="07-packaging.html">Packaging</a></p>
+<hr>
+<p>Last updated on 2026-10-26 |
+
+        <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/edit/main/episodes/07-packaging.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 75 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Why is it useful to organise R code into a package?</li>
+<li>How do I create and develop an R package?</li>
+<li>How can I check and share an R package?</li>
+<li>What do package version numbers tell us?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Create an R package using RStudio or
+<code>usethis::create_package()</code>.</li>
+<li>Organise reusable functions in the <code>R/</code> directory and
+understand the main components of a package.</li>
+<li>Declare package dependencies and test functions using
+<code>devtools::load_all()</code>.</li>
+<li>Document and export functions using <code>roxygen2</code>.</li>
+<li>Install a package locally and run an analysis script that uses its
+functions.</li>
+<li>Check a package using <code>devtools::check()</code> and interpret
+its output.</li>
+<li>Describe how packages can be shared through GitHub and how version
+numbers communicate changes.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="r-packages">R packages<a class="anchor" aria-label="anchor" href="#r-packages"></a>
+</h2>
+<hr class="half-width">
+<p>We’ve used several R packages throughout the previous episodes,
+including <code>renv</code>, <code>ggplot2</code>, <code>dplyr</code>,
+and <code>remotes</code>. Each of these packages provides functionality
+beyond what’s available in base R.</p>
+<p>For example, to create plots using <code>ggplot2</code>, you can
+install and load the package:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span></code></pre>
+</div>
+<p>You now have access to functions for creating plots, such as
+<code>ggplot()</code> and <code>geom_point()</code>.</p>
+<p>When you install a package using <code>install.packages()</code>, R
+typically downloads it from <a href="https://cran.r-project.org/" class="external-link">CRAN
+(the Comprehensive R Archive Network)</a>, the default package
+repository in most R setups.</p>
+<p>CRAN hosts thousands of packages that have been checked against a set
+of requirements before being made available for others to install.</p>
+<p>When you install a package from CRAN, R will also install any
+required dependencies that aren’t already available on your
+computer.</p>
+<p>Once a package is installed, you can load it into your current R
+session using <code>library()</code>.</p>
+<p>You only need to install a package once for a given R library, but
+you need to load it again in each new R session where you want to use
+it.</p>
+<div class="section level3">
+<h3 id="what-is-an-r-package">What is an R package?<a class="anchor" aria-label="anchor" href="#what-is-an-r-package"></a>
+</h3>
+<p>An R package is a collection of code, documentation, and sometimes
+data, organised in a standard way that R understands. This structure
+makes packages easy to install, load, reuse, and share.</p>
+<p>An excellent resource for learning about R package development is <a href="https://r-pkgs.org/" class="external-link"><em>R Packages</em>, 2nd edition</a>, a
+freely available online book by Hadley Wickham and Jennifer Bryan. It
+covers everything from organising functions and managing dependencies to
+writing documentation, testing code, and preparing packages for
+publication.</p>
+<div id="why-create-an-r-package" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="why-create-an-r-package" class="callout-inner">
+<h3 class="callout-title">Why create an R package?</h3>
+<div class="callout-content">
+<p>Visit the <a href="https://r-pkgs.org/introduction.html" class="external-link">Introduction</a> chapter of
+<em>R Packages</em>, 2nd edition, and read the
+<strong>Introduction</strong> and <strong>Philosophy</strong>
+sections.</p>
+<p>As you read, consider the following questions:</p>
+<ul>
+<li>Why might creating an R package be useful, even if you never share
+it with others?</li>
+<li>How do the standard conventions of R packages save time and make
+package development easier?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p><strong>Packages aren’t just for sharing code:</strong> Creating an R
+package allows us to bring related functions together in one place,
+rather than keeping them scattered across different scripts and
+projects. This makes our code easier to find, update, and reuse without
+repeatedly copying and pasting functions. Even if we never share our
+package with anyone else, organising our code in this way can save time
+and make our work easier to maintain. If we do decide to share it,
+others can install and use our functions just like any other R
+package.</p>
+<p><strong>Following conventions saves time and effort:</strong> R
+packages follow a standard structure, with R code stored in
+<code>R/</code>, tests in <code>tests/</code>, and data in
+<code>data/</code>. These conventions mean we don’t need to decide how
+to organise every new project from scratch. They also allow us to use
+tools designed specifically for package development. For example,
+<code>usethis</code> helps create and configure package files, while
+<code>devtools</code> provides functions for loading, testing, and
+checking packages. By automating these tasks, we can spend less time
+worrying about the details of package development and more time focusing
+on what our package should do.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="what-does-an-r-package-look-like">What does an R package look like?<a class="anchor" aria-label="anchor" href="#what-does-an-r-package-look-like"></a>
+</h3>
+<p>We’ve seen why creating an R package can be useful. But what does a
+package actually look like behind the scenes?</p>
+<p>Let’s explore the structure of two packages we’ve already
+encountered.</p>
+<div id="what-do-r-packages-have-in-common" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="what-do-r-packages-have-in-common" class="callout-inner">
+<h3 class="callout-title">What do R packages have in common?</h3>
+<div class="callout-content">
+<p>Explore the GitHub repositories of two packages that came up in
+previous episodes:</p>
+<ul>
+<li>
+<a href="https://github.com/tidyverse/ggplot2" class="external-link">ggplot2</a>: for
+creating plots.</li>
+<li>
+<a href="https://github.com/tidyverse/dplyr" class="external-link">dplyr</a>: for
+manipulating data.</li>
+</ul>
+<p>Take a few minutes to explore the files and folders in both
+repositories. You don’t need to understand the code itself; we’re
+interested in how the packages are organised.</p>
+<ul>
+<li>What files and folders do both packages have in common?</li>
+<li>Where are the R functions, tests, and documentation stored?</li>
+<li>What differences can you spot between the two repositories?</li>
+<li>Why do you think packages might need different files or
+folders?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p><strong>Files and folders in common</strong></p>
+<p>Both packages share several files and folders, including
+<code>R/</code>, <code>DESCRIPTION</code>, <code>NAMESPACE</code>,
+<code>man/</code>, <code>tests/</code>, and <code>README.md</code>.</p>
+<p><strong>Where are the different components stored?</strong></p>
+<ul>
+<li>
+<code>R/</code> contains the R functions.</li>
+<li>
+<code>tests/testthat/</code> contains automated tests.</li>
+<li>
+<code>man/</code> contains documentation for functions.</li>
+<li>
+<code>README.md</code> provides an overview of the package,
+including what it does, how to install it, and examples of how to use
+it. It serves as an introduction to the package and a starting point for
+its documentation.</li>
+</ul>
+<p><strong>Differences between packages</strong></p>
+<p>Although both packages follow a common structure, they also have
+differences.</p>
+<p>For example, <code>ggplot2</code> includes an <code>icons/</code>
+folder, which you won’t find in <code>dplyr</code>.</p>
+<p>Packages share a standard structure, but they can also include
+additional files and folders depending on their purpose and development
+needs.</p>
+<p>For example, <code>ggplot2</code> is a data visualisation package, so
+its <code>icons/</code> folder contains graphical assets that help
+illustrate its features. These are useful for <code>ggplot2</code> but
+are not part of the standard R package structure.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Despite serving different purposes, <code>ggplot2</code> and
+<code>dplyr</code> follow a recognisable structure. This is what allows
+R to install and load packages in a consistent way.</p>
+</div>
+</section><section><h2 class="section-heading" id="creating-an-r-package-using-rstudio">Creating an R package using RStudio<a class="anchor" aria-label="anchor" href="#creating-an-r-package-using-rstudio"></a>
+</h2>
+<hr class="half-width">
+<p>Now that we’ve explored how existing R packages are organised, let’s
+create one of our own.</p>
+<p>Fortunately, we don’t need to create all the files and folders
+ourselves.</p>
+<p>RStudio can generate the basic package structure automatically.</p>
+<div class="section level3">
+<h3 id="creating-a-folder-for-our-packages">Creating a folder for our packages<a class="anchor" aria-label="anchor" href="#creating-a-folder-for-our-packages"></a>
+</h3>
+<p>Before creating our first package, let’s create a folder to keep our
+R packages together.</p>
+<p>We’ll call this folder <code>rpackages</code> and use it to store the
+two packages we’ll create in this lesson.</p>
+<ol style="list-style-type: decimal">
+<li>Open the <strong>Files</strong> pane in RStudio.</li>
+<li>Navigate to your home directory, which is your personal folder on
+your computer (for example, <code>C:\Users\YourName</code> on Windows or
+<code>/home/yourname</code> on Linux).</li>
+<li>Click <strong>New Folder</strong>.</li>
+<li>Enter <code>rpackages</code> as the folder name and click
+<strong>OK</strong>.</li>
+</ol>
+<p>You should now have a folder called <code>rpackages</code> in your
+home directory.</p>
+<p>We’ll create our first package, <code>rstudiopackage</code>, inside
+this folder using the RStudio menus.</p>
+<p>Later, we’ll create a second package, <code>sleep</code>, using
+<code>usethis</code> and develop it using code from our earlier sleep
+analysis.</p>
+<p>This will allow us to compare the two approaches without overwriting
+either package.</p>
+</div>
+<div class="section level3">
+<h3 id="creating-a-package-using-the-rstudio-menus">Creating a package using the RStudio menus<a class="anchor" aria-label="anchor" href="#creating-a-package-using-the-rstudio-menus"></a>
+</h3>
+<p>To create a package using RStudio:</p>
+<ol style="list-style-type: decimal">
+<li>Go to <strong>File &gt; New Project…</strong>.</li>
+<li>Select <strong>New Directory</strong>.</li>
+<li>Select <strong>R Package</strong>.</li>
+<li>Enter <code>rstudiopackage</code> as the package name.</li>
+<li>Under <strong>Create project as subdirectory of</strong>, click
+<strong>Browse</strong> and select the <code>rpackages</code> folder you
+just created.</li>
+<li>You’ll also see some optional settings:
+<ul>
+<li>
+<strong>Create a git repository:</strong> Initialises a local Git
+repository so you can track changes to your package using version
+control. This doesn’t automatically create a repository on GitHub.</li>
+<li>
+<strong>Use renv with this project:</strong> Sets up
+<code>renv</code> to manage package versions used during development,
+helping make your development environment reproducible. You might
+recognise <code>renv</code> from the reproducibility episode.</li>
+</ul>
+</li>
+<li>For this exercise, leave both options unchecked.</li>
+<li>Click <strong>Create Project</strong>.</li>
+</ol>
+<p>RStudio will create a directory called <code>rstudiopackage</code>
+inside <code>rpackages</code> and open it as a new project.</p>
+<div id="explore-your-new-package" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="explore-your-new-package" class="callout-inner">
+<h3 class="callout-title">Explore your new package</h3>
+<div class="callout-content">
+<p>RStudio has created a new project for your package.</p>
+<p>You might also notice that an example R script has opened
+automatically, containing a function called <code>hello()</code>.</p>
+<p>Take a few minutes to explore what RStudio has created.</p>
+<ul>
+<li>Look at the <strong>Files</strong> pane in RStudio. What files and
+folders have been created?</li>
+<li>Open the <code>R/</code> folder and find the example
+<code>hello.R</code> script. What does the <code>hello()</code> function
+do?</li>
+<li>Open the <code>DESCRIPTION</code> file. What information does it
+contain? Can you identify any placeholder values?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<p><strong>Package structure</strong></p>
+<p>Your package should contain a structure similar to this:</p>
+<pre class="text"><code>rpackages/
+└── rstudiopackage/
+    ├── .Rbuildignore
+    ├── .gitignore
+    ├── DESCRIPTION
+    ├── NAMESPACE
+    ├── R/
+    │   └── hello.R
+    └── rstudiopackage.Rproj</code></pre>
+<p>The exact files may vary depending on your RStudio version and the
+options you selected when creating the project.</p>
+<p>Some hidden files, such as <code>.gitignore</code>, might not be
+visible in the Files pane.</p>
+<p><strong>The <code>hello.R</code> script</strong></p>
+<p>Inside <code>R/</code>, you’ll find an example function:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Hello, world!</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># This is an example function named 'hello' </span></span>
+<span><span class="co"># which prints 'Hello, world!'.</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># You can learn more about package authoring with RStudio at:</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#   https://r-pkgs.org</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Some useful keyboard shortcuts for package authoring:</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#   Install Package:           'Ctrl + Shift + B'</span></span>
+<span><span class="co">#   Check Package:             'Ctrl + Shift + E'</span></span>
+<span><span class="co">#   Test Package:              'Ctrl + Shift + T'</span></span>
+<span></span>
+<span><span class="va">hello</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">print</span><span class="op">(</span><span class="st">"Hello, world!"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>The <code>hello()</code> function simply prints
+<code>"Hello, world!"</code> when called.</p>
+<p>RStudio includes it as an example of how functions are organised
+inside an R package.</p>
+<p><strong>The <code>DESCRIPTION</code> file</strong></p>
+<p>The <code>DESCRIPTION</code> file contains information about your
+package, including its name, version, authors, description, and
+licence.</p>
+<p>RStudio generates this file from a template, so some fields contain
+example values or placeholders.</p>
+<p>Your file will look something like this:</p>
+<pre class="text"><code>Package: rstudiopackage
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Jane", "Doe",
+      email = "jane@example.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: More about what it does (maybe more than one line).
+    Continuation lines should be indented.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true</code></pre>
+<p>For example, <code>Title</code> and <code>Description</code> contain
+instructions rather than meaningful descriptions of your package.</p>
+<p>The author information also contains example details that need to be
+replaced.</p>
+<p>These placeholders help us understand what information is expected,
+but we’ll need to update them as we develop the package.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="creating-an-r-package-using-usethis">Creating an R package using <code>usethis</code>
+<a class="anchor" aria-label="anchor" href="#creating-an-r-package-using-usethis"></a>
+</h2>
+<hr class="half-width">
+<p>RStudio uses <a href="https://usethis.r-lib.org/" class="external-link"><code>usethis</code></a> behind the
+scenes when creating a new R package.</p>
+<p>RStudio provides a convenient graphical interface for creating
+packages, but <code>usethis</code> can also be used directly from the R
+console to perform package development tasks.</p>
+<p>Using <code>usethis</code> directly gives us access to a wider range
+of functions than those available through the RStudio interface. These
+functions help automate many additional package development tasks.</p>
+<p>For example, it can:</p>
+<ul>
+<li>
+<strong>Set up testing infrastructure</strong> with
+<code>use_testthat()</code>, creating the necessary files and folders
+and updating <code>DESCRIPTION</code>.</li>
+<li>
+<strong>Add package dependencies</strong> with
+<code>use_package()</code>, updating <code>DESCRIPTION</code>
+automatically.</li>
+<li>
+<strong>Create a README</strong> with <code>use_readme_md()</code>,
+providing a starting point for documenting the package.</li>
+<li>
+<strong>Set up longer tutorials</strong> with
+<code>use_vignette()</code>, creating a vignette template and updating
+the necessary configuration.</li>
+<li>
+<strong>Configure automated checks on GitHub</strong> with
+<code>use_github_action()</code>, creating a GitHub Actions
+workflow.</li>
+</ul>
+<p>These tasks can be completed manually, but <code>usethis</code>
+reduces the amount of setup required and helps ensure that the necessary
+files and configuration are in place.</p>
+<p>Let’s create a second package using <code>usethis</code> and compare
+it with the one we created using RStudio.</p>
+<p>We’ll call this package <code>sleep</code> and save it inside the
+same <code>rpackages</code> folder. We’ll develop it using code from our
+earlier sleep analysis.</p>
+<div class="section level3">
+<h3 id="creating-a-package-with-usethiscreate_package">Creating a package with <code>usethis::create_package()</code>
+<a class="anchor" aria-label="anchor" href="#creating-a-package-with-usethiscreate_package"></a>
+</h3>
+<p>First, install <code>usethis</code> if you haven’t already:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"usethis"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Before creating the package, we need to make sure that our working
+directory is set to the <code>rpackages</code> folder we created
+earlier.</p>
+<p>You can check your current working directory using:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">getwd</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>If necessary, change your working directory using the RStudio
+menu:</p>
+<ol style="list-style-type: decimal">
+<li>Go to <strong>Session &gt; Set Working Directory &gt; Choose
+Directory…</strong>.</li>
+<li>Navigate to the <code>rpackages</code> folder.</li>
+<li>Click <strong>Open</strong> or <strong>Choose</strong>, depending on
+your operating system.</li>
+</ol>
+<p>Check that your working directory is now <code>rpackages</code>:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">getwd</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>For example, on Windows you might see:</p>
+<pre class="text"><code>[1] "C:/Users/YourName/rpackages"</code></pre>
+<p>Your full path will differ, but it should end in
+<code>rpackages</code>.</p>
+<p>Once you’re in the correct directory, run:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">create_package</span><span class="op">(</span><span class="st">"sleep"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>This creates a new directory called <code>sleep</code> inside
+<code>rpackages</code>, containing the basic structure of an R
+package.</p>
+<p>Depending on your RStudio settings, the new package may also open
+automatically as an RStudio project.</p>
+<p>We should now have two packages stored inside
+<code>rpackages</code>:</p>
+<pre class="text"><code>rpackages/
+├── rstudiopackage/
+└── sleep/</code></pre>
+<div id="compare-the-two-packages" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="compare-the-two-packages" class="callout-inner">
+<h3 class="callout-title">Compare the two packages</h3>
+<div class="callout-content">
+<p>We now have two packages: <code>rstudiopackage</code>, created using
+RStudio, and <code>sleep</code>, created using <code>usethis</code>.</p>
+<p>Take a few minutes to explore their files and folders.</p>
+<ul>
+<li>What files and folders do both packages have in common?</li>
+<li>Open the <code>R/</code> directory in each package. Does either
+contain an example function?</li>
+<li>Open the <code>DESCRIPTION</code> file in each package. What
+information does it contain? Can you identify any placeholder
+values?</li>
+<li>What differences can you spot between the two packages?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<p><strong>Package structure</strong></p>
+<p>After running <code>usethis::create_package()</code>, your second
+package should contain a structure similar to this:</p>
+<pre class="text"><code>rpackages/
+├── rstudiopackage/
+│   ├── .Rbuildignore
+│   ├── .gitignore
+│   ├── DESCRIPTION
+│   ├── NAMESPACE
+│   ├── R/
+│   │   └── hello.R
+│   └── rstudiopackage.Rproj
+└── sleep/
+    ├── .Rbuildignore
+    ├── .gitignore
+    ├── .Rhistory
+    ├── DESCRIPTION
+    ├── NAMESPACE
+    ├── R/
+    └── sleep.Rproj</code></pre>
+<p>The exact files and folders may vary depending on the versions of
+RStudio and <code>usethis</code> you’re using.</p>
+<p>Both RStudio and <code>usethis</code> create the basic structure of
+an R package, including <code>DESCRIPTION</code>,
+<code>NAMESPACE</code>, and <code>R/</code>.</p>
+<p>One difference is that RStudio typically creates an example
+<code>hello.R</code> script inside <code>R/</code>, whereas
+<code>usethis::create_package()</code> does not create an example
+function by default.</p>
+<p>The <code>R/</code> directory in <code>sleep</code> will therefore
+initially be empty, ready for us to add our own functions.</p>
+<p>Some files beginning with a dot (<code>.</code>), such as
+<code>.gitignore</code>, might not be visible in the Files pane.</p>
+<p><strong>The <code>DESCRIPTION</code> file</strong></p>
+<p>Both methods create a <code>DESCRIPTION</code> file containing
+information about the package, including its name, version, authors,
+description, and licence.</p>
+<p>The <code>DESCRIPTION</code> file created by <code>usethis</code>,
+should look similar to this:</p>
+<pre class="text"><code>Package: sleep
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R:
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)</code></pre>
+<p>You may notice some differences compared with the template created
+using the RStudio menus.</p>
+<p>For example, the initial version number is typically
+<code>0.0.0.9000</code> rather than <code>0.1.0</code>.</p>
+<p>Both templates also contain placeholder information that we’ll need
+to update as we develop our packages.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="the-structure-of-an-r-package">The structure of an R package<a class="anchor" aria-label="anchor" href="#the-structure-of-an-r-package"></a>
+</h2>
+<hr class="half-width">
+<p>We’ve now created two R packages and explored their structure.</p>
+<p>Let’s take a closer look at three core components.</p>
+<div class="section level3">
+<h3 id="core-components">Core components<a class="anchor" aria-label="anchor" href="#core-components"></a>
+</h3>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>DESCRIPTION</code></td>
+<td>Contains information about the package, such as its name, version,
+authors, licence, and dependencies.</td>
+</tr>
+<tr>
+<td><code>R/</code></td>
+<td>Contains the R scripts defining the package’s functions.</td>
+</tr>
+<tr>
+<td><code>NAMESPACE</code></td>
+<td>Contains instructions about which functions the package makes
+available and how it uses functions from other packages.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The <code>DESCRIPTION</code> file</strong></p>
+<p>Every R package needs a <code>DESCRIPTION</code> file. We’ve already
+seen that RStudio and <code>usethis</code> create it automatically with
+placeholder information that we can update.</p>
+<p><strong>The <code>R/</code> directory</strong></p>
+<p>Every R package containing R code has an <code>R/</code> directory.
+This directory contains the <code>.R</code> scripts that define the
+package’s functions.</p>
+<p>We can organise related functions in one or several scripts, and
+filenames don’t need to match function names.</p>
+<p><strong>The <code>NAMESPACE</code> file</strong></p>
+<p>Each R package has its own <strong>namespace</strong>, which keeps
+its functions and other objects separate from those in other packages.
+This helps R distinguish between functions with the same name.</p>
+<p>The <code>NAMESPACE</code> file contains instructions that control
+which functions a package makes available to users and which functions
+it imports from other packages.</p>
+<p>We’ll explore this in more detail below.</p>
+<div class="section level4">
+<h4 id="more-about-namespaces">More about namespaces<a class="anchor" aria-label="anchor" href="#more-about-namespaces"></a>
+</h4>
+<p>Two important types of namespace instructions are:</p>
+<ul>
+<li>
+<strong>Exports:</strong> Functions that a package makes available
+to users.</li>
+<li>
+<strong>Imports:</strong> Functions that a package brings in from
+other packages for use in its own code.</li>
+</ul>
+<p>We can use <code>::</code> to call an <strong>exported
+function</strong> from a specific package without first loading it with
+<code>library()</code>.</p>
+<p>For example, we used this when installing <code>obscurepackage</code>
+from GitHub:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stellaprins/obscurepackage"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Here, <code>remotes</code> is the <strong>package name</strong>, and
+<code>install_github()</code> is the <strong>function name</strong>.
+This works because <code>remotes</code> exports
+<code>install_github()</code>.</p>
+<p>When writing our own package, we can also use functions from other
+packages. For example, we can call <code>dplyr::summarise()</code>
+inside our functions without importing it into our namespace.
+Alternatively, we could import <code>summarise()</code> and call it
+without the <code>dplyr::</code> prefix.</p>
+<p>We usually don’t edit <code>NAMESPACE</code> manually. Instead,
+<code>roxygen2</code> generates it from special comments in our R
+scripts. Later, we’ll use <code>@export</code> to make functions from
+our own package available to users.</p>
+<div id="why-are-namespaces-useful" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="why-are-namespaces-useful" class="callout-inner">
+<h3 class="callout-title">Why are namespaces useful?</h3>
+<div class="callout-content">
+<p>Read <a href="https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace" class="external-link">Section
+10.2.1, <em>Motivation</em></a> in <em>R Packages</em>, 2nd edition.</p>
+<p>Using the examples in this section, <strong>explain two reasons why
+namespaces are useful</strong>.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
+<p>Namespaces therefore help packages behave consistently, even when
+users define functions with the same names.</p>
+<p>Both examples show how namespaces <strong>prevent naming
+conflicts</strong>. The first shows how we can use <code>::</code> to
+choose a function, while the second shows how namespaces ensure that
+package functions use the correct functions internally.</p>
+<p><strong>1. Choosing the right function when different packages use
+the same name</strong></p>
+<p>Both <code>here</code> and <code>lubridate</code> provide a function
+called <code>here()</code>, but these functions do different things.</p>
+<p>If we attach both packages using <code>library()</code>, calling
+<code>here()</code> uses the version from whichever package was attached
+last. This means the same function call could give different results
+depending on the order in which we attach the packages.</p>
+<p>We can use <code>::</code> to specify exactly which function we
+want:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>This works regardless of the order in which the packages were
+attached.</p>
+<p><strong>2. Ensuring package functions use the correct functions
+internally</strong></p>
+<p>Package functions often use other functions internally. Namespaces
+help them find the correct functions, even when other objects have the
+same names.</p>
+<p>For example, <code>stats::sd()</code> uses <code>var()</code> to
+calculate standard deviations. Suppose we define our own function:</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">var</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span><span class="fl">5</span></span></code></pre>
+</div>
+<p>Calling <code>var(1:5)</code> now returns <code>-5</code>, but
+<code>stats::sd(1:5)</code> still works correctly. This is because
+<code>sd()</code> uses <code>var()</code> from the <code>stats</code>
+namespace rather than our version.</p>
+</div>
+</div>
+</div>
+</div>
+<p>For more information, see the <a href="https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace" class="external-link">discussion
+of namespaces in <em>R Packages</em>, 2nd edition</a>.</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="other-components">Other components<a class="anchor" aria-label="anchor" href="#other-components"></a>
+</h3>
+<p>As our package develops, we may add other files and directories.</p>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>man/</code></td>
+<td>Help files for package functions, typically generated automatically
+by <code>roxygen2</code>.</td>
+</tr>
+<tr>
+<td><code>tests/</code></td>
+<td>Automated tests that check our code works as expected.</td>
+</tr>
+<tr>
+<td><code>README.md</code></td>
+<td>An introduction to the package and how to use it.</td>
+</tr>
+<tr>
+<td><code>vignettes/</code></td>
+<td>Longer tutorials showing how to use the package.</td>
+</tr>
+<tr>
+<td><code>data/</code></td>
+<td>Datasets included with the package.</td>
+</tr>
+</tbody>
+</table>
+<p>Not every package needs all these components.</p>
+<p>However, a <code>README.md</code> file and automated tests are highly
+recommended, even for small packages, to help others understand the
+package and ensure it works as expected.</p>
+<p>For more information, see the <a href="https://r-pkgs.org/structure.html" class="external-link">Package structure</a> chapter
+of <em>R Packages</em>, 2nd edition.</p>
+</div>
+</section><section><h2 class="section-heading" id="adding-functions-to-our-package">Adding functions to our package<a class="anchor" aria-label="anchor" href="#adding-functions-to-our-package"></a>
+</h2>
+<hr class="half-width">
+<p>In our earlier sleep analysis, we used the built-in
+<code>sleep</code> dataset to calculate summary statistics for each drug
+group and plot the results. Let’s organise those steps into three
+functions in our <code>sleep</code> package:</p>
+<ul>
+<li>
+<code>load_sleep_data()</code>: returns the built-in sleep
+dataset.</li>
+<li>
+<code>summarise_data()</code>: calculates summary statistics for a
+chosen measurement and grouping column.</li>
+<li>
+<code>plot_summary()</code>: plots group means and standard errors,
+with options for the bar colour and title.</li>
+</ul>
+<p>Open the <code>sleep</code> package project in RStudio by opening
+<code>sleep.Rproj</code> inside <code>rpackages/sleep/</code>.</p>
+<p>We’ll keep each function in its own script and add documentation
+above it using <a href="https://roxygen2.r-lib.org/articles/rd.html" class="external-link"><code>roxygen2</code></a>
+comments, which begin with <code>#'</code>. These comments describe what
+a function does, its inputs (<code>@param</code>), its output
+(<code>@returns</code>), and examples of how to use it
+(<code>@examples</code>).</p>
+<div class="section level3">
+<h3 id="load_sleep_data">
+<code>load_sleep_data()</code><a class="anchor" aria-label="anchor" href="#load_sleep_data"></a>
+</h3>
+<p>Run this command in the R console to create and open
+<code>R/load_sleep_data.R</code>:</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_r</span><span class="op">(</span><span class="st">"load_sleep_data"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Download <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/07-packaging/load_sleep_data.R" class="external-link">load_sleep_data.R</a>
+and save it in the <code>R</code> folder.</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Load the built-in sleep data</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' Get the data used in our sleep analysis.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @returns A data frame with columns extra (extra sleep in hours),</span></span>
+<span><span class="co">#'   group (drug group), and ID (participant).</span></span>
+<span><span class="co">#' @seealso [Official sleep dataset documentation](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html)</span></span>
+<span><span class="va">load_sleep_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">datasets</span><span class="fu">::</span><span class="va">sleep</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>We use <code>datasets::sleep</code> to refer to the built-in dataset
+and distinguish it from our package named <code>sleep</code>. This
+function has no inputs, so it doesn’t need an <code>@param</code>
+tag.</p>
+</div>
+<div class="section level3">
+<h3 id="summarise_data">
+<code>summarise_data()</code><a class="anchor" aria-label="anchor" href="#summarise_data"></a>
+</h3>
+<p>Create and open <code>R/summarise_data.R</code>:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_r</span><span class="op">(</span><span class="st">"summarise_data"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Download <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/07-packaging/summarise_data.R" class="external-link">summarise_data.R</a>
+and save it in the <code>R</code> folder.</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Summarise a numeric measurement by group</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' Calculate the mean, standard deviation, sample size, and standard error</span></span>
+<span><span class="co">#' for each group.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param data A data frame.</span></span>
+<span><span class="co">#' @param value_col Name of the numeric column.</span></span>
+<span><span class="co">#' @param group_col Name of the grouping column.</span></span>
+<span><span class="co">#' @returns A data frame with group, mean, sd, n, and se.</span></span>
+<span><span class="va">summarise_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">value_col</span> <span class="op">=</span> <span class="st">"extra"</span>, <span class="va">group_col</span> <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="va">selected_data</span> <span class="op">&lt;-</span> <span class="fu">data.frame</span><span class="op">(</span></span>
+<span>    group <span class="op">=</span> <span class="va">data</span><span class="op">[[</span><span class="va">group_col</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    value <span class="op">=</span> <span class="va">data</span><span class="op">[[</span><span class="va">value_col</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">selected_data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">summarise</span><span class="op">(</span></span>
+<span>      mean <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">value</span><span class="op">)</span>,</span>
+<span>      sd <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu">sd</span><span class="op">(</span><span class="va">value</span><span class="op">)</span>,</span>
+<span>      n <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>      se <span class="op">=</span> <span class="va">sd</span> <span class="op">/</span> <span class="fu">sqrt</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,</span>
+<span>      .by <span class="op">=</span> <span class="st">"group"</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>This function packages up the summary calculation from our earlier
+analysis, using the data we pass to it. The column-name arguments let us
+choose what to summarise and how to group it. For example,
+<code>data[[value_col]]</code> selects the column named by
+<code>value_col</code>. The defaults match the sleep dataset;
+<code>.by = "group"</code> calculates separate statistics for each
+group. The output always uses the same column names, so it can be passed
+directly to <code>plot_summary()</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="plot_summary">
+<code>plot_summary()</code><a class="anchor" aria-label="anchor" href="#plot_summary"></a>
+</h3>
+<p>Create and open <code>R/plot_summary.R</code>:</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_r</span><span class="op">(</span><span class="st">"plot_summary"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Download <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/07-packaging/plot_summary.R" class="external-link">plot_summary.R</a>
+and save it in the <code>R</code> folder.</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Plot group means and standard errors</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' Show means with error bars extending one standard error above and below.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param summary_data A data frame containing group, mean, and se.</span></span>
+<span><span class="co">#' @param fill Bar colour.</span></span>
+<span><span class="co">#' @param title Plot title.</span></span>
+<span><span class="co">#' @returns A ggplot object.</span></span>
+<span><span class="va">plot_summary</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">summary_data</span>, <span class="va">fill</span> <span class="op">=</span> <span class="st">"steelblue"</span>,</span>
+<span>                         <span class="va">title</span> <span class="op">=</span> <span class="st">"Group means"</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">ggplot</span><span class="op">(</span></span>
+<span>    <span class="va">summary_data</span>,</span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">factor</span><span class="op">(</span><span class="va">group</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">fill</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">geom_errorbar</span><span class="op">(</span></span>
+<span>      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">mean</span> <span class="op">-</span> <span class="va">se</span>, ymax <span class="op">=</span> <span class="va">mean</span> <span class="op">+</span> <span class="va">se</span><span class="op">)</span>,</span>
+<span>      width <span class="op">=</span> <span class="fl">0.2</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="va">title</span>, x <span class="op">=</span> <span class="st">"Group"</span>, y <span class="op">=</span> <span class="st">"Mean"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>The function expects columns named <code>group</code>,
+<code>mean</code>, and <code>se</code>, matching the output of
+<code>summarise_data()</code>. Other summary tables can also be used if
+they contain these columns.</p>
+<p>Save all three scripts, then open the <code>R/</code> folder in
+RStudio’s <strong>Files</strong> pane. You should see
+<code>load_sleep_data.R</code>, <code>summarise_data.R</code>, and
+<code>plot_summary.R</code> inside your package.
+<code>usethis::use_r()</code> is a convenient way to create and open
+them, but you can also create <code>.R</code> scripts manually and save
+them in this folder.</p>
+</div>
+</section><section><h2 class="section-heading" id="testing-functions-using-devtools">Testing functions using <code>devtools</code>
+<a class="anchor" aria-label="anchor" href="#testing-functions-using-devtools"></a>
+</h2>
+<hr class="half-width">
+<p>We can use <code>devtools::load_all()</code> to load our package
+functions during development without installing the package. If you
+haven’t already installed <code>devtools</code>, run
+<code>install.packages("devtools")</code> in the R console first.</p>
+<p>First, load the package functions:</p>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">load_all</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Load the sleep dataset:</p>
+<div class="codewrapper sourceCode" id="cb23">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">load_sleep_data</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Calculate the summary statistics:</p>
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">summary_data</span> <span class="op">&lt;-</span> <span class="fu">summarise_data</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Print the summary table:</p>
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">print</span><span class="op">(</span><span class="va">summary_data</span><span class="op">)</span></span></code></pre>
+</div>
+<p>You should see this table in the Console (the number of decimal
+places displayed may vary):</p>
+<pre class="text"><code>  group mean       sd  n        se
+1     1 0.75 1.789010 10 0.5657345
+2     2 2.33 2.002249 10 0.6331666</code></pre>
+<p>There is one row per drug group, with 10 observations in each group.
+Now plot the summaries:</p>
+<div class="codewrapper sourceCode" id="cb27">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_summary</span><span class="op">(</span><span class="va">summary_data</span><span class="op">)</span></span></code></pre>
+</div>
+<p>The following plot should appear in RStudio’s <strong>Plots</strong>
+pane:</p>
+<figure><img src="../fig/07-sleep_package_summary.png" alt="Bar plot of mean extra sleep for each drug group, with standard-error bars." width="50%" class="figure mx-auto d-block"></figure><p>We can change the bar colour and title using the optional
+arguments:</p>
+<div class="codewrapper sourceCode" id="cb28">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_summary</span><span class="op">(</span><span class="va">summary_data</span>, fill <span class="op">=</span> <span class="st">"darkorange"</span>, title <span class="op">=</span> <span class="st">"Extra sleep by drug"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>The <strong>Plots</strong> pane should now show the same values with
+orange bars and the title “Extra sleep by drug”:</p>
+<figure><img src="../fig/07-sleep_package_summary_orange.png" alt="Orange bar plot of mean extra sleep for each drug group, with standard-error bars and the title Extra sleep by drug." width="50%" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="generating-help-pages">Generating help pages<a class="anchor" aria-label="anchor" href="#generating-help-pages"></a>
+</h2>
+<hr class="half-width">
+<p>Earlier, we used commands such as <code>?renv</code> to access help
+in R. Before generating our package’s documentation, try opening the
+help for one of our functions:</p>
+<div class="codewrapper sourceCode" id="cb29">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">summarise_data</span></span></code></pre>
+</div>
+<p>R cannot find a help page for this function yet. You may see a
+message like this:</p>
+<pre class="text"><code>No documentation for ‘summarise_data’ in specified packages and libraries:
+you could try ‘??summarise_data’</code></pre>
+<p>The suggestion <code>??summarise_data</code> searches help topic
+names, titles, and concepts across installed packages (see <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/html/help.search.html" class="external-link"><code>help.search()</code></a>).
+It searches existing documentation, not our script comments, so it won’t
+find help for our function yet.</p>
+<p>Save all three scripts, then run <code>devtools::document()</code> to
+generate these files in <code>man/</code>.</p>
+<div class="codewrapper sourceCode" id="cb31">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>The first time you generate the help files, you should see messages
+similar to these:</p>
+<pre class="text"><code>ℹ Updating sleep documentation
+ℹ Loading sleep
+Writing load_sleep_data.Rd
+Writing plot_summary.Rd
+Writing summarise_data.Rd</code></pre>
+<p>Each <code>Writing</code> message names a help file saved in your
+package’s <code>man/</code> folder.</p>
+<p>Reload the package so we can view the help pages during
+development:</p>
+<div class="codewrapper sourceCode" id="cb33">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">load_all</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>You should see a message confirming that the package is loading:</p>
+<pre class="text"><code>ℹ Loading sleep</code></pre>
+<p>Now open the help page for <code>load_sleep_data()</code>:</p>
+<div class="codewrapper sourceCode" id="cb35">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">load_sleep_data</span></span></code></pre>
+</div>
+<p>You should see this message in the Console:</p>
+<pre class="text"><code>ℹ Rendering development documentation for "load_sleep_data"</code></pre>
+<p>The documentation opens in RStudio’s <strong>Help</strong> pane,
+showing what the function does, what it returns, and an example of how
+to use it. You can open the other functions’ help pages in the same way
+using <code>?summarise_data</code> and <code>?plot_summary</code>.</p>
+<p>When you change the documentation comments, save the script and run
+<code>devtools::document()</code> again to update the help files.</p>
+</section><section><h2 class="section-heading" id="declaring-dependencies">Declaring dependencies<a class="anchor" aria-label="anchor" href="#declaring-dependencies"></a>
+</h2>
+<hr class="half-width">
+<p>Declare the packages used by our functions in
+<code>DESCRIPTION</code>:</p>
+<div class="codewrapper sourceCode" id="cb37">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_package</span><span class="op">(</span><span class="st">"datasets"</span><span class="op">)</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_package</span><span class="op">(</span><span class="st">"dplyr"</span>, min_version <span class="op">=</span> <span class="st">"1.1.0"</span><span class="op">)</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_package</span><span class="op">(</span><span class="st">"ggplot2"</span>, min_version <span class="op">=</span> <span class="st">"3.0.0"</span><span class="op">)</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_package</span><span class="op">(</span><span class="st">"R"</span>, type <span class="op">=</span> <span class="st">"Depends"</span>, min_version <span class="op">=</span> <span class="st">"4.1.0"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>These commands record package dependencies in <code>Imports</code>
+and the R requirement in <code>Depends</code> in
+<code>DESCRIPTION</code>. The minimum versions ensure the features we
+use are available; <code>&gt;=</code> means “this version or newer”.</p>
+<p>Open <code>DESCRIPTION</code> in the <strong>Files</strong> pane. It
+should now include:</p>
+<pre class="text"><code>Depends:
+    R (&gt;= 4.1.0)
+Imports:
+    datasets,
+    dplyr (&gt;= 1.1.0),
+    ggplot2 (&gt;= 3.0.0)</code></pre>
+</section><section><h2 class="section-heading" id="making-our-functions-available">Making our functions available<a class="anchor" aria-label="anchor" href="#making-our-functions-available"></a>
+</h2>
+<hr class="half-width">
+<p>So far, we’ve used <code>devtools::load_all()</code> to try our
+functions during development. However, we also want people who install
+our package to be able to use them.</p>
+<p>Earlier, we learned that a package’s <code>NAMESPACE</code> controls
+which functions are available to users. We can <strong>export</strong>
+our three functions by adding <code>#' @export</code> to their
+<code>roxygen2</code> documentation.</p>
+<p>For example, update <code>R/load_sleep_data.R</code> to include:</p>
+<div class="codewrapper sourceCode" id="cb39">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Load the built-in sleep data</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' Get the data used in our sleep analysis.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @returns A data frame with columns extra (extra sleep in hours),</span></span>
+<span><span class="co">#'   group (drug group), and ID (participant).</span></span>
+<span><span class="co">#' @seealso [Official sleep dataset documentation](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html)</span></span>
+<span><span class="co">#' @export</span></span>
+<span><span class="va">load_sleep_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">datasets</span><span class="fu">::</span><span class="va">sleep</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>Add <code>#' @export</code> to the documentation for
+<code>summarise_data()</code> and <code>plot_summary()</code> too.</p>
+<p>Then regenerate the documentation:</p>
+<div class="codewrapper sourceCode" id="cb40">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Open the <code>NAMESPACE</code> file in RStudio. It should now
+contain:</p>
+<pre class="text"><code><span><span class="fu">export</span><span class="op">(</span><span class="va">load_sleep_data</span><span class="op">)</span></span>
+<span><span class="fu">export</span><span class="op">(</span><span class="va">plot_summary</span><span class="op">)</span></span>
+<span><span class="fu">export</span><span class="op">(</span><span class="va">summarise_data</span><span class="op">)</span></span></code></pre>
+<p>These instructions tell R which functions people can use after
+installing and loading our package. As we saw earlier,
+<code>roxygen2</code> generates <code>NAMESPACE</code> automatically, so
+we don’t need to edit it ourselves.</p>
+</section><section><h2 class="section-heading" id="adding-the-analysis-script">Adding the analysis script<a class="anchor" aria-label="anchor" href="#adding-the-analysis-script"></a>
+</h2>
+<hr class="half-width">
+<p>Installing our package gives others access to its functions, but
+doesn’t show how we used them to produce our results. For that, we also
+need an <strong>analysis script</strong>.</p>
+<p>In the <code>sleep</code> project, create a folder called
+<code>scripts/</code>.</p>
+<p>Download <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/07-packaging/sleep_analysis.R" class="external-link">sleep_analysis.R</a>
+and save it in the <code>scripts</code> folder.</p>
+<div class="codewrapper sourceCode" id="cb42">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Sleep analysis</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Load the built-in sleep dataset, calculate and plot summary statistics</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Uses functions from the sleep package.</span></span>
+<span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">sleep</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">load_sleep_data</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">summary_data</span> <span class="op">&lt;-</span> <span class="fu">summarise_data</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">summary_data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">plot_summary</span><span class="op">(</span></span>
+<span>  <span class="va">summary_data</span>,</span>
+<span>  fill <span class="op">=</span> <span class="st">"mediumpurple"</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Extra Sleep by Drug"</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<p>Our project now has two places for R code:</p>
+<ul>
+<li>
+<strong><code>R/</code></strong> contains reusable package
+functions.</li>
+<li>
+<strong><code>scripts/</code></strong> contains scripts that use
+those functions to perform an analysis.</li>
+</ul>
+<p>We should commit our analysis scripts to Git alongside the package
+code. When we push these changes to GitHub, colleagues can access the
+scripts and see how our results were produced.</p>
+<p>These scripts aren’t needed to install and use the package, so we can
+exclude them from the files distributed with the package:</p>
+<div class="codewrapper sourceCode" id="cb43">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_build_ignore</span><span class="op">(</span><span class="st">"scripts"</span><span class="op">)</span></span></code></pre>
+</div>
+<p><strong>Running the analysis script</strong></p>
+<p>Now that we’ve exported our functions, we can install the package
+locally from the <code>sleep</code> project:</p>
+<div class="codewrapper sourceCode" id="cb44">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Then run the analysis script:</p>
+<div class="codewrapper sourceCode" id="cb45">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">source</span><span class="op">(</span><span class="st">"scripts/sleep_analysis.R"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>The script uses <code>library(sleep)</code> to load our installed
+package. It should print the summary statistics and display the plot in
+RStudio’s <strong>Plots</strong> pane.</p>
+<p>Although <code>scripts/</code> is excluded from the installed
+package, it remains in our project and can be shared through GitHub.</p>
+</section><section><h2 class="section-heading" id="checking-our-package">Checking our package<a class="anchor" aria-label="anchor" href="#checking-our-package"></a>
+</h2>
+<hr class="half-width">
+<p>We’ve now added functions to our <code>sleep</code> package,
+generated their help pages, declared dependencies, and made the
+functions available to users.</p>
+<p>We also need to check that the package follows R’s package
+development requirements.</p>
+<p>We can do this using <code>devtools::check()</code>, which checks our
+package’s code, documentation, dependencies, and structure.</p>
+<p>Run the following command in the R console:</p>
+<div class="codewrapper sourceCode" id="cb46">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>This runs a series of checks and reports three types of messages:</p>
+<ul>
+<li>
+<strong>Errors:</strong> Problems that must be fixed.</li>
+<li>
+<strong>Warnings:</strong> Potential problems that should be
+investigated.</li>
+<li>
+<strong>Notes:</strong> Issues worth reviewing, even if the package
+works correctly.</li>
+</ul>
+<div id="check-your-package" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="check-your-package" class="callout-inner">
+<h3 class="callout-title">Check your package</h3>
+<div class="callout-content">
+<p>Look at the output from <code>devtools::check()</code>.</p>
+<p><strong>Your tasks:</strong></p>
+<ol style="list-style-type: decimal">
+<li>How many errors, warnings, and notes are reported?</li>
+<li>Look at the NOTES in the output. Which functions and variables are
+mentioned? Why might R be reporting them?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<p>The exact results may vary depending on your package and development
+environment.</p>
+<p>You might see NOTES such as:</p>
+<pre class="text"><code>plot_summary: no visible binding for global variable 'group'
+plot_summary: no visible binding for global variable 'se'
+summarise_data: no visible binding for global variable 'value'
+summarise_data: no visible binding for global variable 'sd'
+summarise_data: no visible binding for global variable 'n'
+Undefined global functions or variables:
+  group n sd se value
+Consider adding
+  importFrom("stats", "sd")
+to your NAMESPACE file.</code></pre>
+<p>These NOTES refer to column names used in our
+<code>summarise_data()</code> and <code>plot_summary()</code>
+functions.</p>
+<p>They occur because <code>dplyr</code> and <code>ggplot2</code>
+recognise column names such as group, value, and se, but R’s package
+checker does not always recognise them.</p>
+<p>The suggestion to import <code>sd()</code> relates to
+<strong>namespaces</strong>, which we explored earlier. However, our
+function already uses <code>stats::sd()</code> to specify which package
+provides the function, so we don’t need to import it separately.</p>
+<p>These NOTES do not necessarily mean our functions are incorrect.</p>
+</div>
+</div>
+</div>
+</div>
+<p>It’s good practice to run <code>devtools::check()</code> regularly as
+we develop our package, particularly after making changes to its
+functions, documentation, or dependencies.</p>
+<p>Ideally, we should aim to resolve all errors, warnings, and notes
+before publishing a package, especially when submitting it to CRAN.</p>
+<p>For more information, see:</p>
+<ul>
+<li>
+<a href="https://r-pkgs.org/check.html" class="external-link"><em>R Packages</em>, 2nd
+edition – Checking</a>, which explains package checks and how to
+interpret their results.</li>
+<li>
+<a href="https://dplyr.tidyverse.org/articles/in-packages.html" class="external-link">Using dplyr
+in packages</a>, which explains why NOTES about column names occur and
+how to address them.</li>
+</ul>
+<div id="resolving-package-check-notes-extra" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="resolving-package-check-notes-extra" class="callout-inner">
+<h3 class="callout-title">Resolving package check NOTES (extra)</h3>
+<div class="callout-content">
+<p>In the previous challenge, we saw that <code>devtools::check()</code>
+reported several undefined variables in our
+<code>summarise_data()</code> and <code>plot_summary()</code>
+functions.</p>
+<p>These NOTES occur because <code>dplyr</code> and <code>ggplot2</code>
+allow us to refer directly to data-frame columns by name, but R’s
+package checker cannot always recognise these references.</p>
+<p>We can resolve them using <code>.data$column</code>, which explicitly
+identifies a column in the data being processed.</p>
+<p><strong>Your tasks:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Update <code>summarise_data()</code> and <code>plot_summary()</code>
+to use <code>.data$column</code> when referring to data-frame
+columns.</li>
+<li>Add <code>rlang</code> as a package dependency and import
+<code>.data</code> into the package namespace.</li>
+<li>Regenerate the documentation and run <code>devtools::check()</code>
+again.</li>
+<li>How many errors, warnings, and notes are now reported?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div class="accordion-body">
+<p><strong>1. Update <code>summarise_data()</code></strong></p>
+<p>Open <code>R/summarise_data.R</code> and replace its contents
+with:</p>
+<div class="codewrapper sourceCode" id="cb48">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Summarise a numeric measurement by group</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' Calculate the mean, standard deviation, sample size, and standard error</span></span>
+<span><span class="co">#' for each group.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param data A data frame.</span></span>
+<span><span class="co">#' @param value_col Name of the numeric column.</span></span>
+<span><span class="co">#' @param group_col Name of the grouping column.</span></span>
+<span><span class="co">#' @returns A data frame with group, mean, sd, n, and se.</span></span>
+<span><span class="co">#' @importFrom rlang .data</span></span>
+<span><span class="co">#' @export</span></span>
+<span><span class="va">summarise_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">value_col</span> <span class="op">=</span> <span class="st">"extra"</span>, <span class="va">group_col</span> <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="va">selected_data</span> <span class="op">&lt;-</span> <span class="fu">data.frame</span><span class="op">(</span></span>
+<span>    group <span class="op">=</span> <span class="va">data</span><span class="op">[[</span><span class="va">group_col</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    value <span class="op">=</span> <span class="va">data</span><span class="op">[[</span><span class="va">value_col</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">selected_data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">summarise</span><span class="op">(</span></span>
+<span>      mean <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>,</span>
+<span>      sd <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu">sd</span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>,</span>
+<span>      n <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>      se <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">sd</span> <span class="op">/</span> <span class="fu">sqrt</span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>,</span>
+<span>      .by <span class="op">=</span> <span class="st">"group"</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>Previously, we wrote <code>mean(value)</code>. Although
+<code>dplyr</code> understands that <code>value</code> refers to a
+column, R’s package checker may treat it as an undefined variable.</p>
+<p>Writing <code>mean(.data$value)</code> makes this explicit: we’re
+using the <code>value</code> column of the data being processed.</p>
+<p>Similarly, <code>.data$sd</code> and <code>.data$n</code> refer to
+columns created earlier in the same <code>summarise()</code> call.</p>
+<p><strong>2. Update <code>plot_summary()</code></strong></p>
+<p>Open <code>R/plot_summary.R</code> and replace its contents with:</p>
+<div class="codewrapper sourceCode" id="cb49">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Plot group means and standard errors</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' Show means with error bars extending one standard error above and below.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param summary_data A data frame containing group, mean, and se.</span></span>
+<span><span class="co">#' @param fill Bar colour.</span></span>
+<span><span class="co">#' @param title Plot title.</span></span>
+<span><span class="co">#' @returns A ggplot object.</span></span>
+<span><span class="co">#' @export</span></span>
+<span><span class="va">plot_summary</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">summary_data</span>, <span class="va">fill</span> <span class="op">=</span> <span class="st">"steelblue"</span>,</span>
+<span>                         <span class="va">title</span> <span class="op">=</span> <span class="st">"Group means"</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">ggplot</span><span class="op">(</span></span>
+<span>    <span class="va">summary_data</span>,</span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">factor</span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">group</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">mean</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">fill</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">geom_errorbar</span><span class="op">(</span></span>
+<span>      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">aes</span><span class="op">(</span></span>
+<span>        ymin <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">mean</span> <span class="op">-</span> <span class="va">.data</span><span class="op">$</span><span class="va">se</span>,</span>
+<span>        ymax <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">mean</span> <span class="op">+</span> <span class="va">.data</span><span class="op">$</span><span class="va">se</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      width <span class="op">=</span> <span class="fl">0.2</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="va">title</span>, x <span class="op">=</span> <span class="st">"Group"</span>, y <span class="op">=</span> <span class="st">"Mean"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>Here, <code>.data$group</code>, <code>.data$mean</code>, and
+<code>.data$se</code> explicitly refer to columns in
+<code>summary_data</code>.</p>
+<p><strong>3. Declare the dependency</strong></p>
+<p>The <code>.data</code> pronoun is provided by the <code>rlang</code>
+package.</p>
+<p>We’ve already added <code>#' @importFrom rlang .data</code> above
+<code>summarise_data()</code>. This tells <code>roxygen2</code> to
+import <code>.data</code> into our package namespace.</p>
+<p>However, as we learned earlier, importing an object from another
+package also requires us to declare that package as a dependency.</p>
+<p>Run:</p>
+<div class="codewrapper sourceCode" id="cb50">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_package</span><span class="op">(</span><span class="st">"rlang"</span>, min_version <span class="op">=</span> <span class="st">"1.0.0"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>This adds <code>rlang</code> to the <code>Imports</code> field in
+<code>DESCRIPTION</code>, with a minimum required version:</p>
+<pre class="text"><code>rlang (&gt;= 1.0.0)</code></pre>
+<p>Remember that <code>DESCRIPTION</code> declares which packages our
+package needs, while <code>NAMESPACE</code> specifies which objects we
+import from them.</p>
+<p><strong>4. Regenerate the documentation and check the
+package</strong></p>
+<p>Save your changes and run:</p>
+<div class="codewrapper sourceCode" id="cb52">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Open <code>NAMESPACE</code>. Alongside the existing exports, it
+should now contain:</p>
+<pre class="text"><code><span><span class="fu">importFrom</span><span class="op">(</span><span class="va">rlang</span>,<span class="va">.data</span><span class="op">)</span></span></code></pre>
+<p>If there are no other issues, the check should report:</p>
+<pre class="text"><code>0 errors ✔ | 0 warnings ✔ | 0 notes ✔</code></pre>
+<p><strong>Why does this work?</strong></p>
+<p>Using <code>.data$column</code> makes it explicit that we’re
+referring to a data-frame column rather than a separate variable.</p>
+<p>This also connects to what we learned earlier about namespaces:</p>
+<ul>
+<li>
+<code>stats::sd()</code> identifies the <code>sd()</code> function
+from the <code>stats</code> package.</li>
+<li>
+<code>.data$sd</code> identifies a column called <code>sd</code> in
+the data being processed.</li>
+</ul>
+<p>The original check output suggested importing <code>sd()</code> from
+<code>stats</code>. However, our function already uses
+<code>stats::sd()</code>, so this additional import is unnecessary. The
+NOTE appeared because <code>sd</code> was also being used as a column
+name.</p>
+<p>Finally, <code>DESCRIPTION</code> and <code>NAMESPACE</code> work
+together: <code>DESCRIPTION</code> declares that our package depends on
+<code>rlang</code>, while <code>NAMESPACE</code> records that we import
+<code>.data</code> from it.</p>
+<p>By making our column references explicit and declaring the dependency
+correctly, we resolve the NOTES without changing what our functions
+do.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="preparing-our-package-for-sharing">Preparing our package for sharing<a class="anchor" aria-label="anchor" href="#preparing-our-package-for-sharing"></a>
+</h2>
+<hr class="half-width">
+<p>Before sharing our package, we should make sure it explains what it
+does, who created it, and how others can use it.</p>
+<p><strong>Updating <code>DESCRIPTION</code></strong></p>
+<p>We’ve already used <code>DESCRIPTION</code> to declare our
+dependencies. Now let’s replace its placeholder information with a
+meaningful title, description, and author details.</p>
+<p>For example, the main fields could look like this:</p>
+<pre class="text"><code>Package: sleep
+Title: Summarise and Visualise Grouped Measurements
+Version: 0.0.0.9000
+Authors@R:
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: Summarise numeric measurements by group using means,
+    standard deviations, sample sizes, and standard errors.
+    Visualise group means with standard-error bars.
+    Includes a helper for loading the built-in sleep dataset.</code></pre>
+<p>Replace the example author details with your own. Keep the dependency
+and other configuration fields already present in your
+<code>DESCRIPTION</code> file.</p>
+<p>We should also choose a licence so others know how they are allowed
+to use and share our code. For example, to use the MIT licence, run:</p>
+<div class="codewrapper sourceCode" id="cb56">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_mit_license</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>This creates the licence files and updates
+<code>DESCRIPTION</code>.</p>
+<p><strong>Adding a README</strong></p>
+<p>A README introduces a package and helps others get started.</p>
+<p>Create one for our package:</p>
+<div class="codewrapper sourceCode" id="cb57">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_readme_md</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>This creates a template that we can replace with a short
+introduction, installation instructions, and an example.</p>
+<p>For example:</p>
+<div class="codewrapper sourceCode" id="cb58">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb58-1"><a href="#cb58-1" tabindex="-1" aria-label="code-block-58-1"></a><span class="fu"># sleep</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1" aria-label="code-block-58-2"></a></span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1" aria-label="code-block-58-3"></a>An R package for summarising grouped data and plotting means with standard-error bars.</span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1" aria-label="code-block-58-4"></a></span>
+<span id="cb58-5"><a href="#cb58-5" tabindex="-1" aria-label="code-block-58-5"></a><span class="fu">## Installation</span></span>
+<span id="cb58-6"><a href="#cb58-6" tabindex="-1" aria-label="code-block-58-6"></a></span>
+<span id="cb58-7"><a href="#cb58-7" tabindex="-1" aria-label="code-block-58-7"></a>**For users:** Install the package from GitHub:</span>
+<span id="cb58-8"><a href="#cb58-8" tabindex="-1" aria-label="code-block-58-8"></a></span>
+<span id="cb58-9"><a href="#cb58-9" tabindex="-1" aria-label="code-block-58-9"></a><span class="in">```r</span></span>
+<span id="cb58-10"><a href="#cb58-10" tabindex="-1" aria-label="code-block-58-10"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb58-11"><a href="#cb58-11" tabindex="-1" aria-label="code-block-58-11"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"yourusername/sleep"</span>)</span>
+<span id="cb58-12"><a href="#cb58-12" tabindex="-1" aria-label="code-block-58-12"></a><span class="in">```</span></span>
+<span id="cb58-13"><a href="#cb58-13" tabindex="-1" aria-label="code-block-58-13"></a></span>
+<span id="cb58-14"><a href="#cb58-14" tabindex="-1" aria-label="code-block-58-14"></a>**For developers:** Clone the repository:</span>
+<span id="cb58-15"><a href="#cb58-15" tabindex="-1" aria-label="code-block-58-15"></a></span>
+<span id="cb58-16"><a href="#cb58-16" tabindex="-1" aria-label="code-block-58-16"></a><span class="in">```bash</span></span>
+<span id="cb58-17"><a href="#cb58-17" tabindex="-1" aria-label="code-block-58-17"></a><span class="fu">git</span> clone https://github.com/yourusername/sleep.git</span>
+<span id="cb58-18"><a href="#cb58-18" tabindex="-1" aria-label="code-block-58-18"></a><span class="in">```</span></span>
+<span id="cb58-19"><a href="#cb58-19" tabindex="-1" aria-label="code-block-58-19"></a></span>
+<span id="cb58-20"><a href="#cb58-20" tabindex="-1" aria-label="code-block-58-20"></a>Open <span class="in">`sleep.Rproj`</span> in RStudio. Then load the package during development:</span>
+<span id="cb58-21"><a href="#cb58-21" tabindex="-1" aria-label="code-block-58-21"></a></span>
+<span id="cb58-22"><a href="#cb58-22" tabindex="-1" aria-label="code-block-58-22"></a><span class="in">```r</span></span>
+<span id="cb58-23"><a href="#cb58-23" tabindex="-1" aria-label="code-block-58-23"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb58-24"><a href="#cb58-24" tabindex="-1" aria-label="code-block-58-24"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span>
+<span id="cb58-25"><a href="#cb58-25" tabindex="-1" aria-label="code-block-58-25"></a><span class="in">```</span></span>
+<span id="cb58-26"><a href="#cb58-26" tabindex="-1" aria-label="code-block-58-26"></a></span>
+<span id="cb58-27"><a href="#cb58-27" tabindex="-1" aria-label="code-block-58-27"></a>To install the package locally, use <span class="in">`devtools::install()`</span>.</span>
+<span id="cb58-28"><a href="#cb58-28" tabindex="-1" aria-label="code-block-58-28"></a></span>
+<span id="cb58-29"><a href="#cb58-29" tabindex="-1" aria-label="code-block-58-29"></a></span>
+<span id="cb58-30"><a href="#cb58-30" tabindex="-1" aria-label="code-block-58-30"></a><span class="fu">## License</span></span>
+<span id="cb58-31"><a href="#cb58-31" tabindex="-1" aria-label="code-block-58-31"></a>MIT License.</span></code></pre>
+</div>
+<p>Replace <code>yourusername</code> with your GitHub username. The
+installation command will work once we’ve uploaded our package to that
+repository.</p>
+</section><section><h2 class="section-heading" id="publishing-our-package">Publishing our package<a class="anchor" aria-label="anchor" href="#publishing-our-package"></a>
+</h2>
+<hr class="half-width">
+<p>Like <code>ggplot2</code> and <code>dplyr</code>, we can share our
+<code>sleep</code> package on <a href="https://github.com/" class="external-link">GitHub</a>.
+<a href="https://gitlab.com/" class="external-link">GitLab</a> is a similar alternative for
+hosting and sharing code.</p>
+<p><strong>If you have a GitHub account</strong>, open the
+<code>sleep</code> project in RStudio and run:</p>
+<div class="codewrapper sourceCode" id="cb59">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_git</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_github</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>The first command sets up Git to track changes, while the second
+helps publish our package on GitHub.</p>
+<p>Follow the instructions in the R console to configure authentication
+and commit your changes.</p>
+<p>Once published, others can install the package, just as we installed
+<code>obscurepackage</code> earlier:</p>
+<div class="codewrapper sourceCode" id="cb60">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"yourusername/sleep"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Replace <code>yourusername</code> with your GitHub username.</p>
+<p>They can then load the package and use our exported functions:</p>
+<div class="codewrapper sourceCode" id="cb61">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">sleep</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">load_sleep_data</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">summary_data</span> <span class="op">&lt;-</span> <span class="fu">summarise_data</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">summary_data</span><span class="op">)</span></span>
+<span><span class="fu">plot_summary</span><span class="op">(</span><span class="va">summary_data</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Alternatively, the repository can be <strong>cloned</strong> to get a
+local copy of the package’s source code, including its functions,
+documentation, and analysis scripts.</p>
+<p>This can be done using <a href="https://git-scm.com/" class="external-link"><code>git</code></a>, by running:</p>
+<div class="codewrapper sourceCode" id="cb62">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" tabindex="-1" aria-label="code-block-62-1"></a><span class="fu">git</span> clone https://github.com/yourusername/sleep.git</span></code></pre>
+</div>
+<p>This creates a folder called <code>sleep</code> containing the
+project files. They can then open <code>sleep.Rproj</code> in RStudio to
+explore the code, reproduce the analysis, or contribute to the
+package.</p>
+<div class="section level3">
+<h3 id="keeping-track-of-versions">Keeping track of versions<a class="anchor" aria-label="anchor" href="#keeping-track-of-versions"></a>
+</h3>
+<p>We’ve now turned our sleep analysis into a reusable package that
+others can install, understand and develop further!</p>
+<p>But what happens when we update our package? Remember how a newer
+version of <code>obscurepackage</code> changed the results in the
+environments episode? To keep analyses reproducible, it’s important to
+know <strong>which package version</strong> was used.</p>
+<p>Our package started with:</p>
+<pre class="text"><code>Version: 0.0.0.9000</code></pre>
+<p>The <code>.9000</code> indicates a development version. When we’re
+ready for our first release, we might change this to
+<code>0.1.0</code>.</p>
+<p>As we continue developing the package, we can use version numbers to
+communicate what has changed. A common convention is <a href="https://semver.org/" class="external-link">semantic versioning</a>, which follows the
+format <code>MAJOR.MINOR.PATCH</code>:</p>
+<table class="table">
+<thead><tr>
+<th>Change</th>
+<th>Example</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Bug fix (patch)</td>
+<td>
+<code>0.1.0</code> -&gt; <code>0.1.1</code>
+</td>
+</tr>
+<tr>
+<td>New feature (minor)</td>
+<td>
+<code>1.1.0</code> -&gt; <code>1.2.0</code>
+</td>
+</tr>
+<tr>
+<td>Breaking change (major)</td>
+<td>
+<code>1.0.0</code> -&gt; <code>2.0.0</code>
+</td>
+</tr>
+</tbody>
+</table>
+<p>We can also use <a href="https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases" class="external-link">GitHub
+Releases</a> to mark a specific version with a tag, such as
+<code>v0.1.0</code>.</p>
+<p>Others can then install that version:</p>
+<div class="codewrapper sourceCode" id="cb64">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"yourusername/sleep@v0.1.0"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Remember that changing <code>Version</code> in
+<code>DESCRIPTION</code> does not automatically create a GitHub tag or
+release.</p>
+<p>For reproducibility, record the package version or Git commit used in
+an analysis, alongside the project’s <code>renv.lock</code>. This helps
+others recreate the analysis even as the package continues to
+evolve.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>R packages organise reusable code, documentation, and data in a
+standard structure.</li>
+<li>
+<code>RStudio</code> and <code>usethis</code> can create package
+structures automatically.</li>
+<li>Store functions in <code>R/</code> and declare dependencies in
+<code>DESCRIPTION</code>.</li>
+<li>Use <code>devtools::load_all()</code> to test functions during
+development.</li>
+<li>Document and export functions using <code>roxygen2</code>, and
+generate help pages with <code>devtools::document()</code>.</li>
+<li>Use <code>devtools::check()</code> to identify issues before sharing
+a package.</li>
+<li>Share packages through platforms such as GitHub and use version
+numbers to track changes.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</div>
 </section></section>
 </div>
     </main>

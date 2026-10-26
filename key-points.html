@@ -289,6 +289,30 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="06-documentation.html">5. Documentation</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="07-packaging.html">6. Packaging</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -422,6 +446,39 @@ and maintainability, making code harder to understand, update, and
 trust.</li>
 <li>A smell warrants inspection as they often point to places where the
 code is most likely to break in the future.</li>
+</ul></section><section id="06-documentation"><h2 class="section-heading"><a href="06-documentation.html">Documentation</a></h2>
+<hr class="half-width">
+<ul>
+<li>Research software has multiple audiences — users, developers,
+maintainers, and “future you” — each requiring different
+documentation.</li>
+<li>Documentation comes in three types: procedural (step-by-step
+guides), conceptual (background, explanations, diagrams), and reference
+(APIs, parameters, system details)</li>
+<li>In-code comments should be minimal and purposeful. Over-commenting
+distracts from the code, increases cognitive load, and often indicates
+unclear naming or structure.</li>
+<li>Roxygen comments describe the purpose and behaviour of functions,
+classes, and modules. They improve readability and can be used to
+auto-generate reference documentation.</li>
+</ul></section><section id="07-packaging"><h2 class="section-heading"><a href="07-packaging.html">Packaging</a></h2>
+<hr class="half-width">
+<ul>
+<li>R packages organise reusable code, documentation, and data in a
+standard structure.</li>
+<li>
+<code>RStudio</code> and <code>usethis</code> can create package
+structures automatically.</li>
+<li>Store functions in <code>R/</code> and declare dependencies in
+<code>DESCRIPTION</code>.</li>
+<li>Use <code>devtools::load_all()</code> to test functions during
+development.</li>
+<li>Document and export functions using <code>roxygen2</code>, and
+generate help pages with <code>devtools::document()</code>.</li>
+<li>Use <code>devtools::check()</code> to identify issues before sharing
+a package.</li>
+<li>Share packages through platforms such as GitHub and use version
+numbers to track changes.</li>
 </ul></section>
 </div>
     </main>
