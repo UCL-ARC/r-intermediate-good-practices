@@ -4,10 +4,19 @@
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/00-introduction-placeholder.html</loc>
   </url>
   <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/00-introduction.html</loc>
+  </url>
+  <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/01-introduction.html</loc>
   </url>
   <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/01-reproducibility.html</loc>
+  </url>
+  <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/02-environments.html</loc>
+  </url>
+  <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/03-code_smells.html</loc>
   </url>
   <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/404.html</loc>
@@ -34,10 +43,19 @@
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/00-introduction-placeholder.html</loc>
   </url>
   <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/00-introduction.html</loc>
+  </url>
+  <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/01-introduction.html</loc>
   </url>
   <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/01-reproducibility.html</loc>
+  </url>
+  <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/02-environments.html</loc>
+  </url>
+  <url>
+    <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/03-code_smells.html</loc>
   </url>
   <url>
     <loc>https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/404.html</loc>

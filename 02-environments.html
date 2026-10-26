@@ -25,7 +25,7 @@
     <div class="col-md-8">
       <div class="large-logo">
         <a href="index.html">
-        <img id="incubator-logo" alt="Lesson Description" src="assets/images/incubator-logo.svg"></a>
+        <img id="incubator-logo" alt="An intermediate R lesson on reproducible and maintainable code." src="assets/images/incubator-logo.svg"></a>
 
         <span class="badge text-bg-danger">
           <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
@@ -78,7 +78,7 @@
     </button>
     <div class="nav-logo">
       <a href="index.html">
-      <img class="small-logo" alt="Lesson Description" src="assets/images/incubator-logo-sm.svg"></a>
+      <img class="small-logo" alt="An intermediate R lesson on reproducible and maintainable code." src="assets/images/incubator-logo-sm.svg"></a>
     </div>
     <div class="lesson-title-md">
       Good Practices in R
@@ -123,7 +123,7 @@
     <a id="search-button-nav" class="btn btn-primary" href="aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div><!--/div.container-fluid -->
 </nav><aside class="col-md-12 lesson-progress"><div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 17%" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">17%</div>
+    <div class="progress-bar incubator" role="progressbar" style="width: 26%" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">26%</div>
   </div>
 </aside><div class="container">
       <div class="row">
@@ -208,7 +208,16 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="00-introduction-placeholder.html">1. Using RMarkdown</a>
+        <a href="00-introduction.html">1. Introduction</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="01-reproducibility.html">2. Reproducibility</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -220,7 +229,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        2. Environments
+        3. Environments
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -237,6 +246,15 @@
 <li><a href="#choosing-which-dependencies-to-record">Choosing which dependencies to record</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="03-code_smells.html">4. Code smells</a>
+    </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -297,23 +315,23 @@
         <!-- START: inst/pkgdown/templates/content-instructor.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter Top"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="00-introduction-placeholder.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="index.html" rel="next">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link" href="01-reproducibility.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link float-end" href="03-code_smells.html" rel="next">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="00-introduction-placeholder.html" rel="prev">
+        <a class="chapter-link" href="01-reproducibility.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Using RMarkdown...
+          Previous: Reproducibility...
         </a>
-        <a class="chapter-link float-end" href="index.html" rel="next">
-          Home
+        <a class="chapter-link float-end" href="03-code_smells.html" rel="next">
+          Next: Code smells...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Environments</h1>
-        <p>Last updated on 2026-10-21 |
+        <p>Last updated on 2026-10-26 |
 
         <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/edit/main/episodes/02-environments.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -353,32 +371,36 @@ snapshots of the environment.</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="running-someone-elses-script">Running someone else’s script<a class="anchor" aria-label="anchor" href="#running-someone-elses-script"></a></h2>
-<hr class="half-width"><p>A colleague emails you an R script called
-<code>sleep_analysis.R</code> and asks you to reproduce their results
-while they are away.</p>
+<hr class="half-width"><p>A colleague emails you an R script called <a href="code/02-environments/sleep_analysis.R">sleep_analysis.R</a> and
+asks you to reproduce their results while they are away.</p>
 <p>Before running anything, create an R project to organise your
 work.</p>
 <div class="section level3">
 <h3 id="create-an-r-project">Create an R project<a class="anchor" aria-label="anchor" href="#create-an-r-project"></a></h3>
-<p>Before working with the script, create an R project in RStudio:</p>
+<p>Create a folder called <code>rworkshop</code> in your home directory
+to hold your workshop files. Then create an R project inside it using
+RStudio:</p>
 <ul><li>Go to <strong>File &gt; New Project &gt; New Directory &gt; New
 Project</strong>
 </li>
-<li>Name the directory <code>rworkshop</code>
+<li>Name the directory <code>sleep</code>
 </li>
-<li>Create as a subdirectory of your home directory (for example:
-<code>C:/Users/username/</code>)</li>
+<li>Create it as a subdirectory of <code>rworkshop</code> (for example:
+<code>C:/Users/username/rworkshop/</code>)</li>
+<li>Leave the other settings at their defaults, with options such as
+<strong>Create a git repository</strong> and <strong>Use renv with this
+project</strong> unticked</li>
 <li>Click <strong>Create Project</strong>
 </li>
-</ul><p>If you want to come back to your work later, open the R Project file
-you created (<code>rworkshop.Rproj</code>). Double‑clicking this file
-launches RStudio, sets the working directory, and restores your project
-as you left it.</p>
+</ul><p>To return to your work later, open <code>sleep.Rproj</code> in the
+<code>sleep</code> folder. Double‑clicking this file launches RStudio,
+sets the working directory, and restores your project as you left
+it.</p>
 </div>
 <div class="section level3">
 <h3 id="save-the-script">Save the script<a class="anchor" aria-label="anchor" href="#save-the-script"></a></h3>
-<p>Create a new R script called <code>sleep_analysis.R</code> inside the
-<code>rworkshop</code> folder and save the file after pasting in the
+<p>Download <a href="code/02-environments/sleep_analysis.R">sleep_analysis.R</a> and
+save it in the <code>sleep</code> folder. Open it in RStudio to view the
 code your colleague sent you:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -436,6 +458,10 @@ can install it with:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span></span></code></pre>
 </div>
+<p>R downloads and installs <code>ggplot2</code> and any required
+dependencies. You should see installation progress in the console,
+followed by the return of the <code>&gt;</code> prompt. Check for errors
+before continuing.</p>
 <p>The <code>obscurepackage</code> is not on CRAN.</p>
 <p>First, install the remotes package, which allows you to install
 packages from GitHub:</p>
@@ -445,6 +471,8 @@ packages from GitHub:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span></code></pre>
 </div>
+<p>R downloads and installs <code>remotes</code>. Wait for installation
+to finish and check for errors before continuing.</p>
 <p>Then, install <code>obscurepackage</code>:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -466,7 +494,7 @@ reproduce the plot below?</p>
 <p><strong>Hint:</strong> visit the <a href="https://github.com/stellaprins/obscurepackage" class="external-link"><code>obscurepackage</code>
 GitHub repository</a> and explore its commit history. Have any changes
 been made that could explain the difference?</p>
-<figure><img src="fig/sleep_analysis_plot.png" style="width:50.0%" alt="your colleague's sleep analysis plot" class="figure mx-auto d-block"></figure></div>
+<figure><img src="fig/01-sleep_analysis_plot.png" style="width:50.0%" alt="Boxplots of extra sleep for drug groups 1 and 2." class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
@@ -474,12 +502,12 @@ been made that could explain the difference?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>You will not be able to reproduce your colleague’s original plot
 using the latest version of <code>obscurepackage</code>.</p>
 <p>Instead, you should see something like this:</p>
-<figure><img src="fig/sleep_analysis_NA_plot.png" style="width:50.0%" alt="your sleep analysis plot" class="figure mx-auto d-block"></figure><p>The difference is caused by a bug introduced in a newer version of
+<figure><img src="fig/01-sleep_analysis_NA_plot.png" style="width:50.0%" alt="Plot of extra sleep for drug groups 1 and 2, showing NA for both groups instead of boxplots." class="figure mx-auto d-block"></figure><p>The difference is caused by a bug introduced in a newer version of
 <code>obscurepackage</code>.</p>
 <p>The <code>none_transform()</code> function was originally designed to
 return its input unchanged:</p>
@@ -558,6 +586,8 @@ and namespaces.</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"renv"</span><span class="op">)</span></span></code></pre>
 </div>
+<p>R downloads and installs <code>renv</code>. Wait for installation to
+finish and check for errors before continuing.</p>
 <div id="find-out-more-about-renv" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -587,7 +617,7 @@ colleague?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p><code>renv</code> is an R package that helps create reproducible
 environments.</p>
@@ -666,7 +696,7 @@ specify a commit hash when using <code>renv::install()</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>From the help page, GitHub packages can be installed by using the
 <code>username/repository</code> string, and specific versions can be
@@ -694,7 +724,8 @@ format:</p>
 </div>
 <p>Restart your R session to make sure R uses the newly installed
 version of <code>obscurepackage</code>.</p>
-<p>In RStudio, select <strong>Session → Restart R</strong>, or run:</p>
+<p>In RStudio, select <strong>Session &gt; Restart R</strong>, or
+run:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -705,7 +736,7 @@ version of <code>obscurepackage</code>.</p>
 RStudio, not in a standard R terminal or other R editors.</p>
 <p>Then run <code>sleep_analysis.R</code> again.</p>
 <p>You should be able to replicate the results of your colleague!</p>
-<figure><img src="fig/sleep_analysis_plot.png" style="width:50.0%" alt="your colleague's sleep analysis plot" class="figure mx-auto d-block"></figure></div>
+<figure><img src="fig/01-sleep_analysis_plot.png" style="width:50.0%" alt="Boxplots of extra sleep for drug groups 1 and 2, with a higher median for group 2." class="figure mx-auto d-block"></figure></div>
 </section><section><h2 class="section-heading" id="recording-your-environment-with-a-lockfile">Recording your environment with a lockfile<a class="anchor" aria-label="anchor" href="#recording-your-environment-with-a-lockfile"></a></h2>
 <hr class="half-width"><p>You have now reproduced your colleague’s results by installing a
 specific version of <code>obscurepackage</code>.</p>
@@ -788,7 +819,7 @@ a snapshot:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>After taking the snapshot, <code>renv::status()</code> may
 report:</p>
@@ -836,18 +867,15 @@ consistent</td>
 <code>DESCRIPTION</code> files<a class="anchor" aria-label="anchor" href="#description-files"></a></h2>
 <hr class="half-width"><p>You receive an email from your colleague. Apparently the earlier file
 (<code>sleep_analysis.R</code>) was the wrong one.</p>
-<p>This time, your colleague sent you two files:
-<code>sleep_analysis.R</code> and <code>DESCRIPTION</code>.</p>
+<p>This time, your colleague sent you two files: <a href="code/02-environments/sleep_analysis_final.R">sleep_analysis_final.R</a>
+and <a href="code/02-environments/DESCRIPTION">DESCRIPTION</a>.</p>
 <p>In their message, your colleague explains that you should use the
 <code>DESCRIPTION</code> file to create the correct R environment for
 running the analysis.</p>
-<p>Download the <a href="files/02-environments/DESCRIPTION">DESCRIPTION
-file</a> and save it in your <code>rworkshop</code> folder.</p>
-<p>Next, create a new R script called
-<code>sleep_analysis_final.R</code> in the same folder. Copy the
-following code into it and save the file.</p>
-<p>Keep your original <code>sleep_analysis.R</code> file. We will
-compare the dependencies detected in both scripts later.</p>
+<p>Continue in the same <code>sleep</code> project. Download the <a href="code/02-environments/DESCRIPTION">DESCRIPTION file</a> and save it
+in <code>rworkshop/sleep</code>.</p>
+<p>Download <a href="code/02-environments/sleep_analysis_final.R">sleep_analysis_final.R</a>
+and save it in the same folder. Its contents are shown below.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -904,12 +932,18 @@ compare the dependencies detected in both scripts later.</p>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code></pre>
 </div>
-<p>Your project folder should now contain these files:</p>
+<p>Keep your original <code>sleep_analysis.R</code> file. We will
+compare the dependencies detected in both scripts later.</p>
+<p>Your workshop folder should now include these files:</p>
 <pre class="text"><code>rworkshop/
-├── rworkshop.Rproj
-├── sleep_analysis.R
-├── sleep_analysis_final.R
-└── DESCRIPTION</code></pre>
+└── sleep/
+    ├── sleep.Rproj
+    ├── sleep_analysis.R
+    ├── sleep_analysis_final.R
+    ├── DESCRIPTION
+    ├── renv.lock
+    ├── .Rprofile
+    └── renv/</code></pre>
 <div id="learn-more-about-description-files" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -929,7 +963,7 @@ does the file contain?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The <code>DESCRIPTION</code> file contains information about the
 project, including its name, version, a short description, and the
@@ -961,11 +995,11 @@ newer version can be used.</p>
 <p>A <code>DESCRIPTION</code> file is normally used in R packages to
 record information such as the package name, version, authors, and
 dependencies.</p>
-<p>It can also be used in an R analysis project to document the packages
-required to run the project. In this case, a minimal
-<code>DESCRIPTION</code> file containing only an <code>Imports</code>
-field is sufficient to declare the project’s dependencies for use with
-<code>renv</code>.</p>
+<p>Here, we use it to declare dependencies for our analysis project.
+This does not turn the project into an R package. In this case, a
+minimal <code>DESCRIPTION</code> file containing only an
+<code>Imports</code> field is sufficient to declare the project’s
+dependencies for use with <code>renv</code>.</p>
 <div id="why-specify-minimum-package-versions" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -991,7 +1025,7 @@ introduce?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>Specifying minimum versions provides flexibility, allowing projects
 to benefit from bug fixes, security updates, and new features without
@@ -1010,77 +1044,52 @@ used in a particular environment.</p>
 </div>
 <div class="section level3">
 <h3 id="reset-the-environment">Reset the environment<a class="anchor" aria-label="anchor" href="#reset-the-environment"></a></h3>
-<p>You will now create a fresh project environment to explore how
-<code>renv</code> works with a <code>DESCRIPTION</code> file.</p>
-<p>First, make sure your <code>rworkshop</code> project is open in
-RStudio. Restart R by selecting <strong>Session &gt; Restart R</strong>
-to unload any packages from your previous session.</p>
-<p>Before resetting the environment, remove the packages installed
-during the previous exercise:</p>
+<p>We will start with an empty package environment in the same
+<code>sleep</code> project to see which packages
+<code>DESCRIPTION</code> provides. This resets the project’s package
+library and lockfile, while keeping your scripts and
+<code>DESCRIPTION</code> file. Clearing objects from RStudio’s
+Environment pane does not reset installed packages.</p>
+<p>Make sure the <code>sleep</code> project is open, then select
+<strong>Session &gt; Restart R</strong> to unload packages.</p>
+<p>Remove the packages used in the first exercise from the active
+library:</p>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">remove</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span><span class="st">"ggplot2"</span>, <span class="st">"obscurepackage"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
-<p>Then deactivate <code>renv</code> and remove the existing project
-environment:</p>
+<p>Remove the existing <code>renv</code> infrastructure, including the
+project library and lockfile:</p>
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">deactivate</span><span class="op">(</span>clean <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
-<p>This removes the project’s <code>renv</code> infrastructure,
-including its project library and lockfile, without affecting your R
-scripts or <code>DESCRIPTION</code> file.</p>
-<p>After R restarts, initialise a new environment:</p>
+<p>After R restarts, initialise an empty project environment:</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">init</span><span class="op">(</span>bare <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
-<p>Setting <code>bare = TRUE</code> creates an empty project environment
-without automatically discovering and installing the packages used in
-your project.</p>
-<p>Because your project contains a <code>DESCRIPTION</code> file,
-<code>renv</code> will ask how it should identify the project’s
-dependencies:</p>
-<pre class="text"><code>This project contains a DESCRIPTION file.
-Which files should renv use for dependency discovery in this project?
-
-1: Use only the DESCRIPTION file. (explicit mode)
-2: Use all files in this project. (implicit mode)</code></pre>
-<p>These options represent two approaches to managing project
-dependencies:</p>
-<ul><li>
-<strong>Explicit mode:</strong> Uses the dependencies declared in
-<code>DESCRIPTION</code> when creating a lockfile.</li>
-<li>
-<strong>Implicit mode:</strong> Discovers dependencies by scanning
-project files, such as R scripts, when creating a lockfile.</li>
-</ul><p>Select <strong>option 1 (explicit mode)</strong> because your
-colleague has provided a <code>DESCRIPTION</code> file declaring the
-project’s required packages.</p>
-<p>This setting controls which dependencies <code>renv</code> records
-when taking a “snapshot”. It does not automatically install the
-packages.</p>
-<p>Your new project environment is now active, but the packages required
-for the analysis have not yet been installed.</p>
-<p>Try running <code>sleep_analysis_final.R</code>.</p>
-<p>Does it work? What error message do you get?</p>
-<p>The script should fail because the required packages are not yet
-available in the project library.</p>
-<p>In the next steps, you will identify and install these
-dependencies.</p>
+<p>The <code>bare = TRUE</code> argument skips dependency discovery and
+installation.</p>
+<p>If prompted to choose how dependencies are discovered, select
+<strong>Use only the DESCRIPTION file (explicit mode)</strong>. We will
+explore snapshots in more detail later in this lesson.</p>
+<p>Try running <code>sleep_analysis_final.R</code>. It should fail
+because its required packages are not yet installed in the project
+library. Next, you will identify and install them.</p>
 </div>
 </section><section><h2 class="section-heading" id="find-dependencies-in-a-project">Find dependencies in a project<a class="anchor" aria-label="anchor" href="#find-dependencies-in-a-project"></a></h2>
 <hr class="half-width"><p>Before installing anything, it is useful to check which dependencies
 <code>renv</code> detects.</p>
 <p><code>renv::dependencies()</code> scans your project files and
 reports every package it finds, along with where each one came from.</p>
-<div class="codewrapper sourceCode" id="cb30">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1095,7 +1104,7 @@ reports every package it finds, along with where each one came from.</p>
 <h3 class="callout-title"><code>renv::dependencies()</code></h3>
 <div class="callout-content">
 <p>Run <code>renv::dependencies()</code>:</p>
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1115,22 +1124,22 @@ reports every package it finds, along with where each one came from.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>Your output may look similar to this (file paths will vary):</p>
 <pre class="text"><code>Finding R package dependencies ... Done!
 
 
      Type                                             Source        Package Require Version   Dev
-1 Imports           C:/Users/username/rworkshop/DESCRIPTION          dplyr      &gt;=   1.1.0 FALSE
-2 Imports           C:/Users/username/rworkshop/DESCRIPTION          tidyr      &gt;=   1.3.0 FALSE
-3 Imports           C:/Users/username/rworkshop/DESCRIPTION        ggplot2      &gt;=   3.4.0 FALSE
-4 Imports           C:/Users/username/rworkshop/DESCRIPTION          broom      &gt;=   0.8.0 FALSE
-5    &lt;NA&gt;      C:/Users/username/rworkshop/sleep_analysis.R        ggplot2                 FALSE
-6    &lt;NA&gt;      C:/Users/username/rworkshop/sleep_analysis.R obscurepackage                 FALSE
-7    &lt;NA&gt; C:/Users/username/rworkshop/sleep_analysis_final.R          broom                 FALSE
-8    &lt;NA&gt; C:/Users/username/rworkshop/sleep_analysis_final.R          dplyr                 FALSE
-9    &lt;NA&gt; C:/Users/username/rworkshop/sleep_analysis_final.R        ggplot2                 FALSE</code></pre>
+1 Imports           C:/Users/username/rworkshop/sleep/DESCRIPTION          dplyr      &gt;=   1.1.0 FALSE
+2 Imports           C:/Users/username/rworkshop/sleep/DESCRIPTION          tidyr      &gt;=   1.3.0 FALSE
+3 Imports           C:/Users/username/rworkshop/sleep/DESCRIPTION        ggplot2      &gt;=   3.4.0 FALSE
+4 Imports           C:/Users/username/rworkshop/sleep/DESCRIPTION          broom      &gt;=   0.8.0 FALSE
+5    &lt;NA&gt;      C:/Users/username/rworkshop/sleep/sleep_analysis.R        ggplot2                 FALSE
+6    &lt;NA&gt;      C:/Users/username/rworkshop/sleep/sleep_analysis.R obscurepackage                 FALSE
+7    &lt;NA&gt; C:/Users/username/rworkshop/sleep/sleep_analysis_final.R          broom                 FALSE
+8    &lt;NA&gt; C:/Users/username/rworkshop/sleep/sleep_analysis_final.R          dplyr                 FALSE
+9    &lt;NA&gt; C:/Users/username/rworkshop/sleep/sleep_analysis_final.R        ggplot2                 FALSE</code></pre>
 <p><strong>Which packages does <code>renv</code> detect?</strong></p>
 <p><code>renv</code> detects five different packages:
 <code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>,
@@ -1169,23 +1178,17 @@ not always match those used in the project’s scripts.</p>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="install-dependencies-from-description-file">Install dependencies from <code>DESCRIPTION</code> file<a class="anchor" aria-label="anchor" href="#install-dependencies-from-description-file"></a></h2>
-<hr class="half-width"><p>Even though we selected <strong>explicit mode</strong> earlier,
-<code>renv::dependencies()</code> still scans both
-<code>DESCRIPTION</code> and the R scripts. Explicit mode tells
-<code>renv</code> to use the dependencies declared in
-<code>DESCRIPTION</code> when creating the lockfile with
-<code>renv::snapshot()</code>.</p>
-<p>To install the packages listed in DESCRIPTION, we can use the remotes
+<hr class="half-width"><p>To install the packages listed in DESCRIPTION, we can use the remotes
 package.</p>
 <p>First, install <code>remotes</code> if you haven’t already:</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Then run:</p>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1204,7 +1207,7 @@ file and their dependencies.</p>
 <p>Now that you have installed the dependencies from
 <code>DESCRIPTION</code>, try running both <code>sleep_analysis.R</code>
 and <code>sleep_analysis_final.R</code>.</p>
-<p>Do both scripts run successfully? Why (not)?</p>
+<p>Do both scripts run successfully? Why does one script fail?</p>
 </div>
 </div>
 </div>
@@ -1213,19 +1216,17 @@ and <code>sleep_analysis_final.R</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <p><code>sleep_analysis_final.R</code> should run successfully.</p>
 <p>This script uses <code>dplyr</code>, <code>ggplot2</code>, and
 <code>broom</code>, which are all listed in <code>DESCRIPTION</code> and
 have now been installed.</p>
-<p><code>sleep_analysis.R</code> should fail.</p>
-<p>The original script requires <code>obscurepackage</code>, which is
-not listed in <code>DESCRIPTION</code> and therefore was not installed
-by remotes::install_deps().</p>
-<p>This shows that the <code>DESCRIPTION</code> does not necessarily
-install every package used in the project’s R scripts and must be kept
-up to date with the packages required by the project.</p>
+<p><code>sleep_analysis.R</code> should fail because it requires
+<code>obscurepackage</code>. That package is not listed in
+<code>DESCRIPTION</code>, so it was not installed. The declared
+dependencies support the final analysis, but not the original
+script.</p>
 </div>
 </div>
 </div>
@@ -1272,14 +1273,13 @@ identifies which packages to record.</p>
 <div class="callout-content">
 <p>Use the help system to find out what snapshot types are available and
 how they differ:</p>
-<div class="codewrapper sourceCode" id="cb35">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">?</span><span class="fu">renv</span><span class="fu">::</span><span class="va">snapshot</span></span></code></pre>
 </div>
-<ul><li>What is the default snapshot type when calling
-<code>renv::snapshot()</code>?</li>
+<ul><li>What is the default snapshot type?</li>
 <li>How do implicit and explicit snapshots differ?</li>
 <li>Why is an explicit snapshot the better choice in this
 situation?</li>
@@ -1291,9 +1291,12 @@ situation?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
 <div class="accordion-body">
-<p>The default snapshot type is implicit.</p>
+<p>The default is <strong>implicit</strong>, but
+<code>renv::snapshot()</code> uses the project’s saved setting. Our
+project uses <strong>explicit</strong> because we selected that setting
+after resetting the environment.</p>
 <ul><li>An <strong>implicit snapshot</strong> records installed packages
 detected by <code>renv::dependencies()</code> in project files and their
 dependencies.</li>
@@ -1315,27 +1318,118 @@ listing the packages needed for the final analysis,
 </div>
 </div>
 </div>
-<p>Earlier, you used <code>renv::snapshot()</code> without specifying a
-snapshot type.</p>
-<p>This time, use:</p>
+<p>Check the project’s snapshot type:</p>
+<div class="codewrapper sourceCode" id="cb35">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="va">settings</span><span class="op">$</span><span class="fu">snapshot.type</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>The result should be <code>"explicit"</code>. Take a snapshot using
+this setting:</p>
 <div class="codewrapper sourceCode" id="cb36">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">snapshot</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>You can also specify the type for an individual snapshot:</p>
+<div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">snapshot</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"explicit"</span><span class="op">)</span></span></code></pre>
 </div>
-<p>After taking the explicit snapshot, confirm that the project is now
-consistent.</p>
-<div class="codewrapper sourceCode" id="cb37">
+<p>Both commands use explicit mode here. Supplying <code>type</code>
+overrides the saved setting for that call only.</p>
+<p>Check that the project is now consistent:</p>
+<div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">status</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <p>You should see a message indicating that there are no issues.</p>
-<p>You now have a lockfile for your new analysis, based on the
-dependencies specified by your colleague in the <code>DESCRIPTION</code>
-file they sent you.</p>
+<p>Your lockfile now records the dependencies for the final analysis.
+<code>obscurepackage</code> is neither installed nor recorded in the
+lockfile.</p>
+<div id="restore-an-environment-using-its-lockfile" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="restore-an-environment-using-its-lockfile" class="callout-inner">
+<h3 class="callout-title">Restore an environment using its lockfile</h3>
+<div class="callout-content">
+<p>Now that you have recorded a working environment in your lockfile,
+let’s see how you can use it to recover a missing package.</p>
+<p><strong>1. Remove a package</strong></p>
+<p>Select <strong>Session &gt; Restart R</strong> to unload packages,
+then remove <code>broom</code> from your project library:</p>
+<div class="codewrapper sourceCode" id="cb39">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">remove</span><span class="op">(</span><span class="st">"broom"</span><span class="op">)</span></span></code></pre>
+</div>
+<p><strong>2. Run your analysis</strong></p>
+<p>Run <code>sleep_analysis_final.R</code> again and examine the error
+message.</p>
+<p>Why does the script no longer work?</p>
+<p><strong>3. Restore your environment</strong></p>
+<p>Think back to <a href="#restoring-an-environment-from-a-lockfile">Restoring an
+environment from a lockfile</a>, where you learned about
+<code>renv::snapshot()</code> and <code>renv::restore()</code>.</p>
+<ul><li>Which function would you use to recover the missing package:
+<code>snapshot()</code> or <code>restore()</code>?</li>
+<li>Try running the function you think is appropriate.</li>
+<li>Run <code>sleep_analysis_final.R</code> again. Does it work
+now?</li>
+<li>Why did your chosen function work (or not work)?</li>
+</ul></div>
+</div>
+</div>
+<div id="accordionSolution10" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
+  <h4 class="accordion-header" id="headingSolution10"> Show me the solution </h4>
+</button>
+<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
+<div class="accordion-body">
+<p>The script initially fails because <code>broom</code> has been
+removed from the project library, so R can no longer find the package it
+needs.</p>
+<p>The correct function to use is:</p>
+<div class="codewrapper sourceCode" id="cb40">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">restore</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<p>This tells <code>renv</code> to compare the packages installed in
+your project with those recorded in <code>renv.lock</code>. Because
+<code>broom</code> is recorded in the lockfile but is no longer
+installed, <code>renv</code> identifies the missing package and
+reinstalls the recorded version.</p>
+<p>After restoring the environment, <code>sleep_analysis_final.R</code>
+should run successfully again.</p>
+<p><strong>Why does <code>restore()</code> work, but
+<code>snapshot()</code> does not?</strong></p>
+<p>The two functions serve different purposes:</p>
+<ul><li>
+<strong><code>renv::snapshot()</code></strong> records the current
+state of your project’s package dependencies in
+<code>renv.lock</code>.</li>
+<li>
+<strong><code>renv::restore()</code></strong> uses the lockfile to
+recreate the recorded package environment.</li>
+</ul><p>In this exercise, the lockfile already describes a working
+environment. We want to <strong>recover that environment</strong>, not
+record its current, incomplete state.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1343,12 +1437,17 @@ file they sent you.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>A <strong>project environment</strong> tracks the R and package
-versions used in a project.</li>
+<ul><li>Package versions can affect results, even when code and data stay
+the same.</li>
 <li>
-<code>renv</code> creates isolated, project‑specific libraries for
-reproducible workflows.</li>
-<li>Reproducibility depends on stable, well‑defined environments.</li>
+<code>renv</code> creates an isolated package library for each
+project.</li>
+<li>
+<code>DESCRIPTION</code> declares required packages, and
+<code>renv.lock</code> records exact versions.</li>
+<li>Use <code>renv::snapshot()</code> to record installed versions and
+<code>renv::restore()</code> to recreate the recorded package
+environment.</li>
 </ul></div>
 </div>
 </div>
@@ -1358,17 +1457,17 @@ any links that you are not going to use.
  -->
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter Bottom"><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="00-introduction-placeholder.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link" href="01-reproducibility.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link float-end" href="03-code_smells.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="00-introduction-placeholder.html" rel="prev">
+        <a class="chapter-link" href="01-reproducibility.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Using RMarkdown...
+          Previous: Reproducibility...
         </a>
-        <a class="chapter-link float-end" href="index.html" rel="next">
-          Home
+        <a class="chapter-link float-end" href="03-code_smells.html" rel="next">
+          Next: Code smells...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -1415,9 +1514,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://UCL-ARC.github.io/r-intermediate-good-practices/02-environments.html",
   "identifier": "https://UCL-ARC.github.io/r-intermediate-good-practices/02-environments.html",
-  "dateCreated": "2026-10-21",
-  "dateModified": "2026-10-21",
-  "datePublished": "2026-10-21"
+  "dateCreated": "2026-10-26",
+  "dateModified": "2026-10-26",
+  "datePublished": "2026-10-26"
 }
 
   </script><script>

@@ -25,7 +25,7 @@
     <div class="col-md-8">
       <div class="large-logo">
         <a href="index.html">
-        <img id="incubator-logo" alt="Lesson Description" src="../assets/images/incubator-logo.svg"></a>
+        <img id="incubator-logo" alt="An intermediate R lesson on reproducible and maintainable code." src="../assets/images/incubator-logo.svg"></a>
 
         <span class="badge text-bg-danger">
           <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
@@ -78,7 +78,7 @@
     </button>
     <div class="nav-logo">
       <a href="index.html">
-      <img class="small-logo" alt="Lesson Description" src="../assets/images/incubator-logo-sm.svg"></a>
+      <img class="small-logo" alt="An intermediate R lesson on reproducible and maintainable code." src="../assets/images/incubator-logo-sm.svg"></a>
     </div>
     <div class="lesson-title-md">
       Good Practices in R
@@ -205,7 +205,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="00-introduction-placeholder.html">1. Using RMarkdown</a>
+        <a href="00-introduction.html">1. Introduction</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -214,7 +214,25 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-environments.html">2. Environments</a>
+        <a href="01-reproducibility.html">2. Reproducibility</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="02-environments.html">3. Environments</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="03-code_smells.html">4. Code smells</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -287,7 +305,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Licenses</h1>
-        <p>Last updated on 2026-10-21 |
+        <p>Last updated on 2026-10-26 |
 
         <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/edit/main/LICENSE.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -302,11 +320,16 @@
         
 
 <section><h2 class="section-heading" id="instructional-material">Instructional Material<a class="anchor" aria-label="anchor" href="#instructional-material"></a></h2>
-<hr class="half-width"><p>All Carpentries (Software Carpentry, Data Carpentry, and Library
-Carpentry) instructional material is made available under the <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
+<hr class="half-width"><p>Instructional material in <strong>Good Practices in R</strong> is
+made available under the <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
 Attribution license</a>. The following is a human-readable summary of
 (and not a substitute for) the <a href="https://creativecommons.org/licenses/by/4.0/legalcode" class="external-link">full legal
 text of the CC BY 4.0 license</a>.</p>
+<p>This lesson uses <a href="https://github.com/carpentries/workbench-template-rmd" class="external-link">The
+Carpentries Workbench R Markdown template</a>. Original template content
+remains attributed to The Carpentries. Contributions to this lesson are
+acknowledged in the <a href="../CITATION.cff">citation metadata</a> and <a href="https://github.com/UCL-ARC/r-intermediate-good-practices/commits/main/" class="external-link">repository
+commit history</a>.</p>
 <p>You are free:</p>
 <ul><li>to <strong>Share</strong>—copy and redistribute the material in any
 medium or format</li>
@@ -316,9 +339,10 @@ material</li>
 <p>The licensor cannot revoke these freedoms as long as you follow the
 license terms.</p>
 <p>Under the following terms:</p>
-<ul><li><p><strong>Attribution</strong>—You must give appropriate credit
-(mentioning that your work is derived from work that is Copyright (c)
-The Carpentries and, where practical, linking to <a href="https://carpentries.org/" class="external-link uri">https://carpentries.org/</a>), provide a <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">link to the
+<ul><li><p><strong>Attribution</strong>—You must give appropriate credit to
+the authors of the material you reuse, including The Carpentries for
+material derived from work that is Copyright (c) The Carpentries (and,
+where practical, linking to <a href="https://carpentries.org/" class="external-link uri">https://carpentries.org/</a>), provide a <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">link to the
 license</a>, and indicate if changes were made. You may do so in any
 reasonable manner, but not in any way that suggests the licensor
 endorses you or your use.</p></li>
@@ -336,7 +360,7 @@ such as publicity, privacy, or moral rights may limit how you use the
 material.</li>
 </ul></section><section><h2 class="section-heading" id="software">Software<a class="anchor" aria-label="anchor" href="#software"></a></h2>
 <hr class="half-width"><p>Except where otherwise noted, the example programs and other software
-provided by The Carpentries are made available under the <a href="https://opensource.org" class="external-link">OSI</a>-approved <a href="https://opensource.org/licenses/mit-license.html" class="external-link">MIT
+in this lesson are made available under the <a href="https://opensource.org" class="external-link">OSI</a>-approved <a href="https://opensource.org/licenses/mit-license.html" class="external-link">MIT
 license</a>.</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -416,9 +440,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/LICENSE.html",
   "identifier": "https://UCL-ARC.github.io/r-intermediate-good-practices/instructor/LICENSE.html",
-  "dateCreated": "2026-10-21",
-  "dateModified": "2026-10-21",
-  "datePublished": "2026-10-21"
+  "dateCreated": "2026-10-26",
+  "dateModified": "2026-10-26",
+  "datePublished": "2026-10-26"
 }
 
   </script><script>
