@@ -1,0 +1,289 @@
+---
+title: "Documentation"
+teaching: 15
+exercises: 10
+---
+
+::::::::::::::::::::::::::::::::: questions
+
+- How do different audiences influence what you document?
+- How does your intention (citation, collaboration, onboarding) shape the documentation you write?
+- What types of documentation should research software include?
+- When should you use in-code comments, and why can over-commenting be harmful?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::: objectives
+
+- Identify and distinguish between procedural, conceptual, and reference documentation.
+- Plan documentation using the questions: Who is it for? What do they want? How else could I communicate with them?
+- Produce concise, audience-appropriate documentation.
+- Explain why it is good practice to avoid line-by-line commentary.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## What is documentation?
+
+Writing code that works is only part of making research reproducible. 
+We also need to help others understand what our code does, how to use it and why certain decisions were made.
+
+**Documentation is information that helps people understand, use and maintain software.**
+
+It can take many forms, from a short comment explaining a decision to a website containing tutorials and reference guides.
+
+Documentation can be divided into three broad types:
+
+- **Procedural documentation:** Explains **how to do something**, usually through step-by-step instructions or tutorials.
+- **Conceptual documentation:** Explains **how and why something works**, providing background information and helping users understand underlying ideas.
+- **Reference documentation:** Provides **detailed information to look up**, such as descriptions of functions, arguments and return values.
+
+These types of documentation serve different purposes and often complement each other.
+
+The right documentation depends on **who will use the software and what they need to know**.
+
+::::::::::::::::::::::::::::::::: challenge
+
+### Exercise: Who needs what documentation?
+
+Imagine you have expanded your colleague's R workflow for analysing the `sleep` dataset into a package and now want to share it with others.
+
+For each situation, consider:
+
+- **Who** is the documentation for?
+- **What** do they need to know?
+- **Which type** of documentation (procedural, conceptual or reference) would be most appropriate?
+
+1. A new colleague wants to install your R package and contribute to its development.
+2. A researcher wants to understand why you chose a particular statistical test.
+3. A researcher wants to know what a particular function in the sleep analysis does and what it returns.
+4. The head of department who made funding available for your project wants a brief update on its progress and key findings.
+
+::::::::::::::: solution
+
+### Show me the solution
+
+**1. A new colleague wants to install your R package and contribute to its development.**
+
+- **Who?** A colleague who is new to the project.
+- **What?** They need instructions for installing the package, getting started and contributing changes.
+- **Type: Procedural documentation.** A README and contributing guide (`CONTRIBUTING.md`) can provide step-by-step instructions for installation, usage and contributions.
+
+**2. A researcher wants to understand the statistical approach.**
+
+- **Who?** A researcher reviewing or building on the analysis.
+- **What?** They need to understand why a particular statistical test was chosen and what assumptions it makes.
+- **Type: Conceptual documentation.** An explanation of the reasoning behind the statistical approach would help them evaluate the analysis.
+
+**3. A researcher wants to understand a function.**
+
+- **Who?** Someone using or reviewing the analysis code.
+- **What?** They need to know what the function does, which inputs it accepts and what it returns.
+- **Type: Reference documentation.** A function help page would provide these details.
+
+**4. The head of department wants an update.**
+
+- **Who?** Someone interested in the project's outcomes who may not be familiar with R or the analysis code.
+- **What?** They need a clear summary of progress, key findings and next steps.
+- **Type: Most closely related to conceptual documentation.**
+  A short, non-technical summary explaining the project's purpose, findings and significance could be shared as a news article, blog post or project update.
+  This is project communication rather than software documentation.
+
+Different audiences may need different information about the same project, and not all communication needs to be technical documentation.
+
+:::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+In this lesson, we'll explore different ways of documenting research software, from code comments and function documentation to READMEs and documentation websites.
+
+## Writing useful code comments
+
+Comments help explain parts of our code that might otherwise be difficult to understand. 
+In R, ordinary comments start with `#`.
+
+A useful rule of thumb is to explain **why** something is done, rather than simply repeating **what** the code does.
+
+For example:
+
+```r
+# Exclude sample 42 because its readings were affected
+# by an equipment malfunction during data collection.
+measurements <- measurements[measurements$sample_id != 42, ]
+```
+
+Compare this with a comment that simply describes the operation:
+
+```r
+# Exclude sample 42
+measurements <- measurements[measurements$sample_id != 42, ]
+```
+
+The second comment adds little because we can already see from the code that sample 42 is being excluded. 
+What we cannot tell is *why*.
+
+**This is not a strict rule**.
+Comments can also help explain **what** the code does when the logic is complex or not immediately obvious.
+
+**The key is to write comments that add useful information.** 
+Comments that simply repeat obvious code can make scripts harder to read and maintain, particularly if the code changes but the comments are not updated.
+
+## Documenting R functions with `roxygen2`
+
+Comments can explain decisions within our code, but people using our functions also need to know what the functions do, which arguments they accept and what they return.
+
+In R packages, we can use [`roxygen2`](https://roxygen2.r-lib.org/) to write this documentation directly above a function.
+These special comments begin with `#'` and can be used to generate help pages.
+
+For example:
+
+``` R
+#' Add two numbers
+#'
+#' @param x First number.
+#' @param y Second number.
+#' @return The sum of x and y.
+#' @export
+add_numbers <- function(x, y) {
+  x + y
+}
+```
+
+Here:
+
+- `@param` describes each argument.
+- `@return` describes what the function returns.
+- `@export` makes the function available to package users.
+
+Running `devtools::document()` inside an R package generates help files from these comments.
+Users can then access the function's documentation with `?add_numbers`.
+
+::::::::::::::::::::::::::::::::: challenge
+
+### Writing function documentation
+
+Use `roxygen2` to document the function below for people using your R package.
+
+Include:
+- A short title.
+- `@param` to describe the input.
+- `@return` to describe the output.
+- `@export` to make the function available to package users.
+
+```r
+double_number <- function(x) {
+  x * 2
+}
+```
+
+::::::::::::::: solution
+
+### Show me the solution
+
+```r
+#' Double a number
+#'
+#' @param x A number to double.
+#' @return The input multiplied by two.
+#' @export
+double_number <- function(x) {
+  x * 2
+}
+```
+
+`@param` and `@return` explain how to use the function; `@export` makes it accessible to package users. 
+
+:::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+We'll practise generating and exploring these help pages in the **Packaging** episode.
+
+## Writing a useful README
+
+Function documentation explains how to use individual functions, but someone discovering an entire project needs a broader introduction.
+
+A **README** is usually a file named `README.md` in the project's main directory.
+It provides a starting point for understanding and using the project.
+
+At a minimum, a README should explain:
+
+- **Purpose:** What problem does the project solve, and for whom?
+- **Getting started:** How can someone install and use it?
+
+For more developed packages or community projects, it should ideally also cover:
+
+- **Features and scope:** What does it do, what are its limitations and what is planned?
+- **Contributing and support:** How can others contribute, report issues or get help?
+
+A README is often the first thing people see when visiting a project on GitHub, so it should help them quickly decide whether the project is relevant and how to get started.
+
+## Exploring documentation websites
+
+For larger projects, a README and function help pages may not be enough.
+A documentation website can bring together tutorials, explanations, reference material, release notes and contribution guides.
+
+The [`ggplot2` website](https://ggplot2.tidyverse.org/) is a useful example because it includes several types of documentation:
+
+- **Get started:** Introduces the package and helps beginners create their first plots.
+- **Articles:** Explore features and explain concepts in more detail.
+- **Reference:** Documents individual functions, arguments and outputs.
+- **News:** Records changes between package versions.
+
+::::::::::::::::::::::::::::::::: challenge
+
+### Exploring the ggplot2 documentation
+
+Explore the [ggplot2 website](https://ggplot2.tidyverse.org/).
+
+As you browse, consider:
+
+- Who might use each section?
+- Can you identify procedural, conceptual and reference documentation?
+- How do tutorials and examples help users learn?
+- Why might the News section be useful for reproducibility?
+
+::::::::::::::: solution
+
+### Show me the solution
+
+- **Different audiences**
+  - *Get started* helps beginners learn the basics and create their first plots.
+  - *Articles* help users explore particular features in more detail.
+  - *Reference* helps users find information about specific functions and arguments.
+  - *News* helps users understand what has changed between package versions.
+
+- **Types of documentation**
+  - **Procedural:** Tutorials guide users through the steps needed to create plots.
+  - **Conceptual:** Articles explain ideas and features, helping users understand how and why they work.
+  - **Reference:** Function documentation describes what each function does, its arguments and its output.
+
+- **Tutorials and examples**
+  - They demonstrate how to use the package to complete practical tasks.
+  - Users can follow the examples and adapt the code for their own analyses.
+
+- **News and reproducibility**
+  - The News section records changes introduced in new versions of `ggplot2`.
+  - Checking these changes can help researchers understand differences in code behaviour or results after updating a package.
+
+:::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+Documentation websites can also be built automatically from source files, rather than maintained as separate web pages.
+
+For example, this workshop is written in source files and built into a website.
+When the source files change, the website can be rebuilt to reflect those changes.
+
+In R, tools such as [`pkgdown`](https://pkgdown.r-lib.org/) can build documentation websites from package documentation, articles and a README.
+Build automation tools such as [GitHub Actions](https://docs.github.com/en/actions) can run this process when changes are pushed to a repository.
+
+Not every project needs a full documentation website, but exploring established projects can give us ideas for documenting our own work as it grows.
+
+::::::::::::::::::::::::::::::::::::: keypoints
+
+- Research software has multiple audiences — users, developers, maintainers, and “future you” — each requiring different documentation.
+- Documentation comes in three types: procedural (step-by-step guides), conceptual (background, explanations, diagrams), and reference (APIs, parameters, system details)
+- In-code comments should be minimal and purposeful. Over-commenting distracts from the code, increases cognitive load, and often indicates unclear naming or structure.
+- Roxygen comments describe the purpose and behaviour of functions, classes, and modules. They improve readability and can be used to auto-generate reference documentation.
+
+:::::::::::::::::::::::::::::::::::::::::::::::: 
