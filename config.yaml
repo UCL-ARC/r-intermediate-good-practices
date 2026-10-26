@@ -72,6 +72,8 @@ episodes:
 - 02-environments.Rmd
 - 03-code_smells.Rmd
 - 06-documentation.Rmd
+- 07-packaging.Rmd
+
 
 # Information for Learners
 learners:
