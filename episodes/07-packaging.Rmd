@@ -615,7 +615,7 @@ Run this command in the R console to create and open `R/load_sleep_data.R`:
 usethis::use_r("load_sleep_data")
 ```
 
-Download [load_sleep_data.R](files\02-environments\07-packaging\load_sleep_data.R) and save it in the `R` folder.
+Download [load_sleep_data.R](https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/07-packaging/load_sleep_data.R) and save it in the `R` folder.
 
 
 ``` R
@@ -642,7 +642,7 @@ Create and open `R/summarise_data.R`:
 usethis::use_r("summarise_data")
 ```
 
-Download [summarise_data.R](files\02-environments\07-packaging\summarise_data.R) and save it in the `R` folder.
+Download [summarise_data.R](https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/07-packaging/summarise_data.R) and save it in the `R` folder.
 
 ``` R
 #' Summarise a numeric measurement by group
@@ -687,7 +687,7 @@ Create and open `R/plot_summary.R`:
 usethis::use_r("plot_summary")
 ```
 
-Download [plot_summary.R](files\02-environments\07-packaging\plot_summary.R) and save it in the `R` folder.
+Download [plot_summary.R](https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/07-packaging/plot_summary.R) and save it in the `R` folder.
 
 ``` R
 #' Plot group means and standard errors
@@ -926,7 +926,7 @@ For that, we also need an **analysis script**.
 
 In the `sleep` project, create a folder called `scripts/`.
 
-Download [sleep_analysis.R](files\02-environments\07-packaging\sleep_analysis.R) and save it in the `scripts` folder.
+Download [sleep_analysis.R](https://github.com/UCL-ARC/r-intermediate-good-practices/blob/main/code/07-packaging/sleep_analysis.R) and save it in the `scripts` folder.
 
 ``` R
 # Sleep analysis
