@@ -22,13 +22,78 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Documenting our code
+## What is documentation?
 
-Writing code that works is only part of making research reproducible.
+Writing code that works is only part of making research reproducible. 
 We also need to help others understand what our code does, how to use it and why certain decisions were made.
 
-Documentation can take many forms, from a short comment explaining a decision to a full website with tutorials and reference guides.
-The right approach depends on who will use the code and what they need to know.
+**Documentation is information that helps people understand, use and maintain software.**
+
+It can take many forms, from a short comment explaining a decision to a website containing tutorials and reference guides.
+
+Documentation can be divided into three broad types:
+
+- **Procedural documentation:** Explains **how to do something**, usually through step-by-step instructions or tutorials.
+- **Conceptual documentation:** Explains **how and why something works**, providing background information and helping users understand underlying ideas.
+- **Reference documentation:** Provides **detailed information to look up**, such as descriptions of functions, arguments and return values.
+
+These types of documentation serve different purposes and often complement each other.
+
+The right documentation depends on **who will use the software and what they need to know**.
+
+::::::::::::::::::::::::::::::::: challenge
+
+### Exercise: Who needs what documentation?
+
+Imagine you have expanded your colleague's R workflow for analysing the `sleep` dataset into a package and now want to share it with others.
+
+For each situation, consider:
+
+- **Who** is the documentation for?
+- **What** do they need to know?
+- **Which type** of documentation (procedural, conceptual or reference) would be most appropriate?
+
+1. A new colleague wants to install your R package and contribute to its development.
+2. A researcher wants to understand why you chose a particular statistical test.
+3. A researcher wants to know what a particular function in the sleep analysis does and what it returns.
+4. The head of department who made funding available for your project wants a brief update on its progress and key findings.
+
+::::::::::::::: solution
+
+### Show me the solution
+
+**1. A new colleague wants to install your R package and contribute to its development.**
+
+- **Who?** A colleague who is new to the project.
+- **What?** They need instructions for installing the package, getting started and contributing changes.
+- **Type: Procedural documentation.** A README and contributing guide (`CONTRIBUTING.md`) can provide step-by-step instructions for installation, usage and contributions.
+
+**2. A researcher wants to understand the statistical approach.**
+
+- **Who?** A researcher reviewing or building on the analysis.
+- **What?** They need to understand why a particular statistical test was chosen and what assumptions it makes.
+- **Type: Conceptual documentation.** An explanation of the reasoning behind the statistical approach would help them evaluate the analysis.
+
+**3. A researcher wants to understand a function.**
+
+- **Who?** Someone using or reviewing the analysis code.
+- **What?** They need to know what the function does, which inputs it accepts and what it returns.
+- **Type: Reference documentation.** A function help page would provide these details.
+
+**4. The head of department wants an update.**
+
+- **Who?** Someone interested in the project's outcomes who may not be familiar with R or the analysis code.
+- **What?** They need a clear summary of progress, key findings and next steps.
+- **Type: Conceptual documentation.** A short, non-technical summary explaining the project's purpose, findings and significance could be shared as a **news article, blog post or project update**, rather than focusing on technical details.
+
+Good documentation starts with understanding **who your audience is and what they need to know**. 
+Different audiences may need different information about the same project, and not all communication needs to be technical documentation.
+
+:::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+In this lesson, we'll explore different ways of documenting research software, from code comments and function documentation to READMEs and documentation websites.
 
 ## Writing useful code comments
 
