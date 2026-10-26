@@ -1,7 +1,7 @@
 # Exclude the teaching script from dependency detection.
 # It demonstrates obscurepackage for learners, but the package
 # is not required to build the lesson website.
-episodes/files/02-environments/sleep_analysis.R
+code/
 
 # Exclude generated website files from dependency detection.
 # These are copies of lesson materials, not additional R dependencies.
