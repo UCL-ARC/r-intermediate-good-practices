@@ -85,10 +85,9 @@ For each situation, consider:
 - **Who?** Someone interested in the project's outcomes who may not be familiar with R or the analysis code.
 - **What?** They need a clear summary of progress, key findings and next steps.
 - **Type: Most closely related to conceptual documentation.**
-  A short, non-technical summary explaining the project's purpose, findings and significance could be shared as a **news article, blog post or project update**.
-  This is **project communication** rather than **software documentation**.
+  A short, non-technical summary explaining the project's purpose, findings and significance could be shared as a news article, blog post or project update.
+  This is project communication rather than software documentation.
 
-Good documentation starts with understanding **who your audience is and what they need to know**. 
 Different audiences may need different information about the same project, and not all communication needs to be technical documentation.
 
 :::::::::::::::::::::::::::::
