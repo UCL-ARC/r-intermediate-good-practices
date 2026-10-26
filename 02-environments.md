@@ -1,7 +1,7 @@
 ---
 title: "Environments"
-teaching: 30
-exercises: 30
+teaching: 45
+exercises: 60
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -22,25 +22,28 @@ exercises: 30
 
 ## Running someone else's script
 
-A colleague emails you an R script called `sleep_analysis.R` and asks you to reproduce their results while they are away.
+A colleague emails you an R script called [sleep_analysis.R](../code/02-environments/sleep_analysis.R) and asks you to reproduce their results while they are away.
 
 Before running anything, create an R project to organise your work.
 
 ### Create an R project
 
-Before working with the script, create an R project in RStudio:
+Create a folder called `rworkshop` in your home directory to hold your workshop files.
+Then create an R project inside it using RStudio:
 
 - Go to **File > New Project > New Directory > New Project**
-- Name the directory `rworkshop`
-- Create as a subdirectory of your home directory (for example: `C:/Users/username/`)
+- Name the directory `sleep`
+- Create it as a subdirectory of `rworkshop` (for example: `C:/Users/username/rworkshop/`)
+- Leave the other settings at their defaults, with options such as **Create a git repository** and **Use renv with this project** unticked
 - Click **Create Project**
  
-If you want to come back to your work later, open the R Project file you created (`rworkshop.Rproj`).
+To return to your work later, open `sleep.Rproj` in the `sleep` folder.
 Double‑clicking this file launches RStudio, sets the working directory, and restores your project as you left it.
 
 ### Save the script
 
-Create a new R script called `sleep_analysis.R` inside the `rworkshop` folder and save the file after pasting in the code your colleague sent you:
+Download [sleep_analysis.R](../code/02-environments/sleep_analysis.R) and save it in the `sleep` folder.
+Open it in RStudio to view the code your colleague sent you:
 
 ``` R
 library(obscurepackage)
@@ -89,6 +92,10 @@ You may already have `ggplot2` installed, but if not, you can install it with:
 install.packages("ggplot2")
 ```
 
+R downloads and installs `ggplot2` and any required dependencies.
+You should see installation progress in the console, followed by the return of the `>` prompt.
+Check for errors before continuing.
+
 The `obscurepackage` is not on CRAN.
 
 First, install the remotes package, which allows you to install packages from GitHub:
@@ -97,6 +104,8 @@ First, install the remotes package, which allows you to install packages from Gi
 install.packages("remotes")
 ```
 
+R downloads and installs `remotes`.
+Wait for installation to finish and check for errors before continuing.
 
 Then, install `obscurepackage`:
 ``` R
@@ -114,7 +123,7 @@ If not, what happens, and why do you think the results differ?
 Have any changes been made that could explain the difference?
 
 
-![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
+![](fig/01-sleep_analysis_plot.png){alt="Boxplots of extra sleep for drug groups 1 and 2." width='50%'}
 
 :::::::::::::::::::::::: solution
 
@@ -124,7 +133,7 @@ You will not be able to reproduce your colleague's original plot using the lates
 
 Instead, you should see something like this:
 
-![](fig/sleep_analysis_NA_plot.png){alt="your sleep analysis plot" width='50%'}
+![](fig/01-sleep_analysis_NA_plot.png){alt="Plot of extra sleep for drug groups 1 and 2, showing NA for both groups instead of boxplots." width='50%'}
 
 The difference is caused by a bug introduced in a newer version of `obscurepackage`.
 
@@ -189,6 +198,9 @@ To install `renv`:
 ``` R
 install.packages("renv")
 ```
+
+R downloads and installs `renv`.
+Wait for installation to finish and check for errors before continuing.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -287,7 +299,7 @@ renv::install("stellaprins/obscurepackage@v0.1.0")
 
 Restart your R session to make sure R uses the newly installed version of `obscurepackage`.
 
-In RStudio, select **Session → Restart R**, or run:
+In RStudio, select **Session > Restart R**, or run:
 
 ``` R
 .rs.restartR()
@@ -299,7 +311,7 @@ Then run `sleep_analysis.R` again.
 
 You should be able to replicate the results of your colleague!
 
-![](fig/sleep_analysis_plot.png){alt="your colleague's sleep analysis plot" width='50%'}
+![](fig/01-sleep_analysis_plot.png){alt="Boxplots of extra sleep for drug groups 1 and 2, with a higher median for group 2." width='50%'}
 
 ## Recording your environment with a lockfile
 
@@ -417,15 +429,15 @@ Use `renv::restore()` when:
 You receive an email from your colleague.
 Apparently the earlier file (`sleep_analysis.R`) was the wrong one.
 
-This time, your colleague sent you two files: `sleep_analysis.R` and `DESCRIPTION`.
+This time, your colleague sent you two files: [sleep_analysis_final.R](../code/02-environments/sleep_analysis_final.R) and [DESCRIPTION](../code/02-environments/DESCRIPTION).
 
 In their message, your colleague explains that you should use the `DESCRIPTION` file to create the correct R environment for running the analysis.
 
-Download the [DESCRIPTION file](files/02-environments/DESCRIPTION) and save it in your `rworkshop` folder.
+Continue in the same `sleep` project.
+Download the [DESCRIPTION file](../code/02-environments/DESCRIPTION) and save it in `rworkshop/sleep`.
 
-Next, create a new R script called `sleep_analysis_final.R` in the same folder. Copy the following code into it and save the file.
-
-Keep your original `sleep_analysis.R` file. We will compare the dependencies detected in both scripts later.
+Download [sleep_analysis_final.R](../code/02-environments/sleep_analysis_final.R) and save it in the same folder.
+Its contents are shown below.
 
 ``` R
 library(dplyr)
@@ -481,14 +493,20 @@ ggplot(summary_tbl, aes(x = factor(group), y = mean_extra)) +
   theme_minimal(base_size = 14)
 ```
 
+Keep your original `sleep_analysis.R` file.
+We will compare the dependencies detected in both scripts later.
 
-Your project folder should now contain these files:
+Your workshop folder should now include these files:
 ``` text
 rworkshop/
-├── rworkshop.Rproj
-├── sleep_analysis.R
-├── sleep_analysis_final.R
-└── DESCRIPTION
+└── sleep/
+    ├── sleep.Rproj
+    ├── sleep_analysis.R
+    ├── sleep_analysis_final.R
+    ├── DESCRIPTION
+    ├── renv.lock
+    ├── .Rprofile
+    └── renv/
 ```
 :::::::::::::::::::::::: challenge
 
@@ -526,7 +544,8 @@ For example, dplyr (>= 1.1.0) means that version 1.1.0 or any newer version can 
 
 A `DESCRIPTION` file is normally used in R packages to record information such as the package name, version, authors, and dependencies.
 
-It can also be used in an R analysis project to document the packages required to run the project. 
+Here, we use it to declare dependencies for our analysis project.
+This does not turn the project into an R package.
 In this case, a minimal `DESCRIPTION` file containing only an `Imports` field is sufficient to declare the project's dependencies for use with `renv`.
 
 :::::::::::::::::::::::: challenge
@@ -561,60 +580,38 @@ While `DESCRIPTION` defines the project's dependency requirements, `renv.lock` r
 
 ### Reset the environment
 
-You will now create a fresh project environment to explore how `renv` works with a `DESCRIPTION` file.
+We will start with an empty package environment in the same `sleep` project to see which packages `DESCRIPTION` provides.
+This resets the project's package library and lockfile, while keeping your scripts and `DESCRIPTION` file.
+Clearing objects from RStudio's Environment pane does not reset installed packages.
 
-First, make sure your `rworkshop` project is open in RStudio. Restart R by selecting **Session > Restart R** to unload any packages from your previous session.
+Make sure the `sleep` project is open, then select **Session > Restart R** to unload packages.
 
-Before resetting the environment, remove the packages installed during the previous exercise:
+Remove the packages used in the first exercise from the active library:
+
 ``` R
 renv::remove(c("ggplot2", "obscurepackage"))
 ```
 
-Then deactivate `renv` and remove the existing project environment:
+Remove the existing `renv` infrastructure, including the project library and lockfile:
 
 ``` R
 renv::deactivate(clean = TRUE)
 ```
 
-This removes the project's `renv` infrastructure, including its project library and lockfile, without affecting your R scripts or `DESCRIPTION` file.
-
-After R restarts, initialise a new environment:
+After R restarts, initialise an empty project environment:
 
 ``` R
 renv::init(bare = TRUE)
 ```
 
-Setting `bare = TRUE` creates an empty project environment without automatically discovering and installing the packages used in your project.
+The `bare = TRUE` argument skips dependency discovery and installation.
 
-Because your project contains a `DESCRIPTION` file, `renv` will ask how it should identify the project's dependencies:
-
-```text
-This project contains a DESCRIPTION file.
-Which files should renv use for dependency discovery in this project?
-
-1: Use only the DESCRIPTION file. (explicit mode)
-2: Use all files in this project. (implicit mode)
-```
-
-These options represent two approaches to managing project dependencies:
-
-- **Explicit mode:** Uses the dependencies declared in `DESCRIPTION` when creating a lockfile.
-- **Implicit mode:** Discovers dependencies by scanning project files, such as R scripts, when creating a lockfile.
-
-Select **option 1 (explicit mode)** because your colleague has provided a `DESCRIPTION` file declaring the project's required packages.
-
-This setting controls which dependencies `renv` records when taking a "snapshot".
-It does not automatically install the packages.
-
-Your new project environment is now active, but the packages required for the analysis have not yet been installed.
+If prompted to choose how dependencies are discovered, select **Use only the DESCRIPTION file (explicit mode)**.
+We will explore snapshots in more detail later in this lesson.
 
 Try running `sleep_analysis_final.R`.
-
-Does it work? What error message do you get?
-
-The script should fail because the required packages are not yet available in the project library. 
-
-In the next steps, you will identify and install these dependencies.
+It should fail because its required packages are not yet installed in the project library.
+Next, you will identify and install them.
 
 ## Find dependencies in a project
 
@@ -651,15 +648,15 @@ Finding R package dependencies ... Done!
 
 
      Type                                             Source        Package Require Version   Dev
-1 Imports           C:/Users/username/rworkshop/DESCRIPTION          dplyr      >=   1.1.0 FALSE
-2 Imports           C:/Users/username/rworkshop/DESCRIPTION          tidyr      >=   1.3.0 FALSE
-3 Imports           C:/Users/username/rworkshop/DESCRIPTION        ggplot2      >=   3.4.0 FALSE
-4 Imports           C:/Users/username/rworkshop/DESCRIPTION          broom      >=   0.8.0 FALSE
-5    <NA>      C:/Users/username/rworkshop/sleep_analysis.R        ggplot2                 FALSE
-6    <NA>      C:/Users/username/rworkshop/sleep_analysis.R obscurepackage                 FALSE
-7    <NA> C:/Users/username/rworkshop/sleep_analysis_final.R          broom                 FALSE
-8    <NA> C:/Users/username/rworkshop/sleep_analysis_final.R          dplyr                 FALSE
-9    <NA> C:/Users/username/rworkshop/sleep_analysis_final.R        ggplot2                 FALSE
+1 Imports           C:/Users/username/rworkshop/sleep/DESCRIPTION          dplyr      >=   1.1.0 FALSE
+2 Imports           C:/Users/username/rworkshop/sleep/DESCRIPTION          tidyr      >=   1.3.0 FALSE
+3 Imports           C:/Users/username/rworkshop/sleep/DESCRIPTION        ggplot2      >=   3.4.0 FALSE
+4 Imports           C:/Users/username/rworkshop/sleep/DESCRIPTION          broom      >=   0.8.0 FALSE
+5    <NA>      C:/Users/username/rworkshop/sleep/sleep_analysis.R        ggplot2                 FALSE
+6    <NA>      C:/Users/username/rworkshop/sleep/sleep_analysis.R obscurepackage                 FALSE
+7    <NA> C:/Users/username/rworkshop/sleep/sleep_analysis_final.R          broom                 FALSE
+8    <NA> C:/Users/username/rworkshop/sleep/sleep_analysis_final.R          dplyr                 FALSE
+9    <NA> C:/Users/username/rworkshop/sleep/sleep_analysis_final.R        ggplot2                 FALSE
 ```
 
 **Which packages does `renv` detect?**
@@ -694,9 +691,6 @@ This shows that the packages declared in `DESCRIPTION` do not always match those
 
 ## Install dependencies from `DESCRIPTION` file
 
-Even though we selected **explicit mode** earlier, `renv::dependencies()` still scans both `DESCRIPTION` and the R scripts. 
-Explicit mode tells `renv` to use the dependencies declared in `DESCRIPTION` when creating the lockfile with `renv::snapshot()`.
-
 To install the packages listed in DESCRIPTION, we can use the remotes package.
 
 First, install `remotes` if you haven't already:
@@ -717,7 +711,8 @@ This installs the packages listed in the `DESCRIPTION` file and their dependenci
 
 Now that you have installed the dependencies from `DESCRIPTION`, try running both `sleep_analysis.R` and `sleep_analysis_final.R`.
 
-Do both scripts run successfully? Why (not)?
+Do both scripts run successfully?
+Why does one script fail?
 
 :::::::::::::::::::::::: solution
 
@@ -727,11 +722,9 @@ Do both scripts run successfully? Why (not)?
 
 This script uses `dplyr`, `ggplot2`, and `broom`, which are all listed in `DESCRIPTION` and have now been installed.
 
-`sleep_analysis.R` should fail.
-
-The original script requires `obscurepackage`, which is not listed in `DESCRIPTION` and therefore was not installed by remotes::install_deps().
-
-This shows that the `DESCRIPTION` does not necessarily install every package used in the project's R scripts and must be kept up to date with the packages required by the project.
+`sleep_analysis.R` should fail because it requires `obscurepackage`.
+That package is not listed in `DESCRIPTION`, so it was not installed.
+The declared dependencies support the final analysis, but not the original script.
 
 :::::::::::::::::::::::::::::::::
 
@@ -770,7 +763,7 @@ Use the help system to find out what snapshot types are available and how they d
 ?renv::snapshot
 ```
 
-- What is the default snapshot type when calling `renv::snapshot()`?
+- What is the default snapshot type?
 - How do implicit and explicit snapshots differ?
 - Why is an explicit snapshot the better choice in this situation?
 
@@ -778,7 +771,8 @@ Use the help system to find out what snapshot types are available and how they d
 
 ## Show me the solution
 
-The default snapshot type is implicit.
+The default is **implicit**, but `renv::snapshot()` uses the project's saved setting.
+Our project uses **explicit** because we selected that setting after resetting the environment.
 
 - An **implicit snapshot** records installed packages detected by `renv::dependencies()` in project files and their dependencies.
 - An **explicit snapshot** records installed packages declared in the `Imports` or `Depends` fields of `DESCRIPTION` and their dependencies.
@@ -794,15 +788,29 @@ Since our colleague has provided a `DESCRIPTION` file listing the packages neede
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Earlier, you used `renv::snapshot()` without specifying a snapshot type.
+Check the project's snapshot type:
 
-This time, use:
+``` R
+renv::settings$snapshot.type()
+```
+
+The result should be `"explicit"`.
+Take a snapshot using this setting:
+
+``` R
+renv::snapshot()
+```
+
+You can also specify the type for an individual snapshot:
 
 ``` R
 renv::snapshot(type = "explicit")
 ```
 
-After taking the explicit snapshot, confirm that the project is now consistent.
+Both commands use explicit mode here.
+Supplying `type` overrides the saved setting for that call only.
+
+Check that the project is now consistent:
 
 ``` R
 renv::status()
@@ -810,12 +818,74 @@ renv::status()
 
 You should see a message indicating that there are no issues.
 
-You now have a lockfile for your new analysis, based on the dependencies specified by your colleague in the `DESCRIPTION` file they sent you.
+Your lockfile now records the dependencies for the final analysis.
+`obscurepackage` is neither installed nor recorded in the lockfile.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Restore an environment using its lockfile
+
+Now that you have recorded a working environment in your lockfile, let's see how you can use it to recover a missing package.
+
+**1. Remove a package**
+
+Select **Session > Restart R** to unload packages, then remove `broom` from your project library:
+
+```r
+renv::remove("broom")
+```
+
+**2. Run your analysis**
+
+Run `sleep_analysis_final.R` again and examine the error message.
+
+Why does the script no longer work?
+
+**3. Restore your environment**
+
+Think back to [Restoring an environment from a lockfile](#restoring-an-environment-from-a-lockfile), where you learned about `renv::snapshot()` and `renv::restore()`.
+
+- Which function would you use to recover the missing package: `snapshot()` or `restore()`?
+- Try running the function you think is appropriate.
+- Run `sleep_analysis_final.R` again. Does it work now?
+- Why did your chosen function work (or not work)?
+
+:::::::::::::::::::::::: solution
+
+## Show me the solution
+
+The script initially fails because `broom` has been removed from the project library, so R can no longer find the package it needs.
+
+The correct function to use is:
+
+```r
+renv::restore()
+```
+
+This tells `renv` to compare the packages installed in your project with those recorded in `renv.lock`. 
+Because `broom` is recorded in the lockfile but is no longer installed, `renv` identifies the missing package and reinstalls the recorded version.
+
+After restoring the environment, `sleep_analysis_final.R` should run successfully again.
+
+**Why does `restore()` work, but `snapshot()` does not?**
+
+The two functions serve different purposes:
+
+- **`renv::snapshot()`** records the current state of your project's package dependencies in `renv.lock`.
+- **`renv::restore()`** uses the lockfile to recreate the recorded package environment.
+
+In this exercise, the lockfile already describes a working environment. 
+We want to **recover that environment**, not record its current, incomplete state.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- A **project environment** tracks the R and package versions used in a project.
-- `renv` creates isolated, project‑specific libraries for reproducible workflows.
-- Reproducibility depends on stable, well‑defined environments.
+- Package versions can affect results, even when code and data stay the same.
+- `renv` creates an isolated package library for each project.
+- `DESCRIPTION` declares required packages, and `renv.lock` records exact versions.
+- Use `renv::snapshot()` to record installed versions and `renv::restore()` to recreate the recorded package environment.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
