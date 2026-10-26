@@ -1,8 +1,7 @@
-
 ---
 title: "Documentation"
-teaching:
-exercises:
+teaching: 15
+exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::: questions
@@ -85,37 +84,40 @@ Here:
 Running `devtools::document()` inside an R package generates help files from these comments.
 Users can then access the function's documentation with `?add_numbers`.
 
-This approach keeps reference documentation alongside the code, making it easier to maintain.
-
 ::::::::::::::::::::::::::::::::: challenge
 
 ### Writing function documentation
 
-Add `roxygen2` documentation to the following function:
+Use `roxygen2` to document the function below for people using your R package.
 
-``` R
+Include:
+- A short title.
+- `@param` to describe the input.
+- `@return` to describe the output.
+- `@export` to make the function available to package users.
+
+```r
 double_number <- function(x) {
   x * 2
 }
 ```
-
-Include a short title, an `@param` description and an `@return` description.
 
 ::::::::::::::: solution
 
 ### Show me the solution
 
-``` R
+```r
 #' Double a number
 #'
 #' @param x A number to double.
 #' @return The input multiplied by two.
+#' @export
 double_number <- function(x) {
   x * 2
 }
 ```
 
-We don't need an ordinary comment explaining `x * 2` because the code is already clear.
+`@param` and `@return` explain how to use the function; `@export` makes it accessible to package users. 
 
 :::::::::::::::::::::::::::::
 
