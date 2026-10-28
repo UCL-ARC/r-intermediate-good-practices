@@ -1,4 +1,4 @@
-library(obscurepackage)
+library(obscurepackage) # stellaprins/obscurepackage can be installed using the remotes package
 library(ggplot2)
 
 data <- sleep
